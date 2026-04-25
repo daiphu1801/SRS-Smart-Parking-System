@@ -7,7 +7,27 @@
 
 🌐 **English version?** Vui lòng xem [README.md](./README.md).
 
-Hệ thống quản lý bãi đỗ xe thông minh sử dụng AI Camera, được tổ chức dạng **Monorepo** với 3 thư mục chính:
+## 📖 Giới thiệu Dự án
+Hệ thống quản lý bãi đỗ xe thông minh (Smart Parking System) là một giải pháp tự động hóa hoàn toàn luồng đỗ xe bằng Trí tuệ Nhân tạo (AI). Thay vì sử dụng thẻ từ (RFID) thủ công và vé giấy truyền thống, hệ thống sử dụng module Camera Ai nhận diện biển số xe (LPR) tốc độ cao để tự động đóng/mở barie, mang lại trải nghiệm ra vào rảnh tay (hands-free) 100% cho cư dân và khách hàng.
+
+## ✨ Tính năng Cốt lõi
+- **Ra Vào Tự Động:** AI trích xuất biển số tự động mở cổng trong chưa tới 2 giây, loại bỏ hoàn toàn vé vật lý.
+- **Tính cước Động & Gói Thuê bao:** Cấu trúc tính phí đa dạng theo giờ, ngày, và các gói thuê bao VIP/tháng áp dụng cho nhiều loại phương tiện khác nhau.
+- **Can thiệp Kịp thời từ Bảo vệ:** Sử dụng WebSocket để đẩy cảnh báo vi phạm, cảnh báo hết chỗ, và tín hiệu bất thường theo thời gian thực tới màn hình trạm bảo vệ.
+- **Hệ Sinh thái Quản trị Thống nhất:** Một hệ thống duy nhất kết hợp giữa xử lý AI tại biên (edge), luồng nghiệp vụ kinh doanh dày đặc trên cloud, và giao diện siêu mượt cho người dùng cuối qua app di động.
+
+## 🔄 Luồng Hoạt động (User Journey)
+1. **Xe vào trạm:** Khách hàng điều khiển phương tiện tiến vào làn đỗ xe. IP Camera chụp lại khung hình.
+2. **Suy luận AI:** Ứng dụng `python_edge_desktop` tại trạm chạy mô hình YOLOv8 để định vị xe và EasyOCR để đọc biển số hoàn toàn offline.
+3. **Kiểm tra Nghiệp vụ:** Kết quả biển số được ném qua Kafka về Backend `java_spring_core`. Máy chủ kiểm tra xe có nằm trong sổ đen hoặc có gói thuê bao hợp lệ hay không.
+4. **Mở cổng Vật lý:** Nếu hợp lệ, hệ thống bắn lệnh điều khiển relay GPIO mở barie, đồng thời ghi nhận phiên đỗ xe (Parking session) vào Database PostgreSQL.
+5. **Theo dõi qua App:** Khách hàng mở ứng dụng `flutter_mobile_app` để xem phiên đỗ xe hiện tại, kiểm tra cước phí, đăng ký gói tháng hoặc trả tiền trực tiếp qua mã QR.
+6. **Rời đi & Trừ tiền:** Camera luồng ra quét lại biển số. Server tính toán tổng thời gian và tự động trừ tiền trong ví (hoặc khách phải quét QR). Nếu tài khoản đủ tiền, barie lối ra tự động mở.
+
+---
+
+## 📦 Cấu trúc Kho Mã nguồn
+Dự án được tổ chức theo kiến trúc **Monorepo** bao gồm 3 môi trường chính:
 
 ```text
 smart-parking-monorepo/

@@ -7,7 +7,27 @@
 
 🌐 **Looking for the Vietnamese version?** Check out [README_vi.md](./README_vi.md).
 
-A comprehensive, AI-powered Smart Parking Management System structured as a **Monorepo** consisting of three main components:
+## 📖 Project Overview
+The Smart Parking Management System is a modern, enterprise-grade solution designed to completely automate parking lot operations using Artificial Intelligence (AI). Moving away from traditional ticketing and physical RFID cards, this system utilizes high-speed License Plate Recognition (LPR) technology integrated directly with barrier gates to provide a seamless, hands-free parking experience.
+
+## ✨ Core Features
+- **Automated Entrance & Exit:** AI automatically extracts license plates to open barriers in less than 2 seconds without requiring physical tickets.
+- **Dynamic Pricing & Monthly Subscriptions:** Comprehensive pricing rules accommodating hourly, daily, and monthly VIP subscriptions across different vehicle types.
+- **Real-Time Guard Interventions:** WebSockets instantly push violation alerts, capacity warnings, and anomaly notifications to the security guard's dashboard.
+- **Unified Management Eco-system:** A single monolith that handles AI analytics at the edge, heavy business logic in the cloud, and sleek end-user experiences via a mobile app.
+
+## 🔄 Operational Workflow (User Journey)
+1. **Vehicle Arrival:** A vehicle approaches the entrance. The IP camera captures the frame.
+2. **AI Inference:** The `python_edge_desktop` app runs YOLOv8 (vehicle detection) and EasyOCR (plate extraction) directly on the local edge computer.
+3. **Logic Validation:** The result is sent via Kafka to the `java_spring_core` backend. The server validates if the vehicle is blacklisted or has an active subscription.
+4. **Physical Actuation:** If valid, an HTTP command triggers the GPIO relays to lift the barrier gate, and an entry parking session is recorded in PostgreSQL.
+5. **Customer Management:** The vehicle owner checks their session via the `flutter_mobile_app`, where they can view pricing, register monthly packages, or pay via QR code.
+6. **Departure & Billing:** The exit camera scans the plate again. The server calculates the exact duration and deducts the fee from their wallet / expects a QR scan. The exit barrier automatically opens once payment clears.
+
+---
+
+## 📦 Repository Structure
+This project is structured as a **Monorepo** consisting of three main environments:
 
 ```text
 smart-parking-monorepo/
