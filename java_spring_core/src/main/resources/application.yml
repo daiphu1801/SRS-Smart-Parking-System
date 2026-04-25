@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: smart-parking-core
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smart_parking
+    username: parking_user
+    password: parking_pass
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate          # Dùng Flyway/Liquibase để quản lý schema
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: smart-parking-core
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.smartparking.*"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    com.smartparking: DEBUG
+    org.springframework.kafka: INFO
+
+# App custom config
+app:
+  jwt:
+    secret: SmartParkingSecretKey2026VeryLongStringForHS256AlgorithmSecurity
+    expiration-ms: 86400000      # 24 giờ
+
+  settings:
+    file-path: ${SETTINGS_PATH:../python_edge_desktop/config/settings.json}
+
+  sepay:
+    webhook-secret: ${SEPAY_WEBHOOK_SECRET:change_me_in_production}
+    bank-account: ${SEPAY_BANK_ACCOUNT:0123456789}
+    bank-name: ${SEPAY_BANK_NAME:MB}
+    account-name: ${SEPAY_ACCOUNT_NAME:CONG TY SMART PARKING}
+
+  zns:
+    access-token: ${ZNS_ACCESS_TOKEN:change_me_in_production}
+    app-id: ${ZNS_APP_ID:change_me}
+    template-otp: ${ZNS_TEMPLATE_OTP:1234}
+    template-reminder: ${ZNS_TEMPLATE_REMINDER:5678}
+    template-confirm: ${ZNS_TEMPLATE_CONFIRM:9012}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha

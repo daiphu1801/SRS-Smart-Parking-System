@@ -1,0 +1,14 @@
+{
+  "include": [
+    "**/*.py"
+  ],
+  "pythonVersion": "3.11",
+  "pythonPlatform": "Windows",
+  "venvPath": ".",
+  "venv": ".venv",
+  "extraPaths": [
+    "."
+  ],
+  "reportMissingModuleSource": "none",
+  "reportMissingImports": "none"
+}
