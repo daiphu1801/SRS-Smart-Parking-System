@@ -39,8 +39,8 @@ def gate_control_view() -> ft.Row:
             text_label("Entry: 08:30 today | Duration: 2h 15m", size=SIZE_BODY),
             ft.Container(height=4),
             ft.Row(spacing=8, controls=[
-                ft.Expanded(filled_button("Open Gate")),
-                ft.Expanded(outlined_button("Mark Cash Collected")),
+                ft.Container(expand=True, content=filled_button("Open Gate")),
+                ft.Container(expand=True, content=outlined_button("Mark Cash Collected")),
             ]),
         ]),
     )
@@ -71,8 +71,8 @@ def gate_control_view() -> ft.Row:
             text_label("Gate Control", size=SIZE_H1, weight=W_SEMIBOLD),
             plate_input,
             ft.Row(spacing=8, controls=[
-                ft.Expanded(filled_button("Check In")),
-                ft.Expanded(filled_button("Check Out")),
+                ft.Container(expand=True, content=filled_button("Check In")),
+                ft.Container(expand=True, content=filled_button("Check Out")),
             ]),
             result_card,
             section_divider(),
@@ -187,10 +187,10 @@ def vehicle_lookup_view() -> ft.Column:
 
 def shift_log_view() -> ft.Column:
     summary_row = ft.Row(spacing=16, controls=[
-        ft.Expanded(stat_card("Total Gate Opens", "24", "", positive=True)),
-        ft.Expanded(stat_card("Cash Collected", "175,000 đ", "", positive=True)),
-        ft.Expanded(stat_card("Alerts Resolved", "5", "", positive=True)),
-        ft.Expanded(stat_card("Shift Start", "08:00", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Total Gate Opens", "24", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Cash Collected", "175,000 đ", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Alerts Resolved", "5", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Shift Start", "08:00", "", positive=True)),
     ])
 
     timeline_items = [
@@ -206,7 +206,7 @@ def shift_log_view() -> ft.Column:
             text_label(time_val, size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
             ft.Container(width=1, height=36, bgcolor=ft.Colors.with_opacity(0.15, PRIMARY)),
             ft.Icon(icon, size=18, color=PRIMARY),
-            ft.Expanded(text_label(desc, size=SIZE_BODY)),
+            ft.Container(expand=True, content=text_label(desc, size=SIZE_BODY)),
         ]))
         timeline_controls.append(ft.Container(height=8))
 

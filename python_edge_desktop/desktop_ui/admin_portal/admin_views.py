@@ -16,16 +16,16 @@ def dashboard_view() -> ft.Column:
     stats_row = ft.Row(
         spacing=16,
         controls=[
-            ft.Expanded(stat_card("Total Revenue Today", "4,250,000 đ", "+12% vs yesterday", positive=True)),
-            ft.Expanded(stat_card("Active Sessions", "38", "+5 from this morning", positive=True)),
-            ft.Expanded(stat_card("Occupied Slots", "142 / 200", "71% occupancy", positive=True)),
-            ft.Expanded(stat_card("Open Complaints", "3", "-1 since yesterday", positive=False)),
+            ft.Container(expand=True, content=stat_card("Total Revenue Today", "4,250,000 đ", "+12% vs yesterday", positive=True)),
+            ft.Container(expand=True, content=stat_card("Active Sessions", "38", "+5 from this morning", positive=True)),
+            ft.Container(expand=True, content=stat_card("Occupied Slots", "142 / 200", "71% occupancy", positive=True)),
+            ft.Container(expand=True, content=stat_card("Open Complaints", "3", "-1 since yesterday", positive=False)),
         ],
     )
 
     chart_placeholder = ft.Container(
         height=280,
-        border=ft.border.all(1, ft.Colors.with_opacity(0.15, PRIMARY)),
+        border=ft.Border.all(1, ft.Colors.with_opacity(0.15, PRIMARY)),
         border_radius=RADIUS_CARD,
         content=ft.Column(
             alignment=ft.MainAxisAlignment.CENTER,
@@ -41,13 +41,13 @@ def dashboard_view() -> ft.Column:
     legend_row = ft.Row(spacing=8, controls=[
         ft.Container(
             content=text_label("Subscription", size=SIZE_CAPTION),
-            padding=ft.padding.symmetric(horizontal=10, vertical=4),
-            border=ft.border.all(1, PRIMARY), border_radius=RADIUS_BUTTON,
+            padding=ft.Padding.symmetric(horizontal=10, vertical=4),
+            border=ft.Border.all(1, PRIMARY), border_radius=RADIUS_BUTTON,
         ),
         ft.Container(
             content=text_label("Guest", size=SIZE_CAPTION),
-            padding=ft.padding.symmetric(horizontal=10, vertical=4),
-            border=ft.border.all(1, PRIMARY), border_radius=RADIUS_BUTTON,
+            padding=ft.Padding.symmetric(horizontal=10, vertical=4),
+            border=ft.Border.all(1, PRIMARY), border_radius=RADIUS_BUTTON,
         ),
     ])
 
@@ -55,7 +55,7 @@ def dashboard_view() -> ft.Column:
     headers = ["Plate", "Entry", "Exit", "Duration", "Fee", "Status", "Type"]
     table = ft.DataTable(
         border_radius=RADIUS_CARD,
-        border=ft.border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
+        border=ft.Border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
         heading_row_height=40,
         data_row_min_height=48,
         data_row_max_height=48,
@@ -121,7 +121,7 @@ def group_management_view() -> ft.Column:
         border_width=1.5,
         height=40,
         width=300,
-        content_padding=ft.padding.symmetric(horizontal=16, vertical=0),
+        content_padding=ft.Padding.symmetric(horizontal=16, vertical=0),
         text_style=ft.TextStyle(font_family=FONT_FAMILY, size=SIZE_BODY, color=PRIMARY),
         prefix_icon=ft.Icons.SEARCH,
     )
@@ -156,7 +156,7 @@ def group_management_view() -> ft.Column:
         ))
 
     table = ft.DataTable(
-        border=ft.border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
+        border=ft.Border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
         border_radius=RADIUS_CARD,
         heading_row_height=40,
         data_row_min_height=48,
@@ -185,7 +185,7 @@ def pricing_view() -> ft.Column:
                 cells=[ft.DataCell(text_label(v, size=SIZE_BODY)) for v in row],
             ))
         return ft.DataTable(
-            border=ft.border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
+            border=ft.Border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
             border_radius=RADIUS_CARD,
             heading_row_height=40, data_row_min_height=48, divider_thickness=0.5,
             columns=[ft.DataColumn(ft.Text(c, font_family=FONT_FAMILY, size=SIZE_BODY_SMALL, weight=W_SEMIBOLD, color=PRIMARY)) for c in columns],
@@ -208,24 +208,46 @@ def pricing_view() -> ft.Column:
         ]
     )
 
+    sub_col = ft.Container(
+        padding=ft.Padding(top=16),
+        content=ft.Container(content=sub_table, clip_behavior=ft.ClipBehavior.ANTI_ALIAS),
+        visible=True
+    )
+    guest_col = ft.Container(
+        padding=ft.Padding(top=16),
+        content=ft.Container(content=guest_table, clip_behavior=ft.ClipBehavior.ANTI_ALIAS),
+        visible=False
+    )
+
+    def on_tab_change(e):
+        sub_col.visible = (e.control.selected_index == 0)
+        guest_col.visible = (e.control.selected_index == 1)
+        sub_col.update()
+        guest_col.update()
+
+    tabs_ctrl = ft.Tabs(
+        length=2,
+        selected_index=0,
+        on_change=on_tab_change,
+        content=ft.Column(spacing=0, controls=[
+            ft.TabBar(
+                tab_alignment=ft.TabAlignment.START,
+                tabs=[
+                    ft.Tab(label="Subscription Packages"),
+                    ft.Tab(label="Guest Tariffs"),
+                ]
+            ),
+            sub_col,
+            guest_col,
+        ])
+    )
+
     return ft.Column(spacing=SECTION_GAP, scroll=ft.ScrollMode.AUTO, controls=[
         ft.Row(alignment=ft.MainAxisAlignment.SPACE_BETWEEN, controls=[
             text_label("Pricing and Packages", size=SIZE_H1, weight=W_SEMIBOLD),
             filled_button("Add Package"),
         ]),
-        ft.Tabs(
-            tab_alignment=ft.TabAlignment.LEADING,
-            tabs=[
-                ft.Tab(text="Subscription Packages", content=ft.Container(
-                    padding=ft.padding.only(top=16),
-                    content=ft.Container(content=sub_table, clip_behavior=ft.ClipBehavior.ANTI_ALIAS),
-                )),
-                ft.Tab(text="Guest Tariffs", content=ft.Container(
-                    padding=ft.padding.only(top=16),
-                    content=ft.Container(content=guest_table, clip_behavior=ft.ClipBehavior.ANTI_ALIAS),
-                )),
-            ],
-        ),
+        tabs_ctrl,
     ])
 
 
@@ -240,14 +262,14 @@ def reports_view() -> ft.Column:
                 width=140, height=40, border_radius=RADIUS_CARD, border_width=1.5,
                 border_color=ft.Colors.with_opacity(0.12, PRIMARY),
                 text_style=ft.TextStyle(font_family=FONT_FAMILY, size=SIZE_BODY, color=PRIMARY),
-                content_padding=ft.padding.symmetric(horizontal=12, vertical=0),
+                content_padding=ft.Padding.symmetric(horizontal=12, vertical=0),
             ),
             ft.TextField(
                 hint_text="End date",
                 width=140, height=40, border_radius=RADIUS_CARD, border_width=1.5,
                 border_color=ft.Colors.with_opacity(0.12, PRIMARY),
                 text_style=ft.TextStyle(font_family=FONT_FAMILY, size=SIZE_BODY, color=PRIMARY),
-                content_padding=ft.padding.symmetric(horizontal=12, vertical=0),
+                content_padding=ft.Padding.symmetric(horizontal=12, vertical=0),
             ),
             ft.Dropdown(
                 hint_text="All guards", width=160, height=40,
@@ -261,13 +283,13 @@ def reports_view() -> ft.Column:
     )
 
     summary_cards = ft.Row(spacing=16, controls=[
-        ft.Expanded(stat_card("Subscription Revenue", "3,200,000 đ", "", positive=True)),
-        ft.Expanded(stat_card("Guest Revenue (QR)", "850,000 đ", "", positive=True)),
-        ft.Expanded(stat_card("Cash Revenue", "200,000 đ", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Subscription Revenue", "3,200,000 đ", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Guest Revenue (QR)", "850,000 đ", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Cash Revenue", "200,000 đ", "", positive=True)),
     ])
 
     audit_table = ft.DataTable(
-        border=ft.border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
+        border=ft.Border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
         border_radius=RADIUS_CARD,
         heading_row_height=40, data_row_min_height=48, divider_thickness=0.5,
         columns=[
@@ -332,7 +354,7 @@ def complaints_view() -> ft.Column:
         ))
 
     table = ft.DataTable(
-        border=ft.border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
+        border=ft.Border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
         border_radius=RADIUS_CARD,
         heading_row_height=40, data_row_min_height=48, divider_thickness=0.5,
         columns=[
@@ -360,7 +382,7 @@ def zones_devices_view() -> ft.Row:
             scroll=ft.ScrollMode.AUTO,
             controls=[
                 ft.Container(
-                    padding=ft.padding.only(left=PAGE_PADDING, right=PAGE_PADDING, top=PAGE_PADDING, bottom=8),
+                    padding=ft.Padding(left=PAGE_PADDING, right=PAGE_PADDING, top=PAGE_PADDING, bottom=8),
                     content=text_label("Zone Management", size=SIZE_H3, weight=W_SEMIBOLD),
                 ),
                 *_zone_items(),
@@ -371,7 +393,7 @@ def zones_devices_view() -> ft.Row:
 
     # Zone detail (right panel)
     devices_table = ft.DataTable(
-        border=ft.border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
+        border=ft.Border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
         border_radius=RADIUS_CARD,
         heading_row_height=40, data_row_min_height=48, divider_thickness=0.5,
         columns=[
@@ -442,7 +464,7 @@ def _zone_items():
         result.append(ft.Container(
             bgcolor=PRIMARY if is_active else ft.Colors.TRANSPARENT,
             border_radius=RADIUS_BUTTON,
-            padding=ft.padding.only(left=PAGE_PADDING + depth * 12, right=12, top=8, bottom=8),
+            padding=ft.Padding(left=PAGE_PADDING + depth * 12, right=12, top=8, bottom=8),
             content=ft.Row(spacing=8, controls=[
                 ft.Icon(icon, size=18, color=BACKGROUND if is_active else PRIMARY),
                 ft.Text(label, font_family=FONT_FAMILY, size=SIZE_BODY,

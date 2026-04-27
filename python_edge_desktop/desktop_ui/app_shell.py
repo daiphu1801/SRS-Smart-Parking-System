@@ -114,7 +114,7 @@ def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
         return ft.Container(
             bgcolor=PRIMARY if is_active else ft.Colors.TRANSPARENT,
             border_radius=RADIUS_BUTTON,
-            padding=ft.padding.symmetric(horizontal=16, vertical=10),
+            padding=ft.Padding.symmetric(horizontal=16, vertical=10),
             on_click=on_click,
             content=ft.Row(spacing=10, controls=[
                 ft.Icon(icon, size=20, color=BACKGROUND if is_active else PRIMARY),
@@ -126,8 +126,8 @@ def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
     sidebar = ft.Container(
         width=240,
         bgcolor=BACKGROUND,
-        border=ft.border.only(right=ft.border.BorderSide(1, ft.Colors.with_opacity(0.10, PRIMARY))),
-        padding=ft.padding.symmetric(vertical=PAGE_PADDING, horizontal=12),
+        border=ft.Border(right=ft.BorderSide(1, ft.Colors.with_opacity(0.10, PRIMARY))),
+        padding=ft.Padding.symmetric(vertical=PAGE_PADDING, horizontal=12),
     )
 
     def build_sidebar():
@@ -135,8 +135,8 @@ def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
             expand=True,
             controls=[
                 # Logo + App name
-                ft.Padding(
-                    padding=ft.padding.only(left=4, bottom=24),
+                ft.Container(
+                    padding=ft.Padding(left=4, bottom=24),
                     content=ft.Row(spacing=10, controls=[
                         ft.Icon(ft.Icons.LOCAL_PARKING_ROUNDED, size=24, color=PRIMARY),
                         ft.Text("Smart Parking", font_family=FONT_FAMILY, size=SIZE_H3,
@@ -151,12 +151,12 @@ def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
                 ),
                 # Role chip at bottom
                 ft.Container(
-                    padding=ft.padding.only(left=4, top=16),
+                    padding=ft.Padding(left=4, top=16),
                     content=ft.Container(
                         content=ft.Text(role, font_family=FONT_FAMILY, size=SIZE_CAPTION,
                                         weight=W_MEDIUM, color=PRIMARY),
-                        padding=ft.padding.symmetric(horizontal=10, vertical=4),
-                        border=ft.border.all(1, PRIMARY),
+                        padding=ft.Padding.symmetric(horizontal=10, vertical=4),
+                        border=ft.Border.all(1, PRIMARY),
                         border_radius=RADIUS_BUTTON,
                     ),
                 ),
@@ -170,6 +170,7 @@ def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
         ft.Row(
             expand=True,
             spacing=0,
+            vertical_alignment=ft.CrossAxisAlignment.START,
             controls=[sidebar, content_area],
         )
     )

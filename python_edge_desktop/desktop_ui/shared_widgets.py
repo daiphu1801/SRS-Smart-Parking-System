@@ -11,9 +11,9 @@ from .design_tokens import (
 )
 
 
-def filled_button(label: str, on_click=None, width=None, loading=False) -> ft.ElevatedButton:
+def filled_button(label: str, on_click=None, width=None, loading=False) -> ft.Button:
     """Primary action — dark green background, white text."""
-    return ft.ElevatedButton(
+    return ft.Button(
         content=ft.ProgressRing(color=BACKGROUND, width=18, height=18) if loading
                 else ft.Text(label, font_family=FONT_FAMILY, size=SIZE_LABEL, weight=W_MEDIUM, color=BACKGROUND),
         on_click=on_click,
@@ -55,7 +55,7 @@ def card(content: ft.Control, padding=CARD_PADDING, on_click=None) -> ft.Contain
         content=content,
         padding=padding,
         bgcolor=BACKGROUND,
-        border=ft.border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
+        border=ft.Border.all(1, ft.Colors.with_opacity(0.10, PRIMARY)),
         border_radius=RADIUS_CARD,
         on_click=on_click,
     )
@@ -66,9 +66,9 @@ def badge(label: str, filled=False) -> ft.Container:
     return ft.Container(
         content=ft.Text(label, font_family=FONT_FAMILY, size=SIZE_CAPTION, weight=W_MEDIUM,
                         color=BACKGROUND if filled else PRIMARY),
-        padding=ft.padding.symmetric(horizontal=8, vertical=3),
+        padding=ft.Padding.symmetric(horizontal=8, vertical=3),
         bgcolor=PRIMARY if filled else BACKGROUND,
-        border=ft.border.all(1, PRIMARY),
+        border=ft.Border.all(1, PRIMARY),
         border_radius=RADIUS_BADGE,
     )
 
@@ -100,7 +100,7 @@ def input_field(label: str, placeholder="", on_change=None, value="", read_only=
                 border_radius=RADIUS_CARD,
                 border_width=1.5,
                 focused_border_width=1.5,
-                content_padding=ft.padding.symmetric(horizontal=16, vertical=0),
+                content_padding=ft.Padding.symmetric(horizontal=16, vertical=0),
             ),
         ],
     )
