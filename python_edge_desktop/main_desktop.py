@@ -3,7 +3,7 @@ main_desktop.py — Entry point for Smart Parking Desktop App (Python Flet)
 Run: flet run python_edge_desktop/main_desktop.py
 """
 import flet as ft
-from desktop_ui.app_shell import build_app_shell
+from desktop_ui.components.layout.app_shell import build_app_shell
 
 
 def main(page: ft.Page):

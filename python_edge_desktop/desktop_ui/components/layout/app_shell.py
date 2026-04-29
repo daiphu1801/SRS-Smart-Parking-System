@@ -3,15 +3,18 @@ app_shell.py — Desktop App Shell with sidebar navigation
 Sidebar: 240px fixed, nav items by role (Admin/Manager/Guard)
 """
 import flet as ft
-from .design_tokens import *
-from .shared_widgets import text_label, section_divider, badge
-from .admin_portal.admin_views import (
-    dashboard_view, group_management_view, pricing_view,
-    reports_view, complaints_view, zones_devices_view
-)
-from .guard_kiosk.guard_views import (
-    gate_control_view, vehicle_lookup_view, shift_log_view
-)
+from desktop_ui.design_tokens import *
+from desktop_ui.components.ui.shared_widgets import text_label, section_divider, badge
+from desktop_ui.pages.admin.dashboard_page import dashboard_view
+from desktop_ui.pages.admin.group_management_page import group_management_view
+from desktop_ui.pages.admin.pricing_page import pricing_view
+from desktop_ui.pages.admin.reports_page import reports_view
+from desktop_ui.pages.admin.complaints_page import complaints_view
+from desktop_ui.pages.admin.zones_devices_page import zones_devices_view
+
+from desktop_ui.pages.guard.gate_control_page import gate_control_view
+from desktop_ui.pages.guard.vehicle_lookup_page import vehicle_lookup_view
+from desktop_ui.pages.guard.shift_log_page import shift_log_view
 
 # ── Navigation Config ─────────────────────────────────────────────────────────
 

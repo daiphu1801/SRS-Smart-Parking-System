@@ -3,7 +3,7 @@ shared_widgets.py — Reusable Flet components following Smart Parking Design Sy
 2-color palette: #052e16 (primary) / #ffffff (background)
 """
 import flet as ft
-from .design_tokens import (
+from desktop_ui.design_tokens import (
     PRIMARY, BACKGROUND, SURFACE, BORDER, BORDER_STRONG, DISABLED, SUBTLE,
     RADIUS_CARD, RADIUS_BUTTON, RADIUS_BADGE,
     FONT_FAMILY, SIZE_BODY, SIZE_LABEL, SIZE_CAPTION, SIZE_H3,

@@ -1,0 +1,115 @@
+import flet as ft
+from desktop_ui.design_tokens import *
+from desktop_ui.components.ui.shared_widgets import text_label, filled_button, outlined_button, card, badge, section_divider, empty_state
+
+def gate_control_view() -> ft.Row:
+    """Left 60% — Gate Control Panel | Right 40% — Live Alert Feed"""
+    plate_input = ft.TextField(
+        hint_text="Enter plate number",
+        hint_style=ft.TextStyle(font_family=FONT_FAMILY, size=36,
+                                color=ft.Colors.with_opacity(0.30, PRIMARY)),
+        text_style=ft.TextStyle(font_family=FONT_FAMILY, size=36, weight=W_SEMIBOLD, color=PRIMARY),
+        border_color=ft.Colors.with_opacity(0.12, PRIMARY),
+        focused_border_color=PRIMARY,
+        border_radius=RADIUS_CARD,
+        border_width=1.5,
+        height=72,
+        content_padding=ft.padding.symmetric(horizontal=16, vertical=0),
+    )
+
+    result_card = card(
+        padding=CARD_PADDING,
+        content=ft.Column(spacing=8, controls=[
+            ft.Row(alignment=ft.MainAxisAlignment.SPACE_BETWEEN, controls=[
+                text_label("51A-123.45", size=SIZE_H1, weight=W_SEMIBOLD),
+                badge("Subscriber — Valid", filled=True),
+            ]),
+            text_label("Owner: Nguyen Van A | Unit 1502", size=SIZE_BODY,
+                       color=ft.Colors.with_opacity(0.60, PRIMARY)),
+            text_label("Entry: 08:30 today | Duration: 2h 15m", size=SIZE_BODY),
+            ft.Container(height=4),
+            ft.Row(spacing=8, controls=[
+                ft.Container(expand=True, content=filled_button("Open Gate")),
+                ft.Container(expand=True, content=outlined_button("Mark Cash Collected")),
+            ]),
+        ]),
+    )
+
+    # Override log
+    log_items = [
+        ("10:05", "Manual open — 60B-111.22 (camera blur)", ft.Icons.DOOR_FRONT_DOOR_OUTLINED),
+        ("09:32", "Cash collected — 51A-999.88 — 25,000 đ", ft.Icons.PAYMENTS_OUTLINED),
+        ("08:50", "Manual open — 29A-555.11 (subscriber)", ft.Icons.DOOR_FRONT_DOOR_OUTLINED),
+    ]
+
+    log_controls = [
+        ft.Row(spacing=12, controls=[
+            ft.Icon(icon, size=16, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+            ft.Column(spacing=2, expand=True, controls=[
+                text_label(desc, size=SIZE_BODY),
+                text_label(time, size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+            ]),
+        ])
+        for time, desc, icon in log_items
+    ]
+
+    left_panel = ft.Container(
+        width_percentage=0.60 if hasattr(ft, 'width_percentage') else None,
+        expand=3,
+        padding=PAGE_PADDING,
+        content=ft.Column(spacing=16, scroll=ft.ScrollMode.AUTO, controls=[
+            text_label("Gate Control", size=SIZE_H1, weight=W_SEMIBOLD),
+            plate_input,
+            ft.Row(spacing=8, controls=[
+                ft.Container(expand=True, content=filled_button("Check In")),
+                ft.Container(expand=True, content=filled_button("Check Out")),
+            ]),
+            result_card,
+            section_divider(),
+            text_label("Today's Override Log", size=SIZE_H3, weight=W_SEMIBOLD),
+            *log_controls,
+        ]),
+    )
+
+    # ── Right: Live Alert Feed ────────────────────────────────────────────────
+    alert_cards = [
+        {"plate": "59B-678.90", "zone": "B1 Row 3", "type": "Blocking aisle", "time": "10:32"},
+        {"plate": "41A-333.22", "zone": "Gate B Entry", "type": "LPR failure", "time": "10:28"},
+    ]
+
+    alert_items = []
+    for a in alert_cards:
+        alert_items.append(
+            card(
+                padding=CARD_PADDING,
+                content=ft.Column(spacing=8, controls=[
+                    ft.Row(alignment=ft.MainAxisAlignment.SPACE_BETWEEN, controls=[
+                        text_label(a["plate"], size=SIZE_H3, weight=W_SEMIBOLD),
+                        text_label(a["time"], size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+                    ]),
+                    text_label(f"{a['zone']} · {a['type']}", size=SIZE_BODY,
+                               color=ft.Colors.with_opacity(0.60, PRIMARY)),
+                    filled_button("Resolve"),
+                ]),
+            )
+        )
+        alert_items.append(ft.Container(height=12))
+
+    right_panel = ft.Container(
+        expand=2,
+        bgcolor=SURFACE,
+        border=ft.border.only(left=ft.border.BorderSide(1, ft.Colors.with_opacity(0.10, PRIMARY))),
+        padding=PAGE_PADDING,
+        content=ft.Column(
+            spacing=12,
+            scroll=ft.ScrollMode.AUTO,
+            controls=[
+                text_label("Live Alerts", size=SIZE_H2, weight=W_SEMIBOLD),
+                *(alert_items if alert_items else [empty_state(
+                    ft.Icons.CHECK_CIRCLE_OUTLINE, "No active alerts", "All clear."
+                )]),
+            ],
+        ),
+    )
+
+    return ft.Row(expand=True, spacing=0, controls=[left_panel, right_panel])
