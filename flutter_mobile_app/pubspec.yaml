@@ -35,6 +35,11 @@ dependencies:
   google_fonts: ^6.2.1          # Inter font family
   dio: ^5.7.0                   # HTTP client
   shared_preferences: ^2.3.2    # Local storage (auth token, user role)
+  provider: ^6.1.2              # State management
+  go_router: ^14.6.2            # Declarative routing
+  get_it: ^8.0.3                # Service locator / DI
+  intl: ^0.20.2
+  fl_chart: ^1.2.0
 
 dev_dependencies:
   flutter_test:
