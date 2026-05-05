@@ -89,6 +89,10 @@ cover/
 *.caffemodel
 *.pb
 
+# Demo / sample videos
+demo.mp4
+*.mp4
+
 # ==========================================
 # 2. JAVA / SPRING BOOT (java_spring_core)
 # ==========================================

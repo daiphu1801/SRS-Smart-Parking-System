@@ -19,46 +19,49 @@ from desktop_ui.pages.guard.shift_log_page import shift_log_view
 # ── Navigation Config ─────────────────────────────────────────────────────────
 
 ADMIN_NAV = [
-    ("Dashboard", ft.Icons.DASHBOARD_OUTLINED),
-    ("Group Management", ft.Icons.GROUPS_OUTLINED),
-    ("Employee Accounts", ft.Icons.BADGE_OUTLINED),
-    ("Pricing and Packages", ft.Icons.SELL_OUTLINED),
-    ("Zones and Devices", ft.Icons.DEVICE_HUB_OUTLINED),
-    ("Reports and Audit", ft.Icons.ANALYTICS_OUTLINED),
-    ("Complaints", ft.Icons.FEEDBACK_OUTLINED),
-    ("Settings", ft.Icons.SETTINGS_OUTLINED),
+    ("Bảng Điều Khiển", ft.Icons.DASHBOARD_OUTLINED),
+    ("Quản Lý Nhóm", ft.Icons.GROUPS_OUTLINED),
+    ("Tài Khoản Nhân Viên", ft.Icons.BADGE_OUTLINED),
+    ("Bảng Giá & Gói Dịch Vụ", ft.Icons.SELL_OUTLINED),
+    ("Khu Vực & Thiết Bị", ft.Icons.DEVICE_HUB_OUTLINED),
+    ("Báo Cáo & Kiểm Toán", ft.Icons.ANALYTICS_OUTLINED),
+    ("Khiếu Nại", ft.Icons.FEEDBACK_OUTLINED),
+    ("Cài Đặt", ft.Icons.SETTINGS_OUTLINED),
 ]
 
 MANAGER_NAV = [
-    ("Dashboard", ft.Icons.DASHBOARD_OUTLINED),
-    ("Reports and Audit", ft.Icons.ANALYTICS_OUTLINED),
-    ("Complaints", ft.Icons.FEEDBACK_OUTLINED),
+    ("Bảng Điều Khiển", ft.Icons.DASHBOARD_OUTLINED),
+    ("Báo Cáo & Kiểm Toán", ft.Icons.ANALYTICS_OUTLINED),
+    ("Khiếu Nại", ft.Icons.FEEDBACK_OUTLINED),
 ]
 
 GUARD_NAV = [
-    ("Gate Control", ft.Icons.DOOR_FRONT_DOOR_OUTLINED),
-    ("Alert Feed", ft.Icons.DOORBELL_OUTLINED),
-    ("Vehicle Lookup", ft.Icons.SEARCH_OUTLINED),
-    ("Shift Log", ft.Icons.HISTORY_OUTLINED),
+    ("Kiểm Soát Cổng", ft.Icons.DOOR_FRONT_DOOR_OUTLINED),
+    ("Cảnh Báo Trực Tiếp", ft.Icons.DOORBELL_OUTLINED),
+    ("Tra Cứu Xe", ft.Icons.SEARCH_OUTLINED),
+    ("Nhật Ký Ca Trực", ft.Icons.HISTORY_OUTLINED),
 ]
 
 
-def get_view_for(role: str, page_title: str) -> ft.Control:
+def get_view_for(role: str, page_title: str, page: ft.Page = None) -> ft.Control:
     """Return the content view for the given role and page title."""
+    # Views that need page for thread-safe UI updates
+    page_aware = {"Kiểm Soát Cổng", "Khu Vực & Thiết Bị"}
+
     mapping = {
-        "Dashboard": dashboard_view,
-        "Group Management": group_management_view,
-        "Pricing and Packages": pricing_view,
-        "Reports and Audit": reports_view,
-        "Complaints": complaints_view,
-        "Zones and Devices": zones_devices_view,
-        "Gate Control": gate_control_view,
-        "Vehicle Lookup": vehicle_lookup_view,
-        "Shift Log": shift_log_view,
+        "Bảng Điều Khiển": dashboard_view,
+        "Quản Lý Nhóm": group_management_view,
+        "Bảng Giá & Gói Dịch Vụ": pricing_view,
+        "Báo Cáo & Kiểm Toán": reports_view,
+        "Khiếu Nại": complaints_view,
+        "Khu Vực & Thiết Bị": zones_devices_view,
+        "Kiểm Soát Cổng": gate_control_view,
+        "Tra Cứu Xe": vehicle_lookup_view,
+        "Nhật Ký Ca Trực": shift_log_view,
     }
     if page_title in mapping:
-        result = mapping[page_title]()
-        # Special case: Zones has its own Row layout
+        result = mapping[page_title](page) if page_title in page_aware else mapping[page_title]()
+        # Special case: Row-based layouts (Gate Control, Zones) need no extra padding container
         if isinstance(result, ft.Row):
             return ft.Container(content=result, expand=True)
         return ft.Container(
@@ -78,8 +81,8 @@ def get_view_for(role: str, page_title: str) -> ft.Control:
                     ft.Icon(ft.Icons.CONSTRUCTION_OUTLINED, size=40,
                             color=ft.Colors.with_opacity(0.30, PRIMARY)),
                     ft.Container(height=12),
-                    text_label("Coming soon", size=SIZE_H3, weight=W_SEMIBOLD),
-                    text_label("This screen is under construction.", size=SIZE_BODY,
+                    text_label("Sắp ra mắt", size=SIZE_H3, weight=W_SEMIBOLD),
+                    text_label("Màn hình này đang trong quá trình xây dựng.", size=SIZE_BODY,
                                color=ft.Colors.with_opacity(0.60, PRIMARY)),
                 ],
             ),
@@ -90,7 +93,7 @@ def get_view_for(role: str, page_title: str) -> ft.Control:
 
 # ── App Shell ─────────────────────────────────────────────────────────────────
 
-def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
+def build_app_shell(page: ft.Page, role: str = "Admin", on_logout: callable = None) -> None:
     page.title = "Smart Parking — Desktop"
     page.bgcolor = BACKGROUND
     page.fonts = {"Inter": "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2"}
@@ -104,7 +107,7 @@ def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
     content_area = ft.Container(expand=True)
 
     def refresh_content():
-        content_area.content = get_view_for(role, current_page[0])
+        content_area.content = get_view_for(role, current_page[0], page)
         page.update()
 
     def nav_item(label: str, icon, index: int) -> ft.Container:
@@ -152,15 +155,26 @@ def build_app_shell(page: ft.Page, role: str = "Admin") -> None:
                     expand=True,
                     controls=[nav_item(label, icon, i) for i, (label, icon) in enumerate(nav_items)],
                 ),
-                # Role chip at bottom
+                # Role chip and Logout at bottom
                 ft.Container(
                     padding=ft.Padding(left=4, top=16),
-                    content=ft.Container(
-                        content=ft.Text(role, font_family=FONT_FAMILY, size=SIZE_CAPTION,
-                                        weight=W_MEDIUM, color=PRIMARY),
-                        padding=ft.Padding.symmetric(horizontal=10, vertical=4),
-                        border=ft.Border.all(1, PRIMARY),
-                        border_radius=RADIUS_BUTTON,
+                    content=ft.Row(
+                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                        controls=[
+                            ft.Container(
+                                content=ft.Text(role, font_family=FONT_FAMILY, size=SIZE_CAPTION,
+                                                weight=W_MEDIUM, color=PRIMARY),
+                                padding=ft.Padding.symmetric(horizontal=10, vertical=4),
+                                border=ft.Border.all(1, PRIMARY),
+                                border_radius=RADIUS_BUTTON,
+                            ),
+                            ft.IconButton(
+                                icon=ft.Icons.LOGOUT_OUTLINED,
+                                icon_color=ft.Colors.ERROR,
+                                tooltip="Đăng xuất",
+                                on_click=lambda _: on_logout() if on_logout else None,
+                            )
+                        ]
                     ),
                 ),
             ],

@@ -5,7 +5,7 @@ from desktop_ui.data.mock_data import MOCK_GROUPS_DATA
 
 def group_management_view() -> ft.Column:
     search = ft.TextField(
-        hint_text="Search by name or code",
+        hint_text="Tìm theo tên hoặc mã",
         hint_style=ft.TextStyle(font_family=FONT_FAMILY, size=SIZE_BODY,
                                 color=ft.Colors.with_opacity(0.30, PRIMARY)),
         border_color=ft.Colors.with_opacity(0.12, PRIMARY),
@@ -22,8 +22,8 @@ def group_management_view() -> ft.Column:
     top_bar = ft.Row(
         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         controls=[
-            text_label("Group Management", size=SIZE_H1, weight=W_SEMIBOLD),
-            ft.Row(spacing=12, controls=[search, filled_button("Add Group")]),
+            text_label("Quản Lý Nhóm", size=SIZE_H1, weight=W_SEMIBOLD),
+            ft.Row(spacing=12, controls=[search, filled_button("Thêm Nhóm")]),
         ],
     )
 
@@ -38,8 +38,8 @@ def group_management_view() -> ft.Column:
                 ft.DataCell(text_label(g["owner"], size=SIZE_BODY)),
                 ft.DataCell(text_label(g["vehicles"], size=SIZE_BODY)),
                 ft.DataCell(ft.Row(spacing=8, controls=[
-                    outlined_button("View"),
-                    outlined_button("Edit"),
+                    outlined_button("Xem"),
+                    outlined_button("Sửa"),
                 ])),
             ],
         ))
@@ -52,7 +52,7 @@ def group_management_view() -> ft.Column:
         divider_thickness=0.5,
         columns=[
             ft.DataColumn(ft.Text(h, font_family=FONT_FAMILY, size=SIZE_BODY_SMALL, weight=W_SEMIBOLD, color=PRIMARY))
-            for h in ["Group Name", "Code", "Profile", "Owner", "Vehicles", "Actions"]
+            for h in ["Tên Nhóm", "Mã", "Hồ Sơ", "Chủ Sở Hữu", "Số Xe", "Hành Động"]
         ],
         rows=rows,
     )

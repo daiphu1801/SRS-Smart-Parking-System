@@ -4,7 +4,7 @@ from desktop_ui.components.ui.shared_widgets import text_label, filled_button, o
 
 def vehicle_lookup_view() -> ft.Column:
     plate_field = ft.TextField(
-        hint_text="Search plate number",
+        hint_text="Tra cứu biển số",
         hint_style=ft.TextStyle(font_family=FONT_FAMILY, size=SIZE_BODY,
                                 color=ft.Colors.with_opacity(0.30, PRIMARY)),
         text_style=ft.TextStyle(font_family=FONT_FAMILY, size=SIZE_BODY, color=PRIMARY),
@@ -22,37 +22,37 @@ def vehicle_lookup_view() -> ft.Column:
         content=ft.Column(spacing=10, controls=[
             ft.Row(alignment=ft.MainAxisAlignment.SPACE_BETWEEN, controls=[
                 text_label("51A-123.45", size=24, weight=W_SEMIBOLD),
-                badge("In Parking", filled=True),
+                badge("Đang trong bãi", filled=True),
             ]),
             section_divider(),
             ft.Row(spacing=32, controls=[
                 ft.Column(spacing=4, controls=[
-                    text_label("Session Start", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
-                    text_label("08:30 today", size=SIZE_BODY),
+                    text_label("Thời gian vào", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+                    text_label("08:30 hôm nay", size=SIZE_BODY),
                 ]),
                 ft.Column(spacing=4, controls=[
-                    text_label("Duration", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+                    text_label("Thời gian đỗ", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
                     text_label("2h 15m", size=SIZE_BODY),
                 ]),
                 ft.Column(spacing=4, controls=[
-                    text_label("Vehicle Type", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
-                    text_label("Motorbike", size=SIZE_BODY),
+                    text_label("Loại xe", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+                    text_label("Xe máy", size=SIZE_BODY),
                 ]),
                 ft.Column(spacing=4, controls=[
-                    text_label("Owner", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
-                    text_label("Nguyen Van A", size=SIZE_BODY),
+                    text_label("Chủ xe", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+                    text_label("Nguyễn Văn A", size=SIZE_BODY),
                 ]),
                 ft.Column(spacing=4, controls=[
-                    text_label("Unit", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
-                    text_label("1502 Tower A", size=SIZE_BODY),
+                    text_label("Căn hộ", size=SIZE_BODY_SMALL, color=ft.Colors.with_opacity(0.60, PRIMARY)),
+                    text_label("1502 Tòa A", size=SIZE_BODY),
                 ]),
             ]),
-            outlined_button("View Full Session"),
+            outlined_button("Xem Chi Tiết Phiên"),
         ]),
     )
 
     return ft.Column(spacing=24, controls=[
-        text_label("Vehicle Lookup", size=SIZE_H1, weight=W_SEMIBOLD),
-        ft.Row(spacing=12, controls=[plate_field, filled_button("Search", width=120)]),
+        text_label("Tra Cứu Xe", size=SIZE_H1, weight=W_SEMIBOLD),
+        ft.Row(spacing=12, controls=[plate_field, filled_button("Tìm Kiếm", width=120)]),
         result,
     ])

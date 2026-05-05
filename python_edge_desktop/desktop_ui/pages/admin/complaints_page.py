@@ -14,7 +14,7 @@ def complaints_view() -> ft.Column:
                 ft.DataCell(text_label(c["customer"], size=SIZE_BODY)),
                 ft.DataCell(text_label(c["category"], size=SIZE_BODY)),
                 ft.DataCell(text_label(c["submitted"], size=SIZE_BODY)),
-                ft.DataCell(badge(c["status"], filled=not is_resolved)),
+                ft.DataCell(badge("Đã Giải Quyết" if is_resolved else "Đang Mở", filled=not is_resolved)),
             ],
         ))
 
@@ -24,12 +24,12 @@ def complaints_view() -> ft.Column:
         heading_row_height=40, data_row_min_height=48, divider_thickness=0.5,
         columns=[
             ft.DataColumn(ft.Text(h, font_family=FONT_FAMILY, size=SIZE_BODY_SMALL, weight=W_SEMIBOLD, color=PRIMARY))
-            for h in ["Ticket Id", "Customer", "Category", "Submitted At", "Status"]
+            for h in ["Mã Phiếu", "Khách Hàng", "Phân Loại", "Gửi Lúc", "Trạng Thái"]
         ],
         rows=rows,
     )
 
     return ft.Column(spacing=SECTION_GAP, scroll=ft.ScrollMode.AUTO, controls=[
-        text_label("Complaints", size=SIZE_H1, weight=W_SEMIBOLD),
+        text_label("Khiếu Nại", size=SIZE_H1, weight=W_SEMIBOLD),
         ft.Container(content=table, clip_behavior=ft.ClipBehavior.ANTI_ALIAS),
     ])

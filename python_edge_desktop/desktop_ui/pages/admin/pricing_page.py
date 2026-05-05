@@ -19,12 +19,12 @@ def pricing_view() -> ft.Column:
             rows=row_controls,
         )
 
-    sub_table = _make_tab_content("Subscription Packages",
-        ["Package Name", "Vehicle Type", "Duration", "Price", "Status", "Actions"],
+    sub_table = _make_tab_content("Gói Thuê Bao",
+        ["Tên Gói", "Loại Xe", "Thời Hạn", "Giá", "Trạng Thái", "Hành Động"],
         MOCK_SUBSCRIPTION_PACKAGES
     )
-    guest_table = _make_tab_content("Guest Tariffs",
-        ["Vehicle Type", "Day Type", "Time Range", "Base Block", "Price", "Max Daily"],
+    guest_table = _make_tab_content("Bảng Giá Khách Lẻ",
+        ["Loại Xe", "Ngày", "Khung Giờ", "Block", "Giá", "Tối Đa/Ngày"],
         MOCK_GUEST_TARIFFS
     )
 
@@ -53,8 +53,8 @@ def pricing_view() -> ft.Column:
             ft.TabBar(
                 tab_alignment=ft.TabAlignment.START,
                 tabs=[
-                    ft.Tab(label="Subscription Packages"),
-                    ft.Tab(label="Guest Tariffs"),
+                    ft.Tab(label="Gói Thuê Bao"),
+                    ft.Tab(label="Bảng Giá Khách Lẻ"),
                 ]
             ),
             sub_col,
@@ -64,8 +64,8 @@ def pricing_view() -> ft.Column:
 
     return ft.Column(spacing=SECTION_GAP, scroll=ft.ScrollMode.AUTO, controls=[
         ft.Row(alignment=ft.MainAxisAlignment.SPACE_BETWEEN, controls=[
-            text_label("Pricing and Packages", size=SIZE_H1, weight=W_SEMIBOLD),
-            filled_button("Add Package"),
+            text_label("Bảng Giá & Gói Dịch Vụ", size=SIZE_H1, weight=W_SEMIBOLD),
+            filled_button("Thêm Gói Mới"),
         ]),
         tabs_ctrl,
     ])

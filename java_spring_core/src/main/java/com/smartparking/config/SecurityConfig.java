@@ -1,6 +1,6 @@
 package com.smartparking.config;
 
-import com.smartparking.module.auth.JwtAuthFilter;
+import com.smartparking.config.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

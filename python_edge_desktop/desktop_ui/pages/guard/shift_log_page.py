@@ -4,17 +4,17 @@ from desktop_ui.components.ui.shared_widgets import text_label, stat_card, secti
 
 def shift_log_view() -> ft.Column:
     summary_row = ft.Row(spacing=16, controls=[
-        ft.Container(expand=True, content=stat_card("Total Gate Opens", "24", "", positive=True)),
-        ft.Container(expand=True, content=stat_card("Cash Collected", "175,000 đ", "", positive=True)),
-        ft.Container(expand=True, content=stat_card("Alerts Resolved", "5", "", positive=True)),
-        ft.Container(expand=True, content=stat_card("Shift Start", "08:00", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Số lần mở cổng", "24", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Thu tiền mặt", "175,000 đ", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Cảnh báo đã xử lý", "5", "", positive=True)),
+        ft.Container(expand=True, content=stat_card("Ca làm việc bắt đầu", "08:00", "", positive=True)),
     ])
 
     timeline_items = [
-        (ft.Icons.DOOR_FRONT_DOOR_OUTLINED, "10:05", "Manual gate open — 60B-111.22 (camera LPR failure)"),
-        (ft.Icons.PAYMENTS_OUTLINED, "09:45", "Cash collected — 51A-999.88 — 25,000 đ"),
-        (ft.Icons.WARNING_AMBER_OUTLINED, "09:32", "Alert resolved — 59B-678.90 blocking aisle at B1 Row 3"),
-        (ft.Icons.DOOR_FRONT_DOOR_OUTLINED, "08:50", "Manual gate open — 29A-555.11 (subscriber override)"),
+        (ft.Icons.DOOR_FRONT_DOOR_OUTLINED, "10:05", "Mở cổng tay — 60B-111.22 (lỗi camera LPR)"),
+        (ft.Icons.PAYMENTS_OUTLINED, "09:45", "Thu tiền mặt — 51A-999.88 — 25,000 đ"),
+        (ft.Icons.WARNING_AMBER_OUTLINED, "09:32", "Cảnh báo đã xử lý — 59B-678.90 chắn lối đi tại Hàng 3 B1"),
+        (ft.Icons.DOOR_FRONT_DOOR_OUTLINED, "08:50", "Mở cổng tay — 29A-555.11 (ghi đè thuê bao)"),
     ]
 
     timeline_controls = []
@@ -28,9 +28,9 @@ def shift_log_view() -> ft.Column:
         timeline_controls.append(ft.Container(height=8))
 
     return ft.Column(spacing=SECTION_GAP, scroll=ft.ScrollMode.AUTO, controls=[
-        text_label("Shift Log", size=SIZE_H1, weight=W_SEMIBOLD),
+        text_label("Nhật Ký Ca Trực", size=SIZE_H1, weight=W_SEMIBOLD),
         summary_row,
         section_divider(),
-        text_label("Today's Activity", size=SIZE_H2, weight=W_SEMIBOLD),
+        text_label("Hoạt Động Hôm Nay", size=SIZE_H2, weight=W_SEMIBOLD),
         ft.Column(spacing=0, controls=timeline_controls),
     ])
