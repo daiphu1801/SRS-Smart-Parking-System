@@ -75,8 +75,10 @@ springdoc:
     operations-sorter: alpha
     tags-sorter: alpha
 
-supabase:
-  url: "https://rrmhwltgofgtvxrmfxpl.supabase.co"
-  anon-key: "sb_publishable_cS4urr2ZNRLPOi5ayfV1BA_xbBCvKHB" # Dùng để login/verify
-  service-role-key: "sb_secret_Ei_DI3U3VS7iLFb74hY4rg_67Bqo6B7" # Dùng cho quyền Admin (ví dụ: ép đổi pass)
-  jwt-secret: "a4694d3b-819b-4b87-9a7e-d6fbc7ae368"
+
+#supabase:
+#  url: "https://rrmhwltgofgtvxrmfxpl.supabase.co"
+#  anon-key: "sb_publishable_cS4urr2ZNRLPOi5ayfV1BA_xbBCvKHB" # Dùng để login/verify
+#  service-role-key: "sb_secret_Ei_DI3U3VS7iLFb74hY4rg_67Bqo6B7" # Dùng cho quyền Admin (ví dụ: ép đổi pass)
+#  jwt-secret: "a4694d3b-819b-4b87-9a7e-d6fbc7ae368"
+
