@@ -3,9 +3,9 @@ spring:
     name: smart-parking-core
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/smart_parking
-    username: parking_user
-    password: parking_pass
+    url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require&stringtype=unspecified
+    username: postgres.rrmhwltgofgtvxrmfxpl
+    password: Ksupabase05NTz
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 20
@@ -22,18 +22,18 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
 
-  kafka:
-    bootstrap-servers: localhost:9092
-    consumer:
-      group-id: smart-parking-core
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "com.smartparking.*"
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#    consumer:
+#      group-id: smart-parking-core
+#      auto-offset-reset: earliest
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      properties:
+#        spring.json.trusted.packages: "com.smartparking.*"
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 server:
   port: 8080
@@ -74,3 +74,9 @@ springdoc:
     path: /swagger-ui.html
     operations-sorter: alpha
     tags-sorter: alpha
+
+supabase:
+  url: "https://rrmhwltgofgtvxrmfxpl.supabase.co"
+  anon-key: "sb_publishable_cS4urr2ZNRLPOi5ayfV1BA_xbBCvKHB" # Dùng để login/verify
+  service-role-key: "sb_secret_Ei_DI3U3VS7iLFb74hY4rg_67Bqo6B7" # Dùng cho quyền Admin (ví dụ: ép đổi pass)
+  jwt-secret: "a4694d3b-819b-4b87-9a7e-d6fbc7ae368"

@@ -1,0 +1,254 @@
+// =========================================
+// ENUMS - TRÁI TIM CỦA CƠ CHẾ PHÂN LOẠI
+// =========================================
+Enum account_type { ADMIN; GUARD; CUSTOMER }
+Enum general_status { ACTIVE; LOCKED; PENDING }
+Enum device_status { ONLINE; OFFLINE; MAINTENANCE }
+Enum device_type { LPR_CAM; BARRIER; LED }
+Enum direction { IN; OUT; BOTH }
+Enum zone_type { BUILDING; FLOOR; AREA; GATE }
+Enum day_of_week { MONDAY; TUESDAY; WEDNESDAY; THURSDAY; FRIDAY; SATURDAY; SUNDAY; WEEKEND; WEEKDAY; HOLIDAY }
+Enum booking_status { ACTIVE; EXPIRED; PENDING_PAYMENT; CANCELED }
+Enum payment_method { CASH; PAYOS; VNPAY }
+Enum payment_status { PENDING; SUCCESS; FAILED; REFUNDED }
+
+// =========================================
+// 1. MODULE: AUTHENTICATION & RBAC
+// =========================================
+Table Roles {
+  id int [pk, increment]
+  role_name varchar(50) [unique]
+  description nvarchar(255)
+  is_active boolean [default: true]
+}
+
+Table Functions {
+  id int [pk, increment]
+  func_name varchar(50) [note: 'Module chức năng: User, Zone, Billing...']
+  description nvarchar(255)
+}
+
+Table Actions {
+  id int [pk, increment]
+  action_code varchar(20) [note: 'VIEW, CREATE, EDIT, DELETE, EXPORT']
+}
+
+Table Role_Function_Action {
+  role_id int [pk]
+  func_id int [pk]
+  action_id int [pk]
+}
+
+Table Accounts {
+  id int [pk, increment]
+  username varchar(50) [unique]
+  password_hash varchar(255)
+  role_id int
+  account_type account_type
+  status general_status
+  last_login timestamp
+  created_at timestamp [default: `now()`]
+}
+
+// =========================================
+// 2. MODULE: IDENTITY & HR (AUDIT DRIVEN)
+// =========================================
+Table Employees {
+  id int [pk, increment]
+  account_id int [unique]
+  full_name nvarchar(100)
+  phone varchar(15) [unique]
+  is_online boolean [default: false]
+  created_by int [note: 'Trỏ về Employees.id']
+  created_at timestamp
+}
+
+Table GroupsProfiles {
+  id int [pk, increment]
+  profile_code varchar(20) [unique, note: 'RESIDENT, BUSINESS, VIP']
+  profile_name nvarchar(50)
+}
+
+Table GroupsCustomers {
+  id int [pk, increment]
+  profile_id int
+  group_code varchar(50) [unique]
+  group_name nvarchar(100)
+  master_account_id int [unique, note: 'Tài khoản đại diện quản lý Quota - Trỏ về Accounts.id']
+  created_by int [note: 'Trỏ về Employees.id']
+  created_at timestamp
+}
+
+Table Customers {
+  id int [pk, increment]
+  account_id int [unique]
+  group_id int
+  full_name nvarchar(100)
+  phone varchar(15) [unique]
+  created_at timestamp
+}
+
+// =========================================
+// 3. MODULE: TOPOLOGY (RECURSIVE & TYPED)
+// =========================================
+Table Zones {
+  id int [pk, increment]
+  parent_zone_id int [note: 'Đệ quy: Quản lý cây không gian (Building -> Floor -> Area -> Gate)']
+  zone_name nvarchar(100)
+  zone_type zone_type [note: 'Phân loại để AI/Backend xử lý logic hiển thị/đếm xe']
+  capacity int [default: 0]
+  current_occupancy int [default: 0]
+}
+
+Table IoT_Devices {
+  id int [pk, increment]
+  zone_id int [note: 'Gắn vào GATE hoặc AREA']
+  device_code varchar(50) [unique]
+  ip_address varchar(20)
+  device_type device_type
+  direction direction
+  status device_status
+}
+
+// =========================================
+// 4. MODULE: PRICING & QUOTA
+// =========================================
+Table VehicleTypes {
+  id int [pk, increment]
+  type_code varchar(20) [unique]
+  type_name nvarchar(50)
+}
+
+Table Packages {
+  id int [pk, increment]
+  package_code varchar(50) [unique]
+  package_name nvarchar(100)
+}
+
+Table Package_VehicleType {
+  id int [pk, increment]
+  profile_id int [note: 'Gắn hạn mức theo loại nhóm khách hàng']
+  package_id int
+  vehicle_type_id int
+  max_quantity int [note: 'Hạn mức (Quota) xe được phép đăng ký']
+}
+
+Table PackagePrice {
+  id int [pk, increment]
+  pkg_veh_type_id int
+  duration_days int
+  price decimal(15,2)
+  is_active boolean [default: true]
+}
+
+Table Tariff_Rules {
+  id int [pk, increment]
+  vehicle_type_id int
+  day_of_week day_of_week [note: 'MONDAY, WEEKEND, HOLIDAY...']
+  start_time time [note: 'Khung giờ bắt đầu']
+  end_time time [note: 'Khung giờ kết thúc']
+  base_block_mins int [note: 'Block đầu tiên']
+  base_price decimal(15,2)
+  next_block_mins int [note: 'Block lũy tiến']
+  next_block_price decimal(15,2)
+  max_price_per_day decimal(15,2)
+}
+
+// =========================================
+// 5. MODULE: CORE OPERATIONS
+// =========================================
+Table Bookings {
+  id int [pk, increment]
+  group_id int
+  status booking_status
+  created_by int [note: 'Trỏ về Employees.id']
+  created_at timestamp
+}
+
+Table BookingDetails {
+  id int [pk, increment]
+  booking_id int
+  customer_id int
+  package_price_id int
+  vehicle_no varchar(20) [note: 'Biển số xe định danh']
+  vehicle_type_id int
+  start_date timestamp
+  end_date timestamp
+  status booking_status
+}
+
+Table ParkingSessions {
+  id bigint [pk, increment]
+  booking_detail_id int [note: 'Link hợp đồng nếu là thuê bao']
+  vehicle_no varchar(20)
+  vehicle_type_id int
+  zone_in_id int [note: 'Cổng vào (Gate)']
+  zone_out_id int [note: 'Cổng ra (Gate)']
+  entry_time timestamp
+  exit_time timestamp
+  image_in_url varchar(255)
+  image_out_url varchar(255)
+  grace_period_end timestamp [note: 'Gia hạn thời gian ra cổng sau thanh toán Kiosk']
+  amount_due decimal(15,2) [default: 0]
+  is_paid boolean [default: false]
+  flag_manual boolean [default: false]
+}
+
+// =========================================
+// 6. MODULE: BILLING
+// =========================================
+Table Payments {
+  id bigint [pk, increment]
+  pay_code varchar(50) [unique]
+  transaction_id varchar(100) [unique]
+  booking_detail_id int
+  session_id bigint
+  amount decimal(15,2)
+  method payment_method
+  status payment_status
+  gateway_response json [note: 'Lưu log PayOS/VNPay để đối soát']
+  created_by_emp_id int [note: 'ID bảo vệ thu tiền mặt']
+  created_at timestamp
+}
+
+// =========================================
+// RELATIONSHIPS
+// =========================================
+Ref: Accounts.role_id > Roles.id
+Ref: Role_Function_Action.role_id > Roles.id
+Ref: Role_Function_Action.func_id > Functions.id
+Ref: Role_Function_Action.action_id > Actions.id
+
+Ref: Employees.account_id - Accounts.id
+Ref: Employees.created_by > Employees.id
+Ref: Customers.account_id - Accounts.id
+
+Ref: GroupsCustomers.profile_id > GroupsProfiles.id
+Ref: GroupsCustomers.master_account_id - Accounts.id
+Ref: GroupsCustomers.created_by > Employees.id
+Ref: Customers.group_id > GroupsCustomers.id
+
+Ref: Zones.parent_zone_id > Zones.id
+Ref: IoT_Devices.zone_id > Zones.id
+
+Ref: Package_VehicleType.profile_id > GroupsProfiles.id
+Ref: Package_VehicleType.package_id > Packages.id
+Ref: Package_VehicleType.vehicle_type_id > VehicleTypes.id
+Ref: PackagePrice.pkg_veh_type_id > Package_VehicleType.id
+Ref: Tariff_Rules.vehicle_type_id > VehicleTypes.id
+
+Ref: Bookings.group_id > GroupsCustomers.id
+Ref: Bookings.created_by > Employees.id
+Ref: BookingDetails.booking_id > Bookings.id
+Ref: BookingDetails.customer_id > Customers.id
+Ref: BookingDetails.package_price_id > PackagePrice.id
+Ref: BookingDetails.vehicle_type_id > VehicleTypes.id
+
+Ref: ParkingSessions.booking_detail_id > BookingDetails.id
+Ref: ParkingSessions.vehicle_type_id > VehicleTypes.id
+Ref: ParkingSessions.zone_in_id > Zones.id
+Ref: ParkingSessions.zone_out_id > Zones.id
+
+Ref: Payments.booking_detail_id > BookingDetails.id
+Ref: Payments.session_id > ParkingSessions.id
+Ref: Payments.created_by_emp_id > Employees.id

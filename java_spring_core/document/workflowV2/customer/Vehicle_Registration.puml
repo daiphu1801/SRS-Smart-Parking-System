@@ -1,0 +1,44 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Khách hàng (Cư dân)|
+start
+:Mở Customer App;
+:Chọn chức năng "Thêm phương tiện mới";
+:Nhập Biển số xe (Plate Number);
+
+|Hệ Thống Backend|
+:Truy vấn danh sách xe hiện tại của Căn hộ (Group_ID);
+:Đếm số lượng xe đang ở trạng thái ACTIVE;
+
+if (Số lượng xe < Hạn mức (Quota)?) then (Đúng)
+    :Kiểm tra Biển số xe đã tồn tại\ntrong toàn hệ thống chưa?;
+    if (Trùng biển số?) then (Có)
+        |Customer App (Mobile)|
+        #ffcccc:Báo lỗi: "Biển số đã được đăng ký\nbởi một tài khoản khác";
+        stop
+    else (Không)
+        |Hệ Thống Backend|
+        :Lưu thông tin xe vào Database;
+        :Đánh dấu trạng thái: "Chưa có gói cước";
+        :Đóng gói dữ liệu biển số mới;
+        :Gửi thông điệp qua Kafka (Topic: PLATE_SYNC);
+    endif
+else (Vượt hạn mức)
+    |Customer App (Mobile)|
+    #ffcccc:Báo lỗi: "Căn hộ đã dùng hết hạn mức.\nVui lòng xóa xe cũ hoặc nâng cấp gói";
+    stop
+endif
+
+|Thiết bị Hiện trường (Edge Server)|
+:Lắng nghe Kafka và cập nhật Local DB;
+:Thông báo cho AI Camera: "Biển số mới hợp lệ";
+
+|Customer App (Mobile)|
+#ccffcc:Thông báo: "Thêm xe thành công";
+:Gợi ý: "Bạn có muốn mua Gói cước\ntháng cho xe này không?" (Dẫn sang WF6);
+
+stop
+@enduml
