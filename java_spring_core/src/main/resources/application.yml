@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require&stringtype=unspecified
     username: postgres.rrmhwltgofgtvxrmfxpl
-    password: Ksupabase05NTz
+#    password: Ksupabase05NTz
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 20
@@ -48,7 +48,7 @@ logging:
 # App custom config
 app:
   jwt:
-    secret: SmartParkingSecretKey2026VeryLongStringForHS256AlgorithmSecurity
+#    secret: SmartParkingSecretKey2026VeryLongStringForHS256AlgorithmSecurity
     expiration-ms: 86400000      # 24 giờ
 
   settings:
