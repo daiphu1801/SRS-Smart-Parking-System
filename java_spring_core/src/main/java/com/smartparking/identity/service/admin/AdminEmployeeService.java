@@ -61,7 +61,7 @@ public class AdminEmployeeService {
 
         // TRỌNG TÂM Ở ĐÂY: Để trống Supabase ID vì trên Supabase chưa hề tồn tại người này!
         pendingAccount.setSupabaseId(null);
-        pendingAccount.setStatus(GeneralStatus.PENDING); // Trạng thái chờ kích hoạt
+        pendingAccount.setStatus(GeneralStatus.ACTIVE); // Trạng thái chờ kích hoạt
 
         pendingAccount = accountRepo.save(pendingAccount); // Lưu xuống MySQL
 

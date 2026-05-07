@@ -12,7 +12,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "accounts")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -27,9 +28,6 @@ public class Account {
 
     @Column(name = "supabase_id", length = 50)
     private UUID supabaseId;
-
-    @Column(name = "password_hash", length = 255)
-    private String passwordHash;
 
     @Column(name = "role_id")
     private Integer roleId;

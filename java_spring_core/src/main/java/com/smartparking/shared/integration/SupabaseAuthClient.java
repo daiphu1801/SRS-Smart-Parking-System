@@ -19,6 +19,9 @@ public class SupabaseAuthClient {
     @Value("${supabase.anon-key}")
     private String anonKey;
 
+    @Value("${supabase.service-role-key}")
+    private String supabaseServiceRoleKey;
+
 
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -41,39 +44,47 @@ public class SupabaseAuthClient {
         }
         return headers;
     }
-
-    public void sendOtp(String phone) {
-        String url = supabaseUrl + "/auth/v1/otp";
-        Map<String, String> body = Map.of("phone", phone);
-
-        HttpEntity<Map<String, String>> request = new HttpEntity<>(body, createPublicHeaders());
-
-        try {
-            restTemplate.postForEntity(url, request, String.class);
-            log.info("Requested Supabase to send OTP to {}", phone);
-        } catch (Exception e) {
-            log.error("Failed to send OTP via Supabase: {}", e.getMessage());
-            throw new RuntimeException("Failed to send OTP", e);
-        }
+    // Hàm tạo Header xài chung cho các tác vụ cần quyền Admin
+    private HttpHeaders createAdminHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("apikey", supabaseServiceRoleKey);
+        headers.set("Authorization", "Bearer " + supabaseServiceRoleKey);
+        headers.set("Content-Type", "application/json");
+        return headers;
     }
 
-    public Map<String, Object> verifyOtp(String phone, String otp) {
-        String url = supabaseUrl + "/auth/v1/verify";
-        Map<String, String> body = Map.of(
-                "phone", phone,
-                "token", otp,
-                "type", "sms");
+//    public void sendOtp(String phone) {
+//        String url = supabaseUrl + "/auth/v1/otp";
+//        Map<String, String> body = Map.of("phone", phone);
+//
+//        HttpEntity<Map<String, String>> request = new HttpEntity<>(body, createPublicHeaders());
+//
+//        try {
+//            restTemplate.postForEntity(url, request, String.class);
+//            log.info("Requested Supabase to send OTP to {}", phone);
+//        } catch (Exception e) {
+//            log.error("Failed to send OTP via Supabase: {}", e.getMessage());
+//            throw new RuntimeException("Failed to send OTP", e);
+//        }
+//    }
 
-        HttpEntity<Map<String, String>> request = new HttpEntity<>(body, createPublicHeaders());
-
-        try {
-            ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
-            return response.getBody();
-        } catch (Exception e) {
-            log.error("Failed to verify OTP via Supabase: {}", e.getMessage());
-            throw new IllegalArgumentException("Invalid OTP or Supabase Error");
-        }
-    }
+//    public Map<String, Object> verifyOtp(String phone, String otp) {
+//        String url = supabaseUrl + "/auth/v1/verify";
+//        Map<String, String> body = Map.of(
+//                "phone", phone,
+//                "token", otp,
+//                "type", "sms");
+//
+//        HttpEntity<Map<String, String>> request = new HttpEntity<>(body, createPublicHeaders());
+//
+//        try {
+//            ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
+//            return response.getBody();
+//        } catch (Exception e) {
+//            log.error("Failed to verify OTP via Supabase: {}", e.getMessage());
+//            throw new IllegalArgumentException("Invalid OTP or Supabase Error");
+//        }
+//    }
 
     public Map<String, Object> loginWithPassword(String username, String password) {
         String url = supabaseUrl + "/auth/v1/token?grant_type=password";
@@ -136,4 +147,27 @@ public class SupabaseAuthClient {
             throw new RuntimeException("Cập nhật mật khẩu thất bại. Token có thể đã hết hạn.", e);
         }
     }
+
+    public String createAdminUser(String phone, String password) {
+        String url = supabaseUrl + "/auth/v1/admin/users";
+
+        Map<String, Object> payload = Map.of(
+                "phone", phone,
+                "password", password,
+                "phone_confirm", true
+        );
+
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(payload, createAdminHeaders());
+
+        try {
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    url, HttpMethod.POST, request, Map.class);
+            return (String) response.getBody().get("id"); // Chỉ trả về đúng cái ID
+        } catch (Exception e) {
+            log.error("Lỗi khi tạo user trên Supabase Admin API: {}", e.getMessage());
+            throw new RuntimeException("Không thể tạo tài khoản bảo mật. Vui lòng thử lại sau.");
+        }
+    }
+
+
 }

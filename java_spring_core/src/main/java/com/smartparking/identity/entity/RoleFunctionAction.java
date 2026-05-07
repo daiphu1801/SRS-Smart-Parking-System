@@ -7,7 +7,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "role_function_action")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
