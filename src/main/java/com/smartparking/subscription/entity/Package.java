@@ -1,0 +1,27 @@
+package com.smartparking.subscription.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "packages")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Package {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "package_code", unique = true, length = 50)
+    private String packageCode;
+    @Column(name = "package_name", length = 100)
+    private String packageName;
+    @Column(name = "description", length = 255)
+    private String description;
+    @Column(name = "is_available")
+    private Boolean isAvailable;
+
+    @Column(name = "profile_id")
+    private Integer profileId;
+}

@@ -1,4 +1,4 @@
-package com.smartparking.identity.service;
+package com.smartparking.identity.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
