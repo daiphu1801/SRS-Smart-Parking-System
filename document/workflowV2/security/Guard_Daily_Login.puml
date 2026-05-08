@@ -1,0 +1,64 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 150
+
+|Nhân viên Bảo vệ|
+start
+:Đến bốt an ninh, sử dụng máy tính trạm;
+:Nhập Tài khoản và Mã PIN/Mật khẩu;
+
+|Guard Kiosk (Desktop)|
+:Gửi yêu cầu Đăng nhập & Nhận ca;
+
+|Hệ Thống Backend|
+:Xác thực tài khoản và Mật khẩu;
+
+if (Thông tin hợp lệ?) then (Đúng)
+    :Cập nhật trạng thái: is_on_duty = true;
+    :Ghi nhận thời gian Bắt đầu ca trực;
+    |Guard Kiosk (Desktop)|
+    #ccffcc:Hiển thị: "Nhận ca thành công.\nVui lòng mở App trên điện thoại.";
+else (Sai)
+    |Guard Kiosk (Desktop)|
+    #ffcccc:Báo lỗi sai thông tin;
+    stop
+endif
+
+|Nhân viên Bảo vệ|
+:Mở Guard App trên điện thoại cá nhân;
+:Bấm Đăng nhập (hoặc App tự làm mới phiên);
+
+|Hệ Thống Backend|
+:Kiểm tra trạng thái is_on_duty của tài khoản;
+
+if (Đang trong ca trực?) then (is_on_duty = true)
+    :Cấp Access Token cho Mobile;
+    |Guard App (Mobile)|
+    #ccffcc:Đăng nhập thành công vào màn hình chính;
+    :Kích hoạt kết nối Websocket/FCM\nđể nhận Push Notification;
+else (is_on_duty = false)
+    |Guard App (Mobile)|
+    #ffcccc:Báo lỗi: "Truy cập bị từ chối.\nVui lòng nhận ca tại máy tính bốt trước!";
+    stop
+endif
+
+|Nhân viên Bảo vệ|
+:Thực hiện nhiệm vụ tuần tra, xử lý sự cố qua App...;
+:Đến giờ giao ca, quay lại máy tính trạm (Kiosk);
+:Bấm chọn "Kết thúc ca trực / Đăng xuất";
+
+|Hệ Thống Backend|
+:Chốt báo cáo doanh thu của ca (WF4.3);
+:Cập nhật trạng thái: is_on_duty = false;
+:Gửi tín hiệu "Thu hồi quyền" (Revoke) xuống điện thoại;
+
+|Guard App (Mobile)|
+:Nhận tín hiệu từ Server;
+#ffcccc:Tự động văng ra màn hình Đăng nhập (Force Logout);
+:Ngắt kết nối nhận thông báo;
+
+|Guard Kiosk (Desktop)|
+:Trở về màn hình chờ cho bảo vệ ca tiếp theo;
+stop
+@enduml

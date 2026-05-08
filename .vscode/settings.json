@@ -1,6 +1,3 @@
 {
-  "python.analysis.extraPaths": [
-    "./python_edge_desktop"
-  ],
-  "python.defaultInterpreterPath": "${workspaceFolder}/python_edge_desktop/.venv/Scripts/python.exe"
+    "java.compile.nullAnalysis.mode": "disabled"
 }

@@ -1,0 +1,46 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Thành viên (Vợ/Con)|
+start
+:Tải và mở Customer App;
+:Nhập Số điện thoại cá nhân;
+
+|Hệ Thống Backend|
+:Truy vấn dữ liệu Khách hàng bằng SĐT;
+
+if (Trạng thái tài khoản?) then (PENDING)
+    :Xác nhận tài khoản thuộc Căn hộ (Group_ID);
+    :Phát sinh và gửi mã OTP qua SMS/Zalo;
+else (Không tồn tại/Lỗi)
+    |Customer App (Mobile)|
+    #ffcccc:Báo lỗi: "SĐT chưa được Chủ hộ\nthêm vào danh sách Căn hộ";
+    stop
+endif
+
+|Thành viên (Vợ/Con)|
+:Nhập mã OTP nhận được từ tin nhắn;
+
+|Hệ Thống Backend|
+:Xác thực mã OTP;
+
+if (Mã OTP hợp lệ?) then (Đúng)
+    :Cập nhật trạng thái: PENDING -> ACTIVE;
+    :Cấp Access Token cho phiên làm việc;
+else (Sai)
+    |Customer App (Mobile)|
+    #ffcccc:Báo lỗi xác thực OTP;
+    stop
+endif
+
+|Customer App (Mobile)|
+#ccffcc:Đăng nhập thành công (Bỏ qua bước tạo Mật khẩu);
+:Hiển thị Dashboard dùng chung\nHạn mức (Quota) với Chủ hộ;
+
+|Thành viên (Vợ/Con)|
+:Sử dụng tính năng App (Xem lịch sử,\nThêm xe cá nhân vào Quota...);
+stop
+
+@enduml

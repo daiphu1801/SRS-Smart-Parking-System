@@ -1,0 +1,1187 @@
+PHẦN 1: COMMON APIs (Dùng chung)
+1.1. AuthController (Định danh bằng JWT Token)
+POST /api/v1/auth/login - Đăng nhập (Admin, Customer):
+Request (Body):
+username (String): Tên đăng nhập hoặc số điện thoại.
+password (String): Mật khẩu chưa mã hóa.
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+data (Object):
+access_token (String): Chuỗi JWT.
+account_type (String): Lấy đúng cột account_type trong bảng Accounts (ADMIN, GUARD, CUSTOMER).
+account_id (Integer): Lấy đúng cột id trong bảng Accounts.
+
+POST /api/v1/auth/logout - Đăng xuất:
+Request (Header): Authorization: Bearer <Token>.
+Response (200 OK):
+status (String): "success".
+message (String): "Đăng xuất thành công".
+
+POST /api/v1/auth/forgot-password - Gửi mã OTP quên mật khẩu:
+Request (Body):
+phone (String): Số điện thoại (Map với cột phone bảng Employees/Customers).
+Response (200 OK):
+status (String): "success".
+message (String): "Mã xác nhận đã gửi".
+
+POST /api/v1/auth/reset-password - Đặt lại mật khẩu mới:
+Request (Body):
+phone (String)
+otp_code (String)
+new_password (String)
+Response (200 OK):
+status (String): "success".
+message (String): "Đặt lại mật khẩu thành công".
+
+PUT /api/v1/auth/change-password - Chủ động đổi mật khẩu:
+Request (Header): Authorization: Bearer <Token>.
+Request (Body):
+old_password (String)
+new_password (String)
+Response (200 OK):
+status (String): "success".
+message (String): "Đổi mật khẩu thành công".
+
+GET /api/v1/auth/me - Lấy thông tin Profile cá nhân:
+Request (Header): Authorization: Bearer <Token>.
+Response (200 OK):
+status (String): "success".
+data (Object):
+account_id (Integer)
+username (String)
+account_type (String)
+full_name (String)
+phone (String)
+email (String)
+
+POST /api/v1/auth/register/send-otp - Đăng ký (Gửi OTP):
+Request (Body):
+phone (String)
+Logic Backend: Check phone có trong bảng Customers không, nếu có và account_id đang NULL thì mới gửi SMS OTP.
+Response (200 OK):
+status (String): "success".
+POST /api/v1/auth/register/verify - Xác nhận OTP & Tạo tài khoản:
+Request (Body):
+phone (String)
+otp_code (String)
+password (String): Mật khẩu người dùng tự đặt.
+Logic Backend: Xác nhận OTP -> Insert bảng Accounts -> Update account_id vào bảng Customers.
+Response (200 OK):
+status (String): "success".
+
+1.2. NotificationController
+GET /api/v1/notifications - Xem danh sách thông báo:
+Request (Query Params):
+is_read (Boolean): Lấy theo đúng cột is_read.
+page (Integer)
+size (Integer)
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (BigInt)
+account_id (Integer)
+title (String)
+message (String):
+type (String)
+is_read (Boolean)
+reference_id (BigInt)
+created_at (String)
+PUT /api/v1/notifications/{id}/read - Đánh dấu đọc 1 thông báo:
+Request (Path Variable): id (BigInt).
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+PUT /api/v1/notifications/read-all - Đánh dấu đọc tất cả:
+Request (Header): Authorization: Bearer <Token>.
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+
+
+PHẦN 2: ADMIN MANAGEMENT (Khối Quản trị - Toàn quyền)
+2.1. Phân quyền & Tài khoản
+GET /api/v1/admin/roles - Lấy danh sách chức vụ:
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+search (String): Tìm kiếm theo tên chức vụ.
+
+
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+data (Array):
+id (Integer): Cột id.
+role_name (String): Cột role_name (VD: "ADMIN", "GUARD").
+description (String)
+is_active (Boolean)
+
+
+
+GET /api/v1/admin/accounts - Lấy danh sách tài khoản:
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+role_id (Integer)
+account_type (String)
+status (String)
+search (String)
+is_unassigned (boolean)
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+data (Object - Phân trang):
+content (Array):
+id (Integer)
+username (String)
+role_id (Integer)
+role_name (String) (Join từ bảng role)
+account_type (String)
+status (String)
+last_login (String)
+created_at (String)
+updated_at (String)
+totalElements (Integer): Tổng số bản ghi.
+totalPages (Integer): Tổng số trang.
+PUT /api/v1/admin/accounts/{id} - Cập nhật tài khoản:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+role_id (Integer)
+account_type (String)
+status (String)
+phone (String)
+password_hash (String)
+Response (200 OK):
+status (String): "success".
+message (String): "Cập nhật tài khoản thành công".
+2.2. Nhân sự & Khách hàng
+GET /api/v1/admin/employees - Lấy danh sách hồ sơ nhân viên:
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer): Trang hiện tại.
+size (Integer): Số lượng trên 1 trang.
+search (String): Tìm theo full_name hoặc phone.
+is_online (Boolean): Lọc theo trạng thái online.
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+data (Object - Phân trang):
+content (Array):
+id (Integer): Cột id.
+account_id (Integer): Cột account_id.
+full_name (String): Cột full_name.
+phone (String) (join từ bảng Account)
+email (String): Cột email.
+is_online (Boolean): Cột is_online.
+created_by (Integer): Cột created_by.
+created_at (String): Cột created_at.
+total_elements (Integer)
+POST /api/v1/admin/employees - Tạo hồ sơ nhân viên mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+full_name (String)
+phone(String)
+created_by (Integer)
+password (String) (Optional - cho trường hợp (admin tạo tài khoản luôn cho employee)
+Response (201 Created):
+status (String): "success".
+message (String): "Thành công".
+data (Object): Trả về thông tin vừa tạo.
+PUT /api/v1/admin/employees/{id} - Cập nhật hồ sơ nhân viên:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+account_id (Integer)
+full_name (String)
+phone (String)
+email (String)
+is_online (Boolean)
+created_by (Integer)
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+DELETE /api/v1/admin/employees/{id} - Xóa hồ sơ nhân viên:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+message (String): "Thành công".
+
+GET /api/v1/admin/group-profiles - Lấy danh sách phân loại KH: (Bảng GroupsProfiles)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+search (String): Tìm theo profile_name.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id.
+profile_code (String)
+profile_name (String)
+POST /api/v1/admin/group-profiles - Tạo loại Profile mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+profile_code (String)
+profile_name (String)
+Response (201 Created):
+status (String): "success".
+message (String): "Thành công".
+PUT /api/v1/admin/group-profiles/{id} - Cập nhật loại Profile:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+profile_name (String)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/group-profiles/{id} - Xóa loại Profile:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+GET /api/v1/admin/customer-groups - Lấy danh sách Nhóm khách hàng: (Bảng GroupsCustomers)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+search (String): Tìm theo group_code hoặc group_name.
+profile_id (Integer): Lọc theo profile_id.
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (Integer): Cột id.
+profile_id (Integer)
+profile_name (String) (join từ bảng group_profile).
+group_code (String): Cột group_code.
+group_name (String): Cột group_name.
+master_account_id (Integer): Cột master_account_id.
+created_by (Integer): Cột created_by.
+created_at (String): Cột created_at.
+total_elements (Integer)
+POST /api/v1/admin/customer-groups - Tạo Nhóm khách hàng mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+profile_id (Integer)
+group_code (String)
+group_name (String)
+created_by (Integer)
+Response (201 Created):
+status (String): "success".
+message (String): "Thành công".
+PUT /api/v1/admin/customer-groups/{id} - Cập nhật Nhóm khách hàng:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+profile_id (Integer)
+group_code (String)
+group_name (String)
+master_account_id (Integer)
+created_by (Integer)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/customer-groups/{id} - Xóa Nhóm khách hàng:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+GET /api/v1/admin/customers - Lấy danh sách Khách hàng lẻ: (Bảng Customers)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+search (String): Tìm theo full_name hoặc phone.
+group_id (Integer): Lọc theo group_id.
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (Integer)
+account_id (Integer)
+group_id (Integer)
+full_name (String)
+phone (String) (join từ bản account)
+created_at (String):
+total_elements (Integer)
+POST /api/v1/admin/customers - Tạo Khách hàng mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+group_id (Integer)
+full_name (String)
+phone (String)
+address (String)
+password (String) (Optional - cho trường hợp (admin tạo tài khoản luôn cho customer)
+Response (201 Created):
+status (String): "success".
+message (String): "Thành công".
+PUT /api/v1/admin/customers/{id} - Cập nhật Khách hàng:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body): 
+account_id (Integer)
+group_id (Integer)
+full_name (String)
+phone (String)
+address (String)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/customers/{id} - Xóa Khách hàng:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+2.3. Bảng giá & Hạn mức
+GET /api/v1/admin/vehicle-types - Lấy danh sách Loại xe: (Bảng VehicleTypes)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+search (String)
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer)
+type_code (String)
+type_name (String)
+POST /api/v1/admin/vehicle-types - Tạo Loại xe mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+type_code (String)
+type_name (String)
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/vehicle-types/{id} - Cập nhật Loại xe:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+type_name (String)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/vehicle-types/{id} - Xóa Loại xe:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+GET /api/v1/admin/packages - Lấy danh sách Tên gói cước: (Bảng Packages)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+search (String): Tìm theo package_name.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id.
+package_code (String)
+package_name (String)
+description (String)
+POST /api/v1/admin/packages - Tạo Tên gói cước mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+package_code (String)
+package_name (String)
+description (String)
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/packages/{id} - Cập nhật Tên gói cước:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+package_name (String)
+description (String)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/packages/{id} - Xóa Tên gói cước:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+GET /api/v1/admin/package-vehicle-types - Lấy danh sách Hạn mức xe: (Bảng Package_VehicleType)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+package_id (Integer): Lọc theo gói.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id.
+profile_id (Integer)
+profile_name (String)(join từ group_profile)
+package_id (Integer)
+package_name (Integer)(join từ package)
+vehicle_type_id (Integer)
+vehicle_name (String)(join từ vehicle)
+max_quantity (Integer)
+POST /api/v1/admin/package-vehicle-types - Thêm hạn mức loại xe vào Gói:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+profile_id (Integer)
+package_id (Integer)
+vehicle_type_id (Integer)
+max_quantity (Integer)
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/package-vehicle-types/{id} - Cập nhật hạn mức xe:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+max_quantity (Integer)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/package-vehicle-types/{id} - Xóa hạn mức:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+GET /api/v1/admin/package-prices - Lấy danh sách Mốc giá: (Bảng PackagePrice - Chú ý: Bảng này nối vào Package_VehicleType, KHÔNG nối trực tiếp vào Packages)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+pkg_veh_type_id (Integer): Bắt buộc truyền vào.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id.
+pkg_veh_type_id (Integer)
+package_price_name(String)
+duration_months (Integer)
+price (Double/BigDecimal)
+is_active (Boolean)
+created_at (String)
+POST /api/v1/admin/package-prices - Thêm mốc giá:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+pkg_veh_type_id (Integer)
+package_price_name(String)
+duration_months (Integer)
+price (Double/BigDecimal)
+is_active (Boolean)
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/package-prices/{id} - Cập nhật mức giá:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+price (Double/BigDecimal)
+is_active (Boolean)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/package-prices/{id} - Xóa mốc giá:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+GET /api/v1/admin/tariff-rules - Lấy danh sách Công thức tính tiền: (Bảng Tariff_Rules)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+vehicle_type_id (Integer): Lọc theo loại xe.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id.
+vehicle_type_id (Integer)
+vehicle_type_name (String)(join từ vehicle)
+day_type (String)
+start_time (String)
+end_time (String)
+base_price (Double)
+is_active (Boolean): Cột is_active.
+POST /api/v1/admin/tariff-rules - Tạo công thức mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+vehicle_type_id (Integer)
+day_type (String)
+start_time (String)
+end_time (String)
+base_price (Double)
+is_active (Boolean)
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/tariff-rules/{id} - Cập nhật công thức:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body): 
+vehicle_type_id (Integer)
+day_type (String)
+start_time (String)
+end_time (String)
+base_price (Double)
+is_active (Boolean)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/tariff-rules/{id} - Xóa công thức:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+2.4. Bản đồ hầm & Thiết bị (Topology - Cập nhật thiết kế Node/Edge mới nhất)
+GET /api/v1/admin/zones - Lấy danh sách Khu vực/Tầng: (Bảng Zones)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+parent_zone_id (Integer): Lọc để lấy các khu vực con của một khu vực.
+zone_type (String): Lọc theo BUILDING, FLOOR, AREA, GATE.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer)
+parent_zone_id (Integer): Cột parent_zone_id (Có thể null nếu là Building/Root).
+parent_zone_name (String) (left join đệ quy)
+zone_name (String):
+zone_type (String)
+capacity (Integer)
+current_occupancy (Integer)
+POST /api/v1/admin/zones - Tạo Khu vực mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+parent_zone_id (Integer)
+zone_name (String)
+zone_type (String)
+capacity (Integer)
+current_occupancy (Integer): Thường truyền 0 khi mới tạo.
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/zones/{id} - Cập nhật thông tin Khu vực:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+parent_zone_id (Integer)
+zone_name (String)
+zone_type (String)
+capacity (Integer)
+current_occupancy (Integer): Thường truyền 0 khi mới tạo.
+
+
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/zones/{id} - Xóa Khu vực:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+GET /api/v1/admin/devices - Lấy danh sách Thiết bị IoT: (Bảng IoT_Devices)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+device_type (String): Lọc theo LPR_CAM, BARRIER, LED.
+status (String): Lọc theo ONLINE, OFFLINE, MAINTENANCE.
+zone_id_from (Integer): Lọc thiết bị theo điểm xuất phát.
+zone_id_to (Integer): Lọc thiết bị theo điểm đến.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id.
+zone_id_from (Integer)
+zone_name_from (String):(join với bảng zone để lấy tên)
+zone_id_to (Integer)
+zone_name_to (String):(join với bảng zone để lấy tên)
+device_code (String)
+device_name (String)
+ip_address (String)
+device_type (String)
+direction (String): Cột direction (IN, OUT, BOTH).
+status (String)
+last_ping (String)
+POST /api/v1/admin/devices - Đăng ký thiết bị mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+zone_id_from (Integer)
+zone_id_to (Integer)
+device_code (String)
+device_name (String)
+ip_address (String)
+device_type (String)
+direction (String)
+status (String)
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/devices/{id} - Cập nhật thiết bị:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+zone_id_from (Integer)
+zone_id_to (Integer)
+device_code (String)
+device_name (String)
+ip_address (String)
+device_type (String)
+direction (String)
+status (String)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/devices/{id} - Xóa thiết bị:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+
+POST /api/v1/admin/devices/{id}/barrier-control - Lệnh điều khiển Barrier từ xa: (Đây là Action API, nó sẽ kiểm tra device_type của id có phải là 'BARRIER' hay không, nếu đúng mới gọi TCP/IP hoặc MQTT xuống phần cứng).
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer) - Phải là ID của một thiết bị Barrier.
+Request (Body):
+command (String): Trạng thái muốn điều khiển (VD: "OPEN", "CLOSE", "KEEP_OPEN" - mở luôn không tự sập xuống).
+Response (200 OK):
+status (String): "success" hoặc "error" (Báo lỗi nếu thiết bị đó là Camera chứ không phải Barrier, hoặc nếu Barrier đang Offline).
+message (String): "Lệnh mở Barrier đã được gửi thành công".
+2.5. Hợp đồng đỗ xe
+GET /api/v1/admin/bookings - Lấy danh sách Hợp đồng tổng: (Bảng Bookings)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+group_id (Integer): Lọc hợp đồng theo Nhóm (Căn hộ/Công ty).
+package_id (Integer): Lọc hợp đồng theo Gói cước.
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (Integer)
+group_id (Integer): Cột group_id.
+group_name (Integer)(Join từ bảng group)
+package_id (Integer)
+package_name (String)(Join từ bảng package)
+created_by (Integer)
+created_by_name (String)(join từ bảng customer thông qua created_by = customer.id)
+created_at (String)
+total_elements (Integer)
+POST /api/v1/admin/bookings - Tạo Hợp đồng tổng mới:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+group_id (Integer)
+package_id (Integer)
+created_by (Integer): ID của khách hàng thao tác lập hợp đồng.
+Response (201 Created):
+status (String): "success".
+message (String): "Tạo hợp đồng thành công".
+data (Object): Trả về cục data vừa tạo (để UI lấy được id hợp đồng tổng làm bước tiếp theo).
+PUT /api/v1/admin/bookings/{id} - Cập nhật Hợp đồng tổng:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+group_id (Integer)
+package_id (Integer)
+created_by (Integer)
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/bookings/{id} - Xóa Hợp đồng tổng:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success" hoặc "error" (Sẽ văng lỗi Constraint Violation nếu hợp đồng tổng này đang có chứa BookingDetails con ở bên trong).
+
+GET /api/v1/admin/booking-details - Lấy danh sách Chi tiết Hợp đồng (Biển số xe): (Bảng BookingDetails)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+booking_id (Integer): Lọc xe theo 1 Hợp đồng tổng cụ thể.
+customer_id (Integer): Lọc xe theo 1 khách hàng cá nhân.
+status (String): Lọc theo trạng thái hợp đồng xe (ACTIVE, EXPIRED, PENDING_PAYMENT, CANCELED).
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (Integer)
+booking_id (Integer)
+customer_id (Integer)
+full_name (Integer)
+package_price_id (Integer)
+vehicle_type_name (String) (join từ package_price -> package_vehicle_type -> vehicle)
+vehicle_no (String)
+start_date (String)
+end_date (String)
+status (String): Cột status.
+created_at (String): Cột created_at.
+total_elements (Integer)
+POST /api/v1/admin/booking-details - Thêm xe (Biển số) vào Hợp đồng:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+booking_id (Integer)
+customer_id (Integer)
+package_price_id (Integer): Mốc giá tiền tương ứng.
+vehicle_no (String): Biển số xe.
+start_date (String)
+end_date (String)
+status (String): Truyền Enum (ACTIVE, EXPIRED, PENDING_PAYMENT, CANCELED).
+Response (201 Created):
+status (String): "success".
+PUT /api/v1/admin/booking-details/{id} - Cập nhật Chi tiết Hợp đồng (Đổi biển số, Gia hạn, Hủy):
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Request (Body):
+customer_id (Integer)
+package_price_id (Integer)
+vehicle_no (String): Cập nhật biển số nếu khách đổi xe.
+start_date (String)
+end_date (String): Cập nhật hạn mới khi khách gia hạn.
+status (String): Cập nhật trạng thái (VD: Khách báo mất xe, hủy gói -> CANCELED).
+Response (200 OK):
+status (String): "success".
+DELETE /api/v1/admin/booking-details/{id} - Xóa Chi tiết Hợp đồng (Xóa xe khỏi hệ thống):
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (Integer).
+Response (200 OK):
+status (String): "success".
+2.6. Báo cáo & Tra cứu (Chỉ Xem)
+GET /api/v1/admin/parking-sessions - Tra cứu lịch sử xe ra vào: (Bảng ParkingSessions)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params - Hỗ trợ lọc đa điều kiện):
+page (Integer)
+size (Integer)
+vehicle_no (String): Tìm theo biển số.
+customer_id (String): Tìm danh sách lịch sử ra vào theo chủ sở hữu xe trong trường hợp gửi vé tháng.
+exit_time(Time): Lọc xe đã ra hoặc chưa
+entry_time(Time): Lọc xe đã ra hoặc chưa
+flag_manual (Boolean): Lọc các ca trực có mở barrier bằng tay.
+from_time (String) & to_time (String): Khoảng thời gian xe vào/ra.
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (BigInt): Cột id.
+booking_detail_id (Integer)
+vehicle_no (String): Cột vehicle_no.
+vehicle_type_id (Integer): Cột vehicle_type_id.
+vehicle_type_name (String)
+zone_in_id (Integer): Cột zone_in_id.
+zone_out_id (Integer): Cột zone_out_id.
+entry_time (String): Cột entry_time.
+exit_time (String): Cột exit_time.
+image_in_url (String): Cột image_in_url.
+image_out_url (String): Cột image_out_url.
+grace_period_end (String): Cột grace_period_end.
+amount_paid (Double/BigDecimal)
+amount_left (Double/BigDecimal)
+flag_manual (Boolean): Cột flag_manual.
+total_elements (Integer)
+GET /api/v1/admin/parking-sessions/{id} - Xem chi tiết 1 phiên (kèm ảnh): (Bảng ParkingSessions)
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (BigInt).
+Response (200 OK):
+status (String): "success".
+data (Object):
+content (Array):
+id (BigInt): Cột id.
+booking_detail_id (Integer)
+vehicle_no (String): Cột vehicle_no.
+vehicle_type_id (Integer): Cột vehicle_type_id.
+vehicle_type_name (String)
+zone_in_id (Integer): Cột zone_in_id.
+zone_out_id (Integer): Cột zone_out_id.
+entry_time (String): Cột entry_time.
+exit_time (String): Cột exit_time.
+image_in_url (String): Cột image_in_url.
+image_out_url (String): Cột image_out_url.
+grace_period_end (String): Cột grace_period_end.
+amount_paid (Double/BigDecimal)
+amount_left (Double/BigDecimal)
+flag_manual (Boolean): Cột flag_manual.
+total_elements (Integer)
+2 ảnh được ren từ 2 url in-out
+GET /api/v1/admin/payments - Tra cứu lịch sử hóa đơn tổng: (Bảng Payments)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+pay_code (String): Tìm theo mã giao dịch.
+payer_id (Integer)
+method (String): Lọc theo method (CASH, PAYOS, VNPAY).
+status (String): Lọc theo status (PENDING, SUCCESS, FAILED).
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (BigInt): Cột id.
+pay_code (String): Cột pay_code.
+payer_id (Integer)
+payer_name (String) (join qua bảng customer)
+amount (Double/BigDecimal): Cột amount.
+method (String): Cột method.
+status (String): Cột status.
+gateway_response (JSON): Cột gateway_response.
+created_by_emp_id (Integer): Cột created_by_emp_id.
+created_at (String): Cột created_at.
+updated_at (String): Cột updated_at.
+total_elements (Integer)
+GET /api/v1/admin/payments/{id} - Xem chi tiết hóa đơn: (Join bảng Payments và danh sách các Payment_Details con)
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (BigInt).
+Response (200 OK):
+status (String): "success".
+data (Object):
+(Toàn bộ các trường của bảng Payments như ở trên)
+payment_details (Array):
+id (BigInt): Cột id của bảng Payment_Details.
+payment_id (BigInt): Cột payment_id.
+booking_detail_id (Integer): Cột booking_detail_id.
+full_name (String) (join từ payment_details -> booking_detail -> customer)
+item_amount (Double/BigDecimal): Cột item_amount.
+applied_start_date (String): Cột applied_start_date.
+applied_end_date (String): Cột applied_end_date.
+GET /api/v1/admin/reports/revenue - Thống kê Doanh thu: (Tính tổng từ cột amount của bảng Payments)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+from_date (String): Ngày bắt đầu.
+to_date (String): Ngày kết thúc.
+group_by (String): Tùy chọn nhóm theo "DAY" hoặc "MONTH".
+Response (200 OK):
+status (String): "success".
+data (Array):
+time_label (String): Nhãn thời gian (VD: "2026-04-30" hoặc "2026-04").
+total_amount (Double): Tổng của cột amount.
+total_transactions (Integer): Tổng số dòng (COUNT) hóa đơn.
+GET /api/v1/admin/reports/traffic - Thống kê Lưu lượng xe: (Tính tổng từ bảng ParkingSessions)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+from_date (String)
+to_date (String)
+Response (200 OK):
+status (String): "success".
+data (Array):
+time_label (String): Nhãn thời gian.
+total_entries (Integer): Tổng số xe vào (COUNT các dòng có entry_time).
+total_exits (Integer): Tổng số xe ra (COUNT các dòng có exit_time).
+
+
+GET /api/v1/admin/reports/occupancy - Xem số lượng xe đang đỗ: (Truy xuất trực tiếp từ bảng Zones)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+parent_zone_id (Integer): Tùy chọn xem theo tòa nhà hoặc từng hầm.
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id của bảng Zones.
+zone_name (String): Cột zone_name.
+capacity (Integer): Cột capacity.
+current_occupancy (Integer): Cột current_occupancy.
+PHẦN 3: IOT & GUARD DESKTOP (Vận hành Trạm gác)
+3.1. Thiết bị M2M (IoTController - Gọi tự động từ Hardware/Python)
+POST /api/v1/system/upload-image - Upload ảnh chụp camera: (API này xử lý file ảnh dạng multipart/form-data tải lên từ Camera LPR để lưu vào MinIO/S3 hoặc thư mục tĩnh, sau đó trả về URL).
+Request (Header): Authorization: Bearer <Token> (Của thiết bị/Trạm gác).
+Request (Form-Data):
+file (File): File ảnh định dạng JPG/PNG.
+Response (200 OK):
+status (String): "success".
+data (Object):
+image_url (String): Đường dẫn tuyệt đối hoặc tương đối của ảnh (Sẽ dùng để gán vào cột image_in_url hoặc image_out_url của bảng ParkingSessions).
+POST /api/v1/iot/parking/entry - Camera báo xe VÀO: (Tạo mới 1 bản ghi vào bảng ParkingSessions)
+Request (Body):
+device_code (String): Mã thiết bị Camera (Để Backend tìm ra zone_id_to gán vào cột zone_in_id).
+vehicle_no (String): Biển số xe AI đọc được.
+image_in_url (String): Link ảnh đã upload.
+vehicle_type_id (Integer): ID loại xe (Tùy chọn, nếu AI Camera có khả năng phân biệt Ô tô/Xe máy).
+Logic Backend sẽ làm:
+Kiểm tra vehicle_no có trong BookingDetails (hợp đồng ACTIVE) không -> Lấy booking_detail_id.
+Insert vào ParkingSessions.
+Tăng current_occupancy của zone_id_to trong bảng Zones lên 1.
+Response (200 OK):
+status (String): "success".
+data (Object):
+id (BigInt): Cột id của ParkingSessions vừa tạo.
+action (String): "OPEN_BARRIER" (Cho phép mở cổng) hoặc "DENY" (Từ chối nếu hầm hết chỗ hoặc xe Blacklist).
+message (String): "Xe vé tháng - Mời vào" hoặc "Xe vãng lai".
+POST /api/v1/iot/parking/exit - Camera báo xe RA: (Cập nhật bản ghi ParkingSessions đang mở)
+Request (Body):
+device_code (String): Mã thiết bị (Tìm zone_id_from gán vào zone_out_id).
+vehicle_no (String): Biển số xe.
+image_out_url (String): Link ảnh chụp lúc ra.
+Logic Backend sẽ làm:
+Tìm bản ghi ParkingSessions chưa có exit_time của vehicle_no này.
+Cập nhật exit_time = Thời gian hiện tại. Cập nhật zone_out_id.
+Trừ current_occupancy của zone_id_from trong bảng Zones đi 1.
+Xử lí thanh toán theo workflow
+Response (200 OK):
+status (String): "success".
+data (Object):
+id (BigInt): Cột id của ParkingSessions.
+amount_paid (Double/BigDecimal): Cột amount_paid (Bằng 0 nếu là vé tháng, > 0 nếu là vé lượt cần thu tiền).
+action (String): "OPEN_BARRIER" (Nếu amount_left = 0) hoặc "REQUIRE_PAYMENT" (Cần thanh toán).
+POST /api/v1/iot/parking/zone-transition - Cảm biến báo xe đi qua lại giữa các khu vực: (Chỉ dùng để tracking số lượng xe đỗ, ví dụ: xe đi từ Tầng hầm B1 xuống Tầng hầm B2. Nó tác động trực tiếp vào current_occupancy của bảng Zones).
+Request (Body):
+device_code (String): Mã của camera/cảm biến được gắn ở Ram dốc (dốc nối 2 tầng).
+Logic Backend sẽ làm:
+Query bảng IoT_Devices để lấy ra zone_id_from (Khu vực vừa rời đi) và zone_id_to (Khu vực vừa tiến vào).
+Trừ current_occupancy của zone_id_from đi 1.
+Cộng current_occupancy của zone_id_to thêm 1.
+Response (200 OK):
+status (String): "success".
+POST /api/v1/iot/devices/{device_code}/ping - Nhịp tim (Heartbeat) báo trạng thái thiết bị: (Thiết bị phần cứng cứ mỗi 30s - 1 phút sẽ gọi API này 1 lần để báo nó còn sống).
+Request (Path Variable): device_code (String).
+Request (Body): (Không bắt buộc. Nếu thiết bị có IP động có thể truyền IP mới lên đây).
+ip_address (String): (Tùy chọn) Cập nhật cột ip_address nếu có thay đổi.
+Logic Backend sẽ làm:
+Tìm bản ghi trong IoT_Devices theo device_code.
+Cập nhật cột last_ping = now().
+Cập nhật cột status = "ONLINE".
+Response (200 OK):
+status (String): "success".
+message (String): "ACK" (Acknowledge).
+3.2. Màn hình Bảo vệ (GuardController)
+GET /api/v1/guard/parking/calculate-fee - Lấy giá tiền hiển thị lên màn hình (khi khách ra): (Hàm này chỉ tính toán (Read-only), chưa lưu hóa đơn. Nó chọc vào ParkingSessions để lấy giờ vào, chọc vào Tariff_Rules để lấy luật tính tiền).
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+parking_session_id (BigInt): ID của phiên đỗ xe hiện tại.
+Logic Backend sẽ làm:
+Lấy entry_time và vehicle_type_id từ ParkingSessions.
+Lấy now() làm exit_time giả định.
+Tìm công thức trong Tariff_Rules và tính ra số tiền cần thu.
+Response (200 OK):
+status (String): "success".
+data (Object):
+amount_left (Double/BigDecimal): Tổng số tiền khách phải trả (Sẽ dùng để gán vào cột amount_leftcủa ParkingSessions).
+entry_time (String): Cột entry_time (Trả về để UI hiển thị giờ vào cho khách xem).
+POST /api/v1/guard/payments/cash - Xác nhận thu tiền mặt: (Giao dịch này tác động vào 2 bảng: ParkingSessions và Payments).
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+parking_session_id (BigInt): ID của phiên đỗ xe.
+amount (Double/BigDecimal): Số tiền thu thực tế.
+Logic Backend sẽ làm:
+Update bảng ParkingSessions: amount_paid += amount. Cập nhật grace_period_end = now() + 15 phút (Cho khách 15 phút để lái xe ra khỏi hầm sau khi trả tiền).
+Insert vào bảng Payments để ghi nhận dòng tiền:
+pay_code = Mã sinh tự động (VD: "CASH_12345")
+amount = amount
+method = "CASH"
+status = "SUCCESS"
+created_by_emp_id = Lấy từ Token của người bảo vệ đang đăng nhập. (Lưu ý: Bảng Payment_Details theo thiết kế của bạn chỉ dùng để gia hạn vé tháng (booking_detail_id), nên vé lượt thanh toán tiền mặt sẽ chỉ ghi nhận ở bảng Payments tổng là đủ logic).
+Response (200 OK):
+status (String): "success".
+message (String): "Thanh toán thành công. Mở Barrier".
+POST /api/v1/guard/parking/manual-open - Mở Barrier bằng tay trên phần mềm: (Dành cho các trường hợp đặc biệt: Khách VIP, xe ưu tiên (Cứu thương/Công an), hoặc hệ thống lỗi AI không đọc được biển. Tác động vào ParkingSessions và IoT_Devices).
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+parking_session_id (BigInt): Phiên đỗ xe cần can thiệp (Tùy chọn, có thể null nếu xe chưa kịp có phiên nào).
+device_code (String): Mã của Barrier cần mở (Để Backend chọc xuống phần cứng).
+reason (String): Ghi chú lý do mở tay (Tùy chọn, có thể lưu dạng JSON vào một bảng Log nếu bạn muốn mở rộng sau này).
+Logic Backend sẽ làm:
+Nếu có parking_session_id: Update bảng ParkingSessions -> Set cột flag_manual = true.
+Gắn lệnh điều khiển xuống Barrier thông qua TCP/IP hoặc MQTT dựa trên device_code.
+Response (200 OK):
+status (String): "success".
+message (String): "Đã gửi lệnh mở Barrier thủ công".
+PUT /api/v1/guard/parking-sessions/{id}/vehicle-no - Sửa biển số bị AI đọc sai:
+Request (Header): Authorization: Bearer <Token>
+Request (Path Variable): id (BigInt) - ID của ParkingSession.
+Request (Body):
+vehicle_no (String): Biển số đúng.
+Response (200 OK):
+status (String): "success".
+
+PHẦN 4: CUSTOMER MOBILE APP (App Khách hàng)
+4.1. CustomerController
+GET /api/v1/customer/vehicles - Khách tự xem danh sách xe của mình: (Backend tự động lấy account_id từ Token -> Tìm ra customer_id -> Query bảng BookingDetails)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+status (String): Lọc xe theo trạng thái (ACTIVE, EXPIRED...).
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id của bảng BookingDetails.
+booking_id (Integer)
+customer_id (Integer)
+full_name (String)(join từ bảng customer)
+package_price_id (Integer)
+vehicle_no (String)
+start_date (String)
+end_date (String)
+status (String)
+GET /api/v1/customer/parking-sessions - Lịch sử gửi xe cá nhân: (Backend tự join BookingDetails với ParkingSessions dựa trên customer_id join vào booking_detail_in và join thêm vào ParkingSession)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (BigInt): Cột id của ParkingSessions.
+vehicle_no (String): Cột vehicle_no.
+zone_in_id (Integer): Cột zone_in_id.
+zone_out_id (Integer): Cột zone_out_id.
+entry_time (String): Cột entry_time.
+exit_time (String): Cột exit_time.
+amount_paid (Double/BigDecimal)
+amount_left (Double/BigDecimal)
+total_elements (Integer)
+GET /api/v1/customer/parking/calculate-fee - Khách quét QR vé lượt tự check giá: (Khách dùng điện thoại quét QR trên vé giấy/màn hình Kiosk, truyền ID phiên đỗ xe lên để check giá giống hệt API của bảo vệ)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+parking_session_id (BigInt): ID của phiên đỗ xe.
+Response (200 OK):
+status (String): "success".
+data (Object):
+amount_left (Double/BigDecimal).
+entry_time (String): Cột entry_time.
+POST /api/v1/customer/payments/checkout-url - Hiển thị link thanh toán online: (Tạo bản ghi trong Payments và sinh link từ Gateway VNPay/PayOS. Dùng chung cho cả trả tiền vé lượt lẫn gia hạn vé tháng).
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+parking_session_id (BigInt): Truyền nếu là thanh toán vé lượt khi ra cổng (Tùy chọn).
+booking_detail_id (Integer): Truyền nếu là thanh toán gia hạn vé tháng (Tùy chọn).
+method (String): Truyền Enum (PAYOS, VNPAY).
+Logic Backend sẽ làm:
+Tạo bản ghi mới trong bảng Payments (Trạng thái PENDING, amount tính toán từ phí gửi xe hoặc giá gói cước).
+Nếu gia hạn, tạo thêm bản ghi trong Payment_Details.
+Gọi API của bên thứ 3 (VNPay/PayOS) để lấy URL.
+Response (200 OK):
+status (String): "success".
+data (Object):
+id (BigInt): Cột id của bảng Payments.
+pay_code (String): Cột pay_code.
+amount (Double/BigDecimal): Cột amount.
+method (String): Cột method.
+status (String): Cột status.
+checkout_url (String): (Trường transient sinh ra từ Gateway, không lưu DB).
+GET /api/v1/customer/group-management/members - Xem danh sách thành viên trong Group: (Truy xuất bảng Customers lọc theo group_id của Master Account)
+Request (Header): Authorization: Bearer <Token>
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id của Customers.
+account_id (Integer): Cột account_id.
+group_id (Integer): Cột group_id.
+full_name (String): Cột full_name.
+phone (String): Cột phone.
+address (String): Cột address.
+POST /api/v1/customer/group-management/members - Chủ hộ thêm người nhà:
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+full_name (String)
+phone (String)
+Logic Backend: Insert vào bảng Customers với group_id lấy từ Token của chủ hộ, account_id = null.
+Response (201 Created):
+status (String): "success".
+
+GET /api/v1/customer/group-management/vehicles - Xem toàn bộ biển số xe đang được đăng ký dưới tên Group: (Join bảng Bookings (lọc theo group_id) với BookingDetails)
+Request (Header): Authorization: Bearer <Token>
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id của BookingDetails.
+booking_id (Integer): Cột booking_id.
+customer_id (Integer): Cột customer_id.
+full_name (String) (join từ bảng customer)
+package_price_id (Integer)
+package_price_name (String)
+vehicle_no (String): Cột vehicle_no.
+start_date (String): Cột start_date.
+end_date (String): Cột end_date.
+status (String): Cột status.
+GET /api/v1/customer/bookings - Khách xem danh sách các gói/hợp đồng đã đăng ký: (Bảng Bookings)
+Request (Header): Authorization: Bearer <Token>
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer): Cột id.
+group_id (Integer): Cột group_id.
+group_name (String): (join từ bảng group)
+package_id (Integer): Cột package_id.
+created_at (String): Cột created_at.
+GET /api/v1/customer/eligible-packages - Lấy Gói cước khả dụng (Check Quota):
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+vehicle_type_id (Integer): Loại xe khách muốn đăng ký.
+Response (200 OK):
+status (String): "success".
+data (Array):
+package_id (Integer)
+package_name (String)
+max_quantity (Integer): Số xe tối đa được phép.
+current_registered (Integer): Số xe đã đăng ký.
+prices (Array): Danh sách các mốc giá (id, duration, price) join từ PackagePrice.
+
+POST /api/v1/customer/bookings - Khách yêu cầu gia hạn/đăng ký gói vé tháng: (Tạo Hợp đồng tổng Bookings mới và BookingDetails ở trạng thái PENDING_PAYMENT)
+Request (Header): Authorization: Bearer <Token>
+Request (Body):
+package_id (Integer): Gói cước muốn mua.
+vehicles (Array): Danh sách xe muốn đăng ký vào gói này.
+package_price_id (Integer): Mốc giá (VD: Giá 3 tháng, 6 tháng).
+vehicle_no (String): Biển số.
+Logic Backend sẽ làm:
+Tạo 1 bản ghi Bookings. (nếu chưa có)
+Tạo N bản ghi BookingDetails với status = "PENDING_PAYMENT". (Nếu đã có booking_detail có vehicle_no thì chỉ sửa)
+UI sau đó sẽ gọi tiếp API /checkout-url để lấy link thanh toán cho Hợp đồng này.
+Response (201 Created):
+status (String): "success".
+data (Object): Trả về id của Bookings vừa khởi tạo.
+GET /api/v1/customer/payments - Khách xem lịch sử thanh toán/hóa đơn cá nhân: (Lọc bảng Payments theo account_id hoặc join qua các xe thuộc sở hữu của khách hàng)
+Request (Header): Authorization: Bearer <Token>
+Request (Query Params):
+page (Integer)
+size (Integer)
+Response (200 OK):
+status (String): "success".
+data (Object - Phân trang):
+content (Array):
+id (BigInt): Cột id của Payments.
+pay_code (String): Cột pay_code.
+amount (Double/BigDecimal): Cột amount.
+method (String): Cột method.
+status (String): Cột status.
+created_at (String): Cột created_at.
+updated_at (String): Cột updated_at.
+payment_detail (Json):
+id (Int)
+payment_id (Int)
+booking_detail_id (Int)
+item_amount (Double/BigDecimal)
+applied_start_date (Time)
+applied_end_date (Time)
+total_elements (Integer)
+GET /api/v1/customer/vehicle-types - Lấy danh sách Loại xe: (Bảng VehicleTypes)
+Request (Header): Authorization: Bearer <Token>
+Response (200 OK):
+status (String): "success".
+data (Array):
+id (Integer)
+type_code (String)
+type_name (String)
+
+PHẦN 5: BACKGROUND JOBS & WEBHOOKS
+5.1. SystemController
+POST /api/v1/system/webhooks/payment - Endpoint nhận data từ Cổng thanh toán: (Khi khách hàng thanh toán xong, VNPay/PayOS sẽ POST một payload vào endpoint này để báo kết quả. Backend sẽ dùng dữ liệu này để gạch nợ tự động).
+Request (Header): Signature: <Mã hash để verify chữ ký cổng thanh toán> (Tùy bên thứ 3).
+Request (Body):
+pay_code (String): Mã đơn hàng (Khớp với cột pay_code trong bảng Payments).
+amount (Double): Số tiền khách thực trả.
+status (String): Trạng thái từ cổng (Sẽ map sang Enum SUCCESS hoặc FAILED của payment_status).
+gateway_response (JSON): Toàn bộ cục payload gốc để lưu log đối soát.
+Logic Backend xử lý (Transaction):
+Tìm bản ghi trong bảng Payments theo pay_code.
+Cập nhật status = "SUCCESS", lưu cục log vào cột gateway_response.
+Nếu là thanh toán vé lượt (Chọc vào ParkingSessions):
+Cập nhật grace_period_end = now() + 15 phút (Cho khách 15 phút để ra khỏi hầm).
+Nếu là thanh toán vé tháng (Chọc vào Payment_Details và BookingDetails):
+Tìm các booking_detail_id trong Payment_Details.
+Cập nhật bảng BookingDetails: Chuyển status từ "PENDING_PAYMENT" sang "ACTIVE".
+Update start_date và end_date cho xe đó dựa theo chu kỳ vừa mua.
+Response (200 OK): (Trả về đúng format mà Cổng thanh toán yêu cầu để nó không gọi lại nữa)
+status (String): "success".
+message (String): "Confirm Success".
+POST /api/v1/system/jobs/check-expired - Quét hợp đồng hết hạn: (API này được gọi định kỳ mỗi ngày 1 lần vào lúc 00:00:01 sáng. Không cần truyền body).
+Request (Header): Chặn bằng API Key nội bộ (Internal API).
+Logic Backend xử lý:
+Quét bảng BookingDetails tìm tất cả các xe có end_date  < now() và status đang là "ACTIVE".
+Cập nhật status của các dòng đó thành "EXPIRED".
+(Tùy chọn) Ghi log cảnh báo vào bảng Notifications:
+account_id: (Lấy từ ID chủ xe).
+title: "Hợp đồng hết hạn".
+message: "Gói đỗ xe của biển số XYZ đã hết hạn".
+type: "SYSTEM" (hoặc "GENERAL").
+reference_id: Gắn id của BookingDetails vào đây.
+Response (200 OK):
+status (String): "success".
+data (Object):
+total_expired (Integer): Số lượng xe vừa bị chuyển sang trạng thái hết hạn.
+POST /api/v1/system/jobs/clear-grace-periods - Quét xe quá giờ ân hạn chưa rời hầm: (API này được gọi định kỳ mỗi 5 phút/lần. Xử lý bài toán khách thanh toán xong nhưng cứ ngồi trong xe bấm điện thoại, chiếm chỗ không chịu đi).
+Request (Header): API Key nội bộ.
+Logic Backend xử lý:
+Quét bảng ParkingSessions tìm các dòng thỏa mãn 3 điều kiện:
+amount_paid > 0
+exit_time IS NULL (Chưa ra khỏi hầm).
+grace_period_end < now() (Đã lố giờ ân hạn).
+Cập nhật lại các dòng đó:
+Reset grace_period_end = null.
+Response (200 OK):
+status (String): "success".
+data (Object):
+total_violations (Integer): Số lượng xe bị bắt lỗi lố giờ.
+

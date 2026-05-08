@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Nhân viên Bảo vệ|
+start
+:Đến giờ giao ca, mở Guard App;
+:Chọn chức năng "Chốt ca & Bàn giao" (End Shift);
+
+|Hệ Thống Backend|
+:Truy vấn các giao dịch thu tiền mặt (CASH);
+:Lọc theo Guard_ID từ thời điểm Nhận ca đến hiện tại;
+:Tính toán Tổng tiền dự kiến (Expected Amount);
+
+|Guard App (Mobile)|
+:Hiển thị Báo cáo ca trực:\n- Tổng số lượt mở cổng tay\n- Tổng tiền hệ thống ghi nhận;
+
+|Nhân viên Bảo vệ|
+:Tự kiểm đếm số tiền mặt thực tế đang giữ trong két/túi;
+:Nhập "Số tiền thực tế" vào App và bấm Xác nhận;
+
+
+|Nhân viên Bảo vệ|
+:Bàn giao túi tiền mặt cho Kế toán (hoặc nộp vào quỹ);
+:Đăng xuất tài khoản (Off-duty);
+
+|Kế toán / Admin|
+:Truy cập Admin Web Portal;
+:Mở module Báo cáo ca trực;
+:Kiểm đếm lại túi tiền thực tế nhận từ Bảo vệ;
+:Đối chiếu với Báo cáo chốt ca excel của Kế Toán;
+:Xử lý ngoài ứng dụng nếu có sai phạm;
+stop
+@enduml

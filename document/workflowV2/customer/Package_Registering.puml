@@ -1,0 +1,63 @@
+@startuml
+|Khách hàng|
+start
+:Mở mục Đăng ký xe mới;
+
+|App UI (Frontend)|
+:Gọi API lấy danh sách Package;
+
+|Billing Service|
+:Kiểm tra Profile của Group;
+:Đếm số lượng xe đã đăng ký;
+:Trả về các Package còn hạn mức (Quota);
+
+|App UI (Frontend)|
+:Hiển thị các Gói cước hợp lệ;
+
+|Khách hàng|
+:Chọn Gói cước;
+:Nhập Biển số xe;
+:Bấm "Thanh toán";
+
+|App UI (Frontend)|
+:Gửi Yêu cầu Đăng ký & Tính giá;
+
+|Billing Service|
+:Tính số ngày lẻ đến Mùng 1 tháng sau (N ngày);
+:Tính Tiền lẻ (Pro-rate) = (Giá Gói / duration tháng) * N/30;
+:Tạo bản ghi BookingDetails \n(Biển số, Gói cước, status = PENDING_PAYMENT);
+:Gửi Yêu cầu Thanh toán sang Payment Service;
+
+|Payment Service|
+:Tạo bản ghi Payments (Trạng thái = PENDING);
+:Tạo các bản ghi Payment_Items \n(Gắn BookingDetails_ID của xe vừa tạo);
+:Gọi API PayOS tạo Payment Link;
+
+|PayOS Gateway|
+:Trích xuất Link / Mã QR;
+
+|App UI (Frontend)|
+:Hiển thị Mã QR PayOS;
+
+|Khách hàng|
+:Quét QR & Xác nhận chuyển khoản;
+
+|PayOS Gateway|
+:Giao dịch thành công;
+:Bắn Webhook chứa JSON Payload;
+
+|Payment Service|
+:Nhận Webhook & Validate Checksum;
+:Cập nhật Payments = SUCCESS;
+:Gửi Event sang Billing: \n"Payment_ID đã thành công";
+
+|Billing Service|
+:Nhận Event;
+:Tìm BookingDetails qua Payment_Items;
+:Cập nhật BookingDetails: \n- status = ACTIVE \n- end_date = Mùng 1 chu kỳ tới;
+:Cập nhật applied_start_date & end_date \nvào Payment_Items;
+
+|App UI (Frontend)|
+:Hiển thị "Đăng ký thành công";
+stop
+@enduml

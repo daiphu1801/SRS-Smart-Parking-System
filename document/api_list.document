@@ -1,0 +1,81 @@
+PHẦN 1: COMMON APIs (Dùng chung)
+1.1. AuthController (Định danh bằng JWT Token)
+POST /api/v1/auth/login - Đăng nhập (Admin, Customer)
+POST /api/v1/auth/logout - Đăng xuất
+POST /api/v1/auth/forgot-password - Gửi mã OTP quên mật khẩu
+POST /api/v1/auth/reset-password - Đặt lại mật khẩu mới
+PUT /api/v1/auth/change-password - Chủ động đổi mật khẩu
+GET /api/v1/auth/me - Lấy thông tin Profile cá nhân
+POST /api/v1/auth/register/send-otp 
+POST /api/v1/auth/register/verify 
+1.2. NotificationController
+GET /api/v1/notifications - Xem danh sách thông báo
+PUT /api/v1/notifications/{id}/read - Đánh dấu đọc 1 thông báo
+PUT /api/v1/notifications/read-all - Đánh dấu đọc tất cả
+
+PHẦN 2: ADMIN MANAGEMENT (Khối Quản trị - Toàn quyền)
+(Mỗi mục CRUD mặc định gồm 4 API: GET List, POST Create, PUT Update, DELETE Remove + GET Detail)
+2.1. Phân quyền & Tài khoản
+GET /api/v1/admin/roles - Quản lý chức vụ
+GET | PUT /api/v1/admin/accounts - Quản lý tài khoản 
+2.2. Nhân sự & Khách hàng
+GET | POST | PUT | DELETE /api/v1/admin/employees - Quản lý hồ sơ nhân viên
+GET | POST | PUT | DELETE /api/v1/admin/group-profiles - Phân loại KH (RESIDENT, BUSINESS...)
+GET | POST | PUT | DELETE /api/v1/admin/customer-groups - Quản lý Hộ gia đình/Doanh nghiệp
+GET | POST | PUT | DELETE /api/v1/admin/customers - Quản lý khách hàng cá nhân
+2.3. Bảng giá & Hạn mức
+GET | POST | PUT | DELETE /api/v1/admin/vehicle-types - Loại xe (CAR, BIKE...)
+GET | POST | PUT | DELETE /api/v1/admin/packages - Tên gói cước
+GET | POST | PUT | DELETE /api/v1/admin/package-vehicle-types - Hạn mức xe của gói
+GET | POST | PUT | DELETE /api/v1/admin/package-prices - Mốc giá tiền theo chu kỳ
+GET | POST | PUT | DELETE /api/v1/admin/tariff-rules - Công thức tính tiền block vãng lai
+2.4. Bản đồ hầm & Thiết bị (Topology - Cập nhật thiết kế Node/Edge mới nhất)
+GET | POST | PUT | DELETE /api/v1/admin/zones - Quản lý Khu vực/Tầng
+GET | POST | PUT | DELETE /api/v1/admin/devices - Quản lý thiết bị (Payload sẽ truyền zone_id_from, zone_id_to, device_type)
+POST /api/v1/admin/devices/{id}/barrier-control - [DUY NHẤT] Lệnh điều khiển đóng/mở Barrier từ xa. (Không can thiệp LED/Sensor).
+2.5. Hợp đồng đỗ xe
+GET | POST | PUT | DELETE /api/v1/admin/bookings - Quản lý Hợp đồng tổng
+GET | POST | PUT | DELETE /api/v1/admin/booking-details - Thêm/Xóa biển số trong hợp đồng
+2.6. Báo cáo & Tra cứu (Chỉ Xem)
+GET /api/v1/admin/parking-sessions - Tra cứu lịch sử xe ra vào
+GET /api/v1/admin/parking-sessions/{id} - Xem chi tiết 1 phiên (kèm ảnh)
+GET /api/v1/admin/payments - Tra cứu lịch sử hóa đơn
+GET /api/v1/admin/payments/{id} - Xem chi tiết hóa đơn
+GET /api/v1/admin/reports/revenue - Thống kê Doanh thu
+GET /api/v1/admin/reports/traffic - Thống kê Lưu lượng xe
+GET /api/v1/admin/reports/occupancy - Xem số lượng xe đang đỗ
+
+PHẦN 3: IOT & GUARD DESKTOP (Vận hành Trạm gác)
+3.1. Thiết bị M2M (IoTController - Gọi tự động từ Hardware/Python)
+POST /api/v1/system/upload-image - Upload ảnh chụp camera
+POST /api/v1/iot/parking/entry - Camera báo xe VÀO
+POST /api/v1/iot/parking/exit - Camera báo xe RA
+POST /api/v1/iot/parking/zone-transition - Cảm biến báo xe đi qua lại giữa các khu vực
+POST /api/v1/iot/devices/{device_code}/ping - Nhịp tim (Heartbeat) báo trạng thái thiết bị
+3.2. Màn hình Bảo vệ (GuardController)
+GET /api/v1/guard/parking/calculate-fee - Lấy giá tiền hiển thị lên màn hình (khi khách ra)
+POST /api/v1/guard/payments/cash - Xác nhận thu tiền mặt
+POST /api/v1/guard/parking/manual-open - Mở Barrier bằng tay trên phần mềm
+PUT /api/v1/guard/parking-sessions/{id}/vehicle-no 
+
+PHẦN 4: CUSTOMER MOBILE APP (App Khách hàng)
+4.1. CustomerController
+GET /api/v1/customer/vehicles - Khách tự xem danh sách xe của mình
+GET /api/v1/customer/parking-sessions - Lịch sử gửi xe cá nhân
+GET /api/v1/customer/parking/calculate-fee - Khách quét QR vé lượt tự check giá
+POST /api/v1/customer/payments/checkout-url - Hiển thị link thanh toán online
+GET/ POST /api/v1/customer/group-management/members - (Chỉ Master Account mới gọi được) Xem danh sách thành viên trong Group.
+GET /api/v1/customer/group-management/vehicles - Xem toàn bộ biển số xe đang được đăng ký dưới tên Group của mình.
+GET /api/v1/customer/bookings - Khách xem danh sách các gói/hợp đồng đã đăng ký. 
+POST /api/v1/customer/bookings - Khách gia hạn gói vé tháng/quý. 
+GET /api/v1/customer/payments- Khách xem lịch sử thanh toán/hóa đơn cá nhân. 
+
+
+GET /api/v1/customer/vehicle-types 
+GET /api/v1/customer/eligible-packages 
+
+PHẦN 5: BACKGROUND JOBS & WEBHOOKS
+5.1. SystemController
+POST /api/v1/system/webhooks/payment - Endpoint nhận data từ Cổng thanh toán
+POST /api/v1/system/jobs/check-expired - Quét hợp đồng hết hạn
+POST /api/v1/system/jobs/clear-grace-periods - Quét xe quá giờ ân hạn chưa rời hầm

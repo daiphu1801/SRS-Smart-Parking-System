@@ -1,0 +1,32 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Thiết bị Hiện trường (Camera ROI)|
+start
+:AI phát hiện xe đỗ sai vị trí \nhoặc xe vãng lai chiếm Zone VIP;
+
+|Hệ Thống Backend|
+
+
+|Nhân viên Bảo vệ / Admin|
+:Nhận cảnh báo (rung/chuông) trên App/Web;
+:Xem ảnh chụp hiện trường để xác nhận;
+
+|Nhân viên Bảo vệ|
+:Di chuyển xuống hiện trường (xử lý ngoài App);
+:Nhắc nhở khách hoặc điều xe cẩu (nếu cần);
+
+|Nhân viên Bảo vệ / Admin|
+:Sau khi xử lý xong, bấm nút "Xác nhận đã xử lý";
+
+|Hệ Thống Backend|
+:Đóng Ticket cảnh báo;
+:Ghi log: [Người xử lý] + [Thời gian] + [Trạng thái];
+:Gửi thông báo "Sự cố đã được giải quyết" \ncho toàn bộ nhóm quản lý;
+
+|Thiết bị Hiện trường (Camera ROI)|
+:AI tiếp tục quét chu kỳ mới;
+stop
+@enduml
