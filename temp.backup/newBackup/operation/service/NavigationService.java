@@ -1,6 +1,6 @@
 package com.smartparking.operation.service;
 
-import com.smartparking.entity.Zone;
+import com.smartparking.operation.entity.Zone;
 import com.smartparking.operation.repository.ZoneRepository;
 
 import lombok.RequiredArgsConstructor;

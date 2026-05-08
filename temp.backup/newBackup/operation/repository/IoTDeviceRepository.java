@@ -1,6 +1,7 @@
 package com.smartparking.operation.repository;
 
-import com.smartparking.entity.IoTDevice;
+
+import com.smartparking.operation.entity.IoTDevice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

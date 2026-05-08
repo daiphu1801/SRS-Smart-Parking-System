@@ -14,8 +14,6 @@ public class PackageVehicleType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
-
     @Column(name = "package_id")
     private Integer packageId;
 

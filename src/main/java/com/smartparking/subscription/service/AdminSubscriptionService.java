@@ -87,7 +87,8 @@ public class AdminSubscriptionService {
     }
 
     public Page<Package> getPackages(String searchName, Boolean status, Pageable pageable) {
-        String finalSearch = StringUtils.hasText(searchName) ? searchName.trim() : null;
+        String finalSearch = StringUtils.hasText(searchName) ?
+                "%" + searchName.trim().toLowerCase() + "%" : "%";
 
         return packageRepository.filterDynamic(finalSearch, status, pageable);
     }

@@ -1,6 +1,7 @@
 package com.smartparking.operation.repository;
 
-import com.smartparking.entity.ParkingSession;
+
+import com.smartparking.operation.entity.ParkingSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

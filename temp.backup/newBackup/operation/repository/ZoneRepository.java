@@ -1,6 +1,7 @@
 package com.smartparking.operation.repository;
 
-import com.smartparking.entity.Zone;
+
+import com.smartparking.operation.entity.Zone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

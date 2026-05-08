@@ -1,5 +1,6 @@
 package com.smartparking.payment.entity;
 
+import com.smartparking.operation.entity.DayType;
 import jakarta.persistence.*;
 import lombok.*;
 
