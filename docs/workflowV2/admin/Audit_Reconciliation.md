@@ -1,0 +1,21 @@
+\@startuml !theme plain skinparam style strictuml skinparam wrapWidth
+250
+
+\|Kế toán / Admin\| start :Truy cập Dashboard báo cáo doanh thu (UC4.8);
+:Lọc dữ liệu theo ngày và loại \"Tiền mặt\" (CASH);
+
+\|Hệ Thống Backend\| :Tổng hợp dữ liệu từ các phiên đỗ được Bảo vệ xác
+nhận; :Hiển thị tổng số tiền dự kiến theo từng ID Bảo vệ;
+
+\|Kế toán / Admin\| :Đối chiếu với tiền mặt thực tế Bảo vệ nộp; if (Số
+liệu khớp?) then (Khớp) :Bấm nút \"Chốt sổ ngày\"; else (Lệch dữ liệu)
+:Truy cập Tra cứu Log & Hậu kiểm (UC4.7); :Xem lại ảnh chụp LPR và Log
+thao tác tay của Bảo vệ; :Xác minh lý do (Thu sai/Gian lận); endif
+
+\|Khách hàng\| :Nếu thấy sai sót, gửi Khiếu nại qua App (UC2.4);
+
+\|Kế toán / Admin\| :Tiếp nhận ticket khiếu nại (UC4.9); :Xem bằng chứng
+hình ảnh hệ thống lưu trữ; if (Khách hàng đúng?) then (Đúng) :Thực hiện
+hoàn tiền hoặc điều chỉnh hóa đơn; :Gửi thông báo kết quả cho khách qua
+App; else (Sai) :Từ chối và phản hồi lý do cho khách; endif stop
+\@enduml

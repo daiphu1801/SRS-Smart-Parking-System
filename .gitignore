@@ -1,191 +1,198 @@
-# COMMON OS & IDE & ENV
-# ==========================================
-application.yml
+# =========================================================
+# Smart Parking Monorepo - Global .gitignore
+# =========================================================
+
+# ---------------------------------------------------------
+# OS / Editor / Temp
+# ---------------------------------------------------------
 .DS_Store
 .DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+
 .idea/
 .vscode/*
 !.vscode/settings.json
 !.vscode/launch.json
 !.vscode/tasks.json
-*.sublime-workspace
-*.log
-*.tmp
-*.bak
+
 *.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# ---------------------------------------------------------
+# Secrets / Environment
+# ---------------------------------------------------------
 .env
 .env.*
-.pyre_configuration.local
+*.local
+*.secret
+application-local.yml
+application-*.local.yml
 
-# ==========================================
-# 1. PYTHON (Python Edge Desktop)
-# ==========================================
-# Byte-compiled / optimized / DLL files
+# ---------------------------------------------------------
+# Logs / Coverage
+# ---------------------------------------------------------
+*.log
+logs/
+coverage/
+
+# ---------------------------------------------------------
+# Python (APL, python_edge_desktop)
+# ---------------------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
-*.so
-
-# Environments
-.env
-.venv/
-venv/
-ENV/
-env/
-env.bak/
-venv.bak/
-
-# Distribution / packaging
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Typer / Type checking (Pyright/Pyre)
+.python-version
 .mypy_cache/
-.pyre/
-.pytype/
-
-# Unit test / coverage
+.pytest_cache/
+.ruff_cache/
 .tox/
 .nox/
-.coverage
-.coverage.*
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
 .hypothesis/
-.pytest_cache/
-cover/
 
-# AI Models & Large Files (YOLO, OpenCV)
+.venv/
+venv/
+env/
+ENV/
+
+# Build / packaging
+build/
+dist/
+site/
+pip-wheel-metadata/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# AI model artifacts / large binaries
 *.pt
 *.onnx
 *.weights
-*.caffemodel
 *.pb
+*.tflite
 
-# Demo / sample videos
-demo.mp4
-*.mp4
-
-# ==========================================
-# 2. JAVA / SPRING BOOT (java_spring_core)
-# ==========================================
-# Compiled class file
+# ---------------------------------------------------------
+# Java / Maven / Gradle (java_spring_core)
+# ---------------------------------------------------------
+**/target/
+**/.gradle/
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
-*.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
 
-# virtual machine crash logs
-hs_err_pid*
-
-# Maven
-target/
+# Maven wrapper timing / backup files
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
 dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# Prevent ignoring the wrapper
-!/.mvn/wrapper/maven-wrapper.jar
 
-# Gradle
-.gradle/
-# Prevent ignoring the wrapper
-!gradle/wrapper/gradle-wrapper.jar
+# ---------------------------------------------------------
+# Flutter / Dart (flutter_mobile_app)
+# ---------------------------------------------------------
+**/.dart_tool/
+**/.packages
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.pub/
+**/.pub-cache/
+**/build/
 
-# ==========================================
-# 3. FLUTTER / DART (flutter_mobile_app)
-# ==========================================
-# Miscellaneous
-.dart_tool/
-.packages
-.pub-cache/
-.pub/
-/build/
+# Flutter generated
+**/flutter_*.log
 
 # Android
+**/android/.gradle/
+**/android/local.properties
+**/android/key.properties
+**/android/**/GeneratedPluginRegistrant.java
 **/android/**/*.apk
 **/android/**/*.aab
-**/android/**/*.obj
-**/android/app/src/main/gen/
-local.properties
-key.properties
-**/.gradle/
+**/android/**/*.ap_
 
-# iOS/macOS
-**/ios/**/*.mode1v3
-**/ios/**/*.mode2v3
-**/ios/**/*.pbxuser
-**/ios/**/*.perspectivev3
-**/ios/Flutter/App.framework
+# iOS / macOS
 **/ios/Flutter/Flutter.framework
+**/ios/Flutter/App.framework
 **/ios/Flutter/Generated.xcconfig
-**/ios/Flutter/app.flx
-**/ios/Flutter/flutter_assets/
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/Pods/
 **/ios/.symlinks/
-**/ios/Runner.xcworkspace/xcuserdata
+**/ios/Runner.xcworkspace/xcuserdata/
 **/macos/Flutter/ephemeral/
 **/macos/Pods/
-**/macos/Runner.xcworkspace/xcuserdata
+**/macos/Runner.xcworkspace/xcuserdata/
 
-# Windows/Linux
+# Windows / Linux generated
 **/windows/flutter/ephemeral/
 **/linux/flutter/ephemeral/
 
-# Coverage & crash
-coverage/
-flutter_*.log
+# ---------------------------------------------------------
+# Node / JS (future-proof)
+# ---------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# ==========================================
-# 4. DOCUMENTATION
-# ==========================================
-docs/
-doc/
+# ---------------------------------------------------------
+# SQL / DB dumps / local data
+# ---------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+*.sqlitedb
+*.dump
+*.bak.sql
+
+# ---------------------------------------------------------
+# Optional generated docs backups
+# ---------------------------------------------------------
 *.md.backup
+
+# ---------------------------------------------------------
+# Heavy docs/media files (scoped to docs folders)
+# ---------------------------------------------------------
+docs/**/*.mp4
+docs/**/*.mov
+docs/**/*.avi
+docs/**/*.mkv
+docs/**/*.webm
+
+docs/**/*.psd
+docs/**/*.ai
+docs/**/*.sketch
+docs/**/*.fig
+
+docs/**/*.zip
+docs/**/*.7z
+docs/**/*.rar
+docs/**/*.tar
+docs/**/*.gz
+
+document/**/*.mp4
+document/**/*.mov
+document/**/*.avi
+document/**/*.mkv
+document/**/*.webm
+
+document/**/*.psd
+document/**/*.ai
+document/**/*.sketch
+document/**/*.fig
+
+document/**/*.zip
+document/**/*.7z
+document/**/*.rar
+document/**/*.tar
+document/**/*.gz
+
