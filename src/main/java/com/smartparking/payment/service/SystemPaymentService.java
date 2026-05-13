@@ -22,21 +22,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-
 
 @Service
 @RequiredArgsConstructor
 public class SystemPaymentService {
-//    @Value("${sepay.bank-account}")
-//    private String bankAccount;
-//
-//    @Value("${sepay.bank-name}")
-//    private String bankName;
-//
-//    @Value("${sepay.account-name}")
-//    private String accountName;
+    // @Value("${sepay.bank-account}")
+    // private String bankAccount;
+    //
+    // @Value("${sepay.bank-name}")
+    // private String bankName;
+    //
+    // @Value("${sepay.account-name}")
+    // private String accountName;
 
     @Value("${app.sepay.webhook-secret}")
     @Getter
@@ -64,7 +64,7 @@ public class SystemPaymentService {
 
         Payment matchedPayment = matchedPayments.getFirst();
 
-        //  chặn idempotency
+        // chặn idempotency
         Status currentStatus = matchedPayment.getStatus();
         if (currentStatus != Status.PENDING &&
                 currentStatus != Status.EXPIRED &&
@@ -72,14 +72,12 @@ public class SystemPaymentService {
             return;
         }
 
-// 2. Xác định trạng thái của giao dịch (KHÔNG DÙNG RETURN ĐỂ LUỒNG ĐI TIẾP)
+        // 2. Xác định trạng thái của giao dịch (KHÔNG DÙNG RETURN ĐỂ LUỒNG ĐI TIẾP)
         if (amountPaid.compareTo(matchedPayment.getAmount()) < 0) {
             matchedPayment.setStatus(Status.PARTIAL_PAYMENT);
-        }
-        else if (currentStatus == Status.EXPIRED || currentStatus == Status.CANCELED) {
+        } else if (currentStatus == Status.EXPIRED || currentStatus == Status.CANCELED) {
             matchedPayment.setStatus(Status.NEEDS_ATTENTION);
-        }
-        else {
+        } else {
             matchedPayment.setStatus(Status.SUCCESS);
         }
         matchedPayment.setGateway(request.getGateway());
@@ -97,16 +95,17 @@ public class SystemPaymentService {
         }
     }
 
-    private void activateMonthlyBookings(List<PaymentDetail> details,Status status) {
-        LocalDateTime now = LocalDateTime.now();
+    private void activateMonthlyBookings(List<PaymentDetail> details, Status status) {
+        LocalDateTime now = LocalDate.now().atStartOfDay();
 
         List<BookingDetail> draftsToActive = details.stream()
                 .map(PaymentDetail::getBookingDetail)
                 .toList();
 
         for (BookingDetail draft : draftsToActive) {
-            // Nếu Hóa đơn bị LỖI (Thiếu tiền hoặc Quá hạn) -> Vé cũng báo lỗi Needs Attention
-            if ( status == Status.NEEDS_ATTENTION) {
+            // Nếu Hóa đơn bị LỖI (Thiếu tiền hoặc Quá hạn) -> Vé cũng báo lỗi Needs
+            // Attention
+            if (status == Status.NEEDS_ATTENTION) {
                 draft.setStatus(BookingStatus.NEEDS_ATTENTION);
             }
             // Nếu Hóa đơn THÀNH CÔNG -> Kích hoạt vé theo ngày
@@ -116,7 +115,7 @@ public class SystemPaymentService {
                 } else {
                     draft.setStatus(BookingStatus.ACTIVE);
                 }
-            }else if(status == Status.PARTIAL_PAYMENT ){
+            } else if (status == Status.PARTIAL_PAYMENT) {
                 draft.setStatus(BookingStatus.PARTIAL_PAYMENT);
             }
         }
@@ -224,12 +223,9 @@ public class SystemPaymentService {
                 .build();
     }
 
-
-
     public static String generatePayCode() {
         // Gen mã giao dịch đẹp đẹp chút (VD: SP-UUID)
         return "SP-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
-
 
 }

@@ -116,4 +116,17 @@ public interface BookingDetailRepository extends JpaRepository<BookingDetail, In
                 @Param("groupId") Integer groupId,
                 @Param("excludedStatuses") List<BookingStatus> excludedStatuses,
                 @Param("currentVehicleNo") String currentVehicleNo);
+
+        @Modifying
+        @Query("UPDATE BookingDetail b SET b.status = :newStatus WHERE b.status = :oldStatus AND b.endDate < :time")
+        int updateExpiredBookings(@Param("oldStatus") BookingStatus oldStatus,
+                                  @Param("newStatus") BookingStatus newStatus,
+                                  @Param("time") LocalDateTime time);
+
+        // 2. KÍCH HOẠT GÓI CƯỚC: Nếu đang PENDING_ACTIVATION và startDate <= mốc thời gian
+        @Modifying
+        @Query("UPDATE BookingDetail b SET b.status = :newStatus WHERE b.status = :oldStatus AND b.startDate <= :time")
+        int updateActiveBookings(@Param("oldStatus") BookingStatus oldStatus,
+                                 @Param("newStatus") BookingStatus newStatus,
+                                 @Param("time") LocalDateTime time);
 }

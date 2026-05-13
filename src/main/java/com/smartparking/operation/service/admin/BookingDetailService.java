@@ -46,16 +46,17 @@ public class BookingDetailService {
 
     public Page<BookingDetailDto> getAllBookingDetail(Integer groupId, Integer packageId, Pageable pageable) {
         // Trả thẳng DTO từ câu Query JOIN
-        return bookingDetailRepo.findListDto( pageable);
+        return bookingDetailRepo.findListDto(pageable);
     }
 
     public BookingDetailDto getBookingDetailById(Integer id) {
-        // Thực tế nếu Admin ấn vào xem chi tiết, ông có thể viết 1 câu Query JOIN y hệt trên
-        // nhưng trả về 1 Object thay vì Page. Hoặc tái sử dụng hàm trên với PageRequest.of(0, 1)
+        // Thực tế nếu Admin ấn vào xem chi tiết, ông có thể viết 1 câu Query JOIN y hệt
+        // trên
+        // nhưng trả về 1 Object thay vì Page. Hoặc tái sử dụng hàm trên với
+        // PageRequest.of(0, 1)
         return bookingDetailRepo.findDtoById(id)
                 .orElseThrow(() -> new RuntimeException("Lỗi: Không thể lấy dữ liệu sau khi cập nhật!"));
     }
-
 
     @Transactional
     public BookingDetailDto createBookingDetail(BookingDetailCreateRequest request) {
@@ -79,7 +80,7 @@ public class BookingDetailService {
 
     @Transactional
     public BookingDetailDto updateBookingDetail(Integer id, BookingDetailCreateRequest request) {
-// 1. Tìm bản ghi hiện tại
+        // 1. Tìm bản ghi hiện tại
         BookingDetail existing = bookingDetailRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy Chi tiết hợp đồng (Booking Detail) này!"));
 
@@ -106,19 +107,25 @@ public class BookingDetailService {
     }
 
     @Transactional
-    public BookingDetailDto createBookingDetailDraft(Integer customerId,Integer groupId ,BookingDetailCreateRequest request) {
+    public BookingDetailDto createBookingDetailDraft(Integer customerId, Integer groupId,
+            BookingDetailCreateRequest request) {
         LocalDateTime expectedStartDate = request.getStartDate();
         if (expectedStartDate == null) {
             throw new RuntimeException("Lỗi: Vui lòng chọn ngày bắt đầu kích hoạt gói cước!");
-        }else if(expectedStartDate.isAfter(LocalDate.now().atStartOfDay())) {
-            throw new RuntimeException("Lỗi: Ngày kích hoạt gói cước không hợp lệ");
+        }
+
+        expectedStartDate = expectedStartDate.toLocalDate().atStartOfDay();
+
+        if (expectedStartDate.isAfter(LocalDate.now().atStartOfDay())) {
+            throw new RuntimeException("Lỗi: Ngày kích hoạt gói cước không hợp lệ (Không được chọn ngày tương lai)");
         }
 
         GroupsCustomer group = groupsCustomersRepository.findById(groupId)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy thông tin Group (Bãi đỗ)!"));
         if (Boolean.TRUE.equals(group.getIsSynchronize())) {
             if (expectedStartDate.getDayOfMonth() != 1) {
-                throw new RuntimeException("Bãi đỗ này yêu cầu ngày bắt đầu kích hoạt gói cước bắt buộc phải là ngày mùng 1 hàng tháng!");
+                throw new RuntimeException(
+                        "Bãi đỗ này yêu cầu ngày bắt đầu kích hoạt gói cước bắt buộc phải là ngày mùng 1 hàng tháng!");
             }
         }
 
@@ -127,27 +134,25 @@ public class BookingDetailService {
 
         boolean isVehicleInUse = bookingDetailRepo.existsByVehicleNoAndStatusNotIn(
                 request.getVehicleNo(),
-                Arrays.asList(BookingStatus.CANCELED, BookingStatus.EXPIRED,BookingStatus.COMPLETE)
-        );
+                Arrays.asList(BookingStatus.CANCELED, BookingStatus.EXPIRED, BookingStatus.COMPLETE));
         if (isVehicleInUse) {
-            throw new RuntimeException("Biển số xe " + request.getVehicleNo() + " đã được đăng ký hoặc đang nằm trong giỏ hàng chờ thanh toán!");
+            throw new RuntimeException("Biển số xe " + request.getVehicleNo()
+                    + " đã được đăng ký hoặc đang nằm trong giỏ hàng chờ thanh toán!");
         }
 
         PackagePrice packagePrice = validateAndGetPackagePrice(
                 request.getPackagePriceId(),
                 request.getVehicleTypeId(),
-                groupId
-        );
+                groupId);
 
         Integer durationMonths = packagePrice.getDurationMonths();
-
 
         BookingDetail draftDetail = new BookingDetail();
 
         draftDetail.setBooking(booking);
         Customer customer = customerRepo.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy thông tin khách hàng!"));
-        if(!Objects.equals(customer.getGroupId(), groupId)){
+        if (!Objects.equals(customer.getGroupId(), groupId)) {
             throw new RuntimeException("Không có quyền thêm customer nàyu");
         }
 
@@ -173,12 +178,13 @@ public class BookingDetailService {
                 .endDate(savedDetail.getEndDate())
                 .status(savedDetail.getStatus())
                 .createdAt(savedDetail.getCreatedAt())
-                 .packagePriceName(packagePrice.getPackagePriceName())
-                 .price(packagePrice.getPrice())
+                .packagePriceName(packagePrice.getPackagePriceName())
+                .price(packagePrice.getPrice())
                 .build();
     }
 
-    private PackagePrice validateAndGetPackagePrice(Integer packagePriceId, Integer requestedVehicleTypeId, Integer groupId) {
+    private PackagePrice validateAndGetPackagePrice(Integer packagePriceId, Integer requestedVehicleTypeId,
+            Integer groupId) {
 
         PackagePrice packagePrice = packagePriceRepository.findById(packagePriceId)
                 .orElseThrow(() -> new RuntimeException("Gói cước không tồn tại!"));
@@ -212,8 +218,7 @@ public class BookingDetailService {
         long currentVehicleCount = bookingDetailRepo.countDistinctVehiclesInUse(
                 pkgVehTypeId,
                 groupId,
-                Arrays.asList(BookingStatus.CANCELED, BookingStatus.EXPIRED,BookingStatus.COMPLETE)
-        );
+                Arrays.asList(BookingStatus.CANCELED, BookingStatus.EXPIRED, BookingStatus.COMPLETE));
 
         if (currentVehicleCount >= packageVehicleType.getMaxQuantity()) {
             throw new RuntimeException("Xin lỗi, số lượng suất đỗ xe cho loại xe này tại bãi đã hết!");
@@ -222,7 +227,7 @@ public class BookingDetailService {
     }
 
     @Transactional(readOnly = true)
-    public List<BookingDetailDto> getDraftBookingDetails( Integer groupId) {
+    public List<BookingDetailDto> getDraftBookingDetails(Integer groupId) {
         // 1. Tìm Hợp đồng
         Booking booking = bookingRepo.findByGroupId(groupId)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy Hợp đồng cho Group này!"));
@@ -237,7 +242,8 @@ public class BookingDetailService {
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy Hợp đồng cho Group này!"));
 
         // 2. Lấy danh sách các Entity đang nằm trong giỏ
-        List<BookingDetail> draftDetails = bookingDetailRepo.findByBookingIdAndStatus(booking.getId(), BookingStatus.DRAFT);
+        List<BookingDetail> draftDetails = bookingDetailRepo.findByBookingIdAndStatus(booking.getId(),
+                BookingStatus.DRAFT);
 
         if (draftDetails.isEmpty()) {
             throw new RuntimeException("Giỏ hàng của bạn đang trống!");
