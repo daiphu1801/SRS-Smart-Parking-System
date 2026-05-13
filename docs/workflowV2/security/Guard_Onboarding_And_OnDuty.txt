@@ -1,0 +1,75 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Ban Quản Lý (Admin)|
+start
+:Truy cập Web Portal (UC4.13);
+:Nhập SĐT và phân quyền (Role = Guard);
+
+|Hệ Thống Backend|
+:Tạo tài khoản trạng thái "Chưa kích hoạt";
+
+|Nhân viên Bảo vệ|
+:Tải và mở Guard App trên điện thoại;
+:Nhập Số điện thoại cá nhân;
+
+|Hệ Thống Backend|
+:Kiểm tra SĐT thuộc danh sách cấp phép;
+:Gửi mã xác thực OTP qua SMS/Zalo;
+
+|Nhân viên Bảo vệ|
+:Nhập mã OTP nhận được;
+
+|Hệ Thống Backend|
+if (Mã OTP hợp lệ?) then (Đúng)
+    :Yêu cầu thiết lập mã PIN (4 chữ số);
+else (Sai)
+    :Báo lỗi xác thực;
+    stop
+endif
+
+|Nhân viên Bảo vệ|
+:Tự nhập mã PIN và xác nhận lần 2;
+
+|Hệ Thống Backend|
+:Mã hóa (Hash) và lưu mã PIN vào DB;
+:Cấp Access Token (Trạng thái: Off-Duty);
+
+|Guard App (Mobile)|
+:Đăng nhập thành công;
+#ffcccc:Giao diện bị khóa (Off-Duty)\nKhông có quyền mở Barie;
+
+|Nhân viên Bảo vệ|
+:Đến giờ làm, đi tới máy Kiosk tại bốt an ninh;
+:Chọn tên mình trên màn hình và nhập mã PIN;
+
+|Hệ Thống Backend|
+:Xác thực mã PIN;
+
+if (Mã PIN đúng?) then (Đúng)
+    :Cập nhật trạng thái: is_on_duty = true;
+    :Thu hồi quyền On-Duty của bảo vệ ca trước;
+else (Sai)
+    |Guard Kiosk (Desktop)|
+    #ffcccc:Báo lỗi sai mã PIN;
+    stop
+endif
+
+|Guard Kiosk (Desktop)|
+#ccffcc:Hiển thị: "Đang trực: Tên Bảo vệ";
+
+|Hệ Thống Backend|
+:Gửi tín hiệu Real-time (FCM/WebSocket)\nxác nhận quyền On-Duty tới Mobile;
+
+|Guard App (Mobile)|
+:Nhận tín hiệu kích hoạt từ Server;
+#ccffcc:Mở khóa toàn bộ UI (On-Duty)\nHiển thị nút điều khiển Barie;
+:Sẵn sàng nhận Push Notification cảnh báo;
+
+|Nhân viên Bảo vệ|
+:Cầm điện thoại đi tuần tra dưới hầm\nvà xử lý sự cố qua Guard App;
+stop
+
+@enduml

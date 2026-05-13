@@ -1,0 +1,19 @@
+\@startuml !theme plain skinparam style strictuml skinparam wrapWidth
+250
+
+\|Ban Quản Lý (Admin)\| start :Định nghĩa Topology: Vẽ Zone (UC4.3);
+:Khai báo IP và Loại thiết bị IoT (UC4.3); :Vẽ vùng nhận diện (ROI) trên
+ảnh Camera; :Thiết lập Độ nhạy AI (Confidence Score) (UC4.11);
+
+\|Hệ Thống Backend\| :Đóng gói toàn bộ thông số thành bản tin JSON; :Gửi
+lệnh đồng bộ (Sync Config) tới Edge Server tương ứng;
+
+\|Hệ Thống Edge Server\| :Tiếp nhận cấu hình mới; :Kiểm tra kết nối
+(Ping) tới các thiết bị IoT; :Cập nhật tham số cho thuật toán xử lý ảnh;
+:Khởi động lại tiến trình quét (Scan Process) với ROI mới;
+
+if (Thiết bị phản hồi tốt?) then (Thành công) :Gửi báo cáo trạng thái
+\"Online/Calibrated\" về Cloud; \|Ban Quản Lý (Admin)\| #ccffcc:Web
+Portal hiển thị trạng thái Xanh (Ready); else (Lỗi kết nối) \|Hệ Thống
+Edge Server\| :Ghi log lỗi thiết bị (Offline); \|Ban Quản Lý (Admin)\|
+#ffcccc:Cảnh báo đỏ trên Dashboard kỹ thuật; endif stop \@enduml

@@ -1,0 +1,43 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Ban Quản Lý (Admin)|
+start
+:Truy cập Web Portal;
+:Khởi tạo tài khoản bằng SĐT \n(Phân quyền Role = Guard);
+
+|Hệ Thống Backend|
+:Lưu tài khoản trắng \n(Trạng thái: Chưa kích hoạt);
+
+|Nhân viên Bảo vệ (Mobile)|
+:Tải Guard App và mở lần đầu;
+:Nhập Số điện thoại cá nhân;
+
+|Hệ Thống Backend|
+:Kiểm tra SĐT và Gửi mã xác thực OTP;
+
+|Nhân viên Bảo vệ (Mobile)|
+:Nhập mã OTP nhận được qua SMS/Zalo;
+
+|Hệ Thống Backend|
+if (OTP hợp lệ?) then (Đúng)
+    :Yêu cầu thiết lập Mật khẩu;
+else (Sai)
+    #ffcccc:Báo lỗi xác thực OTP;
+    stop
+endif
+
+|Nhân viên Bảo vệ (Mobile)|
+:Tự nhập Mật khẩu và xác nhận lần 2;
+
+|Hệ Thống Backend|
+:Mã hóa (Hash) và lưu Mật khẩu vào DB;
+:Chuyển trạng thái tài khoản: Đã kích hoạt;
+
+|Nhân viên Bảo vệ (Mobile)|
+#ccffcc:Thông báo: "Tạo mật khẩu thành công";
+:Hệ thống đẩy về màn hình Đăng nhập;
+stop
+@enduml
