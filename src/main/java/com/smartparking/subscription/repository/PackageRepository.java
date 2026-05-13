@@ -14,6 +14,9 @@ import java.util.Optional;
 @Repository
 public interface PackageRepository extends JpaRepository<Package, Integer> {
     // 1. Kiểm tra trùng mã Gói
+
+    Optional<Package> findByProfileId(Integer profileId);
+
     boolean existsByPackageCode(String packageCode);
 
     @Query("SELECT p FROM Package p " +

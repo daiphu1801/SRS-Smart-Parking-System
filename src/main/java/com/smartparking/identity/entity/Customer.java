@@ -30,6 +30,11 @@ public class Customer {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+    @Column(name = "deleted")
+    private Boolean deleted;
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", referencedColumnName = "id")

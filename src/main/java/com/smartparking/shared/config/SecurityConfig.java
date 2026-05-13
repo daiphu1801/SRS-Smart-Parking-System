@@ -48,6 +48,7 @@ public class SecurityConfig {
                     "/api/payments/webhook/**",      // SePay webhook (no auth)
                     "/api/zones",                    // LED display reads zones publicly
                     "/swagger-ui/**",
+                    "/api/v1/system/payments/**",
                     "/api-docs/**",
                     "/ws/**"                         // WebSocket handshake
                 ).permitAll()

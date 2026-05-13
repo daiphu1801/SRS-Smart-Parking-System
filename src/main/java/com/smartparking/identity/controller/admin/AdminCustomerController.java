@@ -2,6 +2,7 @@ package com.smartparking.identity.controller.admin;
 
 import com.smartparking.identity.dto.request.CustomerCreateRequest;
 import com.smartparking.identity.dto.response.CustomerResponse;
+import com.smartparking.identity.dto.response.EmployeeResponse;
 import com.smartparking.identity.entity.Customer;
 import com.smartparking.identity.entity.Employee;
 import com.smartparking.identity.service.admin.AdminCustomerService;
@@ -27,6 +28,12 @@ public class AdminCustomerController {
             @ModelAttribute Customer filter,
             @RequestParam(required = false) String groupName) {
         return ResponseEntity.ok(ApiResponse.success(customerService.getCustomers(PageRequest.of(page, size), filter,groupName)));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<CustomerResponse>> getCustomerById(@PathVariable("id") Integer id) {
+        CustomerResponse data = customerService.getCustomersById(id);
+        return ResponseEntity.ok(ApiResponse.success(data));
     }
 
     @PostMapping

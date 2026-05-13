@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface PackagePriceRepository extends JpaRepository<PackagePrice, Integer> {
     List<PackagePrice> findByPkgVehTypeId(Integer pkgVehTypeId);
+
+    List<PackagePrice> findByPkgVehTypeIdAndIsActiveTrue(Integer pkgVehTypeId);
 }

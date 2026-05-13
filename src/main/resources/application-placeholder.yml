@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://HOST:PORT/DB
+    username: USERNAME
+    password: PASSWORD
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  kafka:
+    bootstrap-servers: localhost:9092
+
+app:
+  jwt:
+    secret: CHANGE_ME
+    expiration-ms: 86400000
+  sepay:
+    webhook-secret: CHANGE_ME
+    bank-account: "0123456789"
+    bank-name: MB
+    account-name: SMART PARKING
+  zns:
+    access-token: CHANGE_ME
+    app-id: CHANGE_ME
+    template-otp: "1234"
+    template-reminder: "5678"
+    template-confirm: "9012"

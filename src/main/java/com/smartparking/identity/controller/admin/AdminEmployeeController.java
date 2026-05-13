@@ -32,4 +32,18 @@ public class AdminEmployeeController {
         EmployeeResponse data = employeeService.createEmployee(request);
         return ResponseEntity.status(201).body(ApiResponse.success(data));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<EmployeeResponse>> getEmployeeById(@PathVariable("id") Integer id) {
+        EmployeeResponse data = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(ApiResponse.success(data));
+    }
+
+    // XÓA MỀM (SOFT DELETE) NHÂN VIÊN
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteEmployee(@PathVariable("id") Integer id) {
+        employeeService.deleteEmployee(id);
+        // Trả về null cho data để tránh lỗi Incompatible types (Void) như lúc nãy
+        return ResponseEntity.ok(ApiResponse.success(null));
+    }
 }

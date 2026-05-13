@@ -1,0 +1,13 @@
+
+POST /api/v1/auth/register/send-otp - Gửi mã OTP xác thực số điện thoại.
+POST /api/v1/auth/register/verify - Nhập mã OTP hợp lệ mới được kích hoạt tài khoản.
+2. Cụm Bảo mật Mật khẩu (Password Security):
+
+POST /api/v1/auth/forgot-password - Khách bấm quên mật khẩu -> Bắn mã OTP/Link qua SMS/Zalo.
+POST /api/v1/auth/reset-password - Khách nhập mã OTP và đặt lại mật khẩu mới.
+PUT /api/v1/auth/change-password - Khách đang đăng nhập muốn chủ động đổi mật khẩu.
+3. Cụm Cập nhật Số điện thoại (Sensitive Data):
+
+PUT /api/v1/customer/me/phone - Luồng đổi số điện thoại Khách hàng (Yêu cầu bắn OTP về số cũ hoặc số mới).
+PUT /api/v1/employee/me/phone - Luồng đổi số điện thoại Nhân viên (Có thể cần thêm sự kiểm duyệt của Admin).
+Tất cả đã đâu vào đấy. Bức tranh kiến trúc hệ thống hiện tại của ông phải nói là rất sạch sẽ, tối ưu và thực dụng.

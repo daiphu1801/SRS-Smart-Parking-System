@@ -9,12 +9,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PackageVehicleTypeRepository extends JpaRepository<PackageVehicleType, Integer> {
     boolean existsByPackageIdAndVehicleTypeId(Integer packageId, Integer vehicleTypeId);
 
-
+    List<PackageVehicleType> findByPackageId(Integer packageId);
+    Optional<PackageVehicleType> findByPackageIdAndVehicleTypeId(Integer packageId, Integer vehicleTypeId);
 
     @Query("SELECT pvt.id as id, " +
             "pvt.packageId as packageId, " +

@@ -1,0 +1,166 @@
+1. Mục tiêu của Permission System
+
+Trước khi thực thi bất kỳ business logic nào (thường là trong Controller hoặc Service), phải kiểm tra:
+User đang login có Role nào?
+Role đó có quyền truy cập Function + Action cụ thể không?
+
+Nếu không có quyền → throw exception rõ ràng (ví dụ: AccessDeniedException hoặc custom PermissionDeniedException).
+Hỗ trợ cache để tránh query DB liên tục.
+Dễ dàng quản lý và mở rộng sau này.
+
+2. Kiến trúc đề xuất (Khuyến nghị mạnh)
+Cách tiếp cận tốt nhất hiện nay:
+Sử dụng @PreAuthorize + Custom PermissionEvaluator (Spring Security Expression) kết hợp Method Security.
+Hoặc Cách 2 (đơn giản hơn ban đầu): Annotation tự tạo @CheckPermission + AOP.
+Tôi khuyên dùng Cách 1 vì nó chuẩn Spring Security, mạnh mẽ và dễ bảo trì hơn.
+So sánh nhanh:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tiêu chí@PreAuthorize + Custom PermissionEvaluator@CheckPermission + AOPĐộ chuẩn SpringCao nhấtTrung bìnhDễ đọc codeRất tốtTốtLinh hoạtCaoTrung bìnhPerformanceTốt (có cache)TốtKhuyến nghịKhuyến nghị mạnhDùng nếu muốn đơn giản
+3. Kế hoạch triển khai chi tiết (Cách 1 - Khuyến nghị)
+Bước 1: Tạo Entity tương ứng với DB
+
+Employee (đổi thành Account hoặc giữ Employee tùy bạn)
+Role
+Function
+Action
+RoleFunctionAction (junction table)
+
+Bước 2: Tạo Repository
+
+RoleFunctionActionRepository
+Method quan trọng:Javaboolean existsByRoleIdAndFunction_FunctionNameAndAction_ActionName(
+    Integer roleId, String functionName, String actionName);
+
+
+Bước 3: Tạo Permission Service
+Java@Service
+public class PermissionService {
+
+    private final RoleFunctionActionRepository repo;
+    private final CacheManager cacheManager;   // Hoặc RedisCache
+
+    // Cache: perm:roleId:functionName:actionName → boolean
+    public boolean hasPermission(Integer roleId, String functionName, String actionName) { ... }
+}
+Bước 4: Tạo Custom PermissionEvaluator
+Java@Component
+public class CustomPermissionEvaluator implements PermissionEvaluator {
+
+    private final PermissionService permissionService;
+
+    @Override
+    public boolean hasPermission(Authentication auth, Object targetDomainObject, Object permission) {
+        // permission có thể là "FUNCTION_ACTION" ví dụ: "MANAGE_EMPLOYEE_CREATE"
+    }
+
+    // Hoặc overload quan trọng:
+    public boolean hasPermission(Authentication auth, String functionName, String actionName) { ... }
+}
+Bước 5: Đăng ký PermissionEvaluator vào SecurityConfig
+Java@Bean
+public MethodSecurityExpressionHandler methodSecurityExpressionHandler() {
+    DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
+    handler.setPermissionEvaluator(customPermissionEvaluator());
+    return handler;
+}
+Bước 6: Sử dụng trong Controller/Service
+Cách dùng đẹp nhất:
+Java@RestController
+@RequestMapping("/api/admin/employees")
+@RequiredArgsConstructor
+public class EmployeeController {
+
+    private final EmployeeService employeeService;
+
+    @PostMapping
+    @PreAuthorize("hasPermission('ManageEmployees', 'Create')")
+    public ResponseEntity<?> createEmployee(@RequestBody EmployeeRequest req) {
+        return ResponseEntity.ok(employeeService.create(req));
+    }
+
+    @GetMapping
+    @PreAuthorize("hasPermission('ManageEmployees', 'View')")
+    public ResponseEntity<?> getAllEmployees() { ... }
+}
+Hoặc nếu muốn rõ ràng hơn:
+Java@PreAuthorize("@permissionService.hasPermission(authentication, 'ManageEmployees', 'Create')")
+4. Các thành phần cần tạo
+
+Entities (5 bảng như DBML)
+Repositories
+PermissionService (có cache — nên dùng Caffeine hoặc Redis)
+CustomPermissionEvaluator
+PermissionExceptionHandler (global exception handler)
+Constants cho FunctionName và ActionName (rất khuyến khích)Javapublic final class FunctionIds {
+    public static final String MANAGE_EMPLOYEES = "ManageEmployees";
+    public static final String MANAGE_ROLES = "ManageRoles";
+    // ...
+}
+Cập nhật JwtService và JwtAuthFilter:
+Hiện tại bạn đang lưu "ROLE_" + role → nên giữ lại.
+Có thể bổ sung thêm roleId vào JWT để tránh phải query Employee mỗi lần.
+
+
+5. Cache Strategy
+
+Dùng Caffeine Cache (in-memory) trước.
+Cache key: perm:{roleId}:{functionName}:{actionName}
+TTL: 30 ~ 60 phút (hoặc invalidate khi Role-Function-Action thay đổi).
+
+6. Xử lý Exception
+Tạo PermissionDeniedException và @ExceptionHandler trả về:
+JSON{
+  "error": "PERMISSION_DENIED",
+  "message": "Bạn không có quyền thực hiện hành động này",
+  "function": "ManageEmployees",
+  "action": "Create"
+}
+7. Lợi ích của phương án này
+
+Code sạch, không lặp logic check permission khắp nơi.
+Dễ test.
+Dễ quản lý quyền sau này qua giao diện Admin (thêm/sửa quyền Role).
+Tận dụng được Spring Security Expression (@PreAuthorize).
+Cache hiệu quả.
+
+
+Câu hỏi để tôi hỗ trợ bạn tốt hơn:
+Trước khi tôi viết code chi tiết, bạn cho tôi biết hướng nào bạn muốn theo:
+
+Cách 1 (Khuyến nghị): Dùng @PreAuthorize + CustomPermissionEvaluator (chuẩn Spring nhất)
+Cách 2: Dùng Annotation @CheckPermission(function = "ManageEmployees", action = "Create") + AOP
+Cách 3: Check thủ công trong Service layer (gần giống Python)
