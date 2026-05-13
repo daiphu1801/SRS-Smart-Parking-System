@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Thiết bị Hiện trường (Camera/Cảm biến)|
+start
+:Xe di chuyển qua một Khu vực (Zone);
+:Phát hiện sự kiện hướng đi (Vào/Ra Zone);
+:Gửi Event (Biển số, Zone_ID,, Direction) qua Kafka;
+
+|Hệ Thống Backend|
+:Tiếp nhận sự kiện di chuyển nội bộ;
+:Truy xuất Topology: Xác định Gate này\nnối từ [Zone Nguồn] sang [Zone Đích];
+
+fork
+    :Cập nhật [Zone Nguồn]: Trả lại +1 chỗ trống;
+fork again
+    :Cập nhật [Zone Đích]: Trừ đi -1 chỗ trống;
+end fork
+
+:Chạy thuật toán Roll-up cập nhật\ntổng số chỗ trống theo thời gian thực;
+
+
+:Đóng gói dữ liệu hiển thị (Payload)\ncho từng địa chỉ IP của Bảng LED;
+:Đẩy tín hiệu Websocket/MQTT xuống Edge Node;
+
+|Thiết bị Bảng LED (Hiện trường)|
+#ccffcc:Cập nhật tức thời số lượng\nchỗ trống của từng khu vực (VD: VIP: 05, Thường: 12);
+
+|Khách hàng|
+:Quan sát số liệu trên Bảng LED nội khu;
+:Chủ động đánh lái đến khu vực còn chỗ đỗ;
+stop
+@enduml

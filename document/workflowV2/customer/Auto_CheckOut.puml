@@ -1,0 +1,60 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Khách hàng|
+start
+:Lái xe đến khu vực Cổng RA (Gate OUT);
+
+|Thiết bị Hiện trường (Cổng RA)|
+:Camera LPR nhận diện biển số;
+:Gửi sự kiện Check-out qua Kafka;
+
+|Hệ Thống Backend|
+:Truy vấn Phiên đỗ xe (Active Session) hiện tại;
+
+note right
+  **Tác động của Cronjob:**
+  Nếu vé tháng hết hạn lúc 00:00, 
+  Cronjob đã tự động chốt phiên cũ 
+  và tạo Phiên mới với loại = "Vãng lai".
+end note
+
+if (Loại Phiên đỗ xe?) then (Phiên Thuê bao)
+    :Xác nhận Hợp lệ (Gói cước đang Active);
+else (Phiên Vãng lai)
+    :Kiểm tra trạng thái thanh toán hóa đơn;
+    
+    if (Đã thanh toán trước?) then (Đã thanh toán tại Kiosk)
+        :Kiểm tra Thời gian ân hạn (Grace Period);
+        if (Còn trong hạn 15p?) then (Hợp lệ)
+            :Xác nhận Hợp lệ;
+        else (Quá hạn)
+            :Tính thêm phí phát sinh (Overstay Penalty);
+            : Thanh toán nốt chi phí;
+        endif
+    else (Chưa thanh toán)
+        :Tính toán tổng phí (Dựa trên thời gian đỗ);
+        : Thanh toán nốt chi phí;
+    endif
+endif
+
+:Gửi lệnh Mở Barie xuống Edge Server;
+
+|Thiết bị Hiện trường (Cổng RA)|
+#ccffcc:Barie mở tự động;
+
+|Khách hàng|
+:Lái xe ra khỏi bãi;
+
+|Thiết bị Hiện trường (Cổng RA)|
+:Cảm biến vòng từ xác nhận xe đi qua;
+:Barie tự động đóng;
+
+|Hệ Thống Backend|
+:Cập nhật trạng thái Session: "Checked-out";
+:Giải phóng +1 slot đỗ cho Zone tương ứng;
+stop
+ 
+@enduml

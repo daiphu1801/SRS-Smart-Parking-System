@@ -1,9 +1,0 @@
-flet>=0.24.0
-flet-core>=0.24.0
-kafka-python>=2.0.2
-websockets>=12.0
-ultralytics>=8.2.0        # YOLO v8 for vehicle detection
-easyocr>=1.7.1            # LPR (License Plate Recognition)
-opencv-python>=4.9.0      # Camera frame capture
-pillow>=10.3.0            # Image manipulation
-requests>=2.32.0          # HTTP to Spring Boot API

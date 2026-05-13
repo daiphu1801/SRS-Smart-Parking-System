@@ -1,0 +1,57 @@
+@startuml
+|Khách hàng|
+start
+:Mở "Trung tâm thanh toán";
+
+|App UI (Frontend)|
+:Hiển thị danh sách xe sắp hết hạn \n(BookingDetails có end_date gần now);
+
+|Khách hàng|
+:Tích chọn các xe muốn gia hạn;
+:Bấm "Thanh toán các mục đã chọn";
+
+|App UI (Frontend)|
+:Gửi Danh sách BookingDetails_ID đã chọn;
+
+|Billing Service|
+:Tính Tổng tiền từ các Gói cước của xe;
+:Gửi Yêu cầu Thanh toán sang Payment Service;
+
+|Payment Service|
+:Tạo bản ghi Payments (Trạng thái = PENDING);
+:Tạo các bản ghi Payment_Items \n(Map với từng BookingDetails_ID được truyền lên);
+:Gọi API PayOS tạo Link;
+
+|PayOS Gateway|
+:Sinh Mã QR;
+
+|App UI (Frontend)|
+:Hiển thị Mã QR PayOS;
+
+|Khách hàng|
+:Quét QR thanh toán (1 Lần duy nhất);
+
+|PayOS Gateway|
+:Bắn Webhook giao dịch thành công;
+
+|Payment Service|
+:Nhận Webhook;
+:Cập nhật Payments = SUCCESS;
+:Bắn Event sang Billing: \n"Payment_ID đã thành công";
+
+|Billing Service|
+:Nhận Event;
+:Quét các Payment_Items thuộc Payment_ID này;
+fork
+  :Xử lý Xe A (BookingDetails_1): \nCộng thêm số tháng vào end_date;
+  :Ghi applied_dates vào Payment_Items;
+fork again
+  :Xử lý Xe B (BookingDetails_2): \nCộng thêm số tháng vào end_date;
+  :Ghi applied_dates vào Payment_Items;
+end merge
+
+|App UI (Frontend)|
+:Nhận Socket/Polling;
+:Hiển thị "Gia hạn thành công";
+stop
+@enduml
