@@ -30,8 +30,8 @@ public class GroupsCustomer {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-
-
+    @Column(name = "is_synchronize")
+    private Boolean isSynchronize;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "master_account_id", referencedColumnName = "id")

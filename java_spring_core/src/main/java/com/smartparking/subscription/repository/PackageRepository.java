@@ -14,21 +14,24 @@ import java.util.Optional;
 @Repository
 public interface PackageRepository extends JpaRepository<Package, Integer> {
     // 1. Kiểm tra trùng mã Gói
+
+    Optional<Package> findByProfileId(Integer profileId);
+
     boolean existsByPackageCode(String packageCode);
 
     @Query("SELECT p FROM Package p " +
-            "LEFT JOIN GroupsProfile gp ON p.profileId = gp.id " + // Nối bảng dựa trên ID
-            "WHERE (:status IS NULL OR p.isAvailable = :status) AND " + // Xử lý Filter trạng thái
-            "(:search IS NULL OR " +                               // Xử lý Omni-search 4 cột
-            "LOWER(p.packageCode) LIKE LOWER(CONCAT('%', :search, '%')) OR " +
-            "LOWER(p.packageName) LIKE LOWER(CONCAT('%', :search, '%')) OR " +
-            "LOWER(gp.profileCode) LIKE LOWER(CONCAT('%', :search, '%')) OR " +  // Sửa lại tên cột cho khớp Entity GroupProfile của ông
-            "LOWER(gp.profileName) LIKE LOWER(CONCAT('%', :search, '%')))")      // Sửa lại tên cột cho khớp Entity GroupProfile của ông
+            "LEFT JOIN GroupsProfile gp ON p.profileId = gp.id " +
+            "WHERE (:status IS NULL OR p.isAvailable = :status) AND " +
+            "(LOWER(p.packageCode) LIKE :search OR " +
+            "LOWER(p.packageName) LIKE :search OR " +
+            "LOWER(gp.profileCode) LIKE :search OR " +  // Thay đổi tên biến cho đúng với Entity của ông nhé
+            "LOWER(gp.profileName) LIKE :search)")
     Page<Package> filterDynamic(
             @Param("search") String search,
             @Param("status") Boolean status,
             Pageable pageable
     );
+
     @Query("SELECT p.id as packageId, " +
             "p.profileId as profileId, " +
             "gp.profileName as profileName, " +

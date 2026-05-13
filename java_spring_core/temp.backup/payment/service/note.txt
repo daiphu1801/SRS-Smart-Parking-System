@@ -1,0 +1,37 @@
+Rồi giờ chuẩn bị sang hàm public void resolvePayment(Long id, Integer employeeId) {
+
+}
+
+Nhưng vì yêu cầu là phải từ payment-> payment_detail -> booking_detail, vậy nên bắt buộc phải join cả 3 bảng,
+
+Tuy đã có sẵn service @Transactional(readOnly = true)
+
+public PaymentTreeResponse getPaymentTreeDetails(Long paymentId) {
+
+    // 3.1. Lấy Node Cha
+
+    Payment payment = paymentRepository.findById(paymentId)
+
+            .orElseThrow(() -> new RuntimeException("Không tìm thấy Giao dịch với ID: " + paymentId));
+
+
+
+    List<PaymentDetail> details = paymentDetailRepository.findByPaymentId(paymentId);
+
+
+
+    return PaymentTreeResponse.builder()
+
+            .paymentInfo(mapToPaymentResponse(payment))
+
+            .details(details.stream().map(this::mapToPaymentDetailResponse).collect(Collectors.toList()))
+
+            .build();
+
+}
+
+để lấy full được cả payment lẫn paymentDetail (trả response dạng list), nhưng yêu cầu là vẫn phải lây thêm cả booking_detail, có thể copy paster và sửa (chắc phải đụng đến repo rồi đúng không)
+
+
+
+nghiệp vụ chính sẽ là update lại thời

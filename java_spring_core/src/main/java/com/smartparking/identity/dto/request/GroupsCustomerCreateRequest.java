@@ -16,5 +16,6 @@ public class GroupsCustomerCreateRequest {
     private Integer masterAccountId;
     private Integer createdBy;
     private LocalDateTime createdAt;
+    private Boolean isSynchronize;
 
 }

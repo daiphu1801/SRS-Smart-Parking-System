@@ -1,5 +1,6 @@
 package com.smartparking.operation.entity;
 
+import com.smartparking.identity.entity.GroupsCustomer;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +18,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "group_id")
+    @Column(name = "group_id",insertable = false, updatable = false)
     private Integer groupId;
 
     @Column(name = "package_id")
@@ -29,4 +30,8 @@ public class Booking {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
+    private GroupsCustomer group;
 }

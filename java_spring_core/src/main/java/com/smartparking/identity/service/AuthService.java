@@ -3,15 +3,8 @@ package com.smartparking.identity.service;
 import com.smartparking.identity.dto.response.AuthLoginResponse;
 import com.smartparking.identity.dto.response.CheckPhoneResponse;
 import com.smartparking.identity.dto.response.ProfileResponse;
-import com.smartparking.identity.entity.Account;
-import com.smartparking.identity.entity.AccountType;
-import com.smartparking.identity.entity.Customer;
-import com.smartparking.identity.entity.Employee;
-import com.smartparking.identity.repository.AccountRepository;
-import com.smartparking.identity.repository.CustomerRepository;
-import com.smartparking.identity.repository.EmployeeRepository;
-import com.smartparking.identity.entity.GeneralStatus;
-import com.smartparking.identity.repository.GroupsCustomersRepository;
+import com.smartparking.identity.entity.*;
+import com.smartparking.identity.repository.*;
 import com.smartparking.shared.integration.SupabaseAuthClient;
 
 import jakarta.transaction.Transactional;
@@ -35,6 +28,7 @@ public class AuthService {
     private final CustomerRepository customerRepository;
     private final EmployeeRepository employeeRepository;
     private final SupabaseAuthClient supabaseClient;
+    private final RoleFunctionActionRepository roleFunctionActionRepo;
 
     private final GroupsCustomersRepository groupsCustomerRepo;
 
@@ -59,11 +53,17 @@ public class AuthService {
                     // Set thêm các default values khác nếu cần
                     return accountRepository.save(newAcc);
                 });
+        List<String> permissions = roleFunctionActionRepo.findPermissionCodesByRoleId(localAccount.getRoleId());
+
+        if (localAccount.getStatus() == GeneralStatus.LOCKED) {
+            throw new RuntimeException("Tài khoản của bạn đã bị khóa hoặc vô hiệu hóa. Vui lòng liên hệ Admin!");
+        }
 
         return AuthLoginResponse.builder()
                 .accessToken(accessToken)
                 .accountType(localAccount.getAccountType().name())
                 .accountId(localAccount.getId())
+                .permissions(permissions)
                 .build();
     }
 

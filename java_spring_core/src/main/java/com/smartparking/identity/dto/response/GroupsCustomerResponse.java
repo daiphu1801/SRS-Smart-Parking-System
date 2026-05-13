@@ -15,6 +15,7 @@ public class GroupsCustomerResponse {
     private Integer masterAccountId;
     private Integer createdBy;
     private LocalDateTime createdDate;
+    private Boolean isSynchronize;
 
     private String masterPhone;
     private String profileCode;

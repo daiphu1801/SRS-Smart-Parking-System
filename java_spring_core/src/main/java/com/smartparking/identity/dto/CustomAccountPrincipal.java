@@ -13,4 +13,7 @@ public class CustomAccountPrincipal {
     private String role;
     private List<Integer> masterGroupIds;
     private List<Integer> memberGroupIds;
+    private Integer customerId;
+    private Integer employeeId;
+
 }

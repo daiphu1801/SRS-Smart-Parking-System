@@ -1,16 +1,27 @@
 package com.smartparking.operation.repository;
 
-import com.smartparking.entity.ParkingSession;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import com.smartparking.operation.entity.ParkingSession;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ParkingSessionRepository extends JpaRepository<ParkingSession, Long> {
+public interface ParkingSessionRepository extends JpaRepository<ParkingSession, Long>, JpaSpecificationExecutor<ParkingSession> {
+
+    @Override
+    @EntityGraph(attributePaths = {"bookingDetail", "vehicleType", "zoneIn", "zoneOut"})
+    Page<ParkingSession> findAll(@Nullable Specification<ParkingSession> spec, Pageable pageable);
+
+    @Override
+    @EntityGraph(attributePaths = {"bookingDetail", "vehicleType", "zoneIn", "zoneOut"})
+    Optional<ParkingSession> findById(Long id);
 
     @Query("SELECT ps FROM ParkingSession ps WHERE ps.vehicleNo = :plate AND ps.exitTime IS NULL")
     Optional<ParkingSession> findOpenSession(@Param("plate") String plate);
@@ -22,4 +33,6 @@ public interface ParkingSessionRepository extends JpaRepository<ParkingSession, 
     List<ParkingSession> findByCustomerId(@Param("customerId") Integer customerId);
 
     List<ParkingSession> findByVehicleNoOrderByEntryTimeDesc(String vehicleNo);
+
+
 }

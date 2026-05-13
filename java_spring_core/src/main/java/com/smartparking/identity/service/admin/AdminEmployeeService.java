@@ -2,13 +2,10 @@ package com.smartparking.identity.service.admin;
 
 import com.smartparking.identity.dto.request.EmployeeCreateRequest;
 import com.smartparking.identity.dto.response.EmployeeResponse;
-import com.smartparking.identity.entity.Account;
-import com.smartparking.identity.entity.AccountType;
-import com.smartparking.identity.entity.Employee;
+import com.smartparking.identity.entity.*;
 import com.smartparking.identity.repository.AccountRepository;
 import com.smartparking.identity.repository.EmployeeRepository;
 import com.smartparking.identity.specification.EmployeeSpecs;
-import com.smartparking.identity.entity.GeneralStatus;
 import com.smartparking.shared.dto.PageResponse;
 import com.smartparking.shared.integration.SupabaseAuthClient;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +15,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +25,6 @@ public class AdminEmployeeService {
 
     private final EmployeeRepository employeeRepo;
     private final AccountRepository accountRepo;
-    private final SupabaseAuthClient supabaseClient;
 
     public PageResponse<EmployeeResponse> getEmployees(Pageable pageable, Employee filter) {
         Specification<Employee> spec = Specification
@@ -78,5 +75,47 @@ public class AdminEmployeeService {
                 .createdBy(newEmp.getCreatedBy())
                 .createdAt(newEmp.getCreatedAt())
                 .build();
+    }
+
+    public EmployeeResponse getEmployeeById(Integer id) {
+        Employee employee = employeeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy nhân viên với ID: " + id));
+
+        // Ở đây ông dùng Mapper (như MapStruct) hoặc tự build tay từ Entity sang Response
+        return EmployeeResponse.builder()
+                .id(employee.getId())
+                .accountId(employee.getAccountId())
+                .fullName(employee.getFullName())
+                .phone(employee.getPhone())
+                .createdBy(employee.getCreatedBy())
+                .createdAt(employee.getCreatedAt())
+                .build();
+    }
+
+    // HÀM XÓA MỀM
+    @Transactional
+    public void deleteEmployee(Integer id) {
+        Employee employee = employeeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy nhân viên với ID: " + id));
+
+        employee.setDeleted(true);
+        employee.setDeletedAt(LocalDateTime.now());
+        employeeRepo.save(employee);
+
+        Integer accountId = employee.getAccountId();
+
+        if (accountId != null) {
+            accountRepo.findById(accountId).ifPresent(account -> {
+                account.setStatus(GeneralStatus.LOCKED);
+                accountRepo.save(account);
+            });
+        }
+    }
+@Transactional
+    public Employee updateEmployee(Integer id, Employee employeeUpdate) {
+        Employee employee = employeeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found"));
+        employee.setFullName(employeeUpdate.getFullName());
+        return employeeRepo.save(employee);
     }
 }

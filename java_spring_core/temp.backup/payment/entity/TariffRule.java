@@ -1,5 +1,6 @@
 package com.smartparking.payment.entity;
 
+import com.smartparking.operation.entity.DayType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,13 +9,13 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "tariff_rules")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class TariffRule {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "vehicle_type_id")
     private Integer vehicleTypeId;
@@ -25,17 +26,8 @@ public class TariffRule {
     private LocalTime startTime;
     @Column(name = "end_time")
     private LocalTime endTime;
-    @Column(name = "base_block_mins")
-    private Integer baseBlockMins;
     @Column(name = "base_price", precision = 15, scale = 2)
     private BigDecimal basePrice;
-    @Column(name = "next_block_mins")
-    private Integer nextBlockMins;
-    @Column(name = "next_block_price", precision = 15, scale = 2)
-    private BigDecimal nextBlockPrice;
-    @Column(name = "max_price_per_day", precision = 15, scale = 2)
-    private BigDecimal maxPricePerDay;
-    @Column(name = "is_active")
-    @Builder.Default
+    @Column(name = "is_active",columnDefinition = "boolean default true")
     private Boolean isActive = true;
 }

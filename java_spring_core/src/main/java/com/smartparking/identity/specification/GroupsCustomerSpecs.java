@@ -31,6 +31,12 @@ public class GroupsCustomerSpecs {
                 : cb.conjunction();
     }
 
+    public static Specification<GroupsCustomer> isSynchronize(Boolean isSynchronize) {
+        return (root, query, cb) -> isSynchronize != null
+                ? cb.equal(root.get("isSynchronize"), isSynchronize)
+                : cb.conjunction();
+    }
+
     public static Specification<GroupsCustomer> hasProfileId(Integer profileId) {
         return (root, query, cb) -> profileId != null
                 ? cb.equal(root.get("profileId"), profileId)

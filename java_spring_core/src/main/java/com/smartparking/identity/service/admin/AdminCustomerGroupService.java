@@ -41,6 +41,7 @@ public class AdminCustomerGroupService {
         Specification<GroupsCustomer> spec = Specification
                 .where(GroupsCustomerSpecs.fetchRelations())
                 .and(GroupsCustomerSpecs.hasId(filter.getId()))
+                .and(GroupsCustomerSpecs.isSynchronize(filter.getIsSynchronize()))
                 .and(GroupsCustomerSpecs.hasMasterPhone(masterAccountphone))
                 .and(GroupsCustomerSpecs.hasMasterAccountId(filter.getMasterAccountId()))
                 .and(GroupsCustomerSpecs.hasProfileId(filter.getProfileId()));
@@ -53,6 +54,7 @@ public class AdminCustomerGroupService {
                 .groupName(groupCustomer.getGroupName())
                 .groupCode(groupCustomer.getGroupCode())
                 .profileId(groupCustomer.getProfileId())
+                .isSynchronize(groupCustomer.getIsSynchronize())
                 .profileCode(groupCustomer.getGroupsProfile().getProfileCode())
                 .profileName(groupCustomer.getGroupsProfile().getProfileName())
                 .masterAccountId(groupCustomer.getMasterAccountId())
@@ -70,6 +72,7 @@ public class AdminCustomerGroupService {
         groupsCustomer.setGroupCode(request.getGroupCode());
         groupsCustomer.setCreatedAt(request.getCreatedAt());
         groupsCustomer.setCreatedBy(request.getCreatedBy());
+        groupsCustomer.setIsSynchronize(request.getIsSynchronize());
 
         GroupsProfile profile = groupProfileRepo.findById(request.getProfileId())
                 .orElseThrow(() -> new RuntimeException("Lỗi: Loại hình Profile này không tồn tại!"));
@@ -86,7 +89,7 @@ public class AdminCustomerGroupService {
     }
 
     @Transactional
-    public GroupsCustomer updateCustomerGroup(Integer id, GroupsCustomer request) { // Khuyên thật: Đoạn này nên dùng DTO thay vì Entity
+    public GroupsCustomerResponse updateCustomerGroup(Integer id, GroupsCustomer request) { // Khuyên thật: Đoạn này nên dùng DTO thay vì Entity
         GroupsCustomer group = customerGroupRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Customer group not found"));
 
@@ -97,6 +100,7 @@ public class AdminCustomerGroupService {
 
         group.setGroupName(request.getGroupName());
         group.setGroupCode(request.getGroupCode());
+        group.setIsSynchronize(request.getIsSynchronize());
 
         boolean isMasterChanged = false;
         Account newMaster = null;
@@ -111,7 +115,16 @@ public class AdminCustomerGroupService {
             isMasterChanged = true;
         }
 
+
         GroupsCustomer savedGroup = customerGroupRepo.save(group);
+
+        GroupsCustomerResponse dto = GroupsCustomerResponse.builder()
+                .id(savedGroup.getId())
+                .groupName(savedGroup.getGroupName())
+                .groupCode(savedGroup.getGroupCode())
+                .masterAccountId(savedGroup.getMasterAccountId())
+                .profileName(savedGroup.getGroupsProfile() != null ? savedGroup.getGroupsProfile().getProfileName() : null)
+                .build();
 
         if (isMasterChanged) {
             if (oldMaster != null && oldMaster.getSupabaseId() != null) {
@@ -123,7 +136,8 @@ public class AdminCustomerGroupService {
             }
         }
 
-        return savedGroup;
+
+        return dto;
     }
 
     public void deleteCustomerGroup(Integer id) {

@@ -1,6 +1,10 @@
 package com.smartparking.identity.repository;
 
 import com.smartparking.identity.entity.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -16,10 +20,12 @@ import java.util.Optional;
 public interface CustomerRepository extends JpaRepository<Customer, Integer>, JpaSpecificationExecutor<Customer> {
     Optional<Customer> findByAccountId(Integer accountId);
 
-    Optional<Customer> findByPhone(String phone);
-
-    Optional<Customer> findByFullName(String username);
+    @EntityGraph(attributePaths = {"groupsCustomer"})
+    Page<Customer> findAll(Specification<Customer> spec, Pageable pageable);
 
     @Query("SELECT c.groupId FROM Customer c WHERE c.accountId = :accountId AND c.groupId IS NOT NULL")
     List<Integer> findMemberGroupIdsByAccountId(@Param("accountId") Integer accountId);
+
+    @Query("SELECT c FROM Customer c LEFT JOIN FETCH c.groupsCustomer WHERE c.id = :id")
+    Optional<Customer> findCustomerWithGroupById(@Param("id") Integer id);
 }

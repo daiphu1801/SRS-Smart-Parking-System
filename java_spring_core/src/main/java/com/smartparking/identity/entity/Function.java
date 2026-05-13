@@ -15,8 +15,8 @@ public class Function {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "func_name", length = 50)
-    private String funcName;
+    @Column(name = "function_code", length = 50)
+    private String functionCode;
 
     @Column(length = 255)
     private String description;

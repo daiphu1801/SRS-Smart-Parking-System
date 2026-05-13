@@ -1,0 +1,59 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
+    username: postgres.rrmhwltgofgtvxrmfxpl
+    password: Ksupabase05NTz
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.smartparking: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.kafka: WARN
+    org.apache.kafka: ERROR
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+
+# Dev overrides - dùng giá trị tạm, không commit secret thật lên Git
+app:
+  jwt:
+    secret: dev_jwt_secret_change_me_in_prod
+    expiration-ms: 86400000 # 1 ngày
+  settings:
+    file-path: ../python_edge_desktop/config/settings.json
+  sepay:
+    webhook-secret: dev_sepay_secret
+    bank-account: "0123456789"
+    bank-name: MB
+    account-name: CONG TY SMART PARKING
+
+supabase:
+  jwt-secret: dev_supabase_jwt_secret_change_me
+  url: https://your-project.supabase.co
+  anon-key: dev_supabase_anon_key_change_me
+  service-role-key: dev_supabase_service_role_key_change_me
+
+
+  zns:
+    access-token: dev_zns_token
+    app-id: dev_zns_app_id
+    template-otp: "1234"
+    template-reminder: "5678"
+    template-confirm: "9012"

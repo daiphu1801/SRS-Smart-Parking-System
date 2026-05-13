@@ -36,7 +36,7 @@ public class AdminCustomerGroupController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<GroupsCustomer>> updateCustomerGroup(@PathVariable Integer id, @RequestBody GroupsCustomer group) {
+    public ResponseEntity<ApiResponse<GroupsCustomerResponse>> updateCustomerGroup(@PathVariable Integer id, @RequestBody GroupsCustomer group) {
 
         return ResponseEntity.ok(ApiResponse.success("Cập nhật Nhóm Khách Hàng thành công", customerGroupService.updateCustomerGroup(id, group)));
     }

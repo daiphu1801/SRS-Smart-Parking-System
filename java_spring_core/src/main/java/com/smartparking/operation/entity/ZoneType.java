@@ -1,3 +1,3 @@
 package com.smartparking.operation.entity;
 
-public enum ZoneType { BUILDING, FLOOR, AREA, GATE }
+public enum ZoneType { BUILDING, FLOOR,BLOCK, AREA, GATE,SLOT }

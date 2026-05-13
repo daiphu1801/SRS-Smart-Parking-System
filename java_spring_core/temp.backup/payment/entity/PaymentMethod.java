@@ -1,5 +1,5 @@
 package com.smartparking.payment.entity;
 
 public enum PaymentMethod {
-    CASH, SEPAY, VNPAY
+    CASH, BANK_TRANSFER, CREDIT_CARD, E_WALLET
 }

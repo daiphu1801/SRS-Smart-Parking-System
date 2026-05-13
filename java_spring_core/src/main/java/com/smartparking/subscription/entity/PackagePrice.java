@@ -23,6 +23,9 @@ public class PackagePrice {
     private Integer durationMonths;
     @Column(precision = 15, scale = 2)
     private BigDecimal price;
+    @Column(name = "package_price_name")
+    private String packagePriceName;
+
     @Builder.Default
     private Boolean isActive = true;
     @CreationTimestamp

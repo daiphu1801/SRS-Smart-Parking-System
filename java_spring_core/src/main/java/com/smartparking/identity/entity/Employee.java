@@ -29,6 +29,10 @@ public class Employee {
     private Boolean isOnline = false;
     @Column(name = "created_by")
     private Integer createdBy;
+    @Column(name = "deleted")
+    private Boolean deleted;
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

@@ -15,4 +15,6 @@ public class EmployeeResponse {
     private Boolean isOnline;
     private Integer createdBy;
     private LocalDateTime createdAt;
+    private Boolean deleted;
+    private LocalDateTime deletedAt;
 }

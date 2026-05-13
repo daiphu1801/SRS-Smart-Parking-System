@@ -18,4 +18,6 @@ public class CustomerResponse {
     private String address;
     private LocalDateTime createdAt;
     private String groupName;
+    private Boolean deleted;
+    private LocalDateTime deletedAt;
 }
