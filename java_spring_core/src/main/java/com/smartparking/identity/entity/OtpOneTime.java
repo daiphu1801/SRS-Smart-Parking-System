@@ -27,15 +27,17 @@ public class OtpOneTime {
 
     @Column(name = "is_used")
     private boolean isUsed = false;
-
-    // Mapping Enum với kiểu String trong DB (hoặc có thể dùng custom converter nếu dùng Postgres Enum)
-    // Để Spring Boot tự động mapping Enum của Java với Enum của Postgres, cấu hình như sau:
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, columnDefinition = "otp_type")
     private OtpType type;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "phone", updatable = false)
+    private String phone;
+    @Column(name = "try_time")
+    private Integer tryTime;
 
     @PrePersist
     protected void onCreate() {

@@ -2,6 +2,7 @@ package com.smartparking.identity.service;
 
 import com.smartparking.identity.dto.response.AuthLoginResponse;
 import com.smartparking.identity.dto.response.CheckPhoneResponse;
+import com.smartparking.identity.dto.response.ForgotPasswordResponse;
 import com.smartparking.identity.dto.response.ProfileResponse;
 import com.smartparking.identity.entity.*;
 import com.smartparking.identity.repository.*;
@@ -11,12 +12,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -29,15 +28,20 @@ public class AuthService {
     private final EmployeeRepository employeeRepository;
     private final SupabaseAuthClient supabaseClient;
     private final RoleFunctionActionRepository roleFunctionActionRepo;
-
+    private final OtpOneTimeRepository otpOneTimeRepository;
     private final GroupsCustomersRepository groupsCustomerRepo;
 
+    private final SmsService smsService;
 
+    @Value("${app.demo.admin-phone}")
+    private String adminPhone;
 
-    // 1. Login (Admin, Customer)
+    @Value("${app.demo.otp-expiration-minutes:5}") // Mặc định 5 phút nếu quên config
+    private int otpExpirationMinutes;
+    @Value("${app.demo.otp-max-try:5}")
+    private  int MAX_OTP_TRY; // Giới hạn nhập sai 5 lần
+
     public AuthLoginResponse login(String username, String password) {
-        // Supabase login verifies the password and returns a JWT
-        // Đăng nhập ở supabase trước, sau đó nhận token ở supabase
         Map<String, Object> response = supabaseClient.loginWithPassword(username, password);
         String accessToken = (String) response.get("access_token");
         Map<String, Object> user = (Map<String, Object>) response.get("user");
@@ -67,63 +71,15 @@ public class AuthService {
                 .build();
     }
 
-    // 2. Logout
     public void logout(String token) {
         try {
             supabaseClient.logout(token);
             log.info("Token invalidated on Supabase");
         } catch (Exception e) {
-            // Bắt lỗi để app không crash. Lỗi này thường do token đã hết hạn sẵn.
-            // Bất kể Supabase báo gì, ở phía Spring Boot ta vẫn cho qua vì mục đích cuối
-            // cùng
-            // vẫn là clear session ở client.
             log.warn("Supabase logout warning (Token may already be expired): {}", e.getMessage());
         }
     }
 
-    // 3. Forgot Password
-    public void forgotPassword(String phone) {
-        accountRepository.findByUsername(phone).orElseThrow(() -> new IllegalArgumentException("Phone not registered"));
-//        supabaseClient.sendOtp(formatPhoneToE164(phone));
-        log.info("Requested Supabase OTP for Forgot Password: {}", phone);
-    }
-
-    // 4. Reset Password
-//    public void resetPassword(String phone, String otp, String newPassword) {
-//        // 1. Format lại SĐT cho chuẩn quốc tế (Bắt buộc với Supabase)
-//        String formattedPhone = formatPhoneToE164(phone);
-//
-//        try {
-//            // 2. Verify OTP với Supabase
-//            Map<String, Object> verifyResponse = supabaseClient.verifyOtp(formattedPhone, otp);
-//            String sessionToken = (String) verifyResponse.get("access_token");
-//
-//            // 3. MỞ COMMENT: Dùng session token để update password
-//            // Lưu ý: Hàm updatePassword trong SupabaseAuthClient của bạn không trả về gì
-//            // (void)
-//            supabaseClient.updatePassword(sessionToken, newPassword);
-//
-//            log.info("Password reset via Supabase for phone: {}", formattedPhone);
-//
-//        } catch (Exception e) {
-//            // 4. Cực kỳ quan trọng: Nếu OTP sai, RestTemplate sẽ ném lỗi 400 Bad Request.
-//            // Phải catch lại để ném ra lỗi có ý nghĩa cho Frontend hiển thị.
-//            log.error("Failed to reset password for {}. Error: {}", formattedPhone, e.getMessage());
-//            throw new IllegalArgumentException("Mã OTP không hợp lệ hoặc đã hết hạn!");
-//        }
-//    }
-
-    // 5. Change Password
-    public void changePassword(String currentAccessToken, String newPassword) {
-        try {
-
-            supabaseClient.updatePassword(currentAccessToken, newPassword);
-            log.info("Successfully changed password via Supabase");
-        } catch (Exception e) {
-            log.error("Lỗi khi đổi mật khẩu", e);
-            throw new IllegalArgumentException("Lỗi hệ thống hoặc token đã hết hạn");
-        }
-    }
 
     // 6. Get Profile
     public ProfileResponse getProfile(Integer accountId) {
@@ -149,88 +105,7 @@ public class AuthService {
         return builder.build();
     }
 
-    // 7. Register Send OTP
-//    public void registerSendOtp(String phone) {
-//        // 1. Tìm xem SĐT này có nằm trong danh sách được cấp phép không
-//        Optional<Employee> pendingEmployee = employeeRepository.findByPhone(phone);
-//        Optional<Customer> pendingCustomer = customerRepository.findByPhone(phone);
-//
-//        // Nếu không nằm trong cả 2 bảng -> Đuổi về
-//        if (pendingEmployee.isEmpty() && pendingCustomer.isEmpty()) {
-//            throw new IllegalArgumentException("Số điện thoại chưa được Admin hoặc Master thêm vào hệ thống.");
-//        }
-//
-//        // 2. Nếu có trong danh sách, kiểm tra xem đã tạo tài khoản (link account) chưa
-//        if ((pendingEmployee.isPresent() && pendingEmployee.get().getAccountId() != null) ||
-//                (pendingCustomer.isPresent() && pendingCustomer.get().getAccountId() != null)) {
-//            throw new IllegalArgumentException("Tài khoản đã được đăng ký. Vui lòng đăng nhập.");
-//        }
-//
-//        // 3. Vượt qua 2 vòng gửi xe -> Cho phép gửi OTP qua Supabase
-//        supabaseClient.sendOtp(formatPhoneToE164(phone));
-//        log.info("Requested Supabase OTP for Registration: {}", phone);
-//    }
 
-    // 8. Register Verify
-//    @Transactional
-//    public AuthLoginResponse registerVerify(String phone, String otp, String password) {
-//        // 1. Xác minh OTP & Lấy UUID từ Supabase
-//        Map<String, Object> verifyResponse = supabaseClient.verifyOtp(formatPhoneToE164(phone), otp);
-//        String accessToken = (String) verifyResponse.get("access_token");
-//        Map<String, Object> user = (Map<String, Object>) verifyResponse.get("user");
-//        String supabaseId = (String) user.get("id");
-//
-//        // 2. Set Password người dùng vừa nhập lên Supabase
-//        supabaseClient.updatePassword(accessToken, password);
-//
-//        // 3. Khởi tạo Account (Chưa save vội)
-//        Account account;
-//
-//        // 4. PHÂN LUỒNG & LINK VÀO BẢN GHI CÓ SẴN
-//        Optional<Employee> pendingEmployee = employeeRepository.findByPhone(phone);
-//        Optional<Customer> pendingCustomer = customerRepository.findByPhone(phone);
-//
-//        if (pendingEmployee.isPresent() && pendingEmployee.get().getAccountId() == null) {
-//            account = accountRepository.findByUsername(phone).get();
-//            // Cập nhật Account là Employee và Save
-//
-//            account.setStatus(GeneralStatus.PENDING);
-//            account = accountRepository.save(account);
-//
-//            // Móc Account ID vào vỏ Employee đã có sẵn
-//            Employee emp = pendingEmployee.get();
-//
-//            emp.setAccountId(account.getId());
-//            employeeRepository.save(emp);
-//
-//        } else if (pendingCustomer.isPresent() && pendingCustomer.get().getAccountId() == null) {
-//
-//            account = new Account();
-//            account.setUsername(phone);
-//            account.setSupabaseId(UUID.fromString(supabaseId));
-//            account.setStatus(com.smartparking.identity.entity.GeneralStatus.ACTIVE);
-//            // Cập nhật Account là Customer và Save
-//            account.setAccountType(AccountType.CUSTOMER);
-//            account.setRoleId(1);
-//            account = accountRepository.save(account);
-//
-//            // Móc Account ID vào vỏ Customer (do Admin hoặc Master tạo)
-//            Customer cus = pendingCustomer.get();
-//            cus.setAccountId(account.getId());
-//
-//            customerRepository.save(cus);
-//
-//        } else {
-//            // Cú double-check an toàn: Lỡ trong tích tắc database bị thay đổi
-//            throw new IllegalArgumentException("Dữ liệu đăng ký không hợp lệ hoặc tài khoản đã tồn tại.");
-//        }
-//
-//        return AuthLoginResponse.builder()
-//                .accessToken(accessToken)
-//                .accountType(account.getAccountType().name())
-//                .accountId(account.getId())
-//                .build();
-//    }
 
     private String formatPhoneToE164(String phone) {
         if (phone.startsWith("0")) {
@@ -239,6 +114,7 @@ public class AuthService {
         return phone.startsWith("+") ? phone : "+" + phone;
     }
 
+    @Transactional
     public CheckPhoneResponse checkPhone(String phone) {
         // 1. Tìm cái "vỏ" Account dưới Local DB
         Account account = accountRepository.findByUsername(phone)
@@ -252,8 +128,12 @@ public class AuthService {
             // Đã có Supabase ID -> Đây là người cũ -> Yêu cầu nhập Mật khẩu
             action = "REQUIRE_LOGIN_PASSWORD";
         } else {
-            // Chưa có Supabase ID -> Đây là người mới do Admin tạo -> Yêu cầu Kích hoạt
-            action = "REQUIRE_CREATE_PASSWORD";
+            // Chưa có Supabase ID -> Đây là người mới -> Yêu cầu Kích hoạt
+            action = "REQUIRE_OTP_ACTIVATION";
+
+            // 2. TÁI SỬ DỤNG HÀM sendOtp LÕI
+            // Gọi 1 dòng này là nó tự động: Hủy mã cũ, sinh mã mới, set TryTime = 0, lưu DB và bắn SMS.
+            this.sendOtp(phone, OtpType.ACTIVATION);
         }
 
         // 3. Trả kết quả về cho Controller
@@ -263,16 +143,18 @@ public class AuthService {
                 .build();
     }
 
+
     @Transactional
-    public AuthLoginResponse createSupabaseAccount(String phone, String otpCode, String password) {
+    public AuthLoginResponse createSupabaseAccount(String rawPhone, String otpCode, String password) {
+
+        this.verifyOtp(rawPhone, otpCode);
         // 1. Kiểm tra "vỏ" Account ở Local DB
+        String phone = rawPhone;
         if (phone.startsWith("0")) {
             phone = "84" + phone.substring(1);
         }
-
         Account account = accountRepository.findByUsername(phone)
                 .orElseThrow(() -> new IllegalArgumentException("Tài khoản không tồn tại trong hệ thống."));
-
         if (account.getSupabaseId() != null) {
             throw new IllegalArgumentException("Tài khoản này đã được kích hoạt. Vui lòng đăng nhập.");
         }
@@ -318,5 +200,173 @@ public class AuthService {
         metadata.put("member_group_ids", memberIds);
         return metadata;
     }
+    @Transactional
+    public ForgotPasswordResponse sendOtp(String phone, OtpType type) {
+        // 1. Map String type từ Client gửi lên thành Enum
+            if((type == null )){
+            type =  OtpType.ACTIVATION;
+            }
+
+        Integer accountId = null;
+        if (type == OtpType.FORGOT_PASSWORD) {
+            // Quên mật khẩu thì BẮT BUỘC số điện thoại đã phải có trong Account
+            Account account = accountRepository.findByUsername(phone)
+                    .orElseThrow(() -> new IllegalArgumentException("Số điện thoại chưa được đăng ký trong hệ thống!"));
+            accountId = account.getId();
+        } else if (type == OtpType.ACTIVATION) {
+            // Đăng ký/Kích hoạt thì có thể chưa có account, nên tìm thấy thì gán, không thì để null
+            accountId = accountRepository.findByUsername(phone).map(Account::getId).orElse(null);
+        }
+
+        // 3. Vô hiệu hóa tất cả các mã OTP cũ đang chờ của SĐT này
+        otpOneTimeRepository.invalidateOldOtps(phone);
+
+        // 4. Sinh mã OTP mới (6 số)
+        String otpCode = generateRandomOtp();
+
+        // 5. Lưu vào Database
+        OtpOneTime otpEntity = new OtpOneTime();
+        otpEntity.setPhone(phone);
+        otpEntity.setAccountId(accountId);
+        otpEntity.setOtpCode(otpCode);
+        otpEntity.setExpiredAt(LocalDateTime.now().plusMinutes(otpExpirationMinutes));
+        otpEntity.setUsed(false);
+        otpEntity.setType(type);
+        otpEntity.setTryTime(0); // Vừa tạo ra thì số lần thử = 0
+        otpOneTimeRepository.save(otpEntity);
+
+        // 6. Gửi SMS qua Twilio
+        String smsMessage = String.format("Ma xac nhan cua ban la: %s. Ma co hieu luc trong %d phut. Khong chia se cho bat ky ai.",
+                otpCode, otpExpirationMinutes);
+        smsService.sendSms(adminPhone, smsMessage); // Nhớ đổi SĐT test nếu Twilio đang Trial
+
+        log.info("Đã gửi OTP [{}] cho SĐT: {} (Type: {})", otpCode, phone, type);
+
+       return   ForgotPasswordResponse.builder()
+                .phone(phone.trim())
+                .message("Mã xác thực đã được gửi đến số điện thoại của bạn.")
+                .expireInMinutes(otpExpirationMinutes) // Fix cứng theo logic service
+                .build();
+    }
+
+
+    @Transactional
+    public void verifyOtp(String phone, String inputOtpCode) {
+
+        // 1. Móc mã OTP mới nhất lên
+
+        OtpOneTime latestOtp = otpOneTimeRepository.findTopByPhoneAndIsUsedFalseOrderByIdDesc(phone)
+                .orElseThrow(() -> new IllegalArgumentException("Không tìm thấy mã OTP nào đang chờ xác thực cho SĐT này!"));
+
+        // 2. Kiểm tra Hết hạn
+        if (LocalDateTime.now().isAfter(latestOtp.getExpiredAt())) {
+            latestOtp.setUsed(true); // Quá hạn -> Hủy luôn mã này
+            otpOneTimeRepository.save(latestOtp);
+            throw new IllegalArgumentException("Mã OTP đã hết hạn. Vui lòng yêu cầu gửi lại mã mới!");
+        }
+
+        // 3. Kiểm tra số lần đã nhập sai trước đó (Bảo mật chống Brute-force)
+        if (latestOtp.getTryTime() >= MAX_OTP_TRY) {
+            latestOtp.setUsed(true); // Khóa luôn
+            otpOneTimeRepository.save(latestOtp);
+            throw new IllegalArgumentException("Mã OTP đã bị khóa do nhập sai quá 5 lần. Vui lòng gửi lại OTP!");
+        }
+
+        // 4. So khớp Mã OTP do khách nhập
+        if (!latestOtp.getOtpCode().equals(inputOtpCode)) {
+            // NẾU SAI: Tăng biến tryTime lên 1
+            latestOtp.setTryTime(latestOtp.getTryTime() + 1);
+
+            int remainingTries = MAX_OTP_TRY - latestOtp.getTryTime();
+
+            // Nếu tăng xong mà chạm mốc 5 lần -> Hủy luôn mã
+            if (remainingTries <= 0) {
+                latestOtp.setUsed(true);
+                otpOneTimeRepository.save(latestOtp);
+                throw new IllegalArgumentException("Bạn đã nhập sai quá 5 lần. Mã OTP đã bị hủy!");
+            }
+
+            // Chưa chạm mốc thì lưu lại số lần sai và báo lỗi
+            otpOneTimeRepository.save(latestOtp);
+            throw new IllegalArgumentException("Mã OTP không chính xác. Bạn còn " + remainingTries + " lần thử.");
+        }
+
+        // 5. MỌI THỨ OK -> Xác thực thành công
+        latestOtp.setUsed(true);
+        otpOneTimeRepository.save(latestOtp);
+
+        log.info("SĐT {} đã xác thực OTP thành công!", phone);
+    }
+
+
+
+    // Hàm Helper sinh 6 số ngẫu nhiên chuẩn Security
+    private String generateRandomOtp() {
+        SecureRandom secureRandom = new SecureRandom();
+        StringBuilder otp = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            otp.append(secureRandom.nextInt(10));
+        }
+        return otp.toString();
+    }
+
+    @Transactional
+    public AuthLoginResponse resetPassword(String rawPhone, String otpCode, String newPassword) {
+
+        this.verifyOtp(rawPhone, otpCode);
+
+        String phone = rawPhone;
+        if (phone.startsWith("0")) {
+            phone = "84" + phone.substring(1);
+        }
+
+        Account account = accountRepository.findByUsername(phone)
+                .orElseThrow(() -> new IllegalArgumentException("Tài khoản không tồn tại trong hệ thống."));
+
+        if (account.getSupabaseId() == null) {
+            throw new IllegalArgumentException("Tài khoản này chưa được kích hoạt. Vui lòng liên hệ Admin hoặc Đăng ký.");
+        }
+
+        try {
+            supabaseClient.updateUserPassword(account.getSupabaseId().toString(), newPassword);
+            log.info("SĐT {} đã reset mật khẩu thành công qua OTP!", phone);
+        } catch (Exception e) {
+            log.error("Lỗi khi reset mật khẩu trên Supabase cho SĐT: {}", phone, e);
+            throw new RuntimeException("Có lỗi xảy ra khi đổi mật khẩu trên máy chủ. Vui lòng thử lại!");
+        }
+
+        return this.login(phone, newPassword);
+    }
+
+    @Transactional
+    public AuthLoginResponse changePassword(Integer accountId, String oldPassword, String newPassword) {
+
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new IllegalArgumentException("Không tìm thấy thông tin tài khoản!"));
+
+        if (account.getSupabaseId() == null) {
+            throw new IllegalArgumentException("Tài khoản này chưa được đồng bộ với máy chủ bảo mật.");
+        }
+
+        String phone = account.getUsername();
+
+        try {
+            supabaseClient.loginWithPassword(phone, oldPassword);
+        } catch (Exception e) {
+            log.warn("Đổi mật khẩu thất bại: Mật khẩu cũ không đúng cho SĐT {}", phone);
+            throw new IllegalArgumentException("Mật khẩu hiện tại không chính xác!");
+        }
+
+        try {
+            supabaseClient.updateUserPassword(account.getSupabaseId().toString(), newPassword);
+            log.info("SĐT {} đã chủ động thay đổi mật khẩu thành công!", phone);
+        } catch (Exception e) {
+            log.error("Lỗi Supabase khi change password cho SĐT: {}", phone, e);
+            throw new RuntimeException("Có lỗi xảy ra khi đổi mật khẩu. Vui lòng thử lại!");
+        }
+
+        return this.login(phone, newPassword);
+    }
+
 
 }

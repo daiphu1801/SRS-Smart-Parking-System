@@ -1,6 +1,14 @@
 package com.smartparking.identity.controller;
 
+import com.smartparking.identity.dto.CustomAccountPrincipal;
+import com.smartparking.identity.dto.request.ChangePasswordRequest;
+import com.smartparking.identity.dto.request.ResetPasswordRequest;
+import com.smartparking.identity.dto.request.SendOtpRequest;
+import com.smartparking.identity.dto.request.VerifyOtpRequest;
 import com.smartparking.identity.dto.response.CheckPhoneResponse;
+import com.smartparking.identity.dto.response.ForgotPasswordResponse;
+import com.smartparking.identity.entity.OtpType;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,16 +34,13 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success(data));
     }
 
-    @PostMapping("/check-phone")
-    public ResponseEntity<ApiResponse<CheckPhoneResponse>> checkPhone(@RequestBody Map<String, String> body) {
-        String phone = body.get("phone");
+    @GetMapping("/check-phone")
+    public ResponseEntity<ApiResponse<CheckPhoneResponse>> checkPhone(@PathVariable String phone) {
 
-        // Validate nhẹ nhàng
         if (phone == null || phone.trim().isEmpty()) {
             throw new IllegalArgumentException("Số điện thoại không được để trống");
         }
 
-        // Gọi Service
         CheckPhoneResponse data = authService.checkPhone(phone.trim());
 
         return ResponseEntity.ok(ApiResponse.success(data));
@@ -47,45 +52,12 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success("Đăng xuất thành công"));
     }
 
-    @PostMapping("/forgot-password")
-    public ResponseEntity<ApiResponse<Void>> forgotPassword(@RequestBody Map<String, String> body) {
-        authService.forgotPassword(body.get("phone"));
-        return ResponseEntity.ok(ApiResponse.success("Mã xác nhận đã gửi"));
-    }
-
-//    @PostMapping("/reset-password")
-//    public ResponseEntity<ApiResponse<Void>> resetPassword(@RequestBody Map<String, String> body) {
-//        authService.resetPassword(body.get("phone"), body.get("otp_code"), body.get("new_password"));
-//        return ResponseEntity.ok(ApiResponse.success("Đặt lại mật khẩu thành công"));
-//    }
-
-    @PutMapping("/change-password")
-    public ResponseEntity<ApiResponse<Void>> changePassword(
-            @AuthenticationPrincipal Jwt jwt,
-            @RequestBody Map<String, String> body) {
-        String token = jwt.getTokenValue();
-
-        authService.changePassword(token, body.get("new_password"));
-        return ResponseEntity.ok(ApiResponse.success("Đổi mật khẩu thành công"));
-    }
 
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<ProfileResponse>> getProfile(@RequestAttribute("accountId") Integer accountId) {
         ProfileResponse data = authService.getProfile(accountId);
         return ResponseEntity.ok(ApiResponse.success(data));
     }
-
-//    @PostMapping("/register/send-otp")
-//    public ResponseEntity<ApiResponse<Void>> registerSendOtp(@RequestBody Map<String, String> body) {
-//        authService.registerSendOtp(body.get("phone"));
-//        return ResponseEntity.ok(ApiResponse.success("Mã xác nhận đã gửi"));
-//    }
-
-//    @PostMapping("/register/verify")
-//    public ResponseEntity<ApiResponse<AuthLoginResponse>> registerVerify(@RequestBody Map<String, String> body) {
-//        AuthLoginResponse data = authService.registerVerify(body.get("phone"), body.get("otp_code"), body.get("password"));
-//        return ResponseEntity.ok(ApiResponse.success(data));
-//    }
 
     @PostMapping("/register/createSupabaseAccount")
     public ResponseEntity<ApiResponse<AuthLoginResponse>> createSupabaseAccount(@RequestBody Map<String, String> body) {
@@ -99,6 +71,48 @@ public class AuthController {
         // Gọi Service tạo tài khoản và tự động đăng nhập
         AuthLoginResponse data = authService.createSupabaseAccount(phone, otpCode, password);
 
+        return ResponseEntity.ok(ApiResponse.success(data));
+    }
+
+    @PostMapping("/send-otp")
+    public ResponseEntity<ApiResponse<Void>> sendOtp(@Valid @RequestBody SendOtpRequest request) {
+
+        authService.sendOtp(request.getPhone(), request.getType());
+
+        return ResponseEntity.ok(ApiResponse.success("Mã OTP đã được gửi thành công!"));
+    }
+
+    @PostMapping("/forgot-password/{phone}")
+    public ResponseEntity<ApiResponse<ForgotPasswordResponse>> forgotPassword(@PathVariable String phone) {
+
+        if (phone == null || phone.trim().isEmpty()) {
+            throw new IllegalArgumentException("Vui lòng nhập số điện thoại để lấy lại mật khẩu");
+        }
+
+        ForgotPasswordResponse data= authService.sendOtp(phone.trim(), OtpType.FORGOT_PASSWORD);
+
+        return ResponseEntity.ok(ApiResponse.success(data));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<ApiResponse<AuthLoginResponse>> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
+        AuthLoginResponse data = authService.resetPassword(request.getPhone(), request.getOtpCode(), request.getNewPassword());
+
+        return ResponseEntity.ok(ApiResponse.success(data));
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<ApiResponse<AuthLoginResponse>> changePassword(
+            @AuthenticationPrincipal CustomAccountPrincipal principal,
+            @Valid @RequestBody ChangePasswordRequest request) {
+        Integer accountId = principal.getAccountId();
+        AuthLoginResponse data = authService.changePassword(
+                accountId,
+                request.getOldPassword(),
+                request.getNewPassword()
+        );
+
+        // FE nhận được cục này thì đè cái Token cũ đi là xong!
         return ResponseEntity.ok(ApiResponse.success(data));
     }
 }

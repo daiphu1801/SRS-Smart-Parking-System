@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -54,38 +55,6 @@ public class SupabaseAuthClient {
         return headers;
     }
 
-//    public void sendOtp(String phone) {
-//        String url = supabaseUrl + "/auth/v1/otp";
-//        Map<String, String> body = Map.of("phone", phone);
-//
-//        HttpEntity<Map<String, String>> request = new HttpEntity<>(body, createPublicHeaders());
-//
-//        try {
-//            restTemplate.postForEntity(url, request, String.class);
-//            log.info("Requested Supabase to send OTP to {}", phone);
-//        } catch (Exception e) {
-//            log.error("Failed to send OTP via Supabase: {}", e.getMessage());
-//            throw new RuntimeException("Failed to send OTP", e);
-//        }
-//    }
-
-//    public Map<String, Object> verifyOtp(String phone, String otp) {
-//        String url = supabaseUrl + "/auth/v1/verify";
-//        Map<String, String> body = Map.of(
-//                "phone", phone,
-//                "token", otp,
-//                "type", "sms");
-//
-//        HttpEntity<Map<String, String>> request = new HttpEntity<>(body, createPublicHeaders());
-//
-//        try {
-//            ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
-//            return response.getBody();
-//        } catch (Exception e) {
-//            log.error("Failed to verify OTP via Supabase: {}", e.getMessage());
-//            throw new IllegalArgumentException("Invalid OTP or Supabase Error");
-//        }
-//    }
 
     public Map<String, Object> loginWithPassword(String username, String password) {
         String url = supabaseUrl + "/auth/v1/token?grant_type=password";
@@ -132,24 +101,6 @@ public class SupabaseAuthClient {
         }
     }
 
-    public void updatePassword(String sessionToken, String newPassword) {
-        String url = supabaseUrl + "/auth/v1/user";
-
-        // Truyền mật khẩu mới vào Body
-        Map<String, String> body = Map.of("password", newPassword);
-
-        // Truyền Header User (kèm token của họ)
-        HttpEntity<Map<String, String>> request = new HttpEntity<>(body, createUserHeaders(sessionToken));
-
-        try {
-            // Lưu ý: Update API của Supabase dùng method PUT
-            restTemplate.exchange(url, HttpMethod.PUT, request, String.class);
-            log.info("Successfully updated password on Supabase");
-        } catch (Exception e) {
-            log.error("Failed to update password via Supabase: {}", e.getMessage());
-            throw new RuntimeException("Cập nhật mật khẩu thất bại. Token có thể đã hết hạn.", e);
-        }
-    }
 
     public String createAdminUser(String phone, String password, Map<String, Object> appMetadata) {
         String url = supabaseUrl + "/auth/v1/admin/users";
@@ -186,6 +137,39 @@ public class SupabaseAuthClient {
             log.info("Đã đồng bộ metadata lên Supabase cho user: {}", supabaseId);
         } catch (Exception e) {
             log.error("Lỗi đồng bộ Supabase: {}", e.getMessage());
+        }
+    }
+
+    public void updateUserPassword(String supabaseUid, String newPassword) {
+        String url = supabaseUrl + "/auth/v1/admin/users/" + supabaseUid;
+
+        // Body chứa mật khẩu mới
+        Map<String, Object> body = new HashMap<>();
+        body.put("password", newPassword);
+
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, createAdminHeaders());
+
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.PUT,
+                    request,
+                    String.class
+            );
+
+            if (!response.getStatusCode().is2xxSuccessful()) {
+                log.error("Lỗi từ Supabase khi update password: {}", response.getBody());
+                throw new RuntimeException("Không thể cập nhật mật khẩu trên Supabase");
+            }
+
+            log.info("Cập nhật mật khẩu Supabase thành công cho UID: {}", supabaseUid);
+
+        } catch (HttpClientErrorException e) {
+            log.error("HTTP Error khi gọi API Supabase Admin: {}", e.getResponseBodyAsString());
+            throw new RuntimeException("Lỗi từ máy chủ xác thực: " + e.getMessage());
+        } catch (Exception e) {
+            log.error("Lỗi không xác định khi gọi Supabase Admin: {}", e.getMessage());
+            throw new RuntimeException("Lỗi hệ thống khi cập nhật mật khẩu.");
         }
     }
 
