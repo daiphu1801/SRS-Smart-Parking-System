@@ -1,0 +1,46 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Khách hàng|
+start
+:Đi bộ đến máy Kiosk tại sảnh tòa nhà;
+:Nhập Biển số xe trên màn hình cảm ứng;
+
+|Thiết bị Kiosk|
+:Gửi yêu cầu truy vấn thông tin (Plate_ID);
+
+|Hệ Thống Backend|
+:Tìm kiếm Phiên đỗ xe (Parking Session) đang Active;
+:Truy vấn biểu giá (Tariff Rules) tương ứng loại xe;
+:Tính toán tổng phí dựa trên thời gian thực tế;
+:Gọi API Cổng thanh toán (PayOS/VietQR) để lấy mã QR;
+
+|Thiết bị Kiosk|
+:Hiển thị chi tiết hóa đơn:
+- Thời gian vào
+- Tổng thời gian đỗ
+- Thành tiền;
+:Hiển thị Mã QR thanh toán động;
+
+|Khách hàng|
+:Sử dụng App Ngân hàng quét QR & Xác nhận trả tiền;
+
+|Cổng thanh toán (PayOS/VietQR)|
+:Xử lý giao dịch ngân hàng;
+:Gửi tín hiệu xác nhận (Webhook) tới Backend;
+
+|Hệ Thống Backend|
+:Nhận Webhook xác thực "Thanh toán thành công";
+:Cập nhật trạng thái Session: "PAID";
+:Thiết lập **Thời gian ân hạn** (Grace Period - VD: 15p);
+
+|Thiết bị Kiosk|
+#ccffcc:Thông báo: "Thanh toán thành công";
+:Nhắc nhở: "Quý khách có 15 phút để lái xe ra khỏi bãi";
+
+|Khách hàng|
+:Di chuyển xuống bãi lấy xe để ra về;
+stop
+@enduml
