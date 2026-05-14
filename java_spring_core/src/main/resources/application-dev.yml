@@ -43,17 +43,15 @@ app:
     bank-account: ${APP_SEPAY_BANK_ACCOUNT:change_me}
     bank-name: ${APP_SEPAY_BANK_NAME:change_me}
     account-name: ${APP_SEPAY_ACCOUNT_NAME:change_me}
-
-supabase:
-  jwt-secret: ${SUPABASE_JWT_SECRET:change_me}
-  url: ${SUPABASE_URL:https://your-project.supabase.co}
-  anon-key: ${SUPABASE_ANON_KEY:change_me}
-  service-role-key: ${SUPABASE_SERVICE_ROLE_KEY:change_me}
-
-
   zns:
     access-token: ${ZNS_ACCESS_TOKEN:change_me}
     app-id: ${ZNS_APP_ID:change_me}
     template-otp: ${ZNS_TEMPLATE_OTP:1234}
     template-reminder: ${ZNS_TEMPLATE_REMINDER:5678}
     template-confirm: ${ZNS_TEMPLATE_CONFIRM:9012}
+
+supabase:
+  jwt-secret: ${SUPABASE_JWT_SECRET:change_me}
+  url: ${SUPABASE_URL:https://your-project.supabase.co}
+  anon-key: ${SUPABASE_ANON_KEY:change_me}
+  service-role-key: ${SUPABASE_SERVICE_ROLE_KEY:change_me}
