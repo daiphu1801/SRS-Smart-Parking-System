@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
-    username: postgres.rrmhwltgofgtvxrmfxpl
-    password: Ksupabase05NTz
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/smart_parking}
+    username: ${SPRING_DATASOURCE_USERNAME:smart_parking}
+    password: ${SPRING_DATASOURCE_PASSWORD:change_me}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 5
@@ -34,26 +34,26 @@ logging:
 # Dev overrides - dùng giá trị tạm, không commit secret thật lên Git
 app:
   jwt:
-    secret: dev_jwt_secret_change_me_in_prod
+    secret: ${APP_JWT_SECRET:change_me}
     expiration-ms: 86400000 # 1 ngày
   settings:
     file-path: ../python_edge_desktop/config/settings.json
   sepay:
-    webhook-secret: dev_sepay_secret
-    bank-account: "0123456789"
-    bank-name: MB
-    account-name: CONG TY SMART PARKING
+    webhook-secret: ${APP_SEPAY_WEBHOOK_SECRET:change_me}
+    bank-account: ${APP_SEPAY_BANK_ACCOUNT:change_me}
+    bank-name: ${APP_SEPAY_BANK_NAME:change_me}
+    account-name: ${APP_SEPAY_ACCOUNT_NAME:change_me}
 
 supabase:
-  jwt-secret: dev_supabase_jwt_secret_change_me
-  url: https://your-project.supabase.co
-  anon-key: dev_supabase_anon_key_change_me
-  service-role-key: dev_supabase_service_role_key_change_me
+  jwt-secret: ${SUPABASE_JWT_SECRET:change_me}
+  url: ${SUPABASE_URL:https://your-project.supabase.co}
+  anon-key: ${SUPABASE_ANON_KEY:change_me}
+  service-role-key: ${SUPABASE_SERVICE_ROLE_KEY:change_me}
 
 
   zns:
-    access-token: dev_zns_token
-    app-id: dev_zns_app_id
-    template-otp: "1234"
-    template-reminder: "5678"
-    template-confirm: "9012"
+    access-token: ${ZNS_ACCESS_TOKEN:change_me}
+    app-id: ${ZNS_APP_ID:change_me}
+    template-otp: ${ZNS_TEMPLATE_OTP:1234}
+    template-reminder: ${ZNS_TEMPLATE_REMINDER:5678}
+    template-confirm: ${ZNS_TEMPLATE_CONFIRM:9012}
