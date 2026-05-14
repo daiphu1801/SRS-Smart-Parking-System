@@ -138,7 +138,6 @@ public class AuthService {
 
         // 3. Trả kết quả về cho Controller
         return CheckPhoneResponse.builder()
-                .phone(phone)
                 .action(action)
                 .build();
     }

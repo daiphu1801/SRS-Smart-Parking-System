@@ -59,7 +59,7 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success(data));
     }
 
-    @PostMapping("/register/createSupabaseAccount")
+    @PostMapping("/register")
     public ResponseEntity<ApiResponse<AuthLoginResponse>> createSupabaseAccount(@RequestBody Map<String, String> body) {
         String phone = body.get("phone");
         String otpCode = body.get("otp_code"); // Tạm thời có thể null hoặc không dùng

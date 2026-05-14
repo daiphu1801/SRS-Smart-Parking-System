@@ -26,6 +26,12 @@
         <!-- Web -->
 
         <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j-core</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>
             <version>10.1.1</version> <!-- Có thể check version mới nhất, nhưng bản 10.x là ổn định rồi -->

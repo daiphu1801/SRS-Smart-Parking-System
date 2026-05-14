@@ -33,6 +33,8 @@ public class SecurityConfig {
 
     private final SupabaseAccountFilter supabaseAccountFilter;
 
+    private final RateLimitFilter rateLimitFilter;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -55,6 +57,7 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(rateLimitFilter, BearerTokenAuthenticationFilter.class)
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 
                 // 2. CHUYỂN FILTER CỦA BẠN CHẠY SAU KHI SPRING ĐÃ GIẢI MÃ XONG JWT
