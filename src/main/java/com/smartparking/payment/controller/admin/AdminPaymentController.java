@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class AdminPaymentController {
         private final AdminPaymentService adminPaymentService;
 
         // 1. GET ALL CÓ FILTER ĐỘNG (Dùng POST để gửi cục Filter to)
+        @PreAuthorize("hasAuthority('PAYMENT_READ')")
         @PostMapping()
         public ResponseEntity<ApiResponse<Page<PaymentResponse>>> searchPayments(
                         @RequestBody PaymentFilterRequest filter,
@@ -32,6 +34,7 @@ public class AdminPaymentController {
         }
 
         // 2. GET CHI TIẾT 1 GIAO DỊCH CƠ BẢN (Không kèm details)
+        @PreAuthorize("hasAuthority('PAYMENT_READ')")
         @GetMapping("/{id}")
         public ResponseEntity<ApiResponse<PaymentResponse>> getPaymentById(
                         @PathVariable Long id) {
@@ -42,6 +45,7 @@ public class AdminPaymentController {
         }
 
         // 3. GET DẠNG CÂY (Payment Cha + List PaymentDetail Con)
+        @PreAuthorize("hasAuthority('PAYMENT_READ')")
         @GetMapping("/{id}/details")
         public ResponseEntity<ApiResponse<PaymentTreeResponse>> getPaymentTreeDetails(
                         @PathVariable Long id) {
@@ -51,6 +55,7 @@ public class AdminPaymentController {
                                 adminPaymentService.getPaymentTreeDetails(id)));
         }
 
+        @PreAuthorize("hasAuthority('PAYMENT_RESOLVE')")
         @PostMapping("/{id}/resolve")
         public ResponseEntity<ApiResponse<Void>> resolvePayment(
                         @PathVariable Long id,

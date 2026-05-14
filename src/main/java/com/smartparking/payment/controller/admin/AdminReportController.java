@@ -23,30 +23,31 @@
 //    private final PaymentRepository paymentRepo;
 //
 //    // --- 2.6 Báo cáo & Tra cứu ---
+//@PreAuthorize("hasAuthority('REPORT_READ')")
 //    @GetMapping("/parking-sessions")
 //    public ResponseEntity<List<ParkingSession>> listSessions() {
 //        return ResponseEntity.ok(sessionRepo.findAll());
 //    }
-//
+//@PreAuthorize("hasAuthority('REPORT_READ')")
 //    @GetMapping("/parking-sessions/{id}")
 //    public ResponseEntity<?> getSessionDetail(@PathVariable Long id) {
 //        return sessionRepo.findById(id)
 //                .map(ResponseEntity::ok)
 //                .orElse(ResponseEntity.notFound().build());
 //    }
-//
+//@PreAuthorize("hasAuthority('REPORT_READ')")
 //    @GetMapping("/payments")
 //    public ResponseEntity<List<Payment>> listPayments() {
 //        return ResponseEntity.ok(paymentRepo.findAll());
 //    }
-//
+//@PreAuthorize("hasAuthority('REPORT_READ')")
 //    // @GetMapping("/payments/{id}")
 //    // public ResponseEntity<?> getPaymentDetail(@PathVariable Integer id) {
 //    // return paymentRepo.findById(id)
 //    // .map(ResponseEntity::ok)
 //    // .orElse(ResponseEntity.notFound().build());
 //    // }
-//
+//@PreAuthorize("hasAuthority('REPORT_READ')")
 //    @GetMapping("/reports/revenue")
 //    public ResponseEntity<?> revenueReport() {
 //        return ResponseEntity.ok(Map.of("message", "Revenue report under construction"));

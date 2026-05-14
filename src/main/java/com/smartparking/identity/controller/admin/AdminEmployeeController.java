@@ -9,6 +9,7 @@ import com.smartparking.shared.dto.PageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminEmployeeController {
 
     private final AdminEmployeeService employeeService;
-
+    @PreAuthorize("hasAuthority('EMPLOYEE_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<EmployeeResponse>>> listEmployees(
             @RequestParam(defaultValue = "0") int page,
@@ -26,13 +27,13 @@ public class AdminEmployeeController {
         PageResponse<EmployeeResponse> data = employeeService.getEmployees(PageRequest.of(page, size),filter);
         return ResponseEntity.ok(ApiResponse.success(data));
     }
-
+    @PreAuthorize("hasAuthority('EMPLOYEE_CREATE')")
     @PostMapping
     public ResponseEntity<ApiResponse<EmployeeResponse>> createEmployee(@RequestBody EmployeeCreateRequest request) {
         EmployeeResponse data = employeeService.createEmployee(request);
         return ResponseEntity.status(201).body(ApiResponse.success(data));
     }
-
+    @PreAuthorize("hasAuthority('EMPLOYEE_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<EmployeeResponse>> getEmployeeById(@PathVariable("id") Integer id) {
         EmployeeResponse data = employeeService.getEmployeeById(id);
@@ -40,6 +41,7 @@ public class AdminEmployeeController {
     }
 
     // XÓA MỀM (SOFT DELETE) NHÂN VIÊN
+    @PreAuthorize("hasAuthority('EMPLOYEE_DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteEmployee(@PathVariable("id") Integer id) {
         employeeService.deleteEmployee(id);

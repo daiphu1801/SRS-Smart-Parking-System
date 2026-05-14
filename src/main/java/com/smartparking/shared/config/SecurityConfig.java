@@ -36,32 +36,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(AbstractHttpConfigurer::disable)
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                // Public endpoints
-                .requestMatchers(
-                    "/api/v1/auth/login/**",
-                    "/api/v1/admin/**",
-                    "/error",
-                    "/api/payments/webhook/**",      // SePay webhook (no auth)
-                    "/api/zones",                    // LED display reads zones publicly
-                    "/swagger-ui/**",
-                    "/api/v1/system/payments/**",
-                    "/api-docs/**",
-                    "/ws/**"                         // WebSocket handshake
-                ).permitAll()
-                // Customer-only
-//                .requestMatchers("/api/customer/**").hasAnyRole("CUSTOMER")
-                // Guard endpoints
-//                .requestMatchers("/api/guard/**").hasAnyRole("GUARD", "ADMIN")
-                // Kiosk (no auth — physical kiosk device uses device token instead)
-//                .requestMatchers("/api/kiosk/**").permitAll()
-                // Admin only
-//                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-            )
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        // Public endpoints
+                        .requestMatchers(
+                                "/api/v1/auth/**",               // Cho toàn bộ luồng Auth (Login, Register, OTP) ra public
+                                "/error",
+                                "/api/v1/system/payments/webhook/**", // Webhook SePay (Bên thứ 3 gọi vào)
+                                "/api/v1/iot/parking/entry",     // IoT gọi vào (nếu không dùng Token riêng)
+                                "/api/v1/iot/parking/exit",
+                                "/api/zones",                    // Màn hình LED công cộng
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",               // Swagger
+                                "/ws/**"                   // WebSocket handshake
+                        ).permitAll()
+
+                        .anyRequest().authenticated()
+                )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 
                 // 2. CHUYỂN FILTER CỦA BẠN CHẠY SAU KHI SPRING ĐÃ GIẢI MÃ XONG JWT
@@ -97,8 +90,4 @@ public class SecurityConfig {
                 .jwsAlgorithm(SignatureAlgorithm.ES256)
                 .build();
     }
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-//        return config.getAuthenticationManager();
-//    }
 }

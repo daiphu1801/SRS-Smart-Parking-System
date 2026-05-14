@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AdminPaymentDetailController {
     private final PaymentDetailService paymentDetailService;
-
+    @PreAuthorize("hasAuthority('PAYMENT_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<Page<PaymentDetailResponse>>> searchPaymentDetails(
             @RequestBody PaymentDetailFilterRequest filterRequest,
@@ -26,7 +27,7 @@ public class AdminPaymentDetailController {
                 paymentDetailService.searchPaymentDetails(filterRequest, pageable)
         ));
     }
-
+    @PreAuthorize("hasAuthority('PAYMENT_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<PaymentDetailResponse>> getPaymentDetailById(
             @PathVariable Long id) {

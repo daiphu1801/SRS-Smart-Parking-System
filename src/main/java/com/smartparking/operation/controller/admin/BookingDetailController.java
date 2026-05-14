@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +20,7 @@ public class BookingDetailController {
     private final BookingDetailService bookingDetailService;
 
     // 1. LẤY DANH SÁCH (Phân trang + Lọc + Join đầy đủ Tên Nhóm, Tên Gói)
+    @PreAuthorize("hasAuthority('BOOKING_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<Page<BookingDetailDto>>> listBookingDetails(
             @RequestParam(required = false) Integer groupId,
@@ -32,6 +34,7 @@ public class BookingDetailController {
     }
 
     // 2. CHI TIẾT 1 BookingDetail
+    @PreAuthorize("hasAuthority('BOOKING_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<BookingDetailDto>> getBookingDetailDetail(@PathVariable Integer id) {
         return ResponseEntity.ok(ApiResponse.success(
@@ -40,6 +43,7 @@ public class BookingDetailController {
         ));
     }
 
+    @PreAuthorize("hasAuthority('BOOKING_CREATE')")
     @PostMapping
     public ResponseEntity<ApiResponse<BookingDetailDto>> createBookingDetail(
             @Valid @RequestBody BookingDetailCreateRequest request) {
@@ -49,7 +53,7 @@ public class BookingDetailController {
                 bookingDetailService.createBookingDetail(request)
         ));
     }
-
+    @PreAuthorize("hasAuthority('BOOKING_UPDATE')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<BookingDetailDto>> updateBookingDetail(
             @PathVariable Integer id,
@@ -62,6 +66,7 @@ public class BookingDetailController {
     }
 
     // 5. XÓA / HỦY BookingDetail (Dọn dẹp data hoặc khách trả lại gói)
+    @PreAuthorize("hasAuthority('BOOKING_DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteBookingDetail(@PathVariable Integer id) {
         bookingDetailService.deleteBookingDetail(id);

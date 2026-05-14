@@ -9,6 +9,7 @@ import com.smartparking.shared.dto.PageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminGroupProfileController {
 
     private final AdminGroupProfileService groupProfileService;
-
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<GroupsProfile>>> listGroupProfiles(
             @RequestParam(defaultValue = "0") int page,
@@ -26,16 +27,19 @@ public class AdminGroupProfileController {
         return ResponseEntity.ok(ApiResponse.success(groupProfileService.getGroupProfiles(PageRequest.of(page, size), filter)));
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_CREATE')")
     @PostMapping
     public ResponseEntity<ApiResponse<GroupsProfile>> createGroupProfile(@RequestBody GroupsProfileCreateRequest profile) {
         return ResponseEntity.status(201).body(ApiResponse.success("Tạo Group Profile thành công", groupProfileService.createGroupProfile(profile)));
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_UPDATE')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<GroupsProfile>> updateGroupProfile(@PathVariable Integer id, @RequestBody GroupsProfile profile) {
         return ResponseEntity.ok(ApiResponse.success("Cập nhật Group Profile thành công", groupProfileService.updateGroupProfile(id, profile)));
     }
 
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteGroupProfile(@PathVariable Integer id) {
         groupProfileService.deleteGroupProfile(id);

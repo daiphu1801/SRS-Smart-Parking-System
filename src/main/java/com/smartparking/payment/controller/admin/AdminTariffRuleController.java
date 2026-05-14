@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,6 +23,7 @@ public class AdminTariffRuleController {
     private final TariffRuleService tariffRuleService;
 
     // 1. LẤY DANH SÁCH (Hỗ trợ Lọc & Phân trang)
+    @PreAuthorize("hasAuthority('TARIFF_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<Page<TariffRuleResponse>>> getTariffRules(
             @RequestBody TariffRuleFilterRequest filter,
@@ -34,6 +36,7 @@ public class AdminTariffRuleController {
     }
 
     // 2. LẤY CHI TIẾT 1 BẢNG GIÁ
+    @PreAuthorize("hasAuthority('TARIFF_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<TariffRuleResponse>> getTariffRuleDetail(@PathVariable Integer id) {
         return ResponseEntity.ok(ApiResponse.success(
@@ -43,6 +46,7 @@ public class AdminTariffRuleController {
     }
 
     // 3. TẠO MỚI BẢNG GIÁ
+    @PreAuthorize("hasAuthority('TARIFF_CREATE')")
     @PostMapping
     public ResponseEntity<ApiResponse<TariffRuleResponse>> createTariffRule(
             @Valid @RequestBody TariffRuleCreateRequest request) {
@@ -53,6 +57,7 @@ public class AdminTariffRuleController {
     }
 
     // 4. CẬP NHẬT BẢNG GIÁ
+    @PreAuthorize("hasAuthority('TARIFF_UPDATE')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<TariffRuleResponse>> updateTariffRule(
             @PathVariable Integer id,
@@ -62,7 +67,7 @@ public class AdminTariffRuleController {
                 tariffRuleService.updateTariffRule(id, request)
         ));
     }
-
+    @PreAuthorize("hasAuthority('TARIFF_UPDATE')")
     @PatchMapping("/{id}/disable")
     public ResponseEntity<ApiResponse<Void>> disableTariffRule(@PathVariable Integer id) {
         tariffRuleService.disableTariffRule(id);

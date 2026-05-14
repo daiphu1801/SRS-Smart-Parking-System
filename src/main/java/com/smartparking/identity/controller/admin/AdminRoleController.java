@@ -9,6 +9,7 @@ import com.smartparking.shared.dto.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,24 +20,24 @@ import java.util.List;
 public class AdminRoleController {
 
     private final AdminRoleService roleService;
-
+    @PreAuthorize("hasAuthority('ROLE_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<List<Role>>> listRoles(@RequestParam(required = false) String search) {
         return ResponseEntity.ok(ApiResponse.success(roleService.getAllRoles(search)));
     }
-
+    @PreAuthorize("hasAuthority('ROLE_READ')")
     @GetMapping("/functions-actions")
     public ResponseEntity<ApiResponse<SystemFunctionActionResponse>> getAllFunctionAndAction() {
         SystemFunctionActionResponse data = roleService.getAllFunctionAndAction();
         return ResponseEntity.ok(ApiResponse.success(data));
     }
-
+    @PreAuthorize("hasAuthority('ROLE_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<RoleDetailResponse>> getRoleDetail(@PathVariable("id") Integer id) {
         RoleDetailResponse data = roleService.getRoleDetail(id);
         return ResponseEntity.ok(ApiResponse.success(data));
     }
-
+    @PreAuthorize("hasAuthority('ROLE_CREATE')")
     @PostMapping
     public ResponseEntity<ApiResponse<Role>> createRole(@Valid @RequestBody RoleUpsertRequest request) {
         Role createdRole = roleService.createRole(request);
@@ -44,6 +45,7 @@ public class AdminRoleController {
     }
 
     // 5. API CẬP NHẬT ROLE VÀ QUYỀN
+    @PreAuthorize("hasAuthority('ROLE_UPDATE')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<Role>> updateRole(
             @PathVariable("id") Integer id,
@@ -53,6 +55,7 @@ public class AdminRoleController {
     }
 
     // 6. API XÓA MỀM ROLE
+    @PreAuthorize("hasAuthority('ROLE_DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRole(@PathVariable("id") Integer id) {
         roleService.deleteRole(id);

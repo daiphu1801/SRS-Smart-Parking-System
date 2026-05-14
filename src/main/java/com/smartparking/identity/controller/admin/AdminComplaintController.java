@@ -8,6 +8,7 @@ import com.smartparking.shared.dto.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminComplaintController {
 
     private final ComplaintService complaintService;
-
+    @PreAuthorize("hasAuthority('COMPLAINT_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<Page<ComplaintDetailResponse>>> getAllComplaints(
             @ModelAttribute ComplaintFilterRequest filter,
@@ -29,7 +30,7 @@ public class AdminComplaintController {
                 complaintService.getComplaintsWithFilter(filter, page, size)
         ));
     }
-
+    @PreAuthorize("hasAuthority('COMPLAINT_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<ComplaintDetailResponse>> getComplaintById(
             @PathVariable Integer id) {
@@ -39,7 +40,7 @@ public class AdminComplaintController {
                 complaintService.getComplaintById(id)
         ));
     }
-
+    @PreAuthorize("hasAuthority('COMPLAINT_RESOLVE')")
     @PutMapping("/{id}/solve")
     public ResponseEntity<ApiResponse<ComplaintDetailResponse>> solveComplaint(
             @PathVariable Integer id,

@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminCustomerGroupController {
 
     private final AdminCustomerGroupService customerGroupService;
-
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<GroupsCustomerResponse>>> listCustomerGroups(
             @RequestParam(defaultValue = "0") int page,
@@ -29,18 +30,18 @@ public class AdminCustomerGroupController {
             @ModelAttribute GroupsCustomer filter) {
         return ResponseEntity.ok(ApiResponse.success(customerGroupService.getCustomerGroups(PageRequest.of(page, size), filter,masterAccountName,masterAccountPhone)));
     }
-
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_CREATE')")
     @PostMapping
     public ResponseEntity<ApiResponse<GroupsCustomer>> createCustomerGroup(@Valid @RequestBody GroupsCustomerCreateRequest request) {
         return ResponseEntity.status(201).body(ApiResponse.success("Tạo Nhóm Khách Hàng thành công", customerGroupService.createCustomerGroup(request)));
     }
-
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_UPDATE')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<GroupsCustomerResponse>> updateCustomerGroup(@PathVariable Integer id, @RequestBody GroupsCustomer group) {
 
         return ResponseEntity.ok(ApiResponse.success("Cập nhật Nhóm Khách Hàng thành công", customerGroupService.updateCustomerGroup(id, group)));
     }
-
+    @PreAuthorize("hasAuthority('CUSTOMER_GROUP_DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteCustomerGroup(@PathVariable Integer id) {
         customerGroupService.deleteCustomerGroup(id);

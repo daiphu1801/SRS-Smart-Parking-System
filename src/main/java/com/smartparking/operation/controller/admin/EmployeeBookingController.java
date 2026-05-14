@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +20,7 @@ public class EmployeeBookingController {
     private final BookingService bookingService;
 
     // 1. LẤY DANH SÁCH (Phân trang + Lọc + Join đầy đủ Tên Nhóm, Tên Gói)
+    @PreAuthorize("hasAuthority('BOOKING_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<Page<BookingResponse>>> listBookings(
             @RequestParam(required = false) Integer groupId,
@@ -32,6 +34,7 @@ public class EmployeeBookingController {
     }
 
     // 2. CHI TIẾT 1 BOOKING
+    @PreAuthorize("hasAuthority('BOOKING_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<BookingResponse>> getBookingDetail(@PathVariable Integer id) {
         return ResponseEntity.ok(ApiResponse.success(
@@ -41,6 +44,7 @@ public class EmployeeBookingController {
     }
 
     // 3. TẠO MỚI (Trường hợp Admin tự tay đăng ký/bán gói cho Khách hàng tại quầy)
+    @PreAuthorize("hasAuthority('BOOKING_CREATE')")
     @PostMapping
     public ResponseEntity<ApiResponse<BookingResponse>> createBooking(
             @Valid @RequestBody BookingCreateRequest request) {
@@ -53,6 +57,7 @@ public class EmployeeBookingController {
     }
 
     // 4. CẬP NHẬT (Admin sửa sai: Ví dụ khách muốn đổi từ gói Tháng sang gói Năm)
+    @PreAuthorize("hasAuthority('BOOKING_UPDATE')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<BookingResponse>> updateBooking(
             @PathVariable Integer id,
@@ -65,6 +70,7 @@ public class EmployeeBookingController {
     }
 
     // 5. XÓA / HỦY BOOKING (Dọn dẹp data hoặc khách trả lại gói)
+    @PreAuthorize("hasAuthority('BOOKING_DELETE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteBooking(@PathVariable Integer id) {
         bookingService.deleteBooking(id);
@@ -74,7 +80,7 @@ public class EmployeeBookingController {
                 null
         ));
     }
-
+    @PreAuthorize("hasAuthority('BOOKING_READ')")
     @GetMapping("/{id}/details")
     public ResponseEntity<ApiResponse<BookingAndDetailResponse>> getBookingAndDetails(@PathVariable Integer id) {
         return ResponseEntity.ok(ApiResponse.success(

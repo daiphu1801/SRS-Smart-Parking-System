@@ -9,6 +9,7 @@ import com.smartparking.shared.dto.PageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +19,7 @@ public class AdminAccountController {
 
     private final AdminAccountService accountService;
 
+    @PreAuthorize("hasAuthority('ACCOUNT_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<AccountResponse>>> listAccounts(
             @RequestParam(defaultValue = "0") int page,
@@ -26,7 +28,7 @@ public class AdminAccountController {
         PageResponse<AccountResponse> data = accountService.getAccounts(PageRequest.of(page, size), filter);
         return ResponseEntity.ok(ApiResponse.success(data));
     }
-
+    @PreAuthorize("hasAuthority('ACCOUNT_UPDATE')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<AccountResponse>> updateAccount(
             @PathVariable Integer id,

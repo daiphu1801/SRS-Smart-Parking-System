@@ -9,6 +9,7 @@ import com.smartparking.shared.dto.PageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AdminParkingSessionController {
     private final AdminParkingSessionService sessionService;
-
+    @PreAuthorize("hasAuthority('SESSION_READ')")
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<ParkingSessionResponse>>> listSessions(
             @ModelAttribute ParkingSessionFilterRequest filter,
@@ -28,6 +29,7 @@ public class AdminParkingSessionController {
     }
 
     // 2. XEM CHI TIẾT
+    @PreAuthorize("hasAuthority('SESSION_READ')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<ParkingSessionResponse>> getSessionDetail(@PathVariable Long id) {
         return ResponseEntity.ok(ApiResponse.success(
@@ -36,6 +38,7 @@ public class AdminParkingSessionController {
     }
 
     // 3. SỬA THỦ CÔNG (Sửa biển số hoặc can thiệp tiền bạc)
+    @PreAuthorize("hasAuthority('SESSION_OVERRIDE')")
     @PutMapping("/{id}/manual-update")
     public ResponseEntity<ApiResponse<ParkingSessionResponse>> updateSessionManually(
             @PathVariable Long id,
