@@ -104,11 +104,11 @@ public class SystemPaymentService {
 
         for (BookingDetail draft : draftsToActive) {
             // Nếu Hóa đơn bị LỖI (Thiếu tiền hoặc Quá hạn) -> Vé cũng báo lỗi Needs
-            // Attention
+
             if (status == Status.NEEDS_ATTENTION) {
                 draft.setStatus(BookingStatus.NEEDS_ATTENTION);
             }
-            // Nếu Hóa đơn THÀNH CÔNG -> Kích hoạt vé theo ngày
+
             else if (status == Status.SUCCESS) {
                 if (draft.getStartDate() != null && draft.getStartDate().isAfter(now)) {
                     draft.setStatus(BookingStatus.PENDING_ACTIVATION);
