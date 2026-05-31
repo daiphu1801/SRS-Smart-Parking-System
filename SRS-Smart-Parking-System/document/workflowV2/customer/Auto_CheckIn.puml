@@ -1,0 +1,48 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Khách hàng|
+start
+:Lái xe tiến vào khu vực Cổng VÀO (Gate IN);
+
+|Thiết bị Hiện trường (Cổng VÀO)|
+:Camera LPR chụp ảnh & nhận diện biển số;
+:Edge Server đóng gói sự kiện (Event)\nvà truyền lên Cloud qua Kafka;
+
+|Hệ Thống Backend|
+:Lắng nghe Topic Kafka & Nhận sự kiện;
+:Truy vấn phân loại Biển số xe;
+
+if (Loại Khách hàng?) then (Khách Thuê bao)
+
+else (Khách Vãng lai)
+    :Kiểm tra sức chứa của Bãi xe\n(Đối chiếu với Safety Buffer);
+    if (Còn chỗ cho vãng lai?) then (Còn chỗ)
+        :Khởi tạo Phiên đỗ xe (Parking Session);\nBắt đầu tính thời gian Check-in;
+    else (Hết chỗ vãng lai)
+        :Ghi nhận Lỗi (Overbooking);
+        #ffcccc:Từ chối mở cổng;
+        detach
+    endif
+endif
+
+:Gửi lệnh Mở Barie xuống Edge Server;
+
+|Thiết bị Hiện trường (Cổng VÀO)|
+#ccffcc:Bật Rơ-le mở Barie;
+
+|Khách hàng|
+:Lái xe đi qua cổng vào bãi;
+
+|Thiết bị Hiện trường (Cổng VÀO)|
+:Cảm biến vòng từ (Loop Detector)\nxác nhận xe đã đi qua hoàn toàn;
+:Barie tự động đóng xuống;
+:Gửi tín hiệu "Đã qua cổng" lên Backend;
+
+|Hệ Thống Backend|
+:Cập nhật trạng thái "Checked-in" vào DB;
+:Kích hoạt trigger giảm chỗ trống (-1 Slot);
+stop
+@enduml

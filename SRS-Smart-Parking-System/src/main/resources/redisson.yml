@@ -1,0 +1,9 @@
+singleServerConfig:
+  address: "rediss://touched-insect-127463.upstash.io:6379"
+  password: "gQAAAAAAAfHnAAIgcDIwZTI3NDdjN2MwYzg0YzI4ODBmNWQwM2FlYjM3MTc3MA"
+
+  connectionPoolSize: 10
+  connectionMinimumIdleSize: 2
+
+    # Ping 30 giây/lần để Upstash không cho Database ngủ đông
+  pingConnectionInterval: 30000

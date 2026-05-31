@@ -1,0 +1,40 @@
+@startuml
+!theme plain
+skinparam style strictuml
+skinparam wrapWidth 250
+
+|Khách hàng|
+start
+:Lái xe đến cổng Check-out;
+
+|Hệ Thống Backend|
+:AI Camera trả kết quả: "Thanh toán không hợp lệ" \nhoặc "Không nhận diện được biển số";
+
+|Thiết bị Hiện trường (Cổng RA)|
+#ffcccc:Barie ĐÓNG. LED báo lỗi;
+:Hệ thống tự động phát tín hiệu SOS;
+
+|Guard App (Mobile)|
+:Nổ thông báo cảnh báo kèm hình ảnh xe tại cổng;
+
+|Nhân viên Bảo vệ|
+:Di chuyển tới cổng hoặc quan sát qua Camera;
+if (Vấn đề là gì?) then (AI lỗi/Biển mờ)
+    :Nhập tay biển số vào App (UC3.3);
+    :Hệ thống kiểm tra lại quyền ra;
+else (Chưa trả tiền)
+    :Yêu cầu khách trả tiền mặt (UC3.2);
+    :Bấm nút "Đã thu tiền" trên App;
+endif
+
+|Hệ Thống Backend|
+:Ghi nhận giao dịch/Log ngoại lệ;
+:Gửi lệnh mở Barie khẩn cấp;
+
+|Thiết bị Hiện trường (Cổng RA)|
+#ccffcc:Barie Mở;
+
+|Khách hàng|
+:Lái xe ra khỏi bãi;
+stop
+@enduml
