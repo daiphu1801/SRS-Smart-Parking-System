@@ -1,12 +1,7 @@
-Phase 1 - Lõi Backend & Bảo mật (Ưu tiên Cao nhất): Hoàn thiện Optimistic Lock (chống race condition) và khóa CORS. Đây là minh chứng sếp là một Java Backend Dev cực kỳ chắc tay. Dù phỏng vấn Dev hay DevOps, code logic không vững là trượt ngay từ vòng gửi xe.
-Khóa CORS (15 - 30 phút): Cực kỳ nhanh. Chuyển List.of("*") thành biến @Value("${app.cors.allowed-origins}"). Viết thêm 1 dòng vào application.yml là xong.
-
-Optimistic Locking (30 - 45 phút): Thêm cột @Version private Long version; vào Entity Payment. Lưu ý: Sếp phải mất thêm 20 phút viết 1 cái @ExceptionHandler trong GlobalExceptionHandler để hứng cục OptimisticLockException và trả về mã lỗi 409 (Conflict) cho Frontend biết mà xử lý.
-
-Khóa vùng IP cho Bảo vệ (45 - 60 phút): Thêm 1 khối logic vào SecurityFilter hoặc tạo 1 Interceptor. Check nếu Role là GUARD thì so sánh IP hiện tại với dãy IP nội bộ (cấu hình trong file yml). Test trên Postman fake header X-Forwarded-For là kiểm chứng được ngay.
 
 Đóng gói docker và đẩy lên k8s
+Khóa vùng IP cho Bảo vệ (45 - 60 phút): Thêm 1 khối logic vào SecurityFilter hoặc tạo 1 Interceptor. Check nếu Role là GUARD thì so sánh IP hiện tại với dãy IP nội bộ (cấu hình trong file yml). Test trên Postman fake header X-Forwarded-For là kiểm chứng được ngay.
 
 Phase 2 - CI/CD Cơ bản (Ưu tiên Nhì): Cài pipeline tự động build và deploy lên K8s.
 
-Phase 3 - Giáp Hạ tần   g (Nếu còn dư thời gian): Lúc này mới động đến cấu hình Secret, SSL/HTTPS và cái DaemonSet thu thập log.
+Phase 3 - Giáp Hạ tầng (Nếu còn dư thời gian): Lúc này mới động đến cấu hình Secret, SSL/HTTPS và cái DaemonSet thu thập log.

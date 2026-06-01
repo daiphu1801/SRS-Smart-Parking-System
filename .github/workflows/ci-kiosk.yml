@@ -1,0 +1,28 @@
+name: Kiosk App CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'kiosk_app/**'
+      - '.github/workflows/ci-kiosk.yml'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./kiosk_app
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/srs-kiosk-app:latest
