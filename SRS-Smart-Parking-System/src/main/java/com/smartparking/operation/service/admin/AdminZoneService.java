@@ -67,7 +67,6 @@ public class AdminZoneService {
 
     @Transactional
     public Zone createZone(Zone zone) {
-        // Validate: Nếu có chọn Zone Cha, phải đảm bảo Cha tồn tại
         if (zone.getParentZoneId() != null) {
             if (!zoneRepository.existsById(zone.getParentZoneId())) {
                 throw new BusinessException("Lỗi: Khu vực cha không tồn tại!");

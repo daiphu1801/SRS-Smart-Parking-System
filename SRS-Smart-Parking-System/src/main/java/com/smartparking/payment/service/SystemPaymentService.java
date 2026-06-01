@@ -42,6 +42,8 @@ public class SystemPaymentService {
     @Value("${app.sepay.webhook-secret}")
     @Getter
     private String webhookSecret;
+    @Value("${app.sepay.webhook-secret}")
+    private String sepaySecretKey;
 
     private final PaymentRepository paymentRepository;
     private final PaymentDetailRepository paymentDetailRepository;
@@ -58,7 +60,7 @@ public class SystemPaymentService {
         String transferContent = request.getContent();
         BigDecimal amountPaid = request.getTransferAmount();
 
-        List<Payment> matchedPayments = paymentRepository.findPaymentByTransferContent(transferContent);
+        List<Payment> matchedPayments = paymentRepository.findPaymentByTransferPaycode(transferContent);
 
         if (matchedPayments.isEmpty()) {
             log.warn("⚠️ WEBHOOK ALERT: Nhận được tiền ({} VNĐ) nhưng KHÔNG tìm thấy mã đơn hàng phù hợp! Nội dung CK: {}", amountPaid, transferContent);
@@ -311,7 +313,7 @@ public class SystemPaymentService {
     }
 
     public static String generatePayCode() {
-        return "SP-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        return "SP" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
 
 }

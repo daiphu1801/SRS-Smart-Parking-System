@@ -22,8 +22,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Long>,
         PaymentDashboardCustomRepository {
     List<Payment> findByStatus(Status status);
 
-    @Query("SELECT p FROM Payment p WHERE :content LIKE CONCAT('%', p.payCode, '%')")
-    List<Payment> findPaymentByTransferContent(@Param("content") String content);
+    @Query("SELECT p FROM Payment p WHERE UPPER(:content) LIKE UPPER(CONCAT('%', p.payCode, '%'))")
+    List<Payment> findPaymentByTransferPaycode(@Param("content") String content);
 
     @Modifying(clearAutomatically = true)
     @Query("UPDATE Payment p SET p.status = :newStatus, p.updatedAt = CURRENT_TIMESTAMP WHERE p.parkingSessionId = :sessionId AND p.status = :oldStatus")
