@@ -8,3 +8,4 @@ requests>=2.32.0
 Pillow>=10.0.0
 numpy>=1.26.0,<2.3.0
 python-dotenv
+supabase>=2.3.0

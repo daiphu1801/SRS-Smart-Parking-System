@@ -6,7 +6,8 @@ All calls map directly to the documented Java REST API endpoints.
 import requests
 from typing import Optional, Any
 
-BASE_URL = "http://localhost:8080/api/v1"
+import os
+BASE_URL = os.environ.get("API_BASE_URL", "http://localhost:8080/api/v1")
 
 # Shared session-level auth token (set after login)
 _token: Optional[str] = None

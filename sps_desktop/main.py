@@ -92,6 +92,6 @@ def main(page: ft.Page):
 
 if __name__ == "__main__":
     try:
-        ft.app(main)
+        ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=8550, host="0.0.0.0")
     except Exception:
-        ft.run(main)
+        ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=8550, host="0.0.0.0")
