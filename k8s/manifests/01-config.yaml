@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sps-config
+data:
+  SPRING_PROFILES_ACTIVE: "prod"
+  API_BASE_URL: "http://api.sps.local"
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: "host.docker.internal:9092"
+  
+  # Cấu hình không nhạy cảm
+  TWILIO_MESSAGING_SERVICE_SID: "MG1048b50aeeaab0e9127cfe402fa12a9d"
+  SEPAY_BANK_ACCOUNT: "0859226688"
+  SEPAY_BANK_NAME: "MBBank"
+  SEPAY_ACCOUNT_NAME: "BUI DAI PHU"
+
+

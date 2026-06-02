@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sps-kiosk-deployment
+  labels:
+    app: sps-kiosk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sps-kiosk
+  template:
+    metadata:
+      labels:
+        app: sps-kiosk
+    spec:
+      containers:
+        - name: kiosk-container
+          image: srs-kiosk-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sps-kiosk-service
+spec:
+  type: ClusterIP
+  selector:
+    app: sps-kiosk
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sps-backend-sa
+  namespace: default
+# Cắt đứt đường liên lạc với API K8s: Hacker không thể dùng Token này để dò thám Cluster
+automountServiceAccountToken: false

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: logging-ingress
+  namespace: logging # Quan trọng: Phải cùng phòng với Grafana
+  annotations:
+    # Dùng Lễ tân Nginx
+    kubernetes.io/ingress.class: nginx
+    # Bật tính năng tàng hình Tailscale (Tuỳ chọn, sếp có thể bỏ comment nếu muốn giấu Grafana vào mạng nội bộ VPN)
+    tailscale.com/expose: "true"
+spec:
+  rules:
+    # Tên miền Đại gia của sếp
+    - host: monitor.sps.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 80

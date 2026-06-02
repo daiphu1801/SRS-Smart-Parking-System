@@ -25,8 +25,11 @@ COPY . .
 
 # Tải các thư viện (package) và tiến hành biên dịch (Build) ra Web
 RUN flutter pub get
-# Biên dịch sang bản Web (tối ưu hóa tốc độ và dung lượng)
-RUN flutter build web --release
+# Khai báo biến môi trường khi build (Mặc định là localhost nếu không truyền)
+ARG API_BASE_URL="http://localhost:8080"
+
+# Biên dịch sang bản Web (Bơm biến môi trường vào code JS)
+RUN flutter build web --release --dart-define=API_BASE_URL=$API_BASE_URL
 
 # ==========================================
 # BƯỚC 2: ĐÓNG GÓI CHẠY THẬT (DEPLOY STAGE)

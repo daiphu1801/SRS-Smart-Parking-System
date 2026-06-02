@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sps-backend-deployment
+  labels:
+    app: sps-backend
+spec:
+  selector:
+    matchLabels:
+      app: sps-backend
+  template:
+    metadata:
+      labels:
+        app: sps-backend
+    spec:
+      serviceAccountName: sps-backend-sa
+      automountServiceAccountToken: false
+      containers:
+        - name: backend-container
+          image: srs-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          envFrom:
+            - configMapRef:
+                name: sps-config
+            - secretRef:
+                name: sps-backend-secrets
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sps-backend-service
+spec:
+  # Bịt lỗ hổng: Chỉ cho phép nội bộ K8s (Ingress) gọi vào, cấm ngoài gọi
+  type: ClusterIP
+  selector:
+    app: sps-backend
+  ports:
+    - protocol: TCP
+      port: 8080        # Cổng giao tiếp nội bộ trong K8s
+      targetPort: 8080  # Cổng thực tế của Java App

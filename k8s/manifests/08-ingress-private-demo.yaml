@@ -1,0 +1,40 @@
+# =========================================================================
+# FILE DEMO: TẠO "PHÒNG VIP" CHỈ CHO BẢO VỆ DÙNG WIFI HẦM TRUY CẬP
+# (Sếp chỉ xem để hiểu cấu trúc tường lửa K8s, ĐỪNG APPLY file này nhé!)
+# =========================================================================
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  # Tên Lễ tân phải khác với thằng Lễ tân Public (06-ingress.yaml)
+  name: sps-ingress-private
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    
+    # =========================================================
+    # BỨC TƯỜNG LỬA CHẶN KHÁCH LẠ (IP WHITELISTING)
+    # Khai báo IP tĩnh của Wifi hầm xe (Ví dụ: 203.113.25.10)
+    # Sếp có thể phẩy (,) thêm IP của Wifi Trụ sở Công ty để sếp ngồi giám sát.
+    # Bất kỳ ai dùng 4G có IP khác mò vào đây sẽ ăn lỗi 403 Forbidden!
+    # =========================================================
+    nginx.ingress.kubernetes.io/whitelist-source-range: "203.113.25.10/32, 115.74.22.8/32"
+
+spec:
+  ingressClassName: nginx
+  # Vẫn tái sử dụng cái két sắt chứa Chứng chỉ như bình thường
+  tls:
+    - hosts:
+        - mobile.sps.local
+      secretName: sps-tls-secret
+  rules:
+    # CHỈ phục vụ duy nhất App Bảo Vệ (Mobile) ở cái Lễ tân Private này
+    - host: mobile.sps.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sps-mobile-service
+                port:
+                  number: 80

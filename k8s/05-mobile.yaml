@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sps-mobile-deployment
+  labels:
+    app: sps-mobile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sps-mobile
+  template:
+    metadata:
+      labels:
+        app: sps-mobile
+    spec:
+      containers:
+        - name: mobile-container
+          image: srs-mobile-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80 # Nginx phục vụ Web ở cổng 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sps-mobile-service
+  annotations:
+    # [TÍNH NĂNG TÀNG HÌNH]: Báo cho Lính Tailscale biết để tự động mở đường hầm VPN cho App này
+    tailscale.com/expose: "true"
+    tailscale.com/tags: "tag:k8s-mobile"
+spec:
+  type: ClusterIP
+  selector:
+    app: sps-mobile
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
