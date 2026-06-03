@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress
+  namespace: argocd # Bắt buộc phải cùng phòng với ArgoCD
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # ArgoCD mặc định chạy bằng giao thức mã hóa HTTPS nội bộ, nên bắt buộc phải có dòng này để Nginx biết đường nói chuyện.
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" 
+spec:
+  rules:
+    - host: argocd.sps.local # Tên miền cho sếp lười
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
