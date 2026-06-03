@@ -25,11 +25,8 @@ COPY . .
 
 # Tải các thư viện (package) và tiến hành biên dịch (Build) ra Web
 RUN flutter pub get
-# Khai báo biến môi trường khi build (Mặc định là localhost nếu không truyền)
-ARG API_BASE_URL="http://localhost:8080"
-
-# Biên dịch sang bản Web (Bơm biến môi trường vào code JS)
-RUN flutter build web --release --dart-define=API_BASE_URL=$API_BASE_URL
+# Biên dịch sang bản Web với biến môi trường giả (Placeholder)
+RUN flutter build web --release --dart-define=API_BASE_URL=__API_BASE_URL_PLACEHOLDER__
 
 # ==========================================
 # BƯỚC 2: ĐÓNG GÓI CHẠY THẬT (DEPLOY STAGE)
@@ -47,5 +44,6 @@ COPY --from=build-env /app/build/web /usr/share/nginx/html
 # Mở cổng 80 (cổng Web mặc định)
 EXPOSE 80
 
-# Chạy Nginx để trực máy
-CMD ["nginx", "-g", "daemon off;"]
+# Copy file kịch bản tiêm biến môi trường vào Nginx
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]

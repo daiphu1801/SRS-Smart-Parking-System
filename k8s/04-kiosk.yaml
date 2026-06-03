@@ -17,10 +17,12 @@ spec:
       containers:
         - name: kiosk-container
           image: srs-kiosk-app:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
-
+          envFrom:
+            - configMapRef:
+                name: sps-config
 ---
 apiVersion: v1
 kind: Service
