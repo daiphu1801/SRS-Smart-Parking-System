@@ -8,8 +8,10 @@ resources:
   - backend.yaml
   - kiosk.yaml
   - mobile.yaml
-  - cronjob.yaml
   - ingress.yaml
-  - hpa-backend.yaml
   - ingress-logging.yaml
+  - hpa-backend.yaml
   - rbac.yaml
+  - network-policy.yaml
+  - sps-sealed-secret.yaml
+  - analysis-template.yaml

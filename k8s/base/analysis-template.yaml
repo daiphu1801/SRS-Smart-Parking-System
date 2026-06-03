@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+spec:
+  args:
+  - name: service-name
+  metrics:
+  - name: success-rate
+    interval: 1m # Cứ 1 phút đo 1 lần
+    # Điều kiện thành công: Không có request nào (len=0) HOẶC tỷ lệ thành công >= 95%
+    successCondition: len(result) == 0 || result[0] >= 0.95
+    provider:
+      prometheus:
+        address: http://prometheus-server.logging.svc.cluster.local:80
+        query: |
+          # Công thức tính tỷ lệ % các request trả về HTTP 2xx
+          sum(irate(
+            nginx_ingress_controller_requests{
+              status=~"2.*",
+              ingress="prod-sps-ingress"
+            }[1m]
+          )) /
+          sum(irate(
+            nginx_ingress_controller_requests{
+              ingress="prod-sps-ingress"
+            }[1m]
+          ))
