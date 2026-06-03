@@ -30,6 +30,16 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/srs-backend:${{ github.sha }}
 
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/srs-backend:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
       - name: Update K8s Manifest with new Image Version
         run: |
           sed -i "s|image: srs-backend:.*|image: srs-backend:${{ github.sha }}|g" k8s/base/backend.yaml
