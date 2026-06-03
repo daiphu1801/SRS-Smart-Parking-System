@@ -193,3 +193,5 @@ flutter_*.log
 docs/
 doc/
 *.md.backup
+# Ignore binary executables
+*.exe
