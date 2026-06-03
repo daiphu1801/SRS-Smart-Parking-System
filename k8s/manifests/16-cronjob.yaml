@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sps-cron-update-booking
+spec:
+  # Chạy vào 00:01 mỗi ngày (Phút 1, Giờ 0)
+  schedule: "1 0 * * *"
+  # Giữ lại lịch sử 3 lần chạy thành công và 1 lần thất bại để dễ debug
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid # Tránh việc chạy chồng chéo nếu Job trước chưa xong
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: curl-client
+            # Dùng image curl siêu nhẹ (khoảng vài MB)
+            image: curlimages/curl:latest
+            imagePullPolicy: IfNotPresent
+            # Gọi lệnh POST thẳng vào Service nội bộ của K8s
+            command:
+            - "curl"
+            - "-fsS"
+            - "-X"
+            - "POST"
+            - "http://sps-backend-service:8080/api/internal/jobs/update-booking-status"
+          restartPolicy: OnFailure
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sps-cron-notify-expiring
+spec:
+  # Chạy vào 08:00 sáng mỗi ngày (Phút 0, Giờ 8)
+  schedule: "0 8 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: curl-client
+            image: curlimages/curl:latest
+            imagePullPolicy: IfNotPresent
+            command:
+            - "curl"
+            - "-fsS"
+            - "-X"
+            - "POST"
+            - "http://sps-backend-service:8080/api/internal/jobs/send-expired-booking-notification"
+          restartPolicy: OnFailure
