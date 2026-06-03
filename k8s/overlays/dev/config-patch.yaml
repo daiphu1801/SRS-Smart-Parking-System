@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sps-config
+data:
+  SPRING_PROFILES_ACTIVE: "dev"
+  API_BASE_URL: "http://dev.api.sps.local"

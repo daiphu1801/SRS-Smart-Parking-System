@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: sps-backend-deployment
   labels:
@@ -33,6 +33,13 @@ spec:
                 name: sps-config
             - secretRef:
                 name: sps-backend-secrets
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: {}
+        - setWeight: 50
+        - pause: {duration: 10m}
 
 ---
 apiVersion: v1
