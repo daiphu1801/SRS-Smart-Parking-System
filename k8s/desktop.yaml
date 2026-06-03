@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: desktop-ai-container
-          image: sps-desktop-app:latest
+          image: sps-desktop-app:4300aaa2e1deb999ea8d6f3ef5b16449d8aae9c3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8550
