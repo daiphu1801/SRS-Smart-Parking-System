@@ -5,6 +5,7 @@ metadata:
 spec:
   # Chạy vào 00:01 mỗi ngày (Phút 1, Giờ 0)
   schedule: "1 0 * * *"
+  timeZone: "Asia/Ho_Chi_Minh"
   # Giữ lại lịch sử 3 lần chạy thành công và 1 lần thất bại để dễ debug
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
@@ -12,6 +13,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            app: sps-cronjob
         spec:
           containers:
           - name: curl-client
@@ -35,12 +39,16 @@ metadata:
 spec:
   # Chạy vào 08:00 sáng mỗi ngày (Phút 0, Giờ 8)
   schedule: "0 8 * * *"
+  timeZone: "Asia/Ho_Chi_Minh"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            app: sps-cronjob
         spec:
           containers:
           - name: curl-client
