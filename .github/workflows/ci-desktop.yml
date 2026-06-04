@@ -13,6 +13,19 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+        
+      - name: Set up Flutter (Fast-Fail Linting)
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+          
+      - name: Check Syntax (Fast-Fail Linting)
+        run: |
+          cd sps_desktop
+          flutter pub get
+          flutter analyze --no-fatal-warnings --no-fatal-infos
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:

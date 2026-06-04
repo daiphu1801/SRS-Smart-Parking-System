@@ -13,6 +13,20 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+        
+      - name: Set up JDK 21 (Fast-Fail Linting)
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+          
+      - name: Check Syntax (Fast-Fail Linting)
+        run: |
+          cd SRS-Smart-Parking-System
+          chmod +x mvnw
+          ./mvnw clean compile -DskipTests
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
