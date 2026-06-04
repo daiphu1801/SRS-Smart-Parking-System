@@ -7,6 +7,7 @@ import 'package:smart_parking_mobile/features/customer_complaint/models/complain
 import 'package:smart_parking_mobile/features/customer_parking/models/parking_session_models.dart';
 import 'package:smart_parking_mobile/features/customer_home/models/home_models.dart';
 import 'package:smart_parking_mobile/features/customer_notification/models/notification_models.dart';
+import 'package:smart_parking_mobile/features/customer_payment/models/payment_models.dart' as payment;
 
 extension BookingStatusL10n on BookingStatus {
   String label(BuildContext context) {
@@ -111,6 +112,30 @@ extension NotificationTypeL10n on NotificationType {
       case NotificationType.security: return l10n.enumNotifSecurity;
       case NotificationType.system: return l10n.enumNotifSystem;
       case NotificationType.broadcast: return l10n.enumNotifBroadcast;
+    }
+  }
+}
+
+extension PaymentModelStatusL10n on payment.PaymentStatus {
+  String label(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (this) {
+      case payment.PaymentStatus.pending: return l10n.enumPaymentPending;
+      case payment.PaymentStatus.success: return l10n.enumPaymentSuccess;
+      case payment.PaymentStatus.failed: return l10n.enumPaymentFailed;
+      case payment.PaymentStatus.canceled: return l10n.enumPaymentCanceled;
+    }
+  }
+}
+
+extension PaymentModelMethodL10n on payment.PaymentMethod {
+  String label(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    switch (this) {
+      case payment.PaymentMethod.cash: return l10n.enumPaymentMethodCash;
+      case payment.PaymentMethod.bankTransfer: return l10n.enumPaymentMethodBankTransfer;
+      case payment.PaymentMethod.vnpay: return l10n.enumPaymentMethodVnpay;
+      case payment.PaymentMethod.creditCard: return l10n.enumPaymentMethodCreditCard;
     }
   }
 }
