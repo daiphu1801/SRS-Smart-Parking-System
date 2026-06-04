@@ -1,89 +1,109 @@
+# Smart Parking System (Hệ thống Bãi đỗ xe Thông minh)
 
-Hệ thống quản lý bãi đỗ xe thông minh toàn diện, tích hợp AI nhận diện biển số, Backend mạnh mẽ và giao diện đa nền tảng dành cho cả Quản trị viên, Bảo vệ và Khách hàng.
-Hệ thống được chia thành 4 phân hệ độc lập (Microservices/Monorepo):
-
-1. **Backend Core (`SRS-Smart-Parking-System`)**: 
-   - Ngôn ngữ: Java (Spring Boot)
-   - Chức năng: Xử lý logic nghiệp vụ cốt lõi, quản lý Database (PostgreSQL), kết nối Redis, xử lý giao dịch thanh toán và xác thực người dùng.
-2. **AI & Camera Processing (`sps_desktop`)**: 
-   - Ngôn ngữ: Python (Flet, OpenCV, YOLO)
-   - Chức năng: Xử lý luồng Camera theo thời gian thực (RTSP), nhận diện biển số xe bằng AI, và gửi dữ liệu về Backend.
-3. **Kiosk Web App (`kiosk_app`)**:
-   - Ngôn ngữ: Flutter Web
-   - Chức năng: Giao diện màn hình Kiosk đặt tại bãi đỗ xe dành cho nhân viên bảo vệ kiểm soát vào ra.
-4. **Customer Mobile App (`flutter_mobile_app`)**:
-   - Ngôn ngữ: Flutter (Android/iOS/Web)
-   - Chức năng: Ứng dụng dành cho khách hàng tìm bãi đỗ, quản lý xe, và thanh toán online.
+Tài liệu này cung cấp hướng dẫn chi tiết về 2 phương pháp triển khai dự án:
+1. **Môi trường Phát triển (Development):** Chạy trực tiếp từ Source Code.
+2. **Môi trường Thực tế (Production):** Triển khai lên cụm Kubernetes với kiến trúc GitOps.
 
 ---
 
-## ⚙️ Hướng Dẫn Cài Đặt (Setup)
+## Phần 1: Phương pháp chạy từ Source Code (Môi trường Dev)
 
-### 1. Yêu cầu hệ thống
-- Tải và cài đặt [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Yêu cầu bật WSL 2 trên Windows).
-- Git.
+Phương pháp này dành cho các lập trình viên cần phát triển tính năng mới, gỡ lỗi (debug) và kiểm thử cục bộ.
 
-### 2. Thiết lập Biến Môi Trường (Mật khẩu & API Keys)
-Để bảo mật, toàn bộ mật khẩu không được đưa lên Git. Bạn cần tự tạo các file cấu hình tại máy tính cá nhân (Local) dựa trên các file mẫu (Placeholder) có sẵn:
+### Yêu cầu hệ thống (Prerequisites)
+- **Java 21+** và **Maven**: Dành cho khối Backend (Spring Boot).
+- **Flutter SDK (Stable channel)**: Dành cho khối Mobile App và Kiosk App.
+- **Python 3.10+**: Dành cho khối AI Desktop.
+- **Cơ sở dữ liệu**: PostgreSQL (Lưu trữ chính), Redis (Cache & Lock phân tán).
+- **Tài khoản Supabase**: Sử dụng cho xác thực và lưu trữ đối tượng (Storage).
 
-*Lưu ý: Mở file `.gitignore` để đảm bảo các file `.env` và `application.yml` không bị đẩy lên Git.*
+### Hướng dẫn chạy từng dịch vụ
 
-**A. Đối với Backend Java:**
-- Truy cập vào thư mục `SRS-Smart-Parking-System/src/main/resources/`.
-- Copy file `application-placeholder.yml` và đổi tên thành `application.yml`.
-- Mở file `application.yml` và điền các thông tin thật vào các chỗ có chữ `[YOUR_...]` (Ví dụ: DB_PASSWORD, REDIS_PASSWORD).
+#### 1. Khối Backend (Spring Boot)
+1. Mở Terminal và di chuyển vào thư mục: `cd SRS-Smart-Parking-System`
+2. Tạo file cấu hình môi trường `.env` hoặc chỉnh sửa trực tiếp trong `application.yml` (bổ sung chuỗi kết nối DB, Redis, và thông tin Supabase).
+3. Biên dịch và khởi chạy:
+   ```bash
+   mvn clean install -DskipTests
+   mvn spring-boot:run
+   ```
+4. Backend sẽ hoạt động tại địa chỉ: `http://localhost:8080`
 
-**B. Đối với 3 App còn lại (Python & Flutter):**
-- Trong thư mục gốc của mỗi App (`sps_desktop`, `kiosk_app`, `flutter_mobile_app`), đều có một file tên là `.env.example`.
-- Copy file đó và đổi tên thành `.env`.
-- Mở file `.env` vừa tạo và điền các khóa API của Supabase và đường link Backend (`API_BASE_URL`).
-  *(Ví dụ nếu chạy Local thì API_BASE_URL=http://localhost:8080)*
+#### 2. Khối Frontend (Flutter Mobile & Kiosk)
+1. Mở Terminal và di chuyển vào thư mục dự án tương ứng:
+   ```bash
+   cd flutter_mobile_app
+   # hoặc
+   cd kiosk_app
+   ```
+2. Cài đặt các gói phụ thuộc (Dependencies):
+   ```bash
+   flutter pub get
+   ```
+3. Chạy ứng dụng trên thiết bị ảo hoặc trình duyệt:
+   ```bash
+   flutter run
+   ```
+
+#### 3. Khối AI Desktop (Python)
+1. Mở Terminal và di chuyển vào thư mục: `cd sps_desktop`
+2. Khuyến nghị tạo môi trường ảo (Virtual Environment):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # (Dành cho Linux/Mac)
+   venv\Scripts\activate     # (Dành cho Windows)
+   ```
+3. Cài đặt các thư viện cần thiết:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Khởi chạy ứng dụng:
+   ```bash
+   python main.py
+   ```
 
 ---
 
-## 🚀 Hướng Dẫn Chạy Bằng Docker (Build & Run)
+## Phần 2: Phương pháp triển khai lên Kubernetes (Môi trường Prod)
 
-Mỗi dự án đều đã được đóng gói sẵn Dockerfile tối ưu. Hãy mở Terminal tại thư mục của từng dự án và chạy các lệnh tương ứng:
+Kiến trúc này áp dụng luồng **GitOps** hoàn chỉnh. Hệ thống tự động đồng bộ mã nguồn thông qua ArgoCD, loại bỏ hoàn toàn các thao tác thủ công. Không yêu cầu cài đặt môi trường lập trình, chỉ cần có hạ tầng Container.
 
-### 1. Khởi động Backend (Spring Boot)
-```bash
-cd SRS-Smart-Parking-System
-docker build -t srs-backend:latest .
-docker run -p 8080:8080 --name sps-backend srs-backend:latest
+### Yêu cầu hạ tầng (Prerequisites)
+- Cụm **Kubernetes** đang hoạt động (Ví dụ: K3s, Minikube, EKS, GKE, v.v.).
+- Đã cài đặt **Nginx Ingress Controller** (Quản lý định tuyến HTTP).
+- Đã cài đặt **ArgoCD** (Quản lý trạng thái GitOps).
+- Đã cài đặt **ArgoCD Image Updater** (Tự động cập nhật phiên bản Docker Image mới nhất).
+
+### Cấu hình Tên miền cục bộ (Local DNS)
+Để Ingress Controller có thể phân luồng chính xác, bạn cần cấu hình giả lập DNS trên máy cá nhân. Mở file `/etc/hosts` (với Linux/Mac) hoặc `C:\Windows\System32\drivers\etc\hosts` (với Windows) bằng quyền Quản trị viên và thêm:
+```text
+127.0.0.1   sps.local
+127.0.0.1   argocd.sps.local
 ```
 
-### 2. Khởi động AI Camera (Python Flet)
+### Các bước Triển khai (Deployment Steps)
+
+#### Bước 1: Khởi tạo Namespace
+Phân lập tài nguyên hệ thống vào một Namespace riêng biệt để dễ quản lý:
 ```bash
-cd sps_desktop
-docker build -t sps-desktop-app:latest .
-docker run -p 8550:8550 -e API_BASE_URL=http://host.docker.internal:8080/api/v1 --name sps-desktop-container sps-desktop-app:latest
+kubectl create namespace sps
 ```
 
-### 3. Khởi động Kiosk App (Flutter Web)
+#### Bước 2: Kích hoạt ứng dụng qua Kustomize
+Hệ thống K8s đã được khai báo tập trung. Bạn chỉ cần đứng ở thư mục gốc của dự án và chạy duy nhất một lệnh:
 ```bash
-cd kiosk_app
-docker build -t srs-kiosk-app:latest .
-docker run -p 8081:80 --name sps-kiosk-container srs-kiosk-app:latest
+kubectl apply -k k8s/base
 ```
+*Lệnh trên sẽ tự động khởi tạo: Các Pod (Backend, Mobile, Kiosk, AI Desktop, PostgreSQL, Redis), Services, Ingress Routes và các ConfigMap liên quan.*
 
-### 4. Khởi động Mobile App (Flutter Web PWA)
-```bash
-cd flutter_mobile_app
-docker build -t srs-mobile-app:latest .
-docker run -p 8082:80 --name sps-mobile-container srs-mobile-app:latest
-```
+#### Bước 3: Cấu hình GitOps với ArgoCD (Khuyến nghị)
+1. Truy cập trang quản trị ArgoCD tại `https://argocd.sps.local`
+2. Tạo Application mới, trỏ kho (Repository URL) về dự án này và thiết lập Path là `k8s/base`.
+3. Bật tính năng Auto-Sync.
+4. ArgoCD Image Updater sẽ tự động theo dõi Github Actions CI. Khi có bản build mới đẩy lên Docker Hub, hệ thống sẽ tự động cập nhật Pods mà không cần sự can thiệp của con người.
 
----
-
-## 🌐 Sơ Đồ Cổng Kết Nối (Ports)
-
-Sau khi chạy thành công 4 lệnh trên, bạn có thể truy cập hệ thống qua trình duyệt Web theo các cổng sau:
-
-| Dịch Vụ | Nền tảng | Cổng (Port) | Link Truy Cập Local |
-|---------|---------|-------------|---------------------|
-| **Backend API** | Java Spring | `8080` | `http://localhost:8080/api/v1` |
-| **Kiosk App** | Flutter Web | `8081` | `http://localhost:8081` |
-| **Mobile App** | Flutter Web | `8082` | `http://localhost:8082` |
-| **AI Camera** | Python Web | `8550` | `http://localhost:8550` |
-
-*Lưu ý: Ứng dụng Mobile có thể được Build ra file `.apk` bằng lệnh `flutter build apk` nếu muốn cài đặt lên điện thoại Android thực tế.*
+### Danh mục Truy cập Hệ thống
+Sau khi trạng thái các Pod chuyển sang `Running`, hệ thống có thể được truy cập qua các địa chỉ sau:
+- **Backend API:** `http://sps.local/api`
+- **Mobile Web App:** `http://sps.local/mobile`
+- **Kiosk Web App:** `http://sps.local/kiosk`
