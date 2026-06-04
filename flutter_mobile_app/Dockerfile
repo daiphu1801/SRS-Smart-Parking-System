@@ -25,6 +25,8 @@ COPY . .
 
 # Tải các thư viện (package) và tiến hành biên dịch (Build) ra Web
 RUN flutter pub get
+# Tạo file .env rỗng để tránh lỗi missing asset khi build
+RUN touch .env
 # Biên dịch sang bản Web với biến môi trường giả (Placeholder)
 RUN flutter build web --release --dart-define=API_BASE_URL=__API_BASE_URL_PLACEHOLDER__
 
