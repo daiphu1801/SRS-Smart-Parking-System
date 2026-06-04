@@ -23,7 +23,15 @@ public class TariffRuleService {
 
     private final TariffRuleRepository tariffRuleRepository;
 
-    // 1. Get List (Có phân trang và Lọc)
+    /**
+     * Retrieves a paginated list of tariff rules based on vehicle type, day type, and active status.
+     *
+     * @param vehicleTypeId The ID of the vehicle type (e.g., Car, Motorbike).
+     * @param dayType       The type of day (e.g., WEEKDAY, WEEKEND).
+     * @param isActive      Filter by active status.
+     * @param pageable      Pagination and sorting information.
+     * @return A paginated list of TariffRuleResponse.
+     */
     public Page<TariffRuleResponse> getTariffRules(Integer vehicleTypeId, DayType dayType, Boolean isActive, Pageable pageable) {
         Specification<TariffRule> spec = Specification
                 .where(TariffRuleSpecs.hasVehicleTypeId(vehicleTypeId))
@@ -34,13 +42,25 @@ public class TariffRuleService {
         return rules.map(this::mapToResponse);
     }
 
-    // 2. Get Detail
+    /**
+     * Retrieves details of a specific tariff rule by its ID.
+     *
+     * @param id The ID of the tariff rule.
+     * @return The TariffRuleResponse DTO.
+     * @throws BusinessException If the rule is not found.
+     */
     public TariffRuleResponse getTariffRuleById(Integer id) {
         TariffRule rule = getRuleOrThrow(id);
         return mapToResponse(rule);
     }
 
-    // 3. Create mới bảng giá
+    /**
+     * Creates a new tariff rule, validating time sequences and overlaps to ensure billing integrity.
+     *
+     * @param request The data for the new tariff rule.
+     * @return The created TariffRuleResponse.
+     * @throws BusinessException If time constraints are violated (e.g., start time after end time, or overlapping rules).
+     */
     @Transactional
     public TariffRuleResponse createTariffRule(TariffRuleCreateRequest request) {
         validateTimeSequence(request.getStartTime(), request.getEndTime());
@@ -48,7 +68,7 @@ public class TariffRuleService {
 
         if (isRuleActive) {
             validateTimeOverlap(
-                    null, // Đang tạo mới nên không có ID
+                    null, // Pass null as ID for new records during overlap validation
                     request.getVehicleTypeId(),
                     request.getDayType(),
                     request.getStartTime(),
@@ -61,13 +81,19 @@ public class TariffRuleService {
                 .startTime(request.getStartTime())
                 .endTime(request.getEndTime())
                 .basePrice(request.getBasePrice())
-                .isActive(request.getIsActive() != null ? request.getIsActive() : true) // Mặc định là true nếu FE không gửi
+                .isActive(request.getIsActive() != null ? request.getIsActive() : true) // Default to active if client does not specify
                 .build();
 
         return mapToResponse(tariffRuleRepository.save(newRule));
     }
 
-    // 4. Update bảng giá hiện tại
+    /**
+     * Updates an existing tariff rule. Re-validates time constraints against other existing rules.
+     *
+     * @param id      The ID of the rule to update.
+     * @param request The updated data.
+     * @return The updated TariffRuleResponse.
+     */
     @Transactional
     public TariffRuleResponse updateTariffRule(Integer id, TariffRuleCreateRequest request) {
         validateTimeSequence(request.getStartTime(), request.getEndTime());
@@ -94,11 +120,15 @@ public class TariffRuleService {
             existingRule.setIsActive(request.getIsActive());
         }
 
-        // Hibernate Dirty Checking sẽ tự động update xuống DB khi kết thúc Transaction
+        // Hibernate Dirty Checking automatically flushes changes to the database at transaction commit
         return mapToResponse(tariffRuleRepository.save(existingRule));
     }
 
-    // 5. Disable bảng giá (Soft Delete)
+    /**
+     * Soft deletes a tariff rule by setting its status to inactive.
+     *
+     * @param id The ID of the rule to disable.
+     */
     @Transactional
     public void disableTariffRule(Integer id) {
         TariffRule existingRule = getRuleOrThrow(id);
@@ -106,15 +136,15 @@ public class TariffRuleService {
         tariffRuleRepository.save(existingRule);
     }
 
-    // --- CÁC HÀM HELPER ---
+    // --- Helper Methods ---
 
-    // Hàm dùng chung để bắt lỗi 404 cho chuẩn
+    // Standardized method to fetch an entity or throw a standard 404 BusinessException
     private TariffRule getRuleOrThrow(Integer id) {
         return tariffRuleRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("Không tìm thấy bảng giá với ID: " + id));
     }
 
-    // Hàm chuyển Entity thành DTO Response
+    // Maps a TariffRule entity to a TariffRuleResponse DTO
     private TariffRuleResponse mapToResponse(TariffRule rule) {
         return TariffRuleResponse.builder()
                 .id(rule.getId())
@@ -129,16 +159,16 @@ public class TariffRuleService {
 
 
     private void validateTimeOverlap(Integer currentRuleId, Integer vehicleTypeId, DayType dayType, LocalTime newStart, LocalTime newEnd) {
-        // Lấy tất cả các rule đang active của cùng loại xe và loại ngày
+        // Fetch all active rules for the same vehicle type and day type
         List<TariffRule> existingRules = tariffRuleRepository.findByVehicleTypeIdAndDayTypeAndIsActiveTrue(vehicleTypeId, dayType);
 
         for (TariffRule existing : existingRules) {
-            // Bỏ qua chính bản ghi đang được update
+            // Skip the current rule being updated to prevent self-overlap detection
             if (currentRuleId != null && currentRuleId.equals(existing.getId())) {
                 continue;
             }
 
-            // Kiểm tra trùng lặp
+            // Check for time range overlap
             if (isOverlap(newStart, newEnd, existing.getStartTime(), existing.getEndTime())) {
                 throw new BusinessException(String.format(
                         "Thời gian cấu hình (%s - %s) bị trùng lặp với bảng giá ID %d (%s - %s)!",

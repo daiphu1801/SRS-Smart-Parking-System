@@ -13,7 +13,7 @@ class PaymentRepository {
       return await _apiService.checkout(request);
     } catch (e) {
       if (e is ApiException) rethrow;
-      throw ApiException('Lỗi không xác định khi tạo thanh toán: $e');
+      throw ApiException('Unknown error when creating payment: $e');
     }
   }
 
@@ -22,7 +22,7 @@ class PaymentRepository {
       return await _apiService.initiateBookingPayment(request);
     } catch (e) {
       if (e is ApiException) rethrow;
-      throw ApiException('Lỗi không xác định khi gia hạn gói cước: $e');
+      throw ApiException('Unknown error when renewing package: $e');
     }
   }
 
@@ -31,7 +31,7 @@ class PaymentRepository {
       return await _apiService.getPaymentDetails(paymentId);
     } catch (e) {
       if (e is ApiException) rethrow;
-      throw ApiException('Lỗi không xác định khi lấy chi tiết thanh toán: $e');
+      throw ApiException('Unknown error when fetching payment details: $e');
     }
   }
 }

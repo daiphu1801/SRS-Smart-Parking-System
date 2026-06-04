@@ -54,6 +54,12 @@ public class SystemPaymentService {
     private final BillingService billingService;
     private final RedisTemplate<String, Object> redisTemplate;
     private final SystemConfigService systemConfigService;
+    /**
+     * Processes incoming webhook IPN from the banking gateway (e.g., Sepay).
+     * Handles idempotency, partial payments, and delayed transactions.
+     *
+     * @param request The webhook payload containing transfer details.
+     */
     @Transactional
     public void processSepayWebhook(SepayWebhookRequest request) {
 
@@ -168,12 +174,12 @@ public class SystemPaymentService {
         String redisKey = iotService.getRedisKey(vehicleNo);
         ParkingSessionEvent cachedSession = (ParkingSessionEvent) redisTemplate.opsForValue().get(redisKey);
 
-        // Lấy gốc DB làm mặc định
+        // Fallback to database values as the source of truth
         BigDecimal currentLeft = session.getAmountLeft() != null ? session.getAmountLeft() : BigDecimal.ZERO;
         BigDecimal currentPaid = session.getAmountPaid() != null ? session.getAmountPaid() : BigDecimal.ZERO;
         BigDecimal totalDue = session.getAmountDue() != null ? session.getAmountDue() : BigDecimal.ZERO;
 
-        // Ghi đè bằng Cache nếu có
+        // Override with Cache values if available for real-time accuracy
         if (cachedSession != null) {
             log.info("[🔍 CACHE HIT] Webhook ưu tiên chốt số từ Redis cho xe {}", vehicleNo);
             if (cachedSession.getAmountLeft() != null) {
@@ -209,7 +215,7 @@ public class SystemPaymentService {
         Status originalStatus = payment.getStatus();
         if ((originalStatus == Status.SUCCESS || originalStatus == Status.NEEDS_ATTENTION)
                 && newLeft.compareTo(BigDecimal.ZERO) <= 0) {
-            session.setGracePeriodEnd(LocalDateTime.now().plusMinutes(gracePeriod)); // Hoặc dùng cái global variable của ông
+            session.setGracePeriodEnd(LocalDateTime.now().plusMinutes(gracePeriod)); // Extend grace period to allow vehicle exit after successful payment
         }
 
         parkingSessionRepository.save(session);
@@ -222,7 +228,7 @@ public class SystemPaymentService {
 
         Payment payment = paymentRepository.findOne(payCodeSpec)
                 .orElseThrow(() -> new BusinessException("Giao dịch không tồn tại"));
-        return payment.getStatus().name(); // Trả về PENDING, SUCCESS, CANCELED...
+        return payment.getStatus().name(); // Returns standard status strings (e.g., PENDING, SUCCESS, CANCELED)
     }
 
     @Transactional

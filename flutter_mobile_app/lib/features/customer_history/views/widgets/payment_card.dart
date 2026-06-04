@@ -8,6 +8,7 @@ import 'package:smart_parking_mobile/features/customer_history/viewmodels/histor
 import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
 import 'package:smart_parking_mobile/core/di/service_locator.dart';
 import 'package:smart_parking_mobile/features/customer_payment/repositories/payment_repository.dart';
+import 'package:smart_parking_mobile/core/utils/enum_localizations.dart';
 
 class PaymentCard extends StatelessWidget {
   final PaymentResponse payment;
@@ -85,7 +86,7 @@ class PaymentCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    payment.status.label,
+                    payment.status.label(context),
                     style: AppTheme.caption.copyWith(
                       color: _statusColor,
                       fontWeight: FontWeight.w600,
@@ -298,7 +299,7 @@ class _PaymentDetailsSheetState extends State<_PaymentDetailsSheet> {
               const SizedBox(height: 8),
               _buildInfoRow('Số tiền', currencyFormatter.format(_details!.paymentInfo.amount)),
               const SizedBox(height: 8),
-              _buildInfoRow('Trạng thái', _details!.paymentInfo.status.label),
+              _buildInfoRow('Trạng thái', _details!.paymentInfo.status.label(context)),
               const SizedBox(height: 8),
               _buildInfoRow('Thời gian tạo', dateFormatter.format(_details!.paymentInfo.createdAt)),
               if (_details!.paymentInfo.isPending && _details!.paymentInfo.checkoutUrl != null) ...[

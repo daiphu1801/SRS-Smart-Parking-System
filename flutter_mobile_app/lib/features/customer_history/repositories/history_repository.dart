@@ -13,7 +13,7 @@ class HistoryRepository {
     } on ApiException {
       rethrow;
     } catch (e) {
-      throw ApiException('Không thể tải lịch sử giao dịch: $e');
+      throw ApiException('Failed to load transaction history: $e');
     }
   }
 
@@ -23,7 +23,7 @@ class HistoryRepository {
     } on ApiException {
       rethrow;
     } catch (e) {
-      throw ApiException('Không thể hủy giao dịch: $e');
+      throw ApiException('Failed to cancel transaction: $e');
     }
   }
 }

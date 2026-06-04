@@ -6,6 +6,7 @@ import 'package:smart_parking_mobile/core/utils/view_state.dart';
 import 'package:smart_parking_mobile/core/widgets/app_widgets.dart';
 import 'package:smart_parking_mobile/features/customer_complaint/viewmodels/complaint_viewmodel.dart';
 import 'package:smart_parking_mobile/features/customer_complaint/models/complaint_models.dart';
+import 'package:smart_parking_mobile/core/utils/enum_localizations.dart';
 
 class ComplaintDetailScreen extends StatefulWidget {
   final String complaintId;
@@ -83,7 +84,7 @@ class _ComplaintDetailBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      complaint.status.label,
+                      complaint.status.label(context),
                       style: AppTheme.heading3.copyWith(
                         color: complaint.status.color,
                         fontSize: 18,

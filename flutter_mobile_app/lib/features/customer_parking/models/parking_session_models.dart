@@ -1,15 +1,6 @@
 enum SessionStatus {
   ongoing,
   completed;
-
-  String get label {
-    switch (this) {
-      case SessionStatus.ongoing:
-        return 'Đang đỗ';
-      case SessionStatus.completed:
-        return 'Hoàn thành';
-    }
-  }
 }
 
 class ParkingSession {

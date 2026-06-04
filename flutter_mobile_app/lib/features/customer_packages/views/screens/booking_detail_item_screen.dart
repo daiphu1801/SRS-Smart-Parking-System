@@ -8,6 +8,7 @@ import 'package:smart_parking_mobile/features/customer_packages/viewmodels/booki
 import 'package:smart_parking_mobile/features/customer_packages/models/booking_models.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
+import 'package:smart_parking_mobile/core/utils/enum_localizations.dart';
 
 class BookingDetailItemScreen extends StatefulWidget {
   final String bookingDetailId;
@@ -55,7 +56,7 @@ class _BookingDetailItemScreenState extends State<BookingDetailItemScreen> {
                   symbol: '₫',
                 );
                 final dateFormatter = DateFormat('dd/MM/yyyy');
-                final statusLabel = detail.status.label;
+                final statusLabel = detail.status.label(context);
 
                 return SingleChildScrollView(
                   padding: const EdgeInsets.all(AppTheme.pagePadding),

@@ -5,19 +5,6 @@ enum PaymentStatus {
   success,
   canceled,
   failed;
-
-  String get label {
-    switch (this) {
-      case PaymentStatus.pending:
-        return 'Chờ thanh toán';
-      case PaymentStatus.success:
-        return 'Thành công';
-      case PaymentStatus.canceled:
-        return 'Đã hủy';
-      case PaymentStatus.failed:
-        return 'Thất bại';
-    }
-  }
 }
 
 enum PaymentMethod {
@@ -26,18 +13,6 @@ enum PaymentMethod {
   vnpay,
   creditCard;
 
-  String get label {
-    switch (this) {
-      case PaymentMethod.cash:
-        return 'Tiền mặt';
-      case PaymentMethod.bankTransfer:
-        return 'Chuyển khoản';
-      case PaymentMethod.vnpay:
-        return 'VNPay';
-      case PaymentMethod.creditCard:
-        return 'Thẻ tín dụng';
-    }
-  }
 
   String get toBackendString {
     switch (this) {

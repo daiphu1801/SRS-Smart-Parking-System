@@ -5,6 +5,7 @@ import 'package:smart_parking_mobile/core/theme/app_theme.dart';
 import 'package:smart_parking_mobile/core/widgets/app_widgets.dart';
 import 'package:smart_parking_mobile/features/customer_packages/models/booking_models.dart';
 import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
+import 'package:smart_parking_mobile/core/utils/enum_localizations.dart';
 
 /// Card showing individual booking detail (vehicle package).
 ///
@@ -99,7 +100,7 @@ class BookingDetailCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              AppBadge(label: detail.status.label, isFilled: detail.isActive),
+              AppBadge(label: detail.status.label(context), isFilled: detail.isActive),
 
               // ── Trailing chevron to detail (selection mode only) ──
               if (_isSelectionMode) ...[
@@ -215,7 +216,7 @@ class BookingOverviewHeader extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               AppBadge(
-                label: booking.paymentStatus.label,
+                label: booking.paymentStatus.label(context),
                 isFilled: booking.paymentStatus == PaymentStatus.success,
               ),
             ],

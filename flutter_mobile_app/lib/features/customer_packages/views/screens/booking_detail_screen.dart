@@ -10,6 +10,7 @@ import 'package:smart_parking_mobile/features/customer_packages/viewmodels/booki
 import 'package:smart_parking_mobile/features/customer_packages/models/booking_models.dart';
 import 'package:smart_parking_mobile/features/customer_packages/views/widgets/package_widgets.dart';
 import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
+import 'package:smart_parking_mobile/core/utils/enum_localizations.dart';
 
 class BookingDetailScreen extends StatefulWidget {
   final String bookingId;
@@ -190,7 +191,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                                         ),
                                         AppBadge(
                                           label: booking
-                                              .paymentStatus.label,
+                                              .paymentStatus.label(context),
                                           isFilled:
                                               booking.paymentStatus ==
                                               PaymentStatus.success,
@@ -222,7 +223,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                                       _buildInfoRow(
                                         AppLocalizations.of(context)!
                                             .paymentMethod,
-                                        booking.paymentMethod!.label,
+                                        booking.paymentMethod!.label(context),
                                       ),
                                       const SizedBox(height: 8),
                                     ],

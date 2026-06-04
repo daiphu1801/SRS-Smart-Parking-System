@@ -25,7 +25,7 @@ public class PaymentDetailSpecs {
                 : cb.conjunction();
     }
 
-    // --- Lọc theo khoảng Số tiền ---
+    // --- Amount Range Specifications ---
     public static Specification<PaymentDetail> hasItemAmountGreaterThanEqual(BigDecimal minAmount) {
         return (root, query, cb) -> minAmount != null
                 ? cb.greaterThanOrEqualTo(root.get("itemAmount"), minAmount)

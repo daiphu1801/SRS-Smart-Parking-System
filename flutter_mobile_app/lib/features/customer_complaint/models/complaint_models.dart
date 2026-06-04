@@ -6,19 +6,6 @@ enum ComplaintStatus {
   resolved,
   rejected;
 
-  String get label {
-    switch (this) {
-      case ComplaintStatus.pending:
-        return 'Chờ xử lý';
-      case ComplaintStatus.processing:
-        return 'Đang xử lý';
-      case ComplaintStatus.resolved:
-        return 'Đã giải quyết';
-      case ComplaintStatus.rejected:
-        return 'Từ chối';
-    }
-  }
-
   Color get color {
     switch (this) {
       case ComplaintStatus.pending:

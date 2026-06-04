@@ -50,18 +50,15 @@ public class BookingDetailService {
         private final PackageRepository packageRepository;
         private final GroupsCustomersRepository groupsCustomersRepository;
         private final CustomerPaymentService customerPaymentService;
-        // Thêm các repo của Group, Package để validate nếu cần
+        // Add additional repositories for validation if necessary
 
         public Page<BookingDetailDto> getAllBookingDetail(Integer groupId, Integer packageId, Pageable pageable) {
-                // Trả thẳng DTO từ câu Query JOIN
+                // Return DTO directly from the JOIN query
                 return bookingDetailRepo.findListDto(pageable);
         }
 
         public BookingDetailDto getBookingDetailById(Integer id) {
-                // Thực tế nếu Admin ấn vào xem chi tiết, ông có thể viết 1 câu Query JOIN y hệt
-                // trên
-                // nhưng trả về 1 Object thay vì Page. Hoặc tái sử dụng hàm trên với
-                // PageRequest.of(0, 1)
+                // Retrieve a single object directly via JOIN instead of using PageRequest
                 return bookingDetailRepo.findDtoById(id)
                                 .orElseThrow(() -> new RuntimeException(
                                                 "Lỗi: Không thể lấy dữ liệu sau khi cập nhật!"));
@@ -88,7 +85,7 @@ public class BookingDetailService {
 
         @Transactional
         public BookingDetailDto updateBookingDetail(Integer id, BookingDetailCreateRequest request) {
-                // 1. Tìm bản ghi hiện tại
+                // Find the existing record
                 BookingDetail existing = bookingDetailRepo.findById(id)
                                 .orElseThrow(() -> new BusinessException(
                                                 "Không tìm thấy Chi tiết hợp đồng (Booking Detail) này!"));
@@ -226,7 +223,7 @@ public class BookingDetailService {
                         throw new BusinessException("Gói cước này không được phép áp dụng tại bãi đỗ hiện tại!");
                 }
 
-                // đếm số lượng xe của group
+                // Count active vehicles in the group to enforce capacity limits
                 long currentVehicleCount = bookingDetailRepo.countDistinctVehiclesInUse(
                                 pkgVehTypeId,
                                 groupId,
@@ -240,7 +237,7 @@ public class BookingDetailService {
 
         @Transactional()
         public List<BookingDetailDto> getDraftBookingDetails(Integer groupId) {
-                // 1. Tìm Hợp đồng
+                // Retrieve the parent booking
                 Booking booking = bookingRepo.findByGroupId(groupId)
                                 .orElseThrow(() -> new RuntimeException("Không tìm thấy Hợp đồng cho Group này!"));
                 List<BookingDetailDto> allDrafts = bookingDetailRepo.findDtoByBookingIdAndStatus(booking.getId(), BookingStatus.DRAFT);
@@ -255,7 +252,7 @@ public class BookingDetailService {
                 if (!idsToCancel.isEmpty()) {
                         List<BookingDetail> entitiesToCancel = bookingDetailRepo.findAllById(idsToCancel);
                         entitiesToCancel.forEach(detail -> detail.setStatus(BookingStatus.CANCELED));
-                        bookingDetailRepo.saveAll(entitiesToCancel); // Cập nhật xuống DB
+                        bookingDetailRepo.saveAll(entitiesToCancel); // Persist updates to the database
 
                         log.info("Hệ thống tự động hủy {} bản nháp quá hạn thuộc Hợp đồng {}", idsToCancel.size(), booking.getId());
                 }
@@ -306,18 +303,18 @@ public class BookingDetailService {
         @Transactional
         public List<BookingDetailDto> createRenewalDrafts(RenewalBookingRequest request, List<Integer> myGroupIds) {
 
-                // 1. Lấy list các booking_detail cũ để check bảo mật + điều kiện hết hạn
+                // Retrieve legacy booking details for security and expiration validation
                 List<Integer> oldBookingDetailIds = request.getItems().stream()
                         .map(RenewItemRequest::getOldBookingDetailId)
                         .toList();
                 List<BookingDetail> oldBookingDetails = validateAndGetOldBookings(oldBookingDetailIds, myGroupIds);
 
-                // 2. Kiểm tra cờ đồng bộ
+                // Check synchronization flags
                 Booking booking = oldBookingDetails.getFirst().getBooking();
                 Boolean isSynchronize = booking.getGroup().getIsSynchronize();
                 if (isSynchronize == null) isSynchronize = false;
 
-                // 3. Lấy thông tin tất cả các gói cước khách muốn đổi/gia hạn
+                // Retrieve requested tariff packages for renewal
                 List<Integer> packagePriceIds = request.getItems().stream()
                         .map(RenewItemRequest::getNewPackagePriceId)
                         .distinct()
@@ -329,7 +326,7 @@ public class BookingDetailService {
                 Map<Integer, PackagePrice> packageMap = packagePrices.stream()
                         .collect(Collectors.toMap(PackagePrice::getId, pp -> pp));
 
-                // 4. Tính toán ngày nối đuôi (Lấy ngày hết hạn xa nhất hiện tại của xe)
+                // Calculate continuous extension (Retrieve the furthest expiration date for the vehicle)
                 List<String> vehicleNos = oldBookingDetails.stream()
                         .map(BookingDetail::getVehicleNo)
                         .toList();
@@ -340,7 +337,7 @@ public class BookingDetailService {
                                 row -> (LocalDateTime) row[1]
                         ));
 
-                // 5. VÒNG LẶP: CHỈ SINH BẢN NHÁP (Không cộng tiền, không tạo Payment)
+                // LOOP: Generate draft bookings only (No financial mutation or payment creation)
                 List<BookingDetail> draftBookings = new ArrayList<>();
 
                 for (RenewItemRequest item : request.getItems()) {
@@ -351,10 +348,10 @@ public class BookingDetailService {
                         PackagePrice selectedPackage = packageMap.get(item.getNewPackagePriceId());
                         LocalDateTime maxEndDateFromDb = maxEndDateMap.get(oldBooking.getVehicleNo());
 
-                        // Gọi hàm tính startDate, endDate nối tiếp của ông
+                        // Calculate continuous startDate and endDate
                         BillingResult billing = customerPaymentService.calculateBilling(maxEndDateFromDb, selectedPackage, isSynchronize);
 
-                        // Tạo bản nháp thuần túy
+                        // Create an isolated draft booking
                         BookingDetail draftBooking = new BookingDetail();
                         draftBooking.setBooking(booking);
                         draftBooking.setCustomer(oldBooking.getCustomer());
@@ -362,17 +359,17 @@ public class BookingDetailService {
                         draftBooking.setVehicleNo(oldBooking.getVehicleNo());
                         draftBooking.setStartDate(billing.getStartDate());
                         draftBooking.setEndDate(billing.getEndDate());
-                        draftBooking.setStatus(BookingStatus.DRAFT); // QUAN TRỌNG: Nằm im trong giỏ hàng
+                        draftBooking.setStatus(BookingStatus.DRAFT); // IMPORTANT: Must remain in the cart (DRAFT status)
 
                         draftBookings.add(draftBooking);
                 }
 
-                // 6. Lưu toàn bộ bản nháp vào DB
+                // Persist all drafts to the database
                 List<BookingDetail> savedDrafts = bookingDetailRepo.saveAll(draftBookings);
 
                 log.info("Đã tạo thành công {} bản nháp gia hạn cho Hợp đồng {}", savedDrafts.size(), booking.getId());
 
-                // 7. Map dữ liệu trả về cho Frontend (y hệt hàm createBookingDetailDraft)
+                // Map entities to DTOs for the client response
                 return savedDrafts.stream().map(saved -> {
                         PackagePrice pp = packageMap.get(saved.getPackagePriceId());
                         return BookingDetailDto.builder()
@@ -393,13 +390,13 @@ public class BookingDetailService {
 
         private List<BookingDetail> validateAndGetOldBookings(List<Integer> oldBookingDetailIds, List<Integer> myGroupIds) {
 
-                // 1. Lấy danh sách từ Database
+                // Fetch data from database
                 List<BookingDetail> oldBookingDetail = bookingDetailRepo.findAllById(oldBookingDetailIds);
                 if (oldBookingDetail.isEmpty() || oldBookingDetail.size() != oldBookingDetailIds.size()) {
                         throw new BusinessException("Không tìm thấy hợp đồng cũ, hoặc có ID không hợp lệ!");
                 }
 
-                // 2. KIỂM TRA: Có cùng thuộc 1 Booking không?
+                // VALIDATION: Ensure all items belong to the same booking
                 Integer firstBookingId = oldBookingDetail.getFirst().getBooking().getId();
                 boolean isSameBooking = oldBookingDetail.stream()
                         .allMatch(bd -> bd.getBooking().getId().equals(firstBookingId));
@@ -416,18 +413,18 @@ public class BookingDetailService {
                         throw new BusinessException("Có xe đã hết hạn hợp đồng! Vui lòng vào mục Thêm Xe để đăng ký lại từ đầu.");
                 }
 
-                // 3. KIỂM TRA BẢO MẬT (IDOR Protection): Hợp đồng này có thuộc Group của User không?
+                // SECURITY VALIDATION (IDOR): Ensure the booking belongs to the user's authorized group
                 Integer bookingGroupId = oldBookingDetail.getFirst().getBooking().getGroupId();
                 if (myGroupIds == null || !myGroupIds.contains(bookingGroupId)) {
                         throw new BusinessException("Truy cập bị từ chối! Bạn không có quyền thanh toán cho hợp đồng này.");
                 }
 
-                // 4. KIỂM TRA KHÓA (LOCK CHECK): Xem xe có đang bị kẹt ở giao dịch PENDING hoặc PENDING_ACTIVE không
+                // CONCURRENCY LOCK CHECK: Ensure vehicle is not tied up in PENDING or PENDING_ACTIVE transactions
                 List<String> licensePlates = oldBookingDetail.stream()
                         .map(BookingDetail::getVehicleNo)
                         .toList();
 
-                // Dùng Specification lồng nhau để tạo điều kiện: (Trạng thái = PENDING_PAYMENT HOẶC PENDING_ACTIVE)
+                // Nested Specification for locking conditions (Status = PENDING_PAYMENT OR PENDING_ACTIVATION)
                 Specification<BookingDetail> lockSpec = Specification
                         .where(BookingDetailSpecs.hasVehicleNoIn(licensePlates))
                         .and(

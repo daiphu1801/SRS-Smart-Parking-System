@@ -15,29 +15,6 @@ enum BookingStatus {
   draft,
   complete;
 
-  String get label {
-    switch (this) {
-      case BookingStatus.active:
-        return 'Đang hoạt động';
-      case BookingStatus.expired:
-        return 'Hết hạn';
-      case BookingStatus.pendingPayment:
-        return 'Chờ thanh toán';
-      case BookingStatus.canceled:
-        return 'Đã huỷ';
-      case BookingStatus.pendingActivation:
-        return 'Chờ kích hoạt';
-      case BookingStatus.needsAttention:
-        return 'Cần chú ý';
-      case BookingStatus.partialPayment:
-        return 'Thanh toán 1 phần';
-      case BookingStatus.draft:
-        return 'Bản nháp';
-      case BookingStatus.complete:
-        return 'Hoàn thành';
-    }
-  }
-
   String get toBackendString {
     switch (this) {
       case BookingStatus.active:
@@ -94,19 +71,6 @@ enum PaymentStatus {
   failed,
   refunded;
 
-  String get label {
-    switch (this) {
-      case PaymentStatus.pending:
-        return 'Chờ thanh toán';
-      case PaymentStatus.success:
-        return 'Đã thanh toán';
-      case PaymentStatus.failed:
-        return 'Thất bại';
-      case PaymentStatus.refunded:
-        return 'Đã hoàn tiền';
-    }
-  }
-
   static PaymentStatus fromString(String value) {
     switch (value.toUpperCase()) {
       case 'SUCCESS':
@@ -126,17 +90,6 @@ enum PaymentMethod {
   cash,
   payos,
   vnpay;
-
-  String get label {
-    switch (this) {
-      case PaymentMethod.cash:
-        return 'Tiền mặt';
-      case PaymentMethod.payos:
-        return 'PayOS';
-      case PaymentMethod.vnpay:
-        return 'VNPay';
-    }
-  }
 
   static PaymentMethod fromString(String value) {
     switch (value.toUpperCase()) {

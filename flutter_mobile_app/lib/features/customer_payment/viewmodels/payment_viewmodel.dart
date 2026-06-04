@@ -69,9 +69,9 @@ class PaymentViewModel extends ChangeNotifier {
     try {
       final detail = await _repository.getPaymentDetails(paymentId);
       if (detail.paymentInfo.status == PaymentStatus.pending) {
-        _verifyState = const Failure('Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.');
+        _verifyState = const Failure('payment_not_recorded');
       } else if (detail.paymentInfo.status != PaymentStatus.success) {
-        _verifyState = Failure('Hóa đơn có trạng thái: ${detail.paymentInfo.status.label}.');
+        _verifyState = Failure('invalid_status_${detail.paymentInfo.status.name}');
       } else {
         _verifyState = Success(detail);
       }

@@ -67,7 +67,7 @@ public class BookingService {
         Booking existing = bookingRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("Không tìm thấy Hợp đồng này!"));
 
-        // Hard Delete: Bay màu hoàn toàn theo đúng logic của ông
+        // Hard Delete: Physically remove the record from the database
         bookingRepository.delete(existing);
     }
 
@@ -89,12 +89,12 @@ public class BookingService {
 
     public List<BookingDetailDto> getBookingDetailsByStatus(Integer bookingId, List<BookingStatus> statuses) {
 
-        // Nếu Frontend không truyền lên, hoặc truyền mảng rỗng -> Lấy tất cả
+        // Fallback: If no specific statuses are provided by the client, retrieve all records
         if (statuses == null || statuses.isEmpty()) {
             return bookingDetailRepo.findBookingDetailsWithJoinByBookingId(bookingId);
         }
 
-        // Nếu có truyền status cụ thể -> Lọc theo IN
+        // Filter records using an IN clause based on the provided statuses
         return bookingDetailRepo.findBookingDetailsWithJoinByBookingIdAndStatusIn(bookingId, statuses);
     }
 

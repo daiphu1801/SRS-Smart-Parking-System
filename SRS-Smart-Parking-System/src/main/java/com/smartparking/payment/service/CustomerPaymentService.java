@@ -66,7 +66,14 @@ public class CustomerPaymentService {
     private String accountName;
 
 
-    // 1. GET LIST CỦA TÔI
+    /**
+     * Retrieves a paginated list of payments for the current customer based on specific filters.
+     *
+     * @param myGroupIds The list of authorized group IDs the customer belongs to.
+     * @param filter     The search criteria (payCode, gateway, date range).
+     * @param pageable   Pagination information.
+     * @return A paginated list of PaymentResponse objects.
+     */
     @Transactional(readOnly = true)
     public Page<PaymentResponse> getMyPayments(List<Integer> myGroupIds, PaymentFilterRequest filter, Pageable pageable) {
 
@@ -99,29 +106,33 @@ public class CustomerPaymentService {
     }
 
 
+    /**
+     * Cancels a pending payment transaction and releases any associated draft bookings.
+     *
+     * @param paymentId  The unique identifier of the payment to be canceled.
+     * @param myGroupIds The list of group IDs the current user has access to (used for IDOR protection).
+     * @throws BusinessException If the payment is not found, access is denied, or the payment is not in a PENDING state.
+     */
     @Transactional
     public void cancelPayment(Long paymentId, List<Integer> myGroupIds) {
 
-        // 1 & 2. TÌM KIẾM VÀ CHỐT CHẶN BẢO MẬT (IDOR) BẰNG SPECIFICATION
-        // Gộp luôn điều kiện belongsToGroupIds và check ID vào 1 câu query
-        Specification<Payment> spec = Specification
+        // Enforce IDOR protection: Verify the payment exists and belongs to the user's authorized groups
+        Specification<Payment> secureSpec = Specification
                 .where(PaymentSpecs.belongsToGroupIds(myGroupIds))
                 .and((root, query, cb) -> cb.equal(root.get("id"), paymentId));
 
-        // Dùng findOne thay vì findById
-        Payment payment = paymentRepository.findOne(spec)
+        Payment payment = paymentRepository.findOne(secureSpec)
                 .orElseThrow(() -> new BusinessException("Giao dịch không tồn tại hoặc bạn không có quyền truy cập!"));
 
-        // 3. CHỐT CHẶN NGHIỆP VỤ: Chỉ được hủy đơn PENDING
+        // Enforce business invariant: Only PENDING transactions can be canceled
         if (payment.getStatus() != Status.PENDING) {
             throw new BusinessException("Chỉ có thể hủy giao dịch đang chờ thanh toán!");
         }
 
-        // 4. THỰC THI HỦY PAYMENT
         payment.setStatus(Status.CANCELED);
         paymentRepository.save(payment);
 
-        // 5. HỦY CÁC VÉ ẢO (DRAFT BOOKING) ĐỂ GIẢI PHÓNG XE
+        // Cascade cancellation: Release associated draft bookings to free up parking slots
         List<PaymentDetail> details = paymentDetailRepository.findByPaymentId(paymentId);
         if (!details.isEmpty()) {
             List<Integer> draftBookingIds = details.stream()
@@ -196,11 +207,11 @@ public class CustomerPaymentService {
 
             BigDecimal pricePerMonth = basePrice.divide(BigDecimal.valueOf(duration), 2, RoundingMode.HALF_UP);
             int daysInCurrentMonth = now.toLocalDate().lengthOfMonth();
-            int remainingDays = daysInCurrentMonth - now.getDayOfMonth() + 1; // Bao gồm cả ngày hôm nay
+            int remainingDays = daysInCurrentMonth - now.getDayOfMonth() + 1; // Inclusive of current day
 
             BigDecimal partialMonthPrice = pricePerMonth
                     .multiply(BigDecimal.valueOf(remainingDays))
-                    .divide(BigDecimal.valueOf(daysInCurrentMonth), 0, RoundingMode.DOWN); // Làm tròn xuống không lấy lẻ
+                    .divide(BigDecimal.valueOf(daysInCurrentMonth), 0, RoundingMode.DOWN); // Round down, strictly integer logic
 
             BigDecimal fullMonthsPrice = pricePerMonth.multiply(BigDecimal.valueOf(duration - 1))
                     .setScale(0, RoundingMode.DOWN);
@@ -279,7 +290,7 @@ public class CustomerPaymentService {
 
         validDrafts = bookingDetailRepository.saveAll(validDrafts);
 
-        PaymentInitiateResponse initiateResponse = createPaymentAndGenerateQr(validDrafts, itemPrices, totalAmount,"SEPAY"); // Hoặc "SEPAY" tùy sếp định nghĩa
+        PaymentInitiateResponse initiateResponse = createPaymentAndGenerateQr(validDrafts, itemPrices, totalAmount,"SEPAY"); // Default gateway selection
 
         return PaymentCheckoutResponse.builder()
                 .paymentId(initiateResponse.getPaymentId())

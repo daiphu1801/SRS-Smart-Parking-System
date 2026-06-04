@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -46,12 +46,12 @@ import 'app_localizations_vi.dart';
 ///
 /// iOS applications define key application metadata, including supported
 /// locales, in an Info.plist file that is built into the application bundle.
-/// To configure the locales supported by your app, you’ll need to edit this
+/// To configure the locales supported by your app, youâ€™ll need to edit this
 /// file.
 ///
-/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
+/// First, open your projectâ€™s ios/Runner.xcworkspace Xcode workspace file.
 /// Then, in the Project Navigator, open the Info.plist file under the Runner
-/// project’s Runner folder.
+/// projectâ€™s Runner folder.
 ///
 /// Next, select the Information Property List item, select Add Item from the
 /// Editor menu, then select Localizations from the pop-up menu.
@@ -69,7 +69,44 @@ abstract class AppLocalizations {
 
   static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
-  }
+  
+  String get enumBookingActive;
+  String get enumBookingExpired;
+  String get enumBookingPendingPayment;
+  String get enumBookingCanceled;
+  String get enumBookingPendingActivation;
+  String get enumBookingNeedsAttention;
+  String get enumBookingPartialPayment;
+  String get enumBookingDraft;
+  String get enumBookingComplete;
+  String get enumPaymentPending;
+  String get enumPaymentSuccess;
+  String get enumPaymentFailed;
+  String get enumPaymentRefunded;
+  String get enumPaymentCanceled;
+  String get enumPaymentMethodCash;
+  String get enumPaymentMethodPayos;
+  String get enumPaymentMethodVnpay;
+  String get enumPaymentMethodBankTransfer;
+  String get enumPaymentMethodCreditCard;
+  String get enumPaymentMethodQr;
+  String get enumPaymentMethodOther;
+  String get enumSessionOngoing;
+  String get enumSessionCompleted;
+  String get enumVehicleActive;
+  String get enumVehicleExpiringSoon;
+  String get enumVehicleExpired;
+  String get enumComplaintPending;
+  String get enumComplaintProcessing;
+  String get enumComplaintResolved;
+  String get enumComplaintRejected;
+  String get enumNotifDebt;
+  String get enumNotifSecurity;
+  String get enumNotifSystem;
+  String get enumNotifBroadcast;
+  String get errPaymentNotRecorded;
+  String errInvalidStatus(String status);
+}
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
@@ -1055,7 +1092,7 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleInLot.
   ///
   /// In en, this message translates to:
-  /// **'— Vehicle is in lot'**
+  /// **'â€” Vehicle is in lot'**
   String get vehicleInLot;
 
   /// No description provided for @gracePeriodPrompt.
@@ -1121,7 +1158,7 @@ abstract class AppLocalizations {
   /// No description provided for @notExitedYet.
   ///
   /// In en, this message translates to:
-  /// **'— Not exited yet'**
+  /// **'â€” Not exited yet'**
   String get notExitedYet;
 
   /// No description provided for @parkingTime.
@@ -1145,7 +1182,7 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleNotExited.
   ///
   /// In en, this message translates to:
-  /// **'— Vehicle has not exited'**
+  /// **'â€” Vehicle has not exited'**
   String get vehicleNotExited;
 
   /// No description provided for @totalDuration.
@@ -1559,7 +1596,7 @@ abstract class AppLocalizations {
   /// No description provided for @daysRemainingRenewNow.
   ///
   /// In en, this message translates to:
-  /// **'Only {days} days left — Renew now!'**
+  /// **'Only {days} days left â€” Renew now!'**
   String daysRemainingRenewNow(int days);
 
   /// No description provided for @contractWithId.
@@ -1813,6 +1850,43 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unpaid'**
   String get unpaidStatus;
+
+  String get enumBookingActive;
+  String get enumBookingExpired;
+  String get enumBookingPendingPayment;
+  String get enumBookingCanceled;
+  String get enumBookingPendingActivation;
+  String get enumBookingNeedsAttention;
+  String get enumBookingPartialPayment;
+  String get enumBookingDraft;
+  String get enumBookingComplete;
+  String get enumPaymentPending;
+  String get enumPaymentSuccess;
+  String get enumPaymentFailed;
+  String get enumPaymentRefunded;
+  String get enumPaymentCanceled;
+  String get enumPaymentMethodCash;
+  String get enumPaymentMethodPayos;
+  String get enumPaymentMethodVnpay;
+  String get enumPaymentMethodBankTransfer;
+  String get enumPaymentMethodCreditCard;
+  String get enumPaymentMethodQr;
+  String get enumPaymentMethodOther;
+  String get enumSessionOngoing;
+  String get enumSessionCompleted;
+  String get enumVehicleActive;
+  String get enumVehicleExpiringSoon;
+  String get enumVehicleExpired;
+  String get enumComplaintPending;
+  String get enumComplaintProcessing;
+  String get enumComplaintResolved;
+  String get enumComplaintRejected;
+  String get enumNotifDebt;
+  String get enumNotifSecurity;
+  String get enumNotifSystem;
+  String get enumNotifBroadcast;
+  String get errPaymentNotRecorded;
+  String errInvalidStatus(String status);
 }
 
 class _AppLocalizationsDelegate
@@ -1822,7 +1896,44 @@ class _AppLocalizationsDelegate
   @override
   Future<AppLocalizations> load(Locale locale) {
     return SynchronousFuture<AppLocalizations>(lookupAppLocalizations(locale));
-  }
+  
+  String get enumBookingActive;
+  String get enumBookingExpired;
+  String get enumBookingPendingPayment;
+  String get enumBookingCanceled;
+  String get enumBookingPendingActivation;
+  String get enumBookingNeedsAttention;
+  String get enumBookingPartialPayment;
+  String get enumBookingDraft;
+  String get enumBookingComplete;
+  String get enumPaymentPending;
+  String get enumPaymentSuccess;
+  String get enumPaymentFailed;
+  String get enumPaymentRefunded;
+  String get enumPaymentCanceled;
+  String get enumPaymentMethodCash;
+  String get enumPaymentMethodPayos;
+  String get enumPaymentMethodVnpay;
+  String get enumPaymentMethodBankTransfer;
+  String get enumPaymentMethodCreditCard;
+  String get enumPaymentMethodQr;
+  String get enumPaymentMethodOther;
+  String get enumSessionOngoing;
+  String get enumSessionCompleted;
+  String get enumVehicleActive;
+  String get enumVehicleExpiringSoon;
+  String get enumVehicleExpired;
+  String get enumComplaintPending;
+  String get enumComplaintProcessing;
+  String get enumComplaintResolved;
+  String get enumComplaintRejected;
+  String get enumNotifDebt;
+  String get enumNotifSecurity;
+  String get enumNotifSystem;
+  String get enumNotifBroadcast;
+  String get errPaymentNotRecorded;
+  String errInvalidStatus(String status);
+}
 
   @override
   bool isSupported(Locale locale) =>
@@ -1830,6 +1941,43 @@ class _AppLocalizationsDelegate
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
+
+  String get enumBookingActive;
+  String get enumBookingExpired;
+  String get enumBookingPendingPayment;
+  String get enumBookingCanceled;
+  String get enumBookingPendingActivation;
+  String get enumBookingNeedsAttention;
+  String get enumBookingPartialPayment;
+  String get enumBookingDraft;
+  String get enumBookingComplete;
+  String get enumPaymentPending;
+  String get enumPaymentSuccess;
+  String get enumPaymentFailed;
+  String get enumPaymentRefunded;
+  String get enumPaymentCanceled;
+  String get enumPaymentMethodCash;
+  String get enumPaymentMethodPayos;
+  String get enumPaymentMethodVnpay;
+  String get enumPaymentMethodBankTransfer;
+  String get enumPaymentMethodCreditCard;
+  String get enumPaymentMethodQr;
+  String get enumPaymentMethodOther;
+  String get enumSessionOngoing;
+  String get enumSessionCompleted;
+  String get enumVehicleActive;
+  String get enumVehicleExpiringSoon;
+  String get enumVehicleExpired;
+  String get enumComplaintPending;
+  String get enumComplaintProcessing;
+  String get enumComplaintResolved;
+  String get enumComplaintRejected;
+  String get enumNotifDebt;
+  String get enumNotifSecurity;
+  String get enumNotifSystem;
+  String get enumNotifBroadcast;
+  String get errPaymentNotRecorded;
+  String errInvalidStatus(String status);
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
@@ -1839,7 +1987,44 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'vi':
       return AppLocalizationsVi();
-  }
+  
+  String get enumBookingActive;
+  String get enumBookingExpired;
+  String get enumBookingPendingPayment;
+  String get enumBookingCanceled;
+  String get enumBookingPendingActivation;
+  String get enumBookingNeedsAttention;
+  String get enumBookingPartialPayment;
+  String get enumBookingDraft;
+  String get enumBookingComplete;
+  String get enumPaymentPending;
+  String get enumPaymentSuccess;
+  String get enumPaymentFailed;
+  String get enumPaymentRefunded;
+  String get enumPaymentCanceled;
+  String get enumPaymentMethodCash;
+  String get enumPaymentMethodPayos;
+  String get enumPaymentMethodVnpay;
+  String get enumPaymentMethodBankTransfer;
+  String get enumPaymentMethodCreditCard;
+  String get enumPaymentMethodQr;
+  String get enumPaymentMethodOther;
+  String get enumSessionOngoing;
+  String get enumSessionCompleted;
+  String get enumVehicleActive;
+  String get enumVehicleExpiringSoon;
+  String get enumVehicleExpired;
+  String get enumComplaintPending;
+  String get enumComplaintProcessing;
+  String get enumComplaintResolved;
+  String get enumComplaintRejected;
+  String get enumNotifDebt;
+  String get enumNotifSecurity;
+  String get enumNotifSystem;
+  String get enumNotifBroadcast;
+  String get errPaymentNotRecorded;
+  String errInvalidStatus(String status);
+}
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
@@ -1847,4 +2032,41 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.',
   );
+
+  String get enumBookingActive;
+  String get enumBookingExpired;
+  String get enumBookingPendingPayment;
+  String get enumBookingCanceled;
+  String get enumBookingPendingActivation;
+  String get enumBookingNeedsAttention;
+  String get enumBookingPartialPayment;
+  String get enumBookingDraft;
+  String get enumBookingComplete;
+  String get enumPaymentPending;
+  String get enumPaymentSuccess;
+  String get enumPaymentFailed;
+  String get enumPaymentRefunded;
+  String get enumPaymentCanceled;
+  String get enumPaymentMethodCash;
+  String get enumPaymentMethodPayos;
+  String get enumPaymentMethodVnpay;
+  String get enumPaymentMethodBankTransfer;
+  String get enumPaymentMethodCreditCard;
+  String get enumPaymentMethodQr;
+  String get enumPaymentMethodOther;
+  String get enumSessionOngoing;
+  String get enumSessionCompleted;
+  String get enumVehicleActive;
+  String get enumVehicleExpiringSoon;
+  String get enumVehicleExpired;
+  String get enumComplaintPending;
+  String get enumComplaintProcessing;
+  String get enumComplaintResolved;
+  String get enumComplaintRejected;
+  String get enumNotifDebt;
+  String get enumNotifSecurity;
+  String get enumNotifSystem;
+  String get enumNotifBroadcast;
+  String get errPaymentNotRecorded;
+  String errInvalidStatus(String status);
 }

@@ -312,15 +312,15 @@ public class IoTService {
 
     private Integer guessVehicleTypeIdFromPlate(String rawPlate) {
         if (rawPlate == null || rawPlate.isBlank()) {
-            return 2; // Mặc định cho vào xe máy nếu không đọc được
+            return 2; // Default to Motorbike (ID 2) if plate format is unidentifiable
         }
 
         String cleanPlate = rawPlate.replaceAll("[^a-zA-Z0-9]", "").toUpperCase();
         if (cleanPlate.matches("^\\d{2}[A-Z]\\d{4,5}$")) {
-            return 1; // ID 1: Ô tô
+            return 1; // ID 1: Car
         }
 
-        return 2; // ID 2: Xe máy
+        return 2; // ID 2: Motorbike
     }
 
 

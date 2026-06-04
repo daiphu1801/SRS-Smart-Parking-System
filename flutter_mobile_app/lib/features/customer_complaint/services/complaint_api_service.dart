@@ -24,7 +24,7 @@ class ComplaintApiService {
     );
 
     if (response.data == null) {
-      throw Exception('Không nhận được dữ liệu từ server');
+      throw Exception('Did not receive data from server');
     }
 
     return Complaint.fromJson(response.data as Map<String, dynamic>);

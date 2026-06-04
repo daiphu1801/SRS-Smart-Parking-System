@@ -65,18 +65,3 @@ enum NotificationType {
   /// Thông báo phát thanh (Broadcast)
   broadcast,
 }
-
-extension NotificationTypeInfo on NotificationType {
-  String get label {
-    switch (this) {
-      case NotificationType.debt:
-        return 'Nhắc nợ';
-      case NotificationType.security:
-        return 'Cảnh báo an ninh';
-      case NotificationType.system:
-        return 'Hệ thống';
-      case NotificationType.broadcast:
-        return 'Phát thanh';
-    }
-  }
-}

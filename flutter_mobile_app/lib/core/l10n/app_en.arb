@@ -1,4 +1,4 @@
-{
+﻿{
   "@@locale": "en",
   "appTitle": "Smart Parking",
   "monthlyContracts": "Monthly Contracts",
@@ -172,7 +172,7 @@
   "entryLabel": "Entry:",
   "exitLabel": "Exit:",
   "sessionDurationLabel": "Duration:",
-  "vehicleInLot": "— Vehicle is in lot",
+  "vehicleInLot": "â€” Vehicle is in lot",
   "gracePeriodPrompt": "Please pick up vehicle in: {mins}m {secs}s",
   "@gracePeriodPrompt": { "placeholders": { "mins": { "type": "int" }, "secs": { "type": "String" } } },
   "parkingSessionDetail": "Parking Session Detail",
@@ -184,11 +184,11 @@
   "gatesInOut": "Gates entry / exit",
   "gateIn": "Entry gate",
   "gateOut": "Exit gate",
-  "notExitedYet": "— Not exited yet",
+  "notExitedYet": "â€” Not exited yet",
   "parkingTime": "Parking time",
   "entryTime": "Entry time",
   "exitTime": "Exit time",
-  "vehicleNotExited": "— Vehicle has not exited",
+  "vehicleNotExited": "â€” Vehicle has not exited",
   "totalDuration": "Total duration",
   "pleaseRetrieveVehicle": "Please retrieve your vehicle",
   "gracePeriodRemaining": "You have {mins}m {secs}s remaining to exit",
@@ -267,21 +267,205 @@
   "changePasswordFailed": "Password change failed.",
   "packageLabel": "Package:",
   "validityPeriod": "Validity:",
-  "daysRemainingRenewNow": "Only {days} days left — Renew now!",
+  "daysRemainingRenewNow": "Only {days} days left â€” Renew now!",
   "@daysRemainingRenewNow": {
     "placeholders": {
       "days": {
         "type": "int"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "contractWithId": "Contract {id}",
   "@contractWithId": {
     "placeholders": {
       "id": {
         "type": "String"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "overviewInfo": "Overview",
   "groupRepresentativeLabel": "Group / representative",
@@ -292,16 +476,200 @@
     "placeholders": {
       "count": {
         "type": "int"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "pendingPaymentsBannerTitle": "You have {count} packages pending payment",
   "@pendingPaymentsBannerTitle": {
     "placeholders": {
       "count": {
         "type": "int"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "pendingPaymentsBannerSubtitle": "Please complete payment to activate package or Cancel transaction in History to restore draft.",
   "goToHistoryTooltip": "Go to History",
@@ -310,24 +678,300 @@
     "placeholders": {
       "count": {
         "type": "int"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "draftsCountBadge": "{count} drafts",
   "@draftsCountBadge": {
     "placeholders": {
       "count": {
         "type": "int"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "checkoutWithCount": "Checkout ({count} vehicles)",
   "@checkoutWithCount": {
     "placeholders": {
       "count": {
         "type": "int"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "historyTitle": "History",
   "failedToLoadPaymentHistory": "Failed to load payment history",
@@ -343,8 +987,100 @@
     "placeholders": {
       "code": {
         "type": "String"
-      }
-    }
+      ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
+    ,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+}
   },
   "no": "No",
   "invoiceCancelSuccess": "Invoice canceled successfully.",
@@ -366,4 +1102,50 @@
   "failedToLoadData": "Failed to load data",
   "paidStatus": "Paid",
   "unpaidStatus": "Unpaid"
+,
+  "enumBookingActive": "Active",
+  "enumBookingExpired": "Expired",
+  "enumBookingPendingPayment": "Pending Payment",
+  "enumBookingCanceled": "Canceled",
+  "enumBookingPendingActivation": "Pending Activation",
+  "enumBookingNeedsAttention": "Needs Attention",
+  "enumBookingPartialPayment": "Partial Payment",
+  "enumBookingDraft": "Draft",
+  "enumBookingComplete": "Complete",
+
+  "enumPaymentPending": "Pending",
+  "enumPaymentSuccess": "Success",
+  "enumPaymentFailed": "Failed",
+  "enumPaymentRefunded": "Refunded",
+  "enumPaymentCanceled": "Canceled",
+
+  "enumPaymentMethodCash": "Cash",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Bank Transfer",
+  "enumPaymentMethodCreditCard": "Credit Card",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "Other",
+
+  "enumSessionOngoing": "Ongoing",
+  "enumSessionCompleted": "Completed",
+
+  "enumVehicleActive": "Active",
+  "enumVehicleExpiringSoon": "Expiring Soon",
+  "enumVehicleExpired": "Expired",
+
+  "enumComplaintPending": "Pending",
+  "enumComplaintProcessing": "Processing",
+  "enumComplaintResolved": "Resolved",
+  "enumComplaintRejected": "Rejected",
+
+  "enumNotifDebt": "Debt Reminder",
+  "enumNotifSecurity": "Security Alert",
+  "enumNotifSystem": "System",
+  "enumNotifBroadcast": "Broadcast",
+
+  "errPaymentNotRecorded": "The system has not recorded the payment yet. Please wait a moment and try again.",
+  "errInvalidStatus": "Invoice has status: {status}"
+,
+  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
 }

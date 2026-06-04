@@ -38,6 +38,14 @@ public class GuardPaymentService {
     private final RedisTemplate<String, Object> redisTemplate;
     private final SystemConfigService systemConfigService;
 
+    /**
+     * Processes a cash payment collected by a security guard at the exit gate.
+     * Restores session state from DB if cache misses and recalculates financial obligations.
+     *
+     * @param vehicleNo  The license plate of the vehicle.
+     * @param cashAmount The cash amount tendered by the customer.
+     * @return A map containing success status, message, and remaining balance.
+     */
     @Transactional
     public Map<String, Object> processCashPayment(String vehicleNo, BigDecimal cashAmount) {
         String redisKey = iotService.getRedisKey(vehicleNo);
@@ -152,14 +160,22 @@ public class GuardPaymentService {
         );
     }
 
+    /**
+     * Handles scenarios where a guard manually confirms a bank transfer bypassing the automated webhook.
+     * Enforces anti-fraud checks to ensure an associated pending intent exists.
+     *
+     * @param vehicleNo       The license plate of the vehicle.
+     * @param newlyPaidAmount The exact amount confirmed by the guard.
+     * @param note            Optional manual note by the guard.
+     * @return A map containing success status and transaction details.
+     */
     @Transactional
     public Map<String, Object> processManualBankTransfer(String vehicleNo, BigDecimal newlyPaidAmount, String note) {
-        // 1. TÌM CUỐC XE ĐANG ĐỖ (Ưu tiên xe chưa ra khỏi bãi)
-        // =================================================================
+        // Retrieve the active parking session (prioritize vehicles currently inside the lot)
         ParkingSession session = parkingSessionRepository.findFirstByVehicleNoAndExitTimeIsNullOrderByIdDesc(vehicleNo)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy xe " + vehicleNo + " đang đỗ trong bãi."));
 
-        // Lấy dữ liệu từ Cache (nếu có) để đảm bảo đồng bộ gốc tiền mới nhất
+        // Retrieve real-time payment data from Cache to ensure financial synchronization
         String redisKey = iotService.getRedisKey(vehicleNo);
         ParkingSessionEvent cachedSession = (ParkingSessionEvent) redisTemplate.opsForValue().get(redisKey);
 

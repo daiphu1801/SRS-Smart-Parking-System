@@ -123,12 +123,6 @@ enum VehicleStatus {
       _ => VehicleStatus.active,
     };
   }
-
-  String get label => switch (this) {
-    VehicleStatus.active => 'Còn hạn',
-    VehicleStatus.expiringSoon => 'Sắp hết hạn',
-    VehicleStatus.expired => 'Hết hạn',
-  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
