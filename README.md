@@ -16,18 +16,21 @@ Phương pháp này dành cho các lập trình viên cần phát triển tính 
 - **Python 3.10+**: Dành cho khối AI Desktop.
 - **Cơ sở dữ liệu**: PostgreSQL (Lưu trữ chính), Redis (Cache & Lock phân tán).
 - **Tài khoản Supabase**: Sử dụng cho xác thực và lưu trữ đối tượng (Storage).
+- **Apache Kafka**: Message Broker (Cần thiết cho xử lý sự kiện bất đồng bộ).
 
 ### Hướng dẫn chạy từng dịch vụ
 
 #### 1. Khối Backend (Spring Boot)
 1. Mở Terminal và di chuyển vào thư mục: `cd SRS-Smart-Parking-System`
-2. Cấu hình biến môi trường (Bắt buộc):
+2. Thiết lập cấu hình biến môi trường (BẮT BUỘC):
    - Truy cập vào thư mục `src/main/resources/`.
    - Tìm file `application-placeholder.yml` và đổi tên nó thành `application.yml` (hoặc copy nội dung sang file mới).
-   - Mở file `application.yml` và điền **toàn bộ** các giá trị thực tế vào các trường cấu hình (Vì khi chạy Local, chúng ta không có ConfigMap của Kubernetes bơm cấu hình vào). Các cấu hình cốt lõi bao gồm:
-     - Chuỗi kết nối PostgreSQL (URL, Username, Password).
-     - Chuỗi kết nối Redis (Host, Port, Password nếu có).
-     - Thông tin Supabase (URL, Service Role Key, JWT Secret).
+   - Mở file `application.yml` vừa tạo, tìm tất cả các chuỗi có định dạng `[YOUR_...]` và thay thế bằng Key thật của bạn. Hệ thống yêu cầu cấu hình các thành phần sau:
+     - **PostgreSQL & Redis:** Chuỗi kết nối Database và Cache.
+     - **Kafka:** Địa chỉ Broker (VD: `localhost:9092`).
+     - **Supabase:** Nhập `url`, `anon-key`, `service-role-key`, `jwt-secret` và `jwk-set-uri`.
+     - **Twilio:** Nhập các Key SMS (`account-sid`, `auth-token`, v.v.).
+     - **Sepay:** Nhập thông tin tài khoản ngân hàng để nhận thanh toán.
 3. Biên dịch dự án (bỏ qua bước chạy Unit Test cho nhanh):
    ```bash
    mvn clean install -DskipTests
@@ -45,28 +48,26 @@ Phương pháp này dành cho các lập trình viên cần phát triển tính 
    # hoặc
    cd kiosk_app
    ```
-2. Cấu hình biến môi trường:
-   - Copy file `.env.example` và đổi tên thành `.env`.
-   - Mở file `.env` và cấu hình địa chỉ API của Backend (Ví dụ: `API_BASE_URL=http://localhost:8080/api/v1`), cũng như các Key khác nếu hệ thống yêu cầu.
-3. Dọn dẹp cache và tải toàn bộ các thư viện phụ thuộc (Dependencies):
+2. Thiết lập biến môi trường (BẮT BUỘC):
+   - Mở thư mục gốc của dự án, tìm file `.env.example`, copy nó và đổi tên thành `.env`.
+   - Mở file `.env` lên, cấu hình địa chỉ API của Backend. 
+     * Ví dụ nếu chạy giả lập Android: `API_BASE_URL=http://10.0.2.2:8080/api/v1`
+     * Ví dụ nếu chạy Web/iOS: `API_BASE_URL=http://localhost:8080/api/v1`
+     * Cấu hình thêm các Key của Supabase (nếu có yêu cầu trong file).
+3. Dọn dẹp cache và tải toàn bộ các thư viện (Packages) mới nhất:
    ```bash
    flutter clean
    flutter pub get
    ```
-4. Chạy ứng dụng trên thiết bị ảo hoặc trình duyệt:
+4. Khởi chạy ứng dụng:
    ```bash
    flutter run
    ```
 
 #### 3. Khối AI Desktop (Python)
 1. Mở Terminal và di chuyển vào thư mục: `cd sps_desktop`
-2. Khuyến nghị tạo môi trường ảo (Virtual Environment):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # (Dành cho Linux/Mac)
-   venv\Scripts\activate     # (Dành cho Windows)
-   ```
-3. Cài đặt các thư viện cần thiết:
+2. Thiết lập cấu hình: Tạo file `.env` từ `.env.example` và điền biến môi trường.
+3. Cài đặt các thư viện phụ thuộc:
    ```bash
    pip install -r requirements.txt
    ```
@@ -79,44 +80,97 @@ Phương pháp này dành cho các lập trình viên cần phát triển tính 
 
 ## Phần 2: Phương pháp triển khai lên Kubernetes (Môi trường Prod)
 
-Kiến trúc này áp dụng luồng **GitOps** hoàn chỉnh. Hệ thống tự động đồng bộ mã nguồn thông qua ArgoCD, loại bỏ hoàn toàn các thao tác thủ công. Không yêu cầu cài đặt môi trường lập trình, chỉ cần có hạ tầng Container.
+Kiến trúc này áp dụng luồng **GitOps** hoàn chỉnh. Hệ thống tự động đồng bộ mã nguồn thông qua ArgoCD.
 
 ### Yêu cầu hạ tầng (Prerequisites)
-- Cụm **Kubernetes** đang hoạt động (Ví dụ: K3s, Minikube, EKS, GKE, v.v.).
-- Đã cài đặt **Nginx Ingress Controller** (Quản lý định tuyến HTTP).
-- Đã cài đặt **ArgoCD** (Quản lý trạng thái GitOps).
-- Đã cài đặt **ArgoCD Image Updater** (Tự động cập nhật phiên bản Docker Image mới nhất).
+Bạn cần có một cụm Kubernetes (K8s) trắng. Sau đó, **bắt buộc** phải cài đặt các hạ tầng phụ trợ (Dependencies) sau đây trước khi triển khai ứng dụng:
 
-### Cấu hình Tên miền cục bộ (Local DNS)
-Để Ingress Controller có thể phân luồng chính xác, bạn cần cấu hình giả lập DNS trên máy cá nhân. Mở file `/etc/hosts` (với Linux/Mac) hoặc `C:\Windows\System32\drivers\etc\hosts` (với Windows) bằng quyền Quản trị viên và thêm:
-```text
-127.0.0.1   sps.local
-127.0.0.1   argocd.sps.local
+#### 1. Cài đặt Ingress Controller (Nginx)
+Dùng để quản lý định tuyến HTTP/HTTPS từ ngoài vào Cluster.
+```bash
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
 ```
 
-### Các bước Triển khai (Deployment Steps)
+#### 2. Cài đặt PostgreSQL (Bitnami)
+```bash
+helm install postgresql oci://registry-1.docker.io/bitnamicharts/postgresql \
+  --set auth.postgresPassword=SieuBaoMat123 \
+  --namespace default
+```
+
+#### 3. Cài đặt Redis (Bitnami)
+```bash
+helm install redis oci://registry-1.docker.io/bitnamicharts/redis \
+  --set auth.password=SieuBaoMat123 \
+  --namespace default
+```
+
+#### 4. Cài đặt Apache Kafka (Bitnami hoặc Strimzi)
+Hệ thống bắn event bằng Kafka, do đó phải có Kafka Broker trong Cluster:
+```bash
+helm install kafka oci://registry-1.docker.io/bitnamicharts/kafka \
+  --namespace default
+```
+
+### Quản lý Cấu hình & Bảo mật trong K8s (Quan trọng)
+
+Trước khi chạy Kustomize, bạn cần đảm bảo cấu hình K8s đang trỏ đúng vào các dịch vụ hạ tầng vừa cài.
+
+**1. File ConfigMap (`k8s/base/config.yaml`)**
+- Mở file này ra, đây là nơi chứa các biến **KHÔNG NHẠY CẢM** (Public).
+- Đảm bảo `SPRING_KAFKA_BOOTSTRAP_SERVERS` trỏ đúng vào Service của Kafka trong K8s (VD: `kafka-client.default.svc.cluster.local:9092`).
+- Đảm bảo `API_BASE_URL` trỏ đúng Domain mà bạn sẽ dùng.
+
+**2. File Secrets (`k8s/base/sps-sealed-secret.yaml`)**
+- Ứng dụng quản lý mật khẩu qua **Sealed Secrets** để mã hóa an toàn trên Git. File này chứa Password DB, JWT Secret, Twilio Keys, v.v.
+- **Nếu bạn không có Sealed Secrets Controller trong K8s:** Bạn có thể xóa file `sps-sealed-secret.yaml` và thay thế bằng một file `secret.yaml` thuần túy của K8s:
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: sps-backend-secrets
+  type: Opaque
+  stringData:
+    SPRING_DATASOURCE_PASSWORD: "SieuBaoMat123"
+    SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql.default.svc.cluster.local:5432/postgres"
+    TWILIO_AUTH_TOKEN: "your_real_token"
+    SUPABASE_JWT_SECRET: "your_real_secret"
+    # (Khai báo tương tự cho tất cả các key bảo mật khác, ánh xạ 1-1 với application.yml)
+  ```
+- **Nếu bạn có Sealed Secrets:** Hãy dùng lệnh `kubeseal -o yaml < secret.yaml > k8s/base/sps-sealed-secret.yaml` để mã hóa file Secret của bạn trước khi Push lên Git.
+
+### Triển khai Ứng dụng (Deployment)
 
 #### Bước 1: Khởi tạo Namespace
-Phân lập tài nguyên hệ thống vào một Namespace riêng biệt để dễ quản lý:
 ```bash
 kubectl create namespace sps
 ```
 
 #### Bước 2: Kích hoạt ứng dụng qua Kustomize
-Hệ thống K8s đã được khai báo tập trung. Bạn chỉ cần đứng ở thư mục gốc của dự án và chạy duy nhất một lệnh:
+Chạy lệnh sau tại thư mục gốc của dự án:
 ```bash
 kubectl apply -k k8s/base
 ```
-*Lệnh trên sẽ tự động khởi tạo: Các Pod (Backend, Mobile, Kiosk, AI Desktop, PostgreSQL, Redis), Services, Ingress Routes và các ConfigMap liên quan.*
+*Lệnh này sẽ quét toàn bộ file Yaml trong thư mục `k8s/base` và khởi tạo: Backend, Mobile Web, Kiosk Web, Desktop App và các Ingress Routes.*
 
 #### Bước 3: Cấu hình GitOps với ArgoCD (Khuyến nghị)
-1. Truy cập trang quản trị ArgoCD tại `https://argocd.sps.local`
-2. Tạo Application mới, trỏ kho (Repository URL) về dự án này và thiết lập Path là `k8s/base`.
-3. Bật tính năng Auto-Sync.
-4. ArgoCD Image Updater sẽ tự động theo dõi Github Actions CI. Khi có bản build mới đẩy lên Docker Hub, hệ thống sẽ tự động cập nhật Pods mà không cần sự can thiệp của con người.
+1. Cài đặt ArgoCD vào Cluster.
+2. Truy cập giao diện ArgoCD.
+3. Tạo Application mới, trỏ Repository URL về dự án này và thiết lập Path là `k8s/base`.
+4. Bật tính năng Auto-Sync. Từ nay, mọi thay đổi trên thư mục `k8s/base` hoặc Docker Hub đều sẽ được tự động đồng bộ xuống K8s mà không cần gõ lệnh.
+
+### Cấu hình Tên miền cục bộ (Local DNS)
+Để Ingress Controller phân luồng chính xác, cấu hình giả lập DNS trên máy cá nhân (`/etc/hosts` hoặc `C:\Windows\System32\drivers\etc\hosts`):
+```text
+127.0.0.1   sps.local
+127.0.0.1   api.sps.local
+127.0.0.1   argocd.sps.local
+```
 
 ### Danh mục Truy cập Hệ thống
-Sau khi trạng thái các Pod chuyển sang `Running`, hệ thống có thể được truy cập qua các địa chỉ sau:
-- **Backend API:** `http://sps.local/api`
+Sau khi Pods `Running`, truy cập qua các địa chỉ:
+- **Backend API:** `http://api.sps.local`
 - **Mobile Web App:** `http://sps.local/mobile`
 - **Kiosk Web App:** `http://sps.local/kiosk`
