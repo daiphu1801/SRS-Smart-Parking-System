@@ -26,3 +26,5 @@ jobs:
           context: ./flutter_mobile_app
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/srs-mobile-app:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
