@@ -15,6 +15,9 @@ resources:
   - hpa-backend.yaml
   - analysis-template.yaml
 
+configurations:
+  - kustomize-config.yaml
+
 images:
   - name: srs-backend
     newName: ichbineinhund/srs-backend
