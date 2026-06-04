@@ -94,3 +94,14 @@ app:
     bank-name: [YOUR_SEPAY_BANK_NAME]
     account-name: [YOUR_SEPAY_ACCOUNT_NAME]
     webhook-secret: [YOUR_SEPAY_WEBHOOK_SECRET]
+
+  settings:
+    file-path: [PATH_TO_YOUR_SETTINGS_FILE_OR_DIRECTORY]
+  
+  cors:
+    allowed-origins: [YOUR_ALLOWED_ORIGINS_E.G_HTTP://LOCALHOST:3000]
+    
+  demo:
+    admin-phone: [ADMIN_PHONE_NUMBER_FOR_DEMO]
+    otp-expiration-minutes: 5
+    otp-max-try: 5

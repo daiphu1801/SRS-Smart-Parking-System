@@ -135,7 +135,7 @@ Trước khi chạy Kustomize, bạn cần đảm bảo cấu hình K8s đang tr
   stringData:
     SPRING_DATASOURCE_PASSWORD: "SieuBaoMat123"
     SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql.default.svc.cluster.local:5432/postgres"
-    TWILIO_AUTH_TOKEN: "your_real_token"
+    APP_TWILIO_AUTH_TOKEN: "your_real_token"
     SUPABASE_JWT_SECRET: "your_real_secret"
     # (Khai báo tương tự cho tất cả các key bảo mật khác, ánh xạ 1-1 với application.yml)
   ```
