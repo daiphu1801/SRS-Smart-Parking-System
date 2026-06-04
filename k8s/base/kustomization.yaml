@@ -5,13 +5,26 @@ resources:
   - config.yaml
   - network-policy.yaml
   - sps-sealed-secret.yaml
+  - rbac.yaml
   - backend.yaml
   - kiosk.yaml
   - mobile.yaml
+  - desktop.yaml
   - ingress.yaml
   - ingress-logging.yaml
   - hpa-backend.yaml
-  - rbac.yaml
-  - network-policy.yaml
-  - sps-sealed-secret.yaml
   - analysis-template.yaml
+
+images:
+  - name: srs-backend
+    newName: ichbineinhund/srs-backend
+    newTag: latest
+  - name: srs-mobile-app
+    newName: ichbineinhund/sps-mobile-app
+    newTag: latest
+  - name: srs-kiosk-app
+    newName: ichbineinhund/sps-kiosk-app
+    newTag: latest
+  - name: sps-desktop-app
+    newName: ichbineinhund/sps-desktop-app
+    newTag: latest

@@ -1,4 +1,4 @@
-import 'dart:io';
+// Đã gỡ import 'dart:io' để fix lỗi Web Build
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +26,7 @@ class _ComplaintCreateScreenState extends State<ComplaintCreateScreen> {
   final _descController = TextEditingController();
   bool _isSubmitting = false;
   XFile? _selectedImage;
+  Uint8List? _imageBytes;
   final ImagePicker _picker = ImagePicker();
 
   @override
@@ -39,8 +40,10 @@ class _ComplaintCreateScreenState extends State<ComplaintCreateScreen> {
     try {
       final pickedFile = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 70);
       if (pickedFile != null) {
+        final bytes = await pickedFile.readAsBytes();
         setState(() {
           _selectedImage = pickedFile;
+          _imageBytes = bytes;
         });
       }
     } catch (e) {
@@ -182,11 +185,9 @@ class _ComplaintCreateScreenState extends State<ComplaintCreateScreen> {
                     color: AppTheme.surface,
                     borderRadius: BorderRadius.circular(AppTheme.radiusCard),
                     border: Border.all(color: AppTheme.border, style: BorderStyle.solid),
-                    image: _selectedImage != null 
+                    image: _imageBytes != null 
                         ? DecorationImage(
-                            image: kIsWeb 
-                                ? NetworkImage(_selectedImage!.path) as ImageProvider 
-                                : FileImage(File(_selectedImage!.path)), 
+                            image: MemoryImage(_imageBytes!), 
                             fit: BoxFit.cover
                           )
                         : null,
@@ -205,7 +206,10 @@ class _ComplaintCreateScreenState extends State<ComplaintCreateScreen> {
                           alignment: Alignment.topRight,
                           child: IconButton(
                             icon: const Icon(Icons.close, color: Colors.white),
-                            onPressed: () => setState(() => _selectedImage = null),
+                            onPressed: () => setState(() {
+                              _selectedImage = null;
+                              _imageBytes = null;
+                            }),
                             style: IconButton.styleFrom(backgroundColor: Colors.black54),
                           ),
                         ),
