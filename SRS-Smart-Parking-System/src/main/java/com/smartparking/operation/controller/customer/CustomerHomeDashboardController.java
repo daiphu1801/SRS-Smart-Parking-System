@@ -1,14 +1,24 @@
 package com.smartparking.operation.controller.customer;
 
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.operation.dto.response.CustomerHomeDashboardResponse;
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.operation.service.customer.CustomerHomeDashboardService;
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.shared.dto.ApiResponse;
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.shared.dto.CustomAccountPrincipal;
+import com.smartparking.shared.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.http.ResponseEntity;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

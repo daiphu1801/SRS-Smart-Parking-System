@@ -1,15 +1,26 @@
 package com.smartparking.subscription.controller.admin;
 
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.subscription.dto.response.PackageDetailResponse; // Nhớ tạo file DTO này nhé
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.subscription.entity.*;
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.subscription.entity.Package;
+import com.smartparking.shared.exception.BusinessException;
 import com.smartparking.subscription.service.AdminSubscriptionService;
+import com.smartparking.shared.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.data.domain.Page;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.data.domain.PageRequest;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.data.domain.Pageable;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.http.ResponseEntity;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.security.access.prepost.PreAuthorize;
+import com.smartparking.shared.exception.BusinessException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
