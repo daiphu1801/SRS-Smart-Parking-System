@@ -1,4 +1,4 @@
-﻿// ignore: unused_import
+// ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
@@ -9,158 +9,158 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
-  String get appTitle => 'Äá»— xe thÃ´ng minh';
+  String get appTitle => 'Đỗ xe thông minh';
 
   @override
-  String get monthlyContracts => 'Há»£p Ä‘á»“ng gÃ³i thÃ¡ng';
+  String get monthlyContracts => 'Hợp đồng gói tháng';
 
   @override
-  String get dataLoadError => 'Lá»—i táº£i dá»¯ liá»‡u';
+  String get dataLoadError => 'Lỗi tải dữ liệu';
 
   @override
-  String get noContractsYet => 'ChÆ°a cÃ³ há»£p Ä‘á»“ng nÃ o';
+  String get noContractsYet => 'Chưa có hợp đồng nào';
 
   @override
   String get monthlyPackageSavesMoney =>
-      'GÃ³i gá»­i xe thÃ¡ng sáº½ giÃºp báº¡n tiáº¿t kiá»‡m chi phÃ­ gá»­i xe Ä‘Ã¡ng ká»ƒ.';
+      'Gói gửi xe tháng sẽ giúp bạn tiết kiệm chi phí gửi xe đáng kể.';
 
   @override
-  String get vehicleList => 'Danh sÃ¡ch phÆ°Æ¡ng tiá»‡n';
+  String get vehicleList => 'Danh sách phương tiện';
 
   @override
-  String get addVehicle => 'ThÃªm xe';
+  String get addVehicle => 'Thêm xe';
 
   @override
-  String get noVehiclesYet => 'ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n';
+  String get noVehiclesYet => 'Chưa có phương tiện';
 
   @override
   String get clickAddVehicleToStart =>
-      'Nháº¥n \"ThÃªm xe\" Ä‘á»ƒ báº¯t Ä‘áº§u Ä‘Äƒng kÃ½ gÃ³i thÃ¡ng.';
+      'Nhấn \"Thêm xe\" để bắt đầu đăng ký gói tháng.';
 
   @override
-  String get monthlyPackageDetails => 'Chi tiáº¿t gÃ³i cÆ°á»›c thÃ¡ng';
+  String get monthlyPackageDetails => 'Chi tiết gói cước tháng';
 
   @override
-  String get contract => 'Há»£p Ä‘á»“ng';
+  String get contract => 'Hợp đồng';
 
   @override
-  String get vehicleManagement => 'Quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n';
+  String get vehicleManagement => 'Quản lý phương tiện';
 
   @override
-  String get groupRepresentative => 'NhÃ³m / Ä‘áº¡i diá»‡n:';
+  String get groupRepresentative => 'Nhóm / đại diện:';
 
   @override
-  String get createdAt => 'NgÃ y táº¡o:';
+  String get createdAt => 'Ngày tạo:';
 
   @override
-  String get registeredVehiclesCount => 'Sá»‘ xe Ä‘Äƒng kÃ½:';
+  String get registeredVehiclesCount => 'Số xe đăng ký:';
 
   @override
   String get vehicles => 'xe';
 
   @override
-  String get paymentMethod => 'PhÆ°Æ¡ng thá»©c thanh toÃ¡n:';
+  String get paymentMethod => 'Phương thức thanh toán:';
 
   @override
-  String get addVehicleToBooking => 'ThÃªm xe vÃ o booking';
+  String get addVehicleToBooking => 'Thêm xe vào booking';
 
   @override
-  String get bookingDetailList => 'Danh sÃ¡ch Booking Detail';
+  String get bookingDetailList => 'Danh sách Booking Detail';
 
   @override
-  String get childAccounts => 'TÃ i khoáº£n con';
+  String get childAccounts => 'Tài khoản con';
 
   @override
-  String get addChildAccount => 'ThÃªm tÃ i khoáº£n con';
+  String get addChildAccount => 'Thêm tài khoản con';
 
   @override
-  String get fullName => 'Há» vÃ  tÃªn';
+  String get fullName => 'Họ và tên';
 
   @override
-  String get address => 'Äá»‹a chá»‰';
+  String get address => 'Địa chỉ';
 
   @override
-  String get phoneNumber => 'Sá»‘ Ä‘iá»‡n thoáº¡i';
+  String get phoneNumber => 'Số điện thoại';
 
   @override
-  String get cancel => 'Há»§y';
+  String get cancel => 'Hủy';
 
   @override
-  String get add => 'ThÃªm';
+  String get add => 'Thêm';
 
   @override
-  String get nameAndPhoneRequired => 'Há» tÃªn vÃ  sá»‘ Ä‘iá»‡n thoáº¡i lÃ  báº¯t buá»™c';
+  String get nameAndPhoneRequired => 'Họ tên và số điện thoại là bắt buộc';
 
   @override
-  String get childAccountAdded => 'ÄÃ£ thÃªm tÃ i khoáº£n con';
+  String get childAccountAdded => 'Đã thêm tài khoản con';
 
   @override
-  String get errorLoadingChildAccounts => 'Lá»—i táº£i tÃ i khoáº£n con';
+  String get errorLoadingChildAccounts => 'Lỗi tải tài khoản con';
 
   @override
-  String get noChildAccountsYet => 'ChÆ°a cÃ³ tÃ i khoáº£n con';
+  String get noChildAccountsYet => 'Chưa có tài khoản con';
 
   @override
   String get canAddChildAccountsForVehicles =>
-      'Báº¡n cÃ³ thá»ƒ thÃªm tÃ i khoáº£n con Ä‘á»ƒ quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n riÃªng.';
+      'Bạn có thể thêm tài khoản con để quản lý phương tiện riêng.';
 
   @override
-  String get pleaseEnterLicensePlate => 'Vui lÃ²ng nháº­p biá»ƒn sá»‘ xe';
+  String get pleaseEnterLicensePlate => 'Vui lòng nhập biển số xe';
 
   @override
-  String get addedToCartSuccessfully => 'ÄÃ£ thÃªm vÃ o giá» hÃ ng thÃ nh cÃ´ng!';
+  String get addedToCartSuccessfully => 'Đã thêm vào giỏ hàng thành công!';
 
   @override
-  String get errorAddingVehicle => 'CÃ³ lá»—i xáº£y ra khi thÃªm xe';
+  String get errorAddingVehicle => 'Có lỗi xảy ra khi thêm xe';
 
   @override
-  String get addNewVehicleRegistration => 'ThÃªm xe Ä‘Äƒng kÃ½ má»›i';
+  String get addNewVehicleRegistration => 'Thêm xe đăng ký mới';
 
   @override
-  String get vehicleInformation => 'ThÃ´ng tin phÆ°Æ¡ng tiá»‡n';
+  String get vehicleInformation => 'Thông tin phương tiện';
 
   @override
-  String get licensePlate => 'Biá»ƒn sá»‘ xe';
+  String get licensePlate => 'Biển số xe';
 
   @override
-  String get licensePlateExample => 'VÃ­ dá»¥: 30A-123.45';
+  String get licensePlateExample => 'Ví dụ: 30A-123.45';
 
   @override
-  String get vehicleType => 'Loáº¡i xe';
+  String get vehicleType => 'Loại xe';
 
   @override
-  String get selectPackage => 'Chá»n gÃ³i cÆ°á»›c';
+  String get selectPackage => 'Chọn gói cước';
 
   @override
-  String get pleaseSelectVehicleTypeFirst => 'Vui lÃ²ng chá»n loáº¡i xe trÆ°á»›c';
+  String get pleaseSelectVehicleTypeFirst => 'Vui lòng chọn loại xe trước';
 
   @override
   String get noSuitablePackageForThisVehicleType =>
-      'KhÃ´ng cÃ³ gÃ³i cÆ°á»›c phÃ¹ há»£p cho loáº¡i xe nÃ y';
+      'Không có gói cước phù hợp cho loại xe này';
 
   @override
-  String get addToCart => 'ThÃªm vÃ o giá» hÃ ng';
+  String get addToCart => 'Thêm vào giỏ hàng';
 
   @override
-  String get months => 'thÃ¡ng';
+  String get months => 'tháng';
 
   @override
-  String get duration => 'Thá»i háº¡n';
+  String get duration => 'Thời hạn';
 
   @override
-  String get validFrom => 'Hiá»‡u lá»±c tá»«';
+  String get validFrom => 'Hiệu lực từ';
 
   @override
-  String get validUntil => 'Äáº¿n ngÃ y';
+  String get validUntil => 'Đến ngày';
 
   @override
-  String get total => 'Tá»•ng cá»™ng';
+  String get total => 'Tổng cộng';
 
   @override
-  String get bookingDetailDetails => 'Chi tiáº¿t Booking Detail';
+  String get bookingDetailDetails => 'Chi tiết Booking Detail';
 
   @override
-  String get id => 'MÃ£ sá»‘:';
+  String get id => 'Mã số:';
 
   @override
   String get bookingDetailId => 'Booking Detail ID:';
@@ -175,2140 +175,752 @@ class AppLocalizationsVi extends AppLocalizations {
   String get packagePriceId => 'Package Price ID:';
 
   @override
-  String get licensePlateLabel => 'Biá»ƒn sá»‘ xe:';
+  String get licensePlateLabel => 'Biển số xe:';
 
   @override
-  String get vehicleTypeLabel => 'Loáº¡i xe:';
+  String get vehicleTypeLabel => 'Loại xe:';
 
   @override
-  String get packageTypeLabel => 'GÃ³i cÆ°á»›c:';
+  String get packageTypeLabel => 'Gói cước:';
 
   @override
-  String get durationLabel => 'Thá»i háº¡n:';
+  String get durationLabel => 'Thời hạn:';
 
   @override
-  String get statusLabel => 'Tráº¡ng thÃ¡i:';
+  String get statusLabel => 'Trạng thái:';
 
   @override
-  String get statusActive => 'CÃ²n háº¡n';
+  String get statusActive => 'Còn hạn';
 
   @override
-  String get statusExpiringSoon => 'Sáº¯p háº¿t háº¡n';
+  String get statusExpiringSoon => 'Sắp hết hạn';
 
   @override
-  String get statusExpired => 'Háº¿t háº¡n';
+  String get statusExpired => 'Hết hạn';
 
   @override
-  String get priceLabel => 'GiÃ¡ cÆ°á»›c:';
+  String get priceLabel => 'Giá cước:';
 
   @override
-  String get startDateLabel => 'NgÃ y báº¯t Ä‘áº§u:';
+  String get startDateLabel => 'Ngày bắt đầu:';
 
   @override
-  String get endDateLabel => 'NgÃ y káº¿t thÃºc:';
+  String get endDateLabel => 'Ngày kết thúc:';
 
   @override
-  String get pay => 'Thanh toÃ¡n';
+  String get pay => 'Thanh toán';
 
   @override
-  String get pendingPayment => 'Äang chá» thanh toÃ¡n';
+  String get pendingPayment => 'Đang chờ thanh toán';
 
   @override
-  String get renewContract => 'Gia háº¡n há»£p Ä‘á»“ng';
+  String get renewContract => 'Gia hạn hợp đồng';
 
   @override
-  String get renewSuccess => 'Gia háº¡n thÃ nh cÃ´ng!';
+  String get renewSuccess => 'Gia hạn thành công!';
 
   @override
   String get renewFailedServerUpdate =>
-      'Gia háº¡n tháº¥t báº¡i á»Ÿ bÆ°á»›c cáº­p nháº­t server.';
+      'Gia hạn thất bại ở bước cập nhật server.';
 
   @override
-  String get renewBookingDetail => 'Gia háº¡n Booking Detail';
+  String get renewBookingDetail => 'Gia hạn Booking Detail';
 
   @override
-  String get packageType => 'Loáº¡i gÃ³i';
+  String get packageType => 'Loại gói';
 
   @override
-  String get renew => 'Gia háº¡n';
+  String get renew => 'Gia hạn';
 
   @override
-  String get selectRenewalMonths => 'Chá»n sá»‘ thÃ¡ng gia háº¡n:';
+  String get selectRenewalMonths => 'Chọn số tháng gia hạn:';
 
   @override
-  String get totalAmount => 'Tá»•ng tiá»n:';
+  String get totalAmount => 'Tổng tiền:';
 
   @override
-  String get payAndRenew => 'Thanh toÃ¡n & Gia háº¡n';
+  String get payAndRenew => 'Thanh toán & Gia hạn';
 
   @override
-  String get welcomeMorning => 'ChÃ o buá»•i sÃ¡ng';
+  String get welcomeMorning => 'Chào buổi sáng';
 
   @override
-  String get welcomeAfternoon => 'ChÃ o buá»•i chiá»u';
+  String get welcomeAfternoon => 'Chào buổi chiều';
 
   @override
-  String get welcomeEvening => 'ChÃ o buá»•i tá»‘i';
+  String get welcomeEvening => 'Chào buổi tối';
 
   @override
-  String get accountVerified => 'TÃ i khoáº£n Ä‘Ã£ xÃ¡c thá»±c';
+  String get accountVerified => 'Tài khoản đã xác thực';
 
   @override
-  String get myVehicles => 'PhÆ°Æ¡ng tiá»‡n cá»§a báº¡n';
+  String get myVehicles => 'Phương tiện của bạn';
 
   @override
-  String get currentParkingSession => 'PhiÃªn Ä‘á»— xe hiá»‡n táº¡i';
+  String get currentParkingSession => 'Phiên đỗ xe hiện tại';
 
   @override
-  String get quickActions => 'Thao tÃ¡c nhanh';
+  String get quickActions => 'Thao tác nhanh';
 
   @override
-  String get tryAgain => 'Thá»­ láº¡i';
+  String get tryAgain => 'Thử lại';
 
   @override
-  String get complaintStatusPending => 'Chá» xá»­ lÃ½';
+  String get complaintStatusPending => 'Chờ xử lý';
 
   @override
-  String get complaintStatusProcessing => 'Äang xá»­ lÃ½';
+  String get complaintStatusProcessing => 'Đang xử lý';
 
   @override
-  String get complaintStatusResolved => 'ÄÃ£ giáº£i quyáº¿t';
+  String get complaintStatusResolved => 'Đã giải quyết';
 
   @override
-  String get complaintStatusRejected => 'Tá»« chá»‘i';
+  String get complaintStatusRejected => 'Từ chối';
 
   @override
   String complaintCodeLabel(String id) {
-    return 'MÃ£: $id';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Mã: $id';
+  }
 
   @override
-  String get expiringSoonAlert => 'Sáº¯p háº¿t háº¡n gÃ³i cÆ°á»›c';
+  String get expiringSoonAlert => 'Sắp hết hạn gói cước';
 
   @override
   String expiringSoonMessage(int count) {
-    return 'Báº¡n cÃ³ $count xe sáº¯p háº¿t háº¡n. Vui lÃ²ng gia háº¡n Ä‘á»ƒ khÃ´ng bá»‹ giÃ¡n Ä‘oáº¡n.';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Bạn có $count xe sắp hết hạn. Vui lòng gia hạn để không bị gián đoạn.';
+  }
 
   @override
-  String get noVehiclesHome => 'ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n';
+  String get noVehiclesHome => 'Chưa có phương tiện';
 
   @override
-  String get noVehiclesRegistered => 'Báº¡n chÆ°a Ä‘Äƒng kÃ½ xe nÃ o vÃ o há»‡ thá»‘ng.';
+  String get noVehiclesRegistered => 'Bạn chưa đăng ký xe nào vào hệ thống.';
 
   @override
-  String get defaultPackage => 'GÃ³i cÆ°á»›c máº·c Ä‘á»‹nh';
+  String get defaultPackage => 'Gói cước mặc định';
 
   @override
-  String get expired => 'ÄÃ£ háº¿t háº¡n';
+  String get expired => 'Đã hết hạn';
 
   @override
   String daysLeft(int days) {
-    return 'CÃ²n $days ngÃ y';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Còn $days ngày';
+  }
 
   @override
-  String get noParkingSession => 'KhÃ´ng cÃ³ phiÃªn Ä‘á»— xe';
+  String get noParkingSession => 'Không có phiên đỗ xe';
 
   @override
-  String get notInAnyParkingLot => 'Báº¡n chÆ°a vÃ o bÃ£i Ä‘á»— xe nÃ o.';
+  String get notInAnyParkingLot => 'Bạn chưa vào bãi đỗ xe nào.';
 
   @override
   String entryTimeLabel(String time) {
-    return 'VÃ o lÃºc: $time';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Vào lúc: $time';
+  }
 
   @override
   String parkingDurationLabel(String duration) {
-    return 'Thá»i gian Ä‘á»—: $duration';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Thời gian đỗ: $duration';
+  }
 
   @override
-  String get parkingSessionAction => 'PhiÃªn Ä‘á»— xe';
+  String get parkingSessionAction => 'Phiên đỗ xe';
 
   @override
-  String get billingAction => 'HÃ³a Ä‘Æ¡n';
+  String get billingAction => 'Hóa đơn';
 
   @override
-  String get navHome => 'Trang chá»§';
+  String get navHome => 'Trang chủ';
 
   @override
-  String get navParking => 'PhiÃªn Ä‘á»— xe';
+  String get navParking => 'Phiên đỗ xe';
 
   @override
-  String get navPackages => 'GÃ³i cÆ°á»›c';
+  String get navPackages => 'Gói cước';
 
   @override
-  String get navHistory => 'Lá»‹ch sá»­';
+  String get navHistory => 'Lịch sử';
 
   @override
-  String get navAccount => 'TÃ i khoáº£n';
+  String get navAccount => 'Tài khoản';
 
   @override
-  String get accountTitle => 'TÃ i khoáº£n';
+  String get accountTitle => 'Tài khoản';
 
   @override
-  String get errorLoadingProfile => 'Lá»—i táº£i há»“ sÆ¡';
+  String get errorLoadingProfile => 'Lỗi tải hồ sơ';
 
   @override
-  String get settingsAndSupport => 'CÃ i Ä‘áº·t & Há»— trá»£';
+  String get settingsAndSupport => 'Cài đặt & Hỗ trợ';
 
   @override
-  String get profileDetails => 'Chi tiáº¿t há»“ sÆ¡';
+  String get profileDetails => 'Chi tiết hồ sơ';
 
   @override
-  String get profileDetailsSubtitle => 'Xem thÃ´ng tin Ä‘áº§y Ä‘á»§, CCCD, Ä‘á»‹a chá»‰';
+  String get profileDetailsSubtitle => 'Xem thông tin đầy đủ, CCCD, địa chỉ';
 
   @override
-  String get childAccountsManage => 'Quáº£n lÃ½ tÃ i khoáº£n con vÃ  phÆ°Æ¡ng tiá»‡n';
+  String get childAccountsManage => 'Quản lý tài khoản con và phương tiện';
 
   @override
-  String get changePassword => 'Äá»•i máº­t kháº©u';
+  String get changePassword => 'Đổi mật khẩu';
 
   @override
-  String get changePasswordSubtitle => 'Cáº­p nháº­t máº­t kháº©u báº£o máº­t';
+  String get changePasswordSubtitle => 'Cập nhật mật khẩu bảo mật';
 
   @override
-  String get supportAndComplaints => 'Há»— trá»£ & Khiáº¿u náº¡i';
+  String get supportAndComplaints => 'Hỗ trợ & Khiếu nại';
 
   @override
-  String get supportAndComplaintsSubtitle => 'Gá»­i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p';
+  String get supportAndComplaintsSubtitle => 'Gửi ý kiến đóng góp';
 
   @override
-  String get notifications => 'ThÃ´ng bÃ¡o';
+  String get notifications => 'Thông báo';
 
   @override
-  String get notificationsSubtitle => 'Quáº£n lÃ½ thÃ´ng bÃ¡o';
+  String get notificationsSubtitle => 'Quản lý thông báo';
 
   @override
-  String get logout => 'ÄÄƒng xuáº¥t';
+  String get logout => 'Đăng xuất';
 
   @override
-  String get editProfileTooltip => 'Sá»­a há»“ sÆ¡';
+  String get editProfileTooltip => 'Sửa hồ sơ';
 
   @override
-  String get phoneLabel => 'Äiá»‡n thoáº¡i';
+  String get phoneLabel => 'Điện thoại';
 
   @override
-  String get groupLabel => 'NhÃ³m';
+  String get groupLabel => 'Nhóm';
 
   @override
-  String get history => 'Lá»‹ch sá»­';
+  String get history => 'Lịch sử';
 
   @override
-  String get complaintsFeedback => 'Khiáº¿u náº¡i / GÃ³p Ã½';
+  String get complaintsFeedback => 'Khiếu nại / Góp ý';
 
   @override
-  String get filter => 'Lá»c';
+  String get filter => 'Lọc';
 
   @override
-  String get noComplaintsYet => 'ChÆ°a cÃ³ khiáº¿u náº¡i nÃ o';
+  String get noComplaintsYet => 'Chưa có khiếu nại nào';
 
   @override
   String get complaintsFeedbackEncourage =>
-      'Má»i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p cá»§a báº¡n Ä‘á»u giÃºp chÃºng tÃ´i cáº£i thiá»‡n dá»‹ch vá»¥.';
+      'Mọi ý kiến đóng góp của bạn đều giúp chúng tôi cải thiện dịch vụ.';
 
   @override
-  String get createComplaint => 'Táº¡o khiáº¿u náº¡i';
+  String get createComplaint => 'Tạo khiếu nại';
 
   @override
-  String get submitNewComplaint => 'Gá»­i Khiáº¿u náº¡i má»›i';
+  String get submitNewComplaint => 'Gửi Khiếu nại mới';
 
   @override
   String get complaintsListenMessage =>
-      'ChÃºng tÃ´i luÃ´n láº¯ng nghe Ã½ kiáº¿n cá»§a báº¡n Ä‘á»ƒ cáº£i thiá»‡n cháº¥t lÆ°á»£ng dá»‹ch vá»¥.';
+      'Chúng tôi luôn lắng nghe ý kiến của bạn để cải thiện chất lượng dịch vụ.';
 
   @override
-  String get complaintTitle => 'TiÃªu Ä‘á»';
+  String get complaintTitle => 'Tiêu đề';
 
   @override
-  String get complaintTitlePlaceholder => 'VD: Lá»—i nháº­n diá»‡n biá»ƒn sá»‘ cá»•ng A';
+  String get complaintTitlePlaceholder => 'VD: Lỗi nhận diện biển số cổng A';
 
   @override
-  String get pleaseEnterTitle => 'Vui lÃ²ng nháº­p tiÃªu Ä‘á»';
+  String get pleaseEnterTitle => 'Vui lòng nhập tiêu đề';
 
   @override
-  String get complaintContent => 'Ná»™i dung pháº£n Ã¡nh';
+  String get complaintContent => 'Nội dung phản ánh';
 
   @override
   String get complaintContentPlaceholder =>
-      'MÃ´ táº£ chi tiáº¿t váº¥n Ä‘á» báº¡n gáº·p pháº£i...';
+      'Mô tả chi tiết vấn đề bạn gặp phải...';
 
   @override
-  String get pleaseEnterContent => 'Vui lÃ²ng nháº­p ná»™i dung';
+  String get pleaseEnterContent => 'Vui lòng nhập nội dung';
 
   @override
-  String get attachedImages => 'HÃ¬nh áº£nh Ä‘Ã­nh kÃ¨m (náº¿u cÃ³)';
+  String get attachedImages => 'Hình ảnh đính kèm (nếu có)';
 
   @override
-  String get tapToUploadImage => 'Nháº¥n Ä‘á»ƒ táº£i áº£nh lÃªn';
+  String get tapToUploadImage => 'Nhấn để tải ảnh lên';
 
   @override
-  String get imagePickerInDev => 'Chá»©c nÄƒng chá»n áº£nh Ä‘ang Ä‘Æ°á»£c phÃ¡t triá»ƒn';
+  String get imagePickerInDev => 'Chức năng chọn ảnh đang được phát triển';
 
   @override
-  String get submitComplaint => 'Gá»­i khiáº¿u náº¡i';
+  String get submitComplaint => 'Gửi khiếu nại';
 
   @override
   String get complaintSubmitSuccess =>
-      'Gá»­i khiáº¿u náº¡i thÃ nh cÃ´ng! ChÃºng tÃ´i sáº½ xá»­ lÃ½ sá»›m nháº¥t.';
+      'Gửi khiếu nại thành công! Chúng tôi sẽ xử lý sớm nhất.';
 
   @override
-  String get complaintSubmitError => 'CÃ³ lá»—i xáº£y ra, vui lÃ²ng thá»­ láº¡i';
+  String get complaintSubmitError => 'Có lỗi xảy ra, vui lòng thử lại';
 
   @override
-  String get readAll => 'Äá»c táº¥t cáº£';
+  String get readAll => 'Đọc tất cả';
 
   @override
-  String get cannotLoadNotifications => 'KhÃ´ng thá»ƒ táº£i thÃ´ng bÃ¡o';
+  String get cannotLoadNotifications => 'Không thể tải thông báo';
 
   @override
-  String get noNotificationsYet => 'ChÆ°a cÃ³ thÃ´ng bÃ¡o nÃ o';
+  String get noNotificationsYet => 'Chưa có thông báo nào';
 
   @override
   String get systemNotificationsAppearHere =>
-      'CÃ¡c thÃ´ng bÃ¡o há»‡ thá»‘ng sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.';
+      'Các thông báo hệ thống sẽ xuất hiện tại đây.';
 
   @override
-  String get parkingSessions => 'PhiÃªn Ä‘á»— xe';
+  String get parkingSessions => 'Phiên đỗ xe';
 
   @override
-  String get filterAll => 'Táº¥t cáº£';
+  String get filterAll => 'Tất cả';
 
   @override
-  String get filterOngoing => 'Äang Ä‘á»—';
+  String get filterOngoing => 'Đang đỗ';
 
   @override
-  String get filterCompleted => 'HoÃ n thÃ nh';
+  String get filterCompleted => 'Hoàn thành';
 
   @override
-  String get noParkingSessions => 'ChÆ°a cÃ³ phiÃªn Ä‘á»— xe nÃ o';
+  String get noParkingSessions => 'Chưa có phiên đỗ xe nào';
 
   @override
   String get parkingHistoryAppearHere =>
-      'Lá»‹ch sá»­ phiÃªn Ä‘á»— xe cá»§a báº¡n sáº½ xuáº¥t hiá»‡n á»Ÿ Ä‘Ã¢y.';
+      'Lịch sử phiên đỗ xe của bạn sẽ xuất hiện ở đây.';
 
   @override
-  String get noFilterResults => 'KhÃ´ng cÃ³ káº¿t quáº£';
+  String get noFilterResults => 'Không có kết quả';
 
   @override
   String get noMatchingParkingSession =>
-      'KhÃ´ng tÃ¬m tháº¥y phiÃªn Ä‘á»— xe nÃ o phÃ¹ há»£p vá»›i bá»™ lá»c.';
+      'Không tìm thấy phiên đỗ xe nào phù hợp với bộ lọc.';
 
   @override
-  String get manualGateOpen => 'Má»Ÿ cá»•ng thá»§ cÃ´ng';
+  String get manualGateOpen => 'Mở cổng thủ công';
 
   @override
-  String get entryLabel => 'VÃ o:';
+  String get entryLabel => 'Vào:';
 
   @override
   String get exitLabel => 'Ra:';
 
   @override
-  String get sessionDurationLabel => 'Thá»i gian:';
+  String get sessionDurationLabel => 'Thời gian:';
 
   @override
-  String get vehicleInLot => 'â€” Xe Ä‘ang trong bÃ£i';
+  String get vehicleInLot => '— Xe đang trong bãi';
 
   @override
   String gracePeriodPrompt(int mins, String secs) {
-    return 'Vui lÃ²ng láº¥y xe trong: ${mins}ph ${secs}s';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Vui lòng lấy xe trong: ${mins}ph ${secs}s';
+  }
 
   @override
-  String get parkingSessionDetail => 'Chi tiáº¿t phiÃªn Ä‘á»— xe';
+  String get parkingSessionDetail => 'Chi tiết phiên đỗ xe';
 
   @override
-  String get lprCameraImage => 'áº¢nh Camera biá»ƒn sá»‘ xe';
+  String get lprCameraImage => 'Ảnh Camera biển số xe';
 
   @override
-  String get car => 'Ã” tÃ´';
+  String get car => 'Ô tô';
 
   @override
-  String get motorbike => 'Xe mÃ¡y';
+  String get motorbike => 'Xe máy';
 
   @override
-  String get packageCode => 'MÃ£ gÃ³i cÆ°á»›c';
+  String get packageCode => 'Mã gói cước';
 
   @override
-  String get attention => 'LÆ°u Ã½';
+  String get attention => 'Lưu ý';
 
   @override
-  String get gatesInOut => 'Cá»•ng vÃ o / ra';
+  String get gatesInOut => 'Cổng vào / ra';
 
   @override
-  String get gateIn => 'Cá»•ng vÃ o';
+  String get gateIn => 'Cổng vào';
 
   @override
-  String get gateOut => 'Cá»•ng ra';
+  String get gateOut => 'Cổng ra';
 
   @override
-  String get notExitedYet => 'â€” ChÆ°a ra';
+  String get notExitedYet => '— Chưa ra';
 
   @override
-  String get parkingTime => 'Thá»i gian Ä‘á»— xe';
+  String get parkingTime => 'Thời gian đỗ xe';
 
   @override
-  String get entryTime => 'Thá»i gian vÃ o';
+  String get entryTime => 'Thời gian vào';
 
   @override
-  String get exitTime => 'Thá»i gian ra';
+  String get exitTime => 'Thời gian ra';
 
   @override
-  String get vehicleNotExited => 'â€” Xe chÆ°a ra khá»i bÃ£i';
+  String get vehicleNotExited => '— Xe chưa ra khỏi bãi';
 
   @override
-  String get totalDuration => 'Tá»•ng thá»i gian';
+  String get totalDuration => 'Tổng thời gian';
 
   @override
-  String get pleaseRetrieveVehicle => 'Vui lÃ²ng láº¥y xe ra khá»i bÃ£i';
+  String get pleaseRetrieveVehicle => 'Vui lòng lấy xe ra khỏi bãi';
 
   @override
   String gracePeriodRemaining(int mins, String secs) {
-    return 'Báº¡n cÃ²n ${mins}ph ${secs}s Ä‘á»ƒ rá»i bÃ£i Ä‘á»—';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Bạn còn ${mins}ph ${secs}s để rời bãi đỗ';
+  }
 
   @override
-  String get timeIn => 'LÃºc vÃ o';
+  String get timeIn => 'Lúc vào';
 
   @override
-  String get timeOut => 'LÃºc ra';
+  String get timeOut => 'Lúc ra';
 
   @override
-  String get noImageAvailable => 'ChÆ°a cÃ³ áº£nh';
+  String get noImageAvailable => 'Chưa có ảnh';
 
   @override
-  String get qrPayment => 'Thanh ToÃ¡n QR';
+  String get qrPayment => 'Thanh Toán QR';
 
   @override
-  String get scanToPayTitle => 'QuÃ©t mÃ£ Ä‘á»ƒ thanh toÃ¡n';
+  String get scanToPayTitle => 'Quét mã để thanh toán';
 
   @override
   String get scanToPaySubtitle =>
-      'Sá»­ dá»¥ng á»©ng dá»¥ng ngÃ¢n hÃ ng Ä‘á»ƒ quÃ©t mÃ£ QR bÃªn dÆ°á»›i.';
+      'Sử dụng ứng dụng ngân hàng để quét mã QR bên dưới.';
 
   @override
-  String get paymentInitError => 'Lá»—i khá»Ÿi táº¡o thanh toÃ¡n';
+  String get paymentInitError => 'Lỗi khởi tạo thanh toán';
 
   @override
-  String get transferInfo => 'ThÃ´ng tin chuyá»ƒn khoáº£n';
+  String get transferInfo => 'Thông tin chuyển khoản';
 
   @override
-  String get amount => 'Sá»‘ tiá»n';
+  String get amount => 'Số tiền';
 
   @override
-  String get transferContent => 'Ná»™i dung CK';
+  String get transferContent => 'Nội dung CK';
 
   @override
-  String get checkingPaymentStatus => 'Äang kiá»ƒm tra tráº¡ng thÃ¡i thanh toÃ¡n...';
+  String get checkingPaymentStatus => 'Đang kiểm tra trạng thái thanh toán...';
 
   @override
-  String get iHaveTransferred => 'TÃ´i Ä‘Ã£ chuyá»ƒn khoáº£n';
+  String get iHaveTransferred => 'Tôi đã chuyển khoản';
 
   @override
-  String get paymentSuccess => 'Thanh toÃ¡n thÃ nh cÃ´ng!';
+  String get paymentSuccess => 'Thanh toán thành công!';
 
   @override
   String get done => 'Xong';
 
   @override
   String get afterTransferHint =>
-      'Sau khi chuyá»ƒn khoáº£n, nháº¥n nÃºt bÃªn dÆ°á»›i Ä‘á»ƒ xÃ¡c nháº­n.';
+      'Sau khi chuyển khoản, nhấn nút bên dưới để xác nhận.';
 
   @override
-  String get noQrAvailable => 'KhÃ´ng cÃ³ QR';
+  String get noQrAvailable => 'Không có QR';
 
   @override
-  String get login => 'ÄÄƒng nháº­p';
+  String get login => 'Đăng nhập';
 
   @override
-  String get enterPhoneNumber => 'Nháº­p sá»‘ Ä‘iá»‡n thoáº¡i';
+  String get enterPhoneNumber => 'Nhập số điện thoại';
 
   @override
   String get phoneVerifyMessage =>
-      'Há»‡ thá»‘ng sáº½ kiá»ƒm tra tÃ i khoáº£n vÃ  chuyá»ƒn báº¡n Ä‘áº¿n bÆ°á»›c phÃ¹ há»£p.';
+      'Hệ thống sẽ kiểm tra tài khoản và chuyển bạn đến bước phù hợp.';
 
   @override
-  String get phoneLabel2 => 'Sá»‘ Ä‘iá»‡n thoáº¡i';
+  String get phoneLabel2 => 'Số điện thoại';
 
   @override
-  String get phoneExample => 'VÃ­ dá»¥: 0987654321';
+  String get phoneExample => 'Ví dụ: 0987654321';
 
   @override
-  String get continueBtn => 'Tiáº¿p tá»¥c';
+  String get continueBtn => 'Tiếp tục';
 
   @override
   String get noAccountMessage =>
-      'ChÆ°a cÃ³ tÃ i khoáº£n? Vui lÃ²ng liÃªn há»‡ quáº£n lÃ½ bÃ£i xe.';
+      'Chưa có tài khoản? Vui lòng liên hệ quản lý bãi xe.';
 
   @override
-  String get phoneVerifyError => 'Lá»—i xÃ¡c minh sá»‘ Ä‘iá»‡n thoáº¡i';
+  String get phoneVerifyError => 'Lỗi xác minh số điện thoại';
 
   @override
-  String get stepPhone => 'SÄT';
+  String get stepPhone => 'SĐT';
 
   @override
   String get stepOtp => 'OTP';
 
   @override
-  String get stepPassword => 'Máº­t kháº©u';
+  String get stepPassword => 'Mật khẩu';
 
   @override
-  String get activateAccount => 'KÃ­ch hoáº¡t tÃ i khoáº£n';
+  String get activateAccount => 'Kích hoạt tài khoản';
 
   @override
-  String get enterOtp => 'Nháº­p mÃ£ OTP';
+  String get enterOtp => 'Nhập mã OTP';
 
   @override
   String otpSentTo(String phone) {
-    return 'MÃ£ xÃ¡c thá»±c Ä‘Ã£ Ä‘Æ°á»£c gá»­i Ä‘áº¿n $phone.';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Mã xác thực đã được gửi đến $phone.';
+  }
 
   @override
-  String get otpCode => 'MÃ£ OTP';
+  String get otpCode => 'Mã OTP';
 
   @override
-  String get enter6Digits => 'Nháº­p 6 chá»¯ sá»‘';
+  String get enter6Digits => 'Nhập 6 chữ số';
 
   @override
-  String get otpVerifyError => 'Lá»—i xÃ¡c minh OTP';
+  String get otpVerifyError => 'Lỗi xác minh OTP';
 
   @override
-  String get otpResent => 'ÄÃ£ gá»­i láº¡i mÃ£ OTP';
+  String get otpResent => 'Đã gửi lại mã OTP';
 
   @override
-  String get resendOtp => 'Gá»­i láº¡i mÃ£ OTP';
+  String get resendOtp => 'Gửi lại mã OTP';
 
   @override
   String resendOtpIn(int seconds) {
-    return 'Gá»­i láº¡i mÃ£ OTP trong $seconds giÃ¢y';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Gửi lại mã OTP trong $seconds giây';
+  }
 
   @override
-  String get createPassword => 'Táº¡o máº­t kháº©u';
+  String get createPassword => 'Tạo mật khẩu';
 
   @override
-  String get enterPassword => 'Nháº­p máº­t kháº©u';
+  String get enterPassword => 'Nhập mật khẩu';
 
   @override
   String createPasswordFor(String phone) {
-    return 'Táº¡o máº­t kháº©u Ä‘á»ƒ kÃ­ch hoáº¡t tÃ i khoáº£n $phone.';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Tạo mật khẩu để kích hoạt tài khoản $phone.';
+  }
 
   @override
   String loginWith(String phone) {
-    return 'ÄÄƒng nháº­p vá»›i sá»‘ $phone.';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Đăng nhập với số $phone.';
+  }
 
   @override
-  String get password => 'Máº­t kháº©u';
+  String get password => 'Mật khẩu';
 
   @override
-  String get createNewPassword => 'Táº¡o máº­t kháº©u má»›i';
+  String get createNewPassword => 'Tạo mật khẩu mới';
 
   @override
-  String get loginFailed => 'ÄÄƒng nháº­p tháº¥t báº¡i';
+  String get loginFailed => 'Đăng nhập thất bại';
 
   @override
-  String get forgotPassword => 'QuÃªn máº­t kháº©u?';
+  String get forgotPassword => 'Quên mật khẩu?';
 
   @override
-  String get changePasswordTitle => 'Äá»•i máº­t kháº©u';
+  String get changePasswordTitle => 'Đổi mật khẩu';
 
   @override
-  String get accountSecurity => 'Báº£o máº­t tÃ i khoáº£n';
+  String get accountSecurity => 'Bảo mật tài khoản';
 
   @override
-  String get passwordMinLength => 'Máº­t kháº©u má»›i pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±.';
+  String get passwordMinLength => 'Mật khẩu mới phải có ít nhất 6 ký tự.';
 
   @override
-  String get currentPassword => 'Máº­t kháº©u hiá»‡n táº¡i';
+  String get currentPassword => 'Mật khẩu hiện tại';
 
   @override
-  String get enterCurrentPassword => 'Nháº­p máº­t kháº©u hiá»‡n táº¡i';
+  String get enterCurrentPassword => 'Nhập mật khẩu hiện tại';
 
   @override
-  String get pleaseEnterOldPassword => 'Vui lÃ²ng nháº­p máº­t kháº©u cÅ©';
+  String get pleaseEnterOldPassword => 'Vui lòng nhập mật khẩu cũ';
 
   @override
-  String get newPassword => 'Máº­t kháº©u má»›i';
+  String get newPassword => 'Mật khẩu mới';
 
   @override
-  String get enterNewPassword => 'Nháº­p máº­t kháº©u má»›i';
+  String get enterNewPassword => 'Nhập mật khẩu mới';
 
   @override
-  String get pleaseEnterNewPassword => 'Vui lÃ²ng nháº­p máº­t kháº©u má»›i';
+  String get pleaseEnterNewPassword => 'Vui lòng nhập mật khẩu mới';
 
   @override
-  String get passwordTooShort => 'Máº­t kháº©u pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±';
+  String get passwordTooShort => 'Mật khẩu phải có ít nhất 6 ký tự';
 
   @override
-  String get passwordMustDiffer => 'Máº­t kháº©u má»›i khÃ´ng Ä‘Æ°á»£c trÃ¹ng máº­t kháº©u cÅ©';
+  String get passwordMustDiffer => 'Mật khẩu mới không được trùng mật khẩu cũ';
 
   @override
-  String get confirmNewPassword => 'XÃ¡c nháº­n máº­t kháº©u má»›i';
+  String get confirmNewPassword => 'Xác nhận mật khẩu mới';
 
   @override
-  String get reenterNewPassword => 'Nháº­p láº¡i máº­t kháº©u má»›i';
+  String get reenterNewPassword => 'Nhập lại mật khẩu mới';
 
   @override
-  String get pleaseConfirmPassword => 'Vui lÃ²ng xÃ¡c nháº­n máº­t kháº©u má»›i';
+  String get pleaseConfirmPassword => 'Vui lòng xác nhận mật khẩu mới';
 
   @override
-  String get passwordMismatch => 'Máº­t kháº©u xÃ¡c nháº­n khÃ´ng khá»›p';
+  String get passwordMismatch => 'Mật khẩu xác nhận không khớp';
 
   @override
-  String get processing => 'Äang xá»­ lÃ½...';
+  String get processing => 'Đang xử lý...';
 
   @override
-  String get confirmChangePassword => 'XÃ¡c nháº­n Ä‘á»•i máº­t kháº©u';
+  String get confirmChangePassword => 'Xác nhận đổi mật khẩu';
 
   @override
-  String get changePasswordSuccess => 'Äá»•i máº­t kháº©u thÃ nh cÃ´ng!';
+  String get changePasswordSuccess => 'Đổi mật khẩu thành công!';
 
   @override
-  String get changePasswordFailed => 'Äá»•i máº­t kháº©u tháº¥t báº¡i.';
+  String get changePasswordFailed => 'Đổi mật khẩu thất bại.';
 
   @override
-  String get packageLabel => 'GÃ³i:';
+  String get packageLabel => 'Gói:';
 
   @override
-  String get validityPeriod => 'Hiá»‡u lá»±c:';
+  String get validityPeriod => 'Hiệu lực:';
 
   @override
   String daysRemainingRenewNow(int days) {
-    return 'CÃ²n $days ngÃ y â€” Gia háº¡n ngay!';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Còn $days ngày — Gia hạn ngay!';
+  }
 
   @override
   String contractWithId(String id) {
-    return 'Há»£p Ä‘á»“ng $id';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Hợp đồng $id';
+  }
 
   @override
-  String get overviewInfo => 'ThÃ´ng tin tá»•ng quan';
+  String get overviewInfo => 'Thông tin tổng quan';
 
   @override
-  String get groupRepresentativeLabel => 'NhÃ³m / Ä‘áº¡i diá»‡n';
+  String get groupRepresentativeLabel => 'Nhóm / đại diện';
 
   @override
-  String get createdAtLabel => 'NgÃ y táº¡o';
+  String get createdAtLabel => 'Ngày tạo';
 
   @override
-  String get registeredVehiclesCountLabel => 'Sá»‘ xe Ä‘Äƒng kÃ½';
+  String get registeredVehiclesCountLabel => 'Số xe đăng ký';
 
   @override
   String vehiclesCountText(int count) {
     return '$count xe';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+  }
 
   @override
   String pendingPaymentsBannerTitle(int count) {
-    return 'Báº¡n cÃ³ $count gÃ³i cÆ°á»›c Ä‘ang chá» thanh toÃ¡n';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Bạn có $count gói cước đang chờ thanh toán';
+  }
 
   @override
   String get pendingPaymentsBannerSubtitle =>
-      'Vui lÃ²ng hoÃ n táº¥t thanh toÃ¡n Ä‘á»ƒ kÃ­ch hoáº¡t gÃ³i hoáº·c Há»§y giao dá»‹ch trong Lá»‹ch sá»­ Ä‘á»ƒ khÃ´i phá»¥c báº£n nhÃ¡p.';
+      'Vui lòng hoàn tất thanh toán để kích hoạt gói hoặc Hủy giao dịch trong Lịch sử để khôi phục bản nháp.';
 
   @override
-  String get goToHistoryTooltip => 'Äi tá»›i Lá»‹ch sá»­';
+  String get goToHistoryTooltip => 'Đi tới Lịch sử';
 
   @override
   String selectAllDraftsCount(int count) {
-    return 'Chá»n táº¥t cáº£ báº£n nhÃ¡p ($count)';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Chọn tất cả bản nháp ($count)';
+  }
 
   @override
   String draftsCountBadge(int count) {
-    return '$count báº£n nhÃ¡p';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return '$count bản nháp';
+  }
 
   @override
   String checkoutWithCount(int count) {
-    return 'Thanh toÃ¡n ($count xe)';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Thanh toán ($count xe)';
+  }
 
   @override
-  String get historyTitle => 'Lá»‹ch sá»­';
+  String get historyTitle => 'Lịch sử';
 
   @override
-  String get failedToLoadPaymentHistory => 'KhÃ´ng thá»ƒ táº£i lá»‹ch sá»­ thanh toÃ¡n';
+  String get failedToLoadPaymentHistory => 'Không thể tải lịch sử thanh toán';
 
   @override
-  String get retry => 'Thá»­ láº¡i';
+  String get retry => 'Thử lại';
 
   @override
-  String get noBillsYet => 'ChÆ°a cÃ³ hÃ³a Ä‘Æ¡n nÃ o';
+  String get noBillsYet => 'Chưa có hóa đơn nào';
 
   @override
   String get paymentHistorySubtitle =>
-      'CÃ¡c hÃ³a Ä‘Æ¡n thanh toÃ¡n sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.';
+      'Các hóa đơn thanh toán sẽ xuất hiện tại đây.';
 
   @override
-  String get pendingPaymentHeader => 'Chá» thanh toÃ¡n';
+  String get pendingPaymentHeader => 'Chờ thanh toán';
 
   @override
-  String get processedHeader => 'ÄÃ£ xá»­ lÃ½';
+  String get processedHeader => 'Đã xử lý';
 
   @override
-  String get continuePaymentButton => 'Thanh toÃ¡n tiáº¿p';
+  String get continuePaymentButton => 'Thanh toán tiếp';
 
   @override
-  String get cancelInvoiceDialogTitle => 'Há»§y hÃ³a Ä‘Æ¡n?';
+  String get cancelInvoiceDialogTitle => 'Hủy hóa đơn?';
 
   @override
   String cancelInvoiceDialogBody(String code) {
-    return 'HÃ³a Ä‘Æ¡n $code sáº½ bá»‹ há»§y. CÃ¡c gÃ³i cÆ°á»›c liÃªn quan sáº½ Ä‘Æ°á»£c hoÃ n vá» tráº¡ng thÃ¡i trÆ°á»›c Ä‘Ã³.';
-  
-  @override
-  String get enumBookingActive => 'Đang hoạt động';
-  @override
-  String get enumBookingExpired => 'Hết hạn';
-  @override
-  String get enumBookingPendingPayment => 'Chờ thanh toán';
-  @override
-  String get enumBookingCanceled => 'Đã huỷ';
-  @override
-  String get enumBookingPendingActivation => 'Chờ kích hoạt';
-  @override
-  String get enumBookingNeedsAttention => 'Cần chú ý';
-  @override
-  String get enumBookingPartialPayment => 'Thanh toán 1 phần';
-  @override
-  String get enumBookingDraft => 'Bản nháp';
-  @override
-  String get enumBookingComplete => 'Hoàn thành';
-  @override
-  String get enumPaymentPending => 'Chờ thanh toán';
-  @override
-  String get enumPaymentSuccess => 'Thành công';
-  @override
-  String get enumPaymentFailed => 'Thất bại';
-  @override
-  String get enumPaymentRefunded => 'Đã hoàn tiền';
-  @override
-  String get enumPaymentCanceled => 'Đã hủy';
-  @override
-  String get enumPaymentMethodCash => 'Tiền mặt';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Chuyển khoản';
-  @override
-  String get enumPaymentMethodCreditCard => 'Thẻ tín dụng';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Khác';
-  @override
-  String get enumSessionOngoing => 'Đang đỗ';
-  @override
-  String get enumSessionCompleted => 'Hoàn thành';
-  @override
-  String get enumVehicleActive => 'Còn hạn';
-  @override
-  String get enumVehicleExpiringSoon => 'Sắp hết hạn';
-  @override
-  String get enumVehicleExpired => 'Hết hạn';
-  @override
-  String get enumComplaintPending => 'Chờ xử lý';
-  @override
-  String get enumComplaintProcessing => 'Đang xử lý';
-  @override
-  String get enumComplaintResolved => 'Đã giải quyết';
-  @override
-  String get enumComplaintRejected => 'Từ chối';
-  @override
-  String get enumNotifDebt => 'Nhắc nợ';
-  @override
-  String get enumNotifSecurity => 'Cảnh báo an ninh';
-  @override
-  String get enumNotifSystem => 'Hệ thống';
-  @override
-  String get enumNotifBroadcast => 'Phát thanh';
-  @override
-  String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
-  @override
-  String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
-}
+    return 'Hóa đơn $code sẽ bị hủy. Các gói cước liên quan sẽ được hoàn về trạng thái trước đó.';
+  }
 
   @override
-  String get no => 'KhÃ´ng';
+  String get no => 'Không';
 
   @override
-  String get invoiceCancelSuccess => 'ÄÃ£ há»§y hÃ³a Ä‘Æ¡n thÃ nh cÃ´ng.';
+  String get invoiceCancelSuccess => 'Đã hủy hóa đơn thành công.';
 
   @override
-  String get invoiceCancelFailed => 'KhÃ´ng thá»ƒ há»§y hÃ³a Ä‘Æ¡n.';
+  String get invoiceCancelFailed => 'Không thể hủy hóa đơn.';
 
   @override
-  String get parkingHistoryTitle => 'Lá»‹ch sá»­ Ä‘á»— xe';
+  String get parkingHistoryTitle => 'Lịch sử đỗ xe';
 
   @override
-  String get filterButtonText => 'Lá»c';
+  String get filterButtonText => 'Lọc';
 
   @override
-  String get filterAppliedText => 'Äang Ã¡p dá»¥ng bá»™ lá»c';
+  String get filterAppliedText => 'Đang áp dụng bộ lọc';
 
   @override
-  String get clearFilterButton => 'XÃ³a lá»c';
+  String get clearFilterButton => 'Xóa lọc';
 
   @override
-  String get noParkingHistoryFound => 'KhÃ´ng tÃ¬m tháº¥y lá»‹ch sá»­ Ä‘á»— xe';
+  String get noParkingHistoryFound => 'Không tìm thấy lịch sử đỗ xe';
 
   @override
-  String get changeFilterSubtitle => 'Thá»­ thay Ä‘á»•i Ä‘iá»u kiá»‡n lá»c cá»§a báº¡n.';
+  String get changeFilterSubtitle => 'Thử thay đổi điều kiện lọc của bạn.';
 
   @override
-  String get searchFilterTitle => 'Bá»™ lá»c tÃ¬m kiáº¿m';
+  String get searchFilterTitle => 'Bộ lọc tìm kiếm';
 
   @override
-  String get timeRangeLabel => 'Khoáº£ng thá»i gian';
+  String get timeRangeLabel => 'Khoảng thời gian';
 
   @override
-  String get fromDateLabel => 'Tá»« ngÃ y';
+  String get fromDateLabel => 'Từ ngày';
 
   @override
-  String get toDateLabel => 'Äáº¿n ngÃ y';
+  String get toDateLabel => 'Đến ngày';
 
   @override
-  String get plateNumberLabel => 'Biá»ƒn sá»‘ xe';
+  String get plateNumberLabel => 'Biển số xe';
 
   @override
   String get plateNumberExample => 'VD: 30A-123.45';
 
   @override
-  String get resetFilterButton => 'Thiáº¿t láº­p láº¡i';
+  String get resetFilterButton => 'Thiết lập lại';
 
   @override
-  String get applyFilterButton => 'Ãp dá»¥ng';
+  String get applyFilterButton => 'Áp dụng';
 
   @override
-  String get failedToLoadData => 'Lá»—i táº£i dá»¯ liá»‡u';
+  String get failedToLoadData => 'Lỗi tải dữ liệu';
 
   @override
-  String get paidStatus => 'ÄÃ£ thanh toÃ¡n';
+  String get paidStatus => 'Đã thanh toán';
 
   @override
-  String get unpaidStatus => 'ChÆ°a tráº£';
-
+  String get unpaidStatus => 'Chưa trả';
   @override
   String get enumBookingActive => 'Đang hoạt động';
   @override

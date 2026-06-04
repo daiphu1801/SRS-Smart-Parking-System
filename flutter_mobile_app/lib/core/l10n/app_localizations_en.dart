@@ -1,4 +1,4 @@
-﻿// ignore: unused_import
+// ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
@@ -279,80 +279,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String complaintCodeLabel(String id) {
     return 'ID: $id';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get expiringSoonAlert => 'Package expiring soon';
@@ -360,80 +287,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String expiringSoonMessage(int count) {
     return 'You have $count vehicles expiring soon. Please renew to avoid interruption.';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get noVehiclesHome => 'No vehicles registered';
@@ -451,80 +305,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String daysLeft(int days) {
     return '$days days left';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get noParkingSession => 'No active session';
@@ -535,158 +316,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String entryTimeLabel(String time) {
     return 'Entry: $time';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String parkingDurationLabel(String duration) {
     return 'Duration: $duration';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get parkingSessionAction => 'Parking Session';
@@ -873,85 +508,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sessionDurationLabel => 'Duration:';
 
   @override
-  String get vehicleInLot => 'â€” Vehicle is in lot';
+  String get vehicleInLot => '— Vehicle is in lot';
 
   @override
   String gracePeriodPrompt(int mins, String secs) {
     return 'Please pick up vehicle in: ${mins}m ${secs}s';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get parkingSessionDetail => 'Parking Session Detail';
@@ -981,7 +543,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gateOut => 'Exit gate';
 
   @override
-  String get notExitedYet => 'â€” Not exited yet';
+  String get notExitedYet => '— Not exited yet';
 
   @override
   String get parkingTime => 'Parking time';
@@ -993,7 +555,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exitTime => 'Exit time';
 
   @override
-  String get vehicleNotExited => 'â€” Vehicle has not exited';
+  String get vehicleNotExited => '— Vehicle has not exited';
 
   @override
   String get totalDuration => 'Total duration';
@@ -1004,80 +566,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String gracePeriodRemaining(int mins, String secs) {
     return 'You have ${mins}m ${secs}s remaining to exit';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get timeIn => 'Entry';
@@ -1173,80 +662,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String otpSentTo(String phone) {
     return 'A verification code has been sent to $phone.';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get otpCode => 'OTP Code';
@@ -1266,80 +682,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String resendOtpIn(int seconds) {
     return 'Resend OTP in ${seconds}s';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get createPassword => 'Create Password';
@@ -1350,158 +693,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String createPasswordFor(String phone) {
     return 'Create password to activate account $phone.';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String loginWith(String phone) {
     return 'Login with number $phone.';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get password => 'Password';
@@ -1582,159 +779,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String daysRemainingRenewNow(int days) {
-    return 'Only $days days left â€” Renew now!';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+    return 'Only $days days left — Renew now!';
+  }
 
   @override
   String contractWithId(String id) {
     return 'Contract $id';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get overviewInfo => 'Overview';
@@ -1751,158 +802,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String vehiclesCountText(int count) {
     return '$count vehicles';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String pendingPaymentsBannerTitle(int count) {
     return 'You have $count packages pending payment';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get pendingPaymentsBannerSubtitle =>
@@ -1914,236 +819,17 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String selectAllDraftsCount(int count) {
     return 'Select all drafts ($count)';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String draftsCountBadge(int count) {
     return '$count drafts';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String checkoutWithCount(int count) {
     return 'Checkout ($count vehicles)';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get historyTitle => 'History';
@@ -2175,80 +861,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String cancelInvoiceDialogBody(String code) {
     return 'Invoice $code will be canceled. Related packages will be restored to their previous state.';
-  
-  @override
-  String get enumBookingActive => 'Active';
-  @override
-  String get enumBookingExpired => 'Expired';
-  @override
-  String get enumBookingPendingPayment => 'Pending Payment';
-  @override
-  String get enumBookingCanceled => 'Canceled';
-  @override
-  String get enumBookingPendingActivation => 'Pending Activation';
-  @override
-  String get enumBookingNeedsAttention => 'Needs Attention';
-  @override
-  String get enumBookingPartialPayment => 'Partial Payment';
-  @override
-  String get enumBookingDraft => 'Draft';
-  @override
-  String get enumBookingComplete => 'Complete';
-  @override
-  String get enumPaymentPending => 'Pending';
-  @override
-  String get enumPaymentSuccess => 'Success';
-  @override
-  String get enumPaymentFailed => 'Failed';
-  @override
-  String get enumPaymentRefunded => 'Refunded';
-  @override
-  String get enumPaymentCanceled => 'Canceled';
-  @override
-  String get enumPaymentMethodCash => 'Cash';
-  @override
-  String get enumPaymentMethodPayos => 'PayOS';
-  @override
-  String get enumPaymentMethodVnpay => 'VNPay';
-  @override
-  String get enumPaymentMethodBankTransfer => 'Bank Transfer';
-  @override
-  String get enumPaymentMethodCreditCard => 'Credit Card';
-  @override
-  String get enumPaymentMethodQr => 'VietQR';
-  @override
-  String get enumPaymentMethodOther => 'Other';
-  @override
-  String get enumSessionOngoing => 'Ongoing';
-  @override
-  String get enumSessionCompleted => 'Completed';
-  @override
-  String get enumVehicleActive => 'Active';
-  @override
-  String get enumVehicleExpiringSoon => 'Expiring Soon';
-  @override
-  String get enumVehicleExpired => 'Expired';
-  @override
-  String get enumComplaintPending => 'Pending';
-  @override
-  String get enumComplaintProcessing => 'Processing';
-  @override
-  String get enumComplaintResolved => 'Resolved';
-  @override
-  String get enumComplaintRejected => 'Rejected';
-  @override
-  String get enumNotifDebt => 'Debt Reminder';
-  @override
-  String get enumNotifSecurity => 'Security Alert';
-  @override
-  String get enumNotifSystem => 'System';
-  @override
-  String get enumNotifBroadcast => 'Broadcast';
-  @override
-  String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
-  @override
-  String errInvalidStatus(String status) => 'Invoice has status: $status';
-}
+  }
 
   @override
   String get no => 'No';
@@ -2309,7 +922,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unpaidStatus => 'Unpaid';
-
   @override
   String get enumBookingActive => 'Active';
   @override

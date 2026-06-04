@@ -1,1108 +1,430 @@
-﻿{
+{
   "@@locale": "vi",
-  "appTitle": "Äá»— xe thÃ´ng minh",
-  "monthlyContracts": "Há»£p Ä‘á»“ng gÃ³i thÃ¡ng",
-  "dataLoadError": "Lá»—i táº£i dá»¯ liá»‡u",
-  "noContractsYet": "ChÆ°a cÃ³ há»£p Ä‘á»“ng nÃ o",
-  "monthlyPackageSavesMoney": "GÃ³i gá»­i xe thÃ¡ng sáº½ giÃºp báº¡n tiáº¿t kiá»‡m chi phÃ­ gá»­i xe Ä‘Ã¡ng ká»ƒ.",
-  "vehicleList": "Danh sÃ¡ch phÆ°Æ¡ng tiá»‡n",
-  "addVehicle": "ThÃªm xe",
-  "noVehiclesYet": "ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n",
-  "clickAddVehicleToStart": "Nháº¥n \"ThÃªm xe\" Ä‘á»ƒ báº¯t Ä‘áº§u Ä‘Äƒng kÃ½ gÃ³i thÃ¡ng.",
-  "monthlyPackageDetails": "Chi tiáº¿t gÃ³i cÆ°á»›c thÃ¡ng",
-  "contract": "Há»£p Ä‘á»“ng",
-  "vehicleManagement": "Quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n",
-  "groupRepresentative": "NhÃ³m / Ä‘áº¡i diá»‡n:",
-  "createdAt": "NgÃ y táº¡o:",
-  "registeredVehiclesCount": "Sá»‘ xe Ä‘Äƒng kÃ½:",
+  "appTitle": "Đỗ xe thông minh",
+  "monthlyContracts": "Hợp đồng gói tháng",
+  "dataLoadError": "Lỗi tải dữ liệu",
+  "noContractsYet": "Chưa có hợp đồng nào",
+  "monthlyPackageSavesMoney": "Gói gửi xe tháng sẽ giúp bạn tiết kiệm chi phí gửi xe đáng kể.",
+  "vehicleList": "Danh sách phương tiện",
+  "addVehicle": "Thêm xe",
+  "noVehiclesYet": "Chưa có phương tiện",
+  "clickAddVehicleToStart": "Nhấn \"Thêm xe\" để bắt đầu đăng ký gói tháng.",
+  "monthlyPackageDetails": "Chi tiết gói cước tháng",
+  "contract": "Hợp đồng",
+  "vehicleManagement": "Quản lý phương tiện",
+  "groupRepresentative": "Nhóm / đại diện:",
+  "createdAt": "Ngày tạo:",
+  "registeredVehiclesCount": "Số xe đăng ký:",
   "vehicles": "xe",
-  "paymentMethod": "PhÆ°Æ¡ng thá»©c thanh toÃ¡n:",
-  "addVehicleToBooking": "ThÃªm xe vÃ o booking",
-  "bookingDetailList": "Danh sÃ¡ch Booking Detail",
-  "childAccounts": "TÃ i khoáº£n con",
-  "addChildAccount": "ThÃªm tÃ i khoáº£n con",
-  "fullName": "Há» vÃ  tÃªn",
-  "address": "Äá»‹a chá»‰",
-  "phoneNumber": "Sá»‘ Ä‘iá»‡n thoáº¡i",
-  "cancel": "Há»§y",
-  "add": "ThÃªm",
-  "nameAndPhoneRequired": "Há» tÃªn vÃ  sá»‘ Ä‘iá»‡n thoáº¡i lÃ  báº¯t buá»™c",
-  "childAccountAdded": "ÄÃ£ thÃªm tÃ i khoáº£n con",
-  "errorLoadingChildAccounts": "Lá»—i táº£i tÃ i khoáº£n con",
-  "noChildAccountsYet": "ChÆ°a cÃ³ tÃ i khoáº£n con",
-  "canAddChildAccountsForVehicles": "Báº¡n cÃ³ thá»ƒ thÃªm tÃ i khoáº£n con Ä‘á»ƒ quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n riÃªng.",
-  "pleaseEnterLicensePlate": "Vui lÃ²ng nháº­p biá»ƒn sá»‘ xe",
-  "addedToCartSuccessfully": "ÄÃ£ thÃªm vÃ o giá» hÃ ng thÃ nh cÃ´ng!",
-  "errorAddingVehicle": "CÃ³ lá»—i xáº£y ra khi thÃªm xe",
-  "addNewVehicleRegistration": "ThÃªm xe Ä‘Äƒng kÃ½ má»›i",
-  "vehicleInformation": "ThÃ´ng tin phÆ°Æ¡ng tiá»‡n",
-  "licensePlate": "Biá»ƒn sá»‘ xe",
-  "licensePlateExample": "VÃ­ dá»¥: 30A-123.45",
-  "vehicleType": "Loáº¡i xe",
-  "selectPackage": "Chá»n gÃ³i cÆ°á»›c",
-  "pleaseSelectVehicleTypeFirst": "Vui lÃ²ng chá»n loáº¡i xe trÆ°á»›c",
-  "noSuitablePackageForThisVehicleType": "KhÃ´ng cÃ³ gÃ³i cÆ°á»›c phÃ¹ há»£p cho loáº¡i xe nÃ y",
-  "addToCart": "ThÃªm vÃ o giá» hÃ ng",
-  "months": "thÃ¡ng",
-  "duration": "Thá»i háº¡n",
-  "validFrom": "Hiá»‡u lá»±c tá»«",
-  "validUntil": "Äáº¿n ngÃ y",
-  "total": "Tá»•ng cá»™ng",
-  "bookingDetailDetails": "Chi tiáº¿t Booking Detail",
-  "id": "MÃ£ sá»‘:",
+  "paymentMethod": "Phương thức thanh toán:",
+  "addVehicleToBooking": "Thêm xe vào booking",
+  "bookingDetailList": "Danh sách Booking Detail",
+  "childAccounts": "Tài khoản con",
+  "addChildAccount": "Thêm tài khoản con",
+  "fullName": "Họ và tên",
+  "address": "Địa chỉ",
+  "phoneNumber": "Số điện thoại",
+  "cancel": "Hủy",
+  "add": "Thêm",
+  "nameAndPhoneRequired": "Họ tên và số điện thoại là bắt buộc",
+  "childAccountAdded": "Đã thêm tài khoản con",
+  "errorLoadingChildAccounts": "Lỗi tải tài khoản con",
+  "noChildAccountsYet": "Chưa có tài khoản con",
+  "canAddChildAccountsForVehicles": "Bạn có thể thêm tài khoản con để quản lý phương tiện riêng.",
+  "pleaseEnterLicensePlate": "Vui lòng nhập biển số xe",
+  "addedToCartSuccessfully": "Đã thêm vào giỏ hàng thành công!",
+  "errorAddingVehicle": "Có lỗi xảy ra khi thêm xe",
+  "addNewVehicleRegistration": "Thêm xe đăng ký mới",
+  "vehicleInformation": "Thông tin phương tiện",
+  "licensePlate": "Biển số xe",
+  "licensePlateExample": "Ví dụ: 30A-123.45",
+  "vehicleType": "Loại xe",
+  "selectPackage": "Chọn gói cước",
+  "pleaseSelectVehicleTypeFirst": "Vui lòng chọn loại xe trước",
+  "noSuitablePackageForThisVehicleType": "Không có gói cước phù hợp cho loại xe này",
+  "addToCart": "Thêm vào giỏ hàng",
+  "months": "tháng",
+  "duration": "Thời hạn",
+  "validFrom": "Hiệu lực từ",
+  "validUntil": "Đến ngày",
+  "total": "Tổng cộng",
+  "bookingDetailDetails": "Chi tiết Booking Detail",
+  "id": "Mã số:",
   "bookingDetailId": "Booking Detail ID:",
   "bookingId": "Booking ID:",
   "customerId": "Customer ID:",
   "packagePriceId": "Package Price ID:",
-  "licensePlateLabel": "Biá»ƒn sá»‘ xe:",
-  "vehicleTypeLabel": "Loáº¡i xe:",
-  "packageTypeLabel": "GÃ³i cÆ°á»›c:",
-  "durationLabel": "Thá»i háº¡n:",
-  "statusLabel": "Tráº¡ng thÃ¡i:",
-  "statusActive": "CÃ²n háº¡n",
-  "statusExpiringSoon": "Sáº¯p háº¿t háº¡n",
-  "statusExpired": "Háº¿t háº¡n",
-  "priceLabel": "GiÃ¡ cÆ°á»›c:",
-  "startDateLabel": "NgÃ y báº¯t Ä‘áº§u:",
-  "endDateLabel": "NgÃ y káº¿t thÃºc:",
-  "pay": "Thanh toÃ¡n",
-  "pendingPayment": "Äang chá» thanh toÃ¡n",
-  "renewContract": "Gia háº¡n há»£p Ä‘á»“ng",
-  "renewSuccess": "Gia háº¡n thÃ nh cÃ´ng!",
-  "renewFailedServerUpdate": "Gia háº¡n tháº¥t báº¡i á»Ÿ bÆ°á»›c cáº­p nháº­t server.",
-  "renewBookingDetail": "Gia háº¡n Booking Detail",
-  "packageType": "Loáº¡i gÃ³i",
-  "renew": "Gia háº¡n",
-  "selectRenewalMonths": "Chá»n sá»‘ thÃ¡ng gia háº¡n:",
-  "totalAmount": "Tá»•ng tiá»n:",
-  "payAndRenew": "Thanh toÃ¡n & Gia háº¡n",
-
-  "welcomeMorning": "ChÃ o buá»•i sÃ¡ng",
-  "welcomeAfternoon": "ChÃ o buá»•i chiá»u",
-  "welcomeEvening": "ChÃ o buá»•i tá»‘i",
-  "accountVerified": "TÃ i khoáº£n Ä‘Ã£ xÃ¡c thá»±c",
-  "myVehicles": "PhÆ°Æ¡ng tiá»‡n cá»§a báº¡n",
-  "currentParkingSession": "PhiÃªn Ä‘á»— xe hiá»‡n táº¡i",
-  "quickActions": "Thao tÃ¡c nhanh",
-  "tryAgain": "Thá»­ láº¡i",
-  "complaintStatusPending": "Chá» xá»­ lÃ½",
-  "complaintStatusProcessing": "Äang xá»­ lÃ½",
-  "complaintStatusResolved": "ÄÃ£ giáº£i quyáº¿t",
-  "complaintStatusRejected": "Tá»« chá»‘i",
-  "complaintCodeLabel": "MÃ£: {id}",
-  "@complaintCodeLabel": { "placeholders": { "id": { "type": "String" } } },
-  "expiringSoonAlert": "Sáº¯p háº¿t háº¡n gÃ³i cÆ°á»›c",
-  "expiringSoonMessage": "Báº¡n cÃ³ {count} xe sáº¯p háº¿t háº¡n. Vui lÃ²ng gia háº¡n Ä‘á»ƒ khÃ´ng bá»‹ giÃ¡n Ä‘oáº¡n.",
-  "@expiringSoonMessage": { "placeholders": { "count": { "type": "int" } } },
-  "noVehiclesHome": "ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n",
-  "noVehiclesRegistered": "Báº¡n chÆ°a Ä‘Äƒng kÃ½ xe nÃ o vÃ o há»‡ thá»‘ng.",
-  "defaultPackage": "GÃ³i cÆ°á»›c máº·c Ä‘á»‹nh",
-  "expired": "ÄÃ£ háº¿t háº¡n",
-  "daysLeft": "CÃ²n {days} ngÃ y",
-  "@daysLeft": { "placeholders": { "days": { "type": "int" } } },
-  "noParkingSession": "KhÃ´ng cÃ³ phiÃªn Ä‘á»— xe",
-  "notInAnyParkingLot": "Báº¡n chÆ°a vÃ o bÃ£i Ä‘á»— xe nÃ o.",
-  "entryTimeLabel": "VÃ o lÃºc: {time}",
-  "@entryTimeLabel": { "placeholders": { "time": { "type": "String" } } },
-  "parkingDurationLabel": "Thá»i gian Ä‘á»—: {duration}",
-  "@parkingDurationLabel": { "placeholders": { "duration": { "type": "String" } } },
-  "parkingSessionAction": "PhiÃªn Ä‘á»— xe",
-  "billingAction": "HÃ³a Ä‘Æ¡n",
-
-  "navHome": "Trang chá»§",
-  "navParking": "PhiÃªn Ä‘á»— xe",
-  "navPackages": "GÃ³i cÆ°á»›c",
-  "navHistory": "Lá»‹ch sá»­",
-  "navAccount": "TÃ i khoáº£n",
-
-  "accountTitle": "TÃ i khoáº£n",
-  "errorLoadingProfile": "Lá»—i táº£i há»“ sÆ¡",
-  "settingsAndSupport": "CÃ i Ä‘áº·t & Há»— trá»£",
-  "profileDetails": "Chi tiáº¿t há»“ sÆ¡",
-  "profileDetailsSubtitle": "Xem thÃ´ng tin Ä‘áº§y Ä‘á»§, CCCD, Ä‘á»‹a chá»‰",
-  "childAccountsManage": "Quáº£n lÃ½ tÃ i khoáº£n con vÃ  phÆ°Æ¡ng tiá»‡n",
-  "changePassword": "Äá»•i máº­t kháº©u",
-  "changePasswordSubtitle": "Cáº­p nháº­t máº­t kháº©u báº£o máº­t",
-  "supportAndComplaints": "Há»— trá»£ & Khiáº¿u náº¡i",
-  "supportAndComplaintsSubtitle": "Gá»­i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p",
-  "notifications": "ThÃ´ng bÃ¡o",
-  "notificationsSubtitle": "Quáº£n lÃ½ thÃ´ng bÃ¡o",
-  "logout": "ÄÄƒng xuáº¥t",
-  "editProfileTooltip": "Sá»­a há»“ sÆ¡",
-  "phoneLabel": "Äiá»‡n thoáº¡i",
-  "groupLabel": "NhÃ³m",
-
-  "history": "Lá»‹ch sá»­",
-
-  "complaintsFeedback": "Khiáº¿u náº¡i / GÃ³p Ã½",
-  "filter": "Lá»c",
-  "noComplaintsYet": "ChÆ°a cÃ³ khiáº¿u náº¡i nÃ o",
-  "complaintsFeedbackEncourage": "Má»i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p cá»§a báº¡n Ä‘á»u giÃºp chÃºng tÃ´i cáº£i thiá»‡n dá»‹ch vá»¥.",
-  "createComplaint": "Táº¡o khiáº¿u náº¡i",
-  "submitNewComplaint": "Gá»­i Khiáº¿u náº¡i má»›i",
-  "complaintsListenMessage": "ChÃºng tÃ´i luÃ´n láº¯ng nghe Ã½ kiáº¿n cá»§a báº¡n Ä‘á»ƒ cáº£i thiá»‡n cháº¥t lÆ°á»£ng dá»‹ch vá»¥.",
-  "complaintTitle": "TiÃªu Ä‘á»",
-  "complaintTitlePlaceholder": "VD: Lá»—i nháº­n diá»‡n biá»ƒn sá»‘ cá»•ng A",
-  "pleaseEnterTitle": "Vui lÃ²ng nháº­p tiÃªu Ä‘á»",
-  "complaintContent": "Ná»™i dung pháº£n Ã¡nh",
-  "complaintContentPlaceholder": "MÃ´ táº£ chi tiáº¿t váº¥n Ä‘á» báº¡n gáº·p pháº£i...",
-  "pleaseEnterContent": "Vui lÃ²ng nháº­p ná»™i dung",
-  "attachedImages": "HÃ¬nh áº£nh Ä‘Ã­nh kÃ¨m (náº¿u cÃ³)",
-  "tapToUploadImage": "Nháº¥n Ä‘á»ƒ táº£i áº£nh lÃªn",
-  "imagePickerInDev": "Chá»©c nÄƒng chá»n áº£nh Ä‘ang Ä‘Æ°á»£c phÃ¡t triá»ƒn",
-  "submitComplaint": "Gá»­i khiáº¿u náº¡i",
-  "complaintSubmitSuccess": "Gá»­i khiáº¿u náº¡i thÃ nh cÃ´ng! ChÃºng tÃ´i sáº½ xá»­ lÃ½ sá»›m nháº¥t.",
-  "complaintSubmitError": "CÃ³ lá»—i xáº£y ra, vui lÃ²ng thá»­ láº¡i",
-
-  "notifications": "ThÃ´ng bÃ¡o",
-  "readAll": "Äá»c táº¥t cáº£",
-  "cannotLoadNotifications": "KhÃ´ng thá»ƒ táº£i thÃ´ng bÃ¡o",
-  "noNotificationsYet": "ChÆ°a cÃ³ thÃ´ng bÃ¡o nÃ o",
-  "systemNotificationsAppearHere": "CÃ¡c thÃ´ng bÃ¡o há»‡ thá»‘ng sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.",
-
-  "parkingSessions": "PhiÃªn Ä‘á»— xe",
-  "filterAll": "Táº¥t cáº£",
-  "filterOngoing": "Äang Ä‘á»—",
-  "filterCompleted": "HoÃ n thÃ nh",
-  "noParkingSessions": "ChÆ°a cÃ³ phiÃªn Ä‘á»— xe nÃ o",
-  "parkingHistoryAppearHere": "Lá»‹ch sá»­ phiÃªn Ä‘á»— xe cá»§a báº¡n sáº½ xuáº¥t hiá»‡n á»Ÿ Ä‘Ã¢y.",
-  "noFilterResults": "KhÃ´ng cÃ³ káº¿t quáº£",
-  "noMatchingParkingSession": "KhÃ´ng tÃ¬m tháº¥y phiÃªn Ä‘á»— xe nÃ o phÃ¹ há»£p vá»›i bá»™ lá»c.",
-  "manualGateOpen": "Má»Ÿ cá»•ng thá»§ cÃ´ng",
-  "entryLabel": "VÃ o:",
+  "licensePlateLabel": "Biển số xe:",
+  "vehicleTypeLabel": "Loại xe:",
+  "packageTypeLabel": "Gói cước:",
+  "durationLabel": "Thời hạn:",
+  "statusLabel": "Trạng thái:",
+  "statusActive": "Còn hạn",
+  "statusExpiringSoon": "Sắp hết hạn",
+  "statusExpired": "Hết hạn",
+  "priceLabel": "Giá cước:",
+  "startDateLabel": "Ngày bắt đầu:",
+  "endDateLabel": "Ngày kết thúc:",
+  "pay": "Thanh toán",
+  "pendingPayment": "Đang chờ thanh toán",
+  "renewContract": "Gia hạn hợp đồng",
+  "renewSuccess": "Gia hạn thành công!",
+  "renewFailedServerUpdate": "Gia hạn thất bại ở bước cập nhật server.",
+  "renewBookingDetail": "Gia hạn Booking Detail",
+  "packageType": "Loại gói",
+  "renew": "Gia hạn",
+  "selectRenewalMonths": "Chọn số tháng gia hạn:",
+  "totalAmount": "Tổng tiền:",
+  "payAndRenew": "Thanh toán & Gia hạn",
+  "welcomeMorning": "Chào buổi sáng",
+  "welcomeAfternoon": "Chào buổi chiều",
+  "welcomeEvening": "Chào buổi tối",
+  "accountVerified": "Tài khoản đã xác thực",
+  "myVehicles": "Phương tiện của bạn",
+  "currentParkingSession": "Phiên đỗ xe hiện tại",
+  "quickActions": "Thao tác nhanh",
+  "tryAgain": "Thử lại",
+  "complaintStatusPending": "Chờ xử lý",
+  "complaintStatusProcessing": "Đang xử lý",
+  "complaintStatusResolved": "Đã giải quyết",
+  "complaintStatusRejected": "Từ chối",
+  "complaintCodeLabel": "Mã: {id}",
+  "@complaintCodeLabel": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "expiringSoonAlert": "Sắp hết hạn gói cước",
+  "expiringSoonMessage": "Bạn có {count} xe sắp hết hạn. Vui lòng gia hạn để không bị gián đoạn.",
+  "@expiringSoonMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noVehiclesHome": "Chưa có phương tiện",
+  "noVehiclesRegistered": "Bạn chưa đăng ký xe nào vào hệ thống.",
+  "defaultPackage": "Gói cước mặc định",
+  "expired": "Đã hết hạn",
+  "daysLeft": "Còn {days} ngày",
+  "@daysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "noParkingSession": "Không có phiên đỗ xe",
+  "notInAnyParkingLot": "Bạn chưa vào bãi đỗ xe nào.",
+  "entryTimeLabel": "Vào lúc: {time}",
+  "@entryTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingDurationLabel": "Thời gian đỗ: {duration}",
+  "@parkingDurationLabel": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingSessionAction": "Phiên đỗ xe",
+  "billingAction": "Hóa đơn",
+  "navHome": "Trang chủ",
+  "navParking": "Phiên đỗ xe",
+  "navPackages": "Gói cước",
+  "navHistory": "Lịch sử",
+  "navAccount": "Tài khoản",
+  "accountTitle": "Tài khoản",
+  "errorLoadingProfile": "Lỗi tải hồ sơ",
+  "settingsAndSupport": "Cài đặt & Hỗ trợ",
+  "profileDetails": "Chi tiết hồ sơ",
+  "profileDetailsSubtitle": "Xem thông tin đầy đủ, CCCD, địa chỉ",
+  "childAccountsManage": "Quản lý tài khoản con và phương tiện",
+  "changePassword": "Đổi mật khẩu",
+  "changePasswordSubtitle": "Cập nhật mật khẩu bảo mật",
+  "supportAndComplaints": "Hỗ trợ & Khiếu nại",
+  "supportAndComplaintsSubtitle": "Gửi ý kiến đóng góp",
+  "notifications": "Thông báo",
+  "notificationsSubtitle": "Quản lý thông báo",
+  "logout": "Đăng xuất",
+  "editProfileTooltip": "Sửa hồ sơ",
+  "phoneLabel": "Điện thoại",
+  "groupLabel": "Nhóm",
+  "history": "Lịch sử",
+  "complaintsFeedback": "Khiếu nại / Góp ý",
+  "filter": "Lọc",
+  "noComplaintsYet": "Chưa có khiếu nại nào",
+  "complaintsFeedbackEncourage": "Mọi ý kiến đóng góp của bạn đều giúp chúng tôi cải thiện dịch vụ.",
+  "createComplaint": "Tạo khiếu nại",
+  "submitNewComplaint": "Gửi Khiếu nại mới",
+  "complaintsListenMessage": "Chúng tôi luôn lắng nghe ý kiến của bạn để cải thiện chất lượng dịch vụ.",
+  "complaintTitle": "Tiêu đề",
+  "complaintTitlePlaceholder": "VD: Lỗi nhận diện biển số cổng A",
+  "pleaseEnterTitle": "Vui lòng nhập tiêu đề",
+  "complaintContent": "Nội dung phản ánh",
+  "complaintContentPlaceholder": "Mô tả chi tiết vấn đề bạn gặp phải...",
+  "pleaseEnterContent": "Vui lòng nhập nội dung",
+  "attachedImages": "Hình ảnh đính kèm (nếu có)",
+  "tapToUploadImage": "Nhấn để tải ảnh lên",
+  "imagePickerInDev": "Chức năng chọn ảnh đang được phát triển",
+  "submitComplaint": "Gửi khiếu nại",
+  "complaintSubmitSuccess": "Gửi khiếu nại thành công! Chúng tôi sẽ xử lý sớm nhất.",
+  "complaintSubmitError": "Có lỗi xảy ra, vui lòng thử lại",
+  "readAll": "Đọc tất cả",
+  "cannotLoadNotifications": "Không thể tải thông báo",
+  "noNotificationsYet": "Chưa có thông báo nào",
+  "systemNotificationsAppearHere": "Các thông báo hệ thống sẽ xuất hiện tại đây.",
+  "parkingSessions": "Phiên đỗ xe",
+  "filterAll": "Tất cả",
+  "filterOngoing": "Đang đỗ",
+  "filterCompleted": "Hoàn thành",
+  "noParkingSessions": "Chưa có phiên đỗ xe nào",
+  "parkingHistoryAppearHere": "Lịch sử phiên đỗ xe của bạn sẽ xuất hiện ở đây.",
+  "noFilterResults": "Không có kết quả",
+  "noMatchingParkingSession": "Không tìm thấy phiên đỗ xe nào phù hợp với bộ lọc.",
+  "manualGateOpen": "Mở cổng thủ công",
+  "entryLabel": "Vào:",
   "exitLabel": "Ra:",
-  "sessionDurationLabel": "Thá»i gian:",
-  "vehicleInLot": "â€” Xe Ä‘ang trong bÃ£i",
-  "gracePeriodPrompt": "Vui lÃ²ng láº¥y xe trong: {mins}ph {secs}s",
-  "@gracePeriodPrompt": { "placeholders": { "mins": { "type": "int" }, "secs": { "type": "String" } } },
-  "parkingSessionDetail": "Chi tiáº¿t phiÃªn Ä‘á»— xe",
-  "lprCameraImage": "áº¢nh Camera biá»ƒn sá»‘ xe",
-  "car": "Ã” tÃ´",
-  "motorbike": "Xe mÃ¡y",
-  "packageCode": "MÃ£ gÃ³i cÆ°á»›c",
-  "attention": "LÆ°u Ã½",
-  "gatesInOut": "Cá»•ng vÃ o / ra",
-  "gateIn": "Cá»•ng vÃ o",
-  "gateOut": "Cá»•ng ra",
-  "notExitedYet": "â€” ChÆ°a ra",
-  "parkingTime": "Thá»i gian Ä‘á»— xe",
-  "entryTime": "Thá»i gian vÃ o",
-  "exitTime": "Thá»i gian ra",
-  "vehicleNotExited": "â€” Xe chÆ°a ra khá»i bÃ£i",
-  "totalDuration": "Tá»•ng thá»i gian",
-  "pleaseRetrieveVehicle": "Vui lÃ²ng láº¥y xe ra khá»i bÃ£i",
-  "gracePeriodRemaining": "Báº¡n cÃ²n {mins}ph {secs}s Ä‘á»ƒ rá»i bÃ£i Ä‘á»—",
-  "@gracePeriodRemaining": { "placeholders": { "mins": { "type": "int" }, "secs": { "type": "String" } } },
-  "timeIn": "LÃºc vÃ o",
-  "timeOut": "LÃºc ra",
-  "noImageAvailable": "ChÆ°a cÃ³ áº£nh",
-
-  "qrPayment": "Thanh ToÃ¡n QR",
-  "scanToPayTitle": "QuÃ©t mÃ£ Ä‘á»ƒ thanh toÃ¡n",
-  "scanToPaySubtitle": "Sá»­ dá»¥ng á»©ng dá»¥ng ngÃ¢n hÃ ng Ä‘á»ƒ quÃ©t mÃ£ QR bÃªn dÆ°á»›i.",
-  "paymentInitError": "Lá»—i khá»Ÿi táº¡o thanh toÃ¡n",
-  "transferInfo": "ThÃ´ng tin chuyá»ƒn khoáº£n",
-  "amount": "Sá»‘ tiá»n",
-  "transferContent": "Ná»™i dung CK",
-  "checkingPaymentStatus": "Äang kiá»ƒm tra tráº¡ng thÃ¡i thanh toÃ¡n...",
-  "iHaveTransferred": "TÃ´i Ä‘Ã£ chuyá»ƒn khoáº£n",
-  "paymentSuccess": "Thanh toÃ¡n thÃ nh cÃ´ng!",
+  "sessionDurationLabel": "Thời gian:",
+  "vehicleInLot": "— Xe đang trong bãi",
+  "gracePeriodPrompt": "Vui lòng lấy xe trong: {mins}ph {secs}s",
+  "@gracePeriodPrompt": {
+    "placeholders": {
+      "mins": {
+        "type": "int"
+      },
+      "secs": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingSessionDetail": "Chi tiết phiên đỗ xe",
+  "lprCameraImage": "Ảnh Camera biển số xe",
+  "car": "Ô tô",
+  "motorbike": "Xe máy",
+  "packageCode": "Mã gói cước",
+  "attention": "Lưu ý",
+  "gatesInOut": "Cổng vào / ra",
+  "gateIn": "Cổng vào",
+  "gateOut": "Cổng ra",
+  "notExitedYet": "— Chưa ra",
+  "parkingTime": "Thời gian đỗ xe",
+  "entryTime": "Thời gian vào",
+  "exitTime": "Thời gian ra",
+  "vehicleNotExited": "— Xe chưa ra khỏi bãi",
+  "totalDuration": "Tổng thời gian",
+  "pleaseRetrieveVehicle": "Vui lòng lấy xe ra khỏi bãi",
+  "gracePeriodRemaining": "Bạn còn {mins}ph {secs}s để rời bãi đỗ",
+  "@gracePeriodRemaining": {
+    "placeholders": {
+      "mins": {
+        "type": "int"
+      },
+      "secs": {
+        "type": "String"
+      }
+    }
+  },
+  "timeIn": "Lúc vào",
+  "timeOut": "Lúc ra",
+  "noImageAvailable": "Chưa có ảnh",
+  "qrPayment": "Thanh Toán QR",
+  "scanToPayTitle": "Quét mã để thanh toán",
+  "scanToPaySubtitle": "Sử dụng ứng dụng ngân hàng để quét mã QR bên dưới.",
+  "paymentInitError": "Lỗi khởi tạo thanh toán",
+  "transferInfo": "Thông tin chuyển khoản",
+  "amount": "Số tiền",
+  "transferContent": "Nội dung CK",
+  "checkingPaymentStatus": "Đang kiểm tra trạng thái thanh toán...",
+  "iHaveTransferred": "Tôi đã chuyển khoản",
+  "paymentSuccess": "Thanh toán thành công!",
   "done": "Xong",
-  "afterTransferHint": "Sau khi chuyá»ƒn khoáº£n, nháº¥n nÃºt bÃªn dÆ°á»›i Ä‘á»ƒ xÃ¡c nháº­n.",
-  "noQrAvailable": "KhÃ´ng cÃ³ QR",
-
-  "login": "ÄÄƒng nháº­p",
-  "enterPhoneNumber": "Nháº­p sá»‘ Ä‘iá»‡n thoáº¡i",
-  "phoneVerifyMessage": "Há»‡ thá»‘ng sáº½ kiá»ƒm tra tÃ i khoáº£n vÃ  chuyá»ƒn báº¡n Ä‘áº¿n bÆ°á»›c phÃ¹ há»£p.",
-  "phoneLabel2": "Sá»‘ Ä‘iá»‡n thoáº¡i",
-  "phoneExample": "VÃ­ dá»¥: 0987654321",
-  "continueBtn": "Tiáº¿p tá»¥c",
-  "noAccountMessage": "ChÆ°a cÃ³ tÃ i khoáº£n? Vui lÃ²ng liÃªn há»‡ quáº£n lÃ½ bÃ£i xe.",
-  "phoneVerifyError": "Lá»—i xÃ¡c minh sá»‘ Ä‘iá»‡n thoáº¡i",
-  "stepPhone": "SÄT",
+  "afterTransferHint": "Sau khi chuyển khoản, nhấn nút bên dưới để xác nhận.",
+  "noQrAvailable": "Không có QR",
+  "login": "Đăng nhập",
+  "enterPhoneNumber": "Nhập số điện thoại",
+  "phoneVerifyMessage": "Hệ thống sẽ kiểm tra tài khoản và chuyển bạn đến bước phù hợp.",
+  "phoneLabel2": "Số điện thoại",
+  "phoneExample": "Ví dụ: 0987654321",
+  "continueBtn": "Tiếp tục",
+  "noAccountMessage": "Chưa có tài khoản? Vui lòng liên hệ quản lý bãi xe.",
+  "phoneVerifyError": "Lỗi xác minh số điện thoại",
+  "stepPhone": "SĐT",
   "stepOtp": "OTP",
-  "stepPassword": "Máº­t kháº©u",
-
-  "activateAccount": "KÃ­ch hoáº¡t tÃ i khoáº£n",
-  "enterOtp": "Nháº­p mÃ£ OTP",
-  "otpSentTo": "MÃ£ xÃ¡c thá»±c Ä‘Ã£ Ä‘Æ°á»£c gá»­i Ä‘áº¿n {phone}.",
-  "@otpSentTo": { "placeholders": { "phone": { "type": "String" } } },
-  "otpCode": "MÃ£ OTP",
-  "enter6Digits": "Nháº­p 6 chá»¯ sá»‘",
-  "otpVerifyError": "Lá»—i xÃ¡c minh OTP",
-  "otpResent": "ÄÃ£ gá»­i láº¡i mÃ£ OTP",
-  "resendOtp": "Gá»­i láº¡i mÃ£ OTP",
-  "resendOtpIn": "Gá»­i láº¡i mÃ£ OTP trong {seconds} giÃ¢y",
-  "@resendOtpIn": { "placeholders": { "seconds": { "type": "int" } } },
-
-  "createPassword": "Táº¡o máº­t kháº©u",
-  "enterPassword": "Nháº­p máº­t kháº©u",
-  "createPasswordFor": "Táº¡o máº­t kháº©u Ä‘á»ƒ kÃ­ch hoáº¡t tÃ i khoáº£n {phone}.",
-  "@createPasswordFor": { "placeholders": { "phone": { "type": "String" } } },
-  "loginWith": "ÄÄƒng nháº­p vá»›i sá»‘ {phone}.",
-  "@loginWith": { "placeholders": { "phone": { "type": "String" } } },
-  "password": "Máº­t kháº©u",
-  "createNewPassword": "Táº¡o máº­t kháº©u má»›i",
-  "loginFailed": "ÄÄƒng nháº­p tháº¥t báº¡i",
-  "forgotPassword": "QuÃªn máº­t kháº©u?",
-
-  "changePasswordTitle": "Äá»•i máº­t kháº©u",
-  "accountSecurity": "Báº£o máº­t tÃ i khoáº£n",
-  "passwordMinLength": "Máº­t kháº©u má»›i pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±.",
-  "currentPassword": "Máº­t kháº©u hiá»‡n táº¡i",
-  "enterCurrentPassword": "Nháº­p máº­t kháº©u hiá»‡n táº¡i",
-  "pleaseEnterOldPassword": "Vui lÃ²ng nháº­p máº­t kháº©u cÅ©",
-  "newPassword": "Máº­t kháº©u má»›i",
-  "enterNewPassword": "Nháº­p máº­t kháº©u má»›i",
-  "pleaseEnterNewPassword": "Vui lÃ²ng nháº­p máº­t kháº©u má»›i",
-  "passwordTooShort": "Máº­t kháº©u pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±",
-  "passwordMustDiffer": "Máº­t kháº©u má»›i khÃ´ng Ä‘Æ°á»£c trÃ¹ng máº­t kháº©u cÅ©",
-  "confirmNewPassword": "XÃ¡c nháº­n máº­t kháº©u má»›i",
-  "reenterNewPassword": "Nháº­p láº¡i máº­t kháº©u má»›i",
-  "pleaseConfirmPassword": "Vui lÃ²ng xÃ¡c nháº­n máº­t kháº©u má»›i",
-  "passwordMismatch": "Máº­t kháº©u xÃ¡c nháº­n khÃ´ng khá»›p",
-  "processing": "Äang xá»­ lÃ½...",
-  "confirmChangePassword": "XÃ¡c nháº­n Ä‘á»•i máº­t kháº©u",
-  "changePasswordSuccess": "Äá»•i máº­t kháº©u thÃ nh cÃ´ng!",
-  "changePasswordFailed": "Äá»•i máº­t kháº©u tháº¥t báº¡i.",
-  "packageLabel": "GÃ³i:",
-  "validityPeriod": "Hiá»‡u lá»±c:",
-  "daysRemainingRenewNow": "CÃ²n {days} ngÃ y â€” Gia háº¡n ngay!",
+  "stepPassword": "Mật khẩu",
+  "activateAccount": "Kích hoạt tài khoản",
+  "enterOtp": "Nhập mã OTP",
+  "otpSentTo": "Mã xác thực đã được gửi đến {phone}.",
+  "@otpSentTo": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "otpCode": "Mã OTP",
+  "enter6Digits": "Nhập 6 chữ số",
+  "otpVerifyError": "Lỗi xác minh OTP",
+  "otpResent": "Đã gửi lại mã OTP",
+  "resendOtp": "Gửi lại mã OTP",
+  "resendOtpIn": "Gửi lại mã OTP trong {seconds} giây",
+  "@resendOtpIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "createPassword": "Tạo mật khẩu",
+  "enterPassword": "Nhập mật khẩu",
+  "createPasswordFor": "Tạo mật khẩu để kích hoạt tài khoản {phone}.",
+  "@createPasswordFor": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "loginWith": "Đăng nhập với số {phone}.",
+  "@loginWith": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "password": "Mật khẩu",
+  "createNewPassword": "Tạo mật khẩu mới",
+  "loginFailed": "Đăng nhập thất bại",
+  "forgotPassword": "Quên mật khẩu?",
+  "changePasswordTitle": "Đổi mật khẩu",
+  "accountSecurity": "Bảo mật tài khoản",
+  "passwordMinLength": "Mật khẩu mới phải có ít nhất 6 ký tự.",
+  "currentPassword": "Mật khẩu hiện tại",
+  "enterCurrentPassword": "Nhập mật khẩu hiện tại",
+  "pleaseEnterOldPassword": "Vui lòng nhập mật khẩu cũ",
+  "newPassword": "Mật khẩu mới",
+  "enterNewPassword": "Nhập mật khẩu mới",
+  "pleaseEnterNewPassword": "Vui lòng nhập mật khẩu mới",
+  "passwordTooShort": "Mật khẩu phải có ít nhất 6 ký tự",
+  "passwordMustDiffer": "Mật khẩu mới không được trùng mật khẩu cũ",
+  "confirmNewPassword": "Xác nhận mật khẩu mới",
+  "reenterNewPassword": "Nhập lại mật khẩu mới",
+  "pleaseConfirmPassword": "Vui lòng xác nhận mật khẩu mới",
+  "passwordMismatch": "Mật khẩu xác nhận không khớp",
+  "processing": "Đang xử lý...",
+  "confirmChangePassword": "Xác nhận đổi mật khẩu",
+  "changePasswordSuccess": "Đổi mật khẩu thành công!",
+  "changePasswordFailed": "Đổi mật khẩu thất bại.",
+  "packageLabel": "Gói:",
+  "validityPeriod": "Hiệu lực:",
+  "daysRemainingRenewNow": "Còn {days} ngày — Gia hạn ngay!",
   "@daysRemainingRenewNow": {
     "placeholders": {
       "days": {
         "type": "int"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "contractWithId": "Há»£p Ä‘á»“ng {id}",
+  "contractWithId": "Hợp đồng {id}",
   "@contractWithId": {
     "placeholders": {
       "id": {
         "type": "String"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "overviewInfo": "ThÃ´ng tin tá»•ng quan",
-  "groupRepresentativeLabel": "NhÃ³m / Ä‘áº¡i diá»‡n",
-  "createdAtLabel": "NgÃ y táº¡o",
-  "registeredVehiclesCountLabel": "Sá»‘ xe Ä‘Äƒng kÃ½",
+  "overviewInfo": "Thông tin tổng quan",
+  "groupRepresentativeLabel": "Nhóm / đại diện",
+  "createdAtLabel": "Ngày tạo",
+  "registeredVehiclesCountLabel": "Số xe đăng ký",
   "vehiclesCountText": "{count} xe",
   "@vehiclesCountText": {
     "placeholders": {
       "count": {
         "type": "int"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "pendingPaymentsBannerTitle": "Báº¡n cÃ³ {count} gÃ³i cÆ°á»›c Ä‘ang chá» thanh toÃ¡n",
+  "pendingPaymentsBannerTitle": "Bạn có {count} gói cước đang chờ thanh toán",
   "@pendingPaymentsBannerTitle": {
     "placeholders": {
       "count": {
         "type": "int"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "pendingPaymentsBannerSubtitle": "Vui lÃ²ng hoÃ n táº¥t thanh toÃ¡n Ä‘á»ƒ kÃ­ch hoáº¡t gÃ³i hoáº·c Há»§y giao dá»‹ch trong Lá»‹ch sá»­ Ä‘á»ƒ khÃ´i phá»¥c báº£n nhÃ¡p.",
-  "goToHistoryTooltip": "Äi tá»›i Lá»‹ch sá»­",
-  "selectAllDraftsCount": "Chá»n táº¥t cáº£ báº£n nhÃ¡p ({count})",
+  "pendingPaymentsBannerSubtitle": "Vui lòng hoàn tất thanh toán để kích hoạt gói hoặc Hủy giao dịch trong Lịch sử để khôi phục bản nháp.",
+  "goToHistoryTooltip": "Đi tới Lịch sử",
+  "selectAllDraftsCount": "Chọn tất cả bản nháp ({count})",
   "@selectAllDraftsCount": {
     "placeholders": {
       "count": {
         "type": "int"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "draftsCountBadge": "{count} báº£n nhÃ¡p",
+  "draftsCountBadge": "{count} bản nháp",
   "@draftsCountBadge": {
     "placeholders": {
       "count": {
         "type": "int"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "checkoutWithCount": "Thanh toÃ¡n ({count} xe)",
+  "checkoutWithCount": "Thanh toán ({count} xe)",
   "@checkoutWithCount": {
     "placeholders": {
       "count": {
         "type": "int"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "historyTitle": "Lá»‹ch sá»­",
-  "failedToLoadPaymentHistory": "KhÃ´ng thá»ƒ táº£i lá»‹ch sá»­ thanh toÃ¡n",
-  "retry": "Thá»­ láº¡i",
-  "noBillsYet": "ChÆ°a cÃ³ hÃ³a Ä‘Æ¡n nÃ o",
-  "paymentHistorySubtitle": "CÃ¡c hÃ³a Ä‘Æ¡n thanh toÃ¡n sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.",
-  "pendingPaymentHeader": "Chá» thanh toÃ¡n",
-  "processedHeader": "ÄÃ£ xá»­ lÃ½",
-  "continuePaymentButton": "Thanh toÃ¡n tiáº¿p",
-  "cancelInvoiceDialogTitle": "Há»§y hÃ³a Ä‘Æ¡n?",
-  "cancelInvoiceDialogBody": "HÃ³a Ä‘Æ¡n {code} sáº½ bá»‹ há»§y. CÃ¡c gÃ³i cÆ°á»›c liÃªn quan sáº½ Ä‘Æ°á»£c hoÃ n vá» tráº¡ng thÃ¡i trÆ°á»›c Ä‘Ã³.",
+  "historyTitle": "Lịch sử",
+  "failedToLoadPaymentHistory": "Không thể tải lịch sử thanh toán",
+  "retry": "Thử lại",
+  "noBillsYet": "Chưa có hóa đơn nào",
+  "paymentHistorySubtitle": "Các hóa đơn thanh toán sẽ xuất hiện tại đây.",
+  "pendingPaymentHeader": "Chờ thanh toán",
+  "processedHeader": "Đã xử lý",
+  "continuePaymentButton": "Thanh toán tiếp",
+  "cancelInvoiceDialogTitle": "Hủy hóa đơn?",
+  "cancelInvoiceDialogBody": "Hóa đơn {code} sẽ bị hủy. Các gói cước liên quan sẽ được hoàn về trạng thái trước đó.",
   "@cancelInvoiceDialogBody": {
     "placeholders": {
       "code": {
         "type": "String"
-      ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
-    ,
-  "enumBookingActive": "Đang hoạt động",
-  "enumBookingExpired": "Hết hạn",
-  "enumBookingPendingPayment": "Chờ thanh toán",
-  "enumBookingCanceled": "Đã huỷ",
-  "enumBookingPendingActivation": "Chờ kích hoạt",
-  "enumBookingNeedsAttention": "Cần chú ý",
-  "enumBookingPartialPayment": "Thanh toán 1 phần",
-  "enumBookingDraft": "Bản nháp",
-  "enumBookingComplete": "Hoàn thành",
-
-  "enumPaymentPending": "Chờ thanh toán",
-  "enumPaymentSuccess": "Thành công",
-  "enumPaymentFailed": "Thất bại",
-  "enumPaymentRefunded": "Đã hoàn tiền",
-  "enumPaymentCanceled": "Đã hủy",
-
-  "enumPaymentMethodCash": "Tiền mặt",
-  "enumPaymentMethodPayos": "PayOS",
-  "enumPaymentMethodVnpay": "VNPay",
-  "enumPaymentMethodBankTransfer": "Chuyển khoản",
-  "enumPaymentMethodCreditCard": "Thẻ tín dụng",
-  "enumPaymentMethodQr": "VietQR",
-  "enumPaymentMethodOther": "Khác",
-
-  "enumSessionOngoing": "Đang đỗ",
-  "enumSessionCompleted": "Hoàn thành",
-
-  "enumVehicleActive": "Còn hạn",
-  "enumVehicleExpiringSoon": "Sắp hết hạn",
-  "enumVehicleExpired": "Hết hạn",
-
-  "enumComplaintPending": "Chờ xử lý",
-  "enumComplaintProcessing": "Đang xử lý",
-  "enumComplaintResolved": "Đã giải quyết",
-  "enumComplaintRejected": "Từ chối",
-
-  "enumNotifDebt": "Nhắc nợ",
-  "enumNotifSecurity": "Cảnh báo an ninh",
-  "enumNotifSystem": "Hệ thống",
-  "enumNotifBroadcast": "Phát thanh",
-
-  "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
-}
+      }
+    }
   },
-  "no": "KhÃ´ng",
-  "invoiceCancelSuccess": "ÄÃ£ há»§y hÃ³a Ä‘Æ¡n thÃ nh cÃ´ng.",
-  "invoiceCancelFailed": "KhÃ´ng thá»ƒ há»§y hÃ³a Ä‘Æ¡n.",
-  "parkingHistoryTitle": "Lá»‹ch sá»­ Ä‘á»— xe",
-  "filterButtonText": "Lá»c",
-  "filterAppliedText": "Äang Ã¡p dá»¥ng bá»™ lá»c",
-  "clearFilterButton": "XÃ³a lá»c",
-  "noParkingHistoryFound": "KhÃ´ng tÃ¬m tháº¥y lá»‹ch sá»­ Ä‘á»— xe",
-  "changeFilterSubtitle": "Thá»­ thay Ä‘á»•i Ä‘iá»u kiá»‡n lá»c cá»§a báº¡n.",
-  "searchFilterTitle": "Bá»™ lá»c tÃ¬m kiáº¿m",
-  "timeRangeLabel": "Khoáº£ng thá»i gian",
-  "fromDateLabel": "Tá»« ngÃ y",
-  "toDateLabel": "Äáº¿n ngÃ y",
-  "plateNumberLabel": "Biá»ƒn sá»‘ xe",
+  "no": "Không",
+  "invoiceCancelSuccess": "Đã hủy hóa đơn thành công.",
+  "invoiceCancelFailed": "Không thể hủy hóa đơn.",
+  "parkingHistoryTitle": "Lịch sử đỗ xe",
+  "filterButtonText": "Lọc",
+  "filterAppliedText": "Đang áp dụng bộ lọc",
+  "clearFilterButton": "Xóa lọc",
+  "noParkingHistoryFound": "Không tìm thấy lịch sử đỗ xe",
+  "changeFilterSubtitle": "Thử thay đổi điều kiện lọc của bạn.",
+  "searchFilterTitle": "Bộ lọc tìm kiếm",
+  "timeRangeLabel": "Khoảng thời gian",
+  "fromDateLabel": "Từ ngày",
+  "toDateLabel": "Đến ngày",
+  "plateNumberLabel": "Biển số xe",
   "plateNumberExample": "VD: 30A-123.45",
-  "resetFilterButton": "Thiáº¿t láº­p láº¡i",
-  "applyFilterButton": "Ãp dá»¥ng",
-  "failedToLoadData": "Lá»—i táº£i dá»¯ liá»‡u",
-  "paidStatus": "ÄÃ£ thanh toÃ¡n",
-  "unpaidStatus": "ChÆ°a tráº£"
-,
+  "resetFilterButton": "Thiết lập lại",
+  "applyFilterButton": "Áp dụng",
+  "failedToLoadData": "Lỗi tải dữ liệu",
+  "paidStatus": "Đã thanh toán",
+  "unpaidStatus": "Chưa trả",
   "enumBookingActive": "Đang hoạt động",
   "enumBookingExpired": "Hết hạn",
   "enumBookingPendingPayment": "Chờ thanh toán",
@@ -1112,13 +434,11 @@
   "enumBookingPartialPayment": "Thanh toán 1 phần",
   "enumBookingDraft": "Bản nháp",
   "enumBookingComplete": "Hoàn thành",
-
   "enumPaymentPending": "Chờ thanh toán",
   "enumPaymentSuccess": "Thành công",
   "enumPaymentFailed": "Thất bại",
   "enumPaymentRefunded": "Đã hoàn tiền",
   "enumPaymentCanceled": "Đã hủy",
-
   "enumPaymentMethodCash": "Tiền mặt",
   "enumPaymentMethodPayos": "PayOS",
   "enumPaymentMethodVnpay": "VNPay",
@@ -1126,26 +446,26 @@
   "enumPaymentMethodCreditCard": "Thẻ tín dụng",
   "enumPaymentMethodQr": "VietQR",
   "enumPaymentMethodOther": "Khác",
-
   "enumSessionOngoing": "Đang đỗ",
   "enumSessionCompleted": "Hoàn thành",
-
   "enumVehicleActive": "Còn hạn",
   "enumVehicleExpiringSoon": "Sắp hết hạn",
   "enumVehicleExpired": "Hết hạn",
-
   "enumComplaintPending": "Chờ xử lý",
   "enumComplaintProcessing": "Đang xử lý",
   "enumComplaintResolved": "Đã giải quyết",
   "enumComplaintRejected": "Từ chối",
-
   "enumNotifDebt": "Nhắc nợ",
   "enumNotifSecurity": "Cảnh báo an ninh",
   "enumNotifSystem": "Hệ thống",
   "enumNotifBroadcast": "Phát thanh",
-
   "errPaymentNotRecorded": "Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.",
-  "errInvalidStatus": "Hóa đơn có trạng thái: {status}"
-,
-  "@errInvalidStatus": { "placeholders": { "status": { "type": "String" } } }
+  "errInvalidStatus": "Hóa đơn có trạng thái: {status}",
+  "@errInvalidStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  }
 }
