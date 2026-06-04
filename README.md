@@ -21,13 +21,22 @@ Phương pháp này dành cho các lập trình viên cần phát triển tính 
 
 #### 1. Khối Backend (Spring Boot)
 1. Mở Terminal và di chuyển vào thư mục: `cd SRS-Smart-Parking-System`
-2. Tạo file cấu hình môi trường `.env` hoặc chỉnh sửa trực tiếp trong `application.yml` (bổ sung chuỗi kết nối DB, Redis, và thông tin Supabase).
-3. Biên dịch và khởi chạy:
+2. Cấu hình biến môi trường (Bắt buộc):
+   - Truy cập vào thư mục `src/main/resources/`.
+   - Tìm file `application-placeholder.yml` và đổi tên nó thành `application.yml` (hoặc copy nội dung sang file mới).
+   - Mở file `application.yml` và điền **toàn bộ** các giá trị thực tế vào các trường cấu hình (Vì khi chạy Local, chúng ta không có ConfigMap của Kubernetes bơm cấu hình vào). Các cấu hình cốt lõi bao gồm:
+     - Chuỗi kết nối PostgreSQL (URL, Username, Password).
+     - Chuỗi kết nối Redis (Host, Port, Password nếu có).
+     - Thông tin Supabase (URL, Service Role Key, JWT Secret).
+3. Biên dịch dự án (bỏ qua bước chạy Unit Test cho nhanh):
    ```bash
    mvn clean install -DskipTests
+   ```
+4. Khởi chạy ứng dụng:
+   ```bash
    mvn spring-boot:run
    ```
-4. Backend sẽ hoạt động tại địa chỉ: `http://localhost:8080`
+5. Backend sẽ hoạt động tại địa chỉ: `http://localhost:8080`
 
 #### 2. Khối Frontend (Flutter Mobile & Kiosk)
 1. Mở Terminal và di chuyển vào thư mục dự án tương ứng:
@@ -36,11 +45,15 @@ Phương pháp này dành cho các lập trình viên cần phát triển tính 
    # hoặc
    cd kiosk_app
    ```
-2. Cài đặt các gói phụ thuộc (Dependencies):
+2. Cấu hình biến môi trường:
+   - Copy file `.env.example` và đổi tên thành `.env`.
+   - Mở file `.env` và cấu hình địa chỉ API của Backend (Ví dụ: `API_BASE_URL=http://localhost:8080/api/v1`), cũng như các Key khác nếu hệ thống yêu cầu.
+3. Dọn dẹp cache và tải toàn bộ các thư viện phụ thuộc (Dependencies):
    ```bash
+   flutter clean
    flutter pub get
    ```
-3. Chạy ứng dụng trên thiết bị ảo hoặc trình duyệt:
+4. Chạy ứng dụng trên thiết bị ảo hoặc trình duyệt:
    ```bash
    flutter run
    ```
