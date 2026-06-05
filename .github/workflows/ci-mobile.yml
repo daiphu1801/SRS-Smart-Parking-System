@@ -38,6 +38,8 @@ jobs:
         with:
           context: ./flutter_mobile_app
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/srs-mobile-app:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/sps-mobile-app:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/sps-mobile-app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

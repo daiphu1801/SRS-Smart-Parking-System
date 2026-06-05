@@ -38,7 +38,9 @@ jobs:
         with:
           context: ./SRS-Smart-Parking-System
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/srs-backend:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/srs-backend:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/srs-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Run Trivy vulnerability scanner
