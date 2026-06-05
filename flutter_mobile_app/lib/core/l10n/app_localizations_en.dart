@@ -994,4 +994,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errPaymentNotRecorded => 'The system has not recorded the payment yet. Please wait a moment and try again.';
   @override
   String errInvalidStatus(String status) => 'Invoice has status: $status';
+
+  @override
+  String get manageGroupMembers => 'Manage group members';
+  @override
+  String get manageGroupMembersSubtitle => 'Add or remove members from the group';
+  @override
+  String get memberList => 'Member list';
+  @override
+  String get noMembers => 'No members yet';
+  @override
+  String get addMemberPrompt => 'Tap Add new to add members to the group.';
+  @override
+  String get addMember => 'Add member';
+  @override
+  String get addedNewMember => 'Added new member';
+  @override
+  String removeMemberConfirm(String name) => 'Remove member \ from the group?';
+  @override
+  String get removedMember => 'Deleted successfully';
+  @override
+  String deleteFailed(String error) => 'Failed to delete: ';
+  @override
+  String get totalMembers => 'Total members';
+  @override
+  String memberCount(int count) => '\ members';
+  @override
+  String get updateMemberSuccess => 'Member list updated successfully!';
+  @override
+  String get manageMembers => 'Manage members';
+  @override
+  String get addToCartFailed => 'Failed to add to cart. Please try again!';
+  @override
+  String get clearCart => 'Clear cart';
+  @override
+  String get clearCartConfirm => 'Are you sure you want to remove selected vehicles from the cart?';
+  @override
+  String get cart => 'Cart';
+  @override
+  String get cartEmpty => 'Cart is empty';
+  @override
+  String get cartEmptySubtitle => 'There are currently no vehicles in the cart.';
+  @override
+  String get viewCart => 'View cart';
+
 }

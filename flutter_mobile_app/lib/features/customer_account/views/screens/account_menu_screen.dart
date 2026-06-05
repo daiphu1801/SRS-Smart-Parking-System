@@ -72,8 +72,8 @@ class _AccountMenuScreenState extends State<AccountMenuScreen> {
                 const SizedBox(height: 12),
                 MenuCard(
                   icon: Icons.group_outlined,
-                  title: 'Quản lý thành viên trong nhóm',
-                  subtitle: 'Thêm, xóa thành viên thuộc nhóm',
+                  title: l10n.manageGroupMembers,
+                  subtitle: l10n.manageGroupMembersSubtitle,
                   onTap: () => context.push('/customer/group-members'),
                 ),
               ],

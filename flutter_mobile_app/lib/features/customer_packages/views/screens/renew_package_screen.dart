@@ -73,13 +73,13 @@ class _RenewPackageScreenState extends State<RenewPackageScreen> {
     if (success && mounted) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Thêm vào giỏ hàng thành công!')));
+      ).showSnackBar(SnackBar(content: Text(l10n.addedToCartSuccessfully)));
       context.pop(); // Go back to detail
       context.pop(); // Go back to list/home
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Không thể thêm vào giỏ hàng. Vui lòng thử lại!'),
+          content: Text(l10n.addToCartFailed),
         ),
       );
     }
@@ -87,6 +87,7 @@ class _RenewPackageScreenState extends State<RenewPackageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.renewBookingDetail)),
       body: Consumer<BookingViewModel>(
@@ -211,7 +212,7 @@ class _RenewPackageScreenState extends State<RenewPackageScreen> {
                   _isSubmitting
                       ? const Center(child: CircularProgressIndicator())
                       : AppFilledButton(
-                          label: 'Thêm vào giỏ hàng',
+                          label: l10n.addToCart,
                           onPressed: _selectedPackage == null
                               ? null
                               : () => _submitRenewal(detail, totalPrice),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
 import 'package:smart_parking_mobile/core/theme/app_theme.dart';
 import 'package:smart_parking_mobile/core/utils/view_state.dart';
 import 'package:smart_parking_mobile/core/widgets/app_widgets.dart';
@@ -25,8 +26,9 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: const Text('Quản lý thành viên trong nhóm')),
+      appBar: AppBar(title: Text(l10n.manageGroupMembers)),
       body: Consumer<GroupMembersViewModel>(
         builder: (context, groupVm, child) {
           return Padding(
@@ -37,11 +39,11 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Danh sách thành viên', style: AppTheme.heading2),
+                    Text(l10n.memberList, style: AppTheme.heading2),
                     TextButton.icon(
-                      onPressed: () => _showAddMemberDialog(context, groupVm),
+                      onPressed: () => _showAddMemberDialog(context, groupVm, l10n),
                       icon: const Icon(Icons.person_add_alt_1, size: 18),
-                      label: const Text('Thêm mới'),
+                      label: Text(l10n.addMember),
                     ),
                   ],
                 ),
@@ -71,8 +73,8 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
                       if (members.isEmpty) {
                         return AppEmptyState(
                           icon: Icons.group_add_outlined,
-                          title: 'Chưa có thành viên nào',
-                          subtitle: 'Nhấn Thêm mới để thêm thành viên vào nhóm.',
+                          title: l10n.noMembers,
+                          subtitle: l10n.addMemberPrompt,
                         );
                       }
 
@@ -93,6 +95,7 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
                                 context,
                                 groupVm,
                                 member,
+                                l10n,
                               ),
                             ),
                           );
@@ -112,6 +115,7 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
   Future<void> _showAddMemberDialog(
     BuildContext context,
     GroupMembersViewModel groupVm,
+    AppLocalizations l10n,
   ) async {
     final nameCtl = TextEditingController();
     final phoneCtl = TextEditingController();
@@ -119,19 +123,19 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (dCtx) => AlertDialog(
-        title: const Text('Thêm thành viên'),
+        title: Text(l10n.addMember),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: nameCtl,
-                decoration: const InputDecoration(labelText: 'Họ và tên'),
+                decoration: InputDecoration(labelText: l10n.fullName),
               ),
               const SizedBox(height: 8),
               TextField(
                 controller: phoneCtl,
-                decoration: const InputDecoration(labelText: 'Số điện thoại'),
+                decoration: InputDecoration(labelText: l10n.phoneNumber),
                 keyboardType: TextInputType.phone,
               ),
             ],
@@ -140,7 +144,7 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dCtx).pop(false),
-            child: const Text('Hủy'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             onPressed: () async {
@@ -158,11 +162,11 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
               } catch (e) {
                 if (!dCtx.mounted) return;
                 ScaffoldMessenger.of(dCtx).showSnackBar(
-                  SnackBar(content: Text('Lỗi: \${e.toString()}')),
+                  SnackBar(content: Text(e.toString())),
                 );
               }
             },
-            child: const Text('Thêm'),
+            child: Text(l10n.add),
           ),
         ],
       ),
@@ -170,7 +174,7 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
     
     if (ok == true && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã thêm thành viên mới')),
+        SnackBar(content: Text(l10n.addedNewMember)),
       );
     }
   }
@@ -179,21 +183,22 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
     BuildContext context,
     GroupMembersViewModel groupVm,
     GroupMember member,
+    AppLocalizations l10n,
   ) async {
     final ok = await showDialog<bool>(
       context: context,
       builder: (d) => AlertDialog(
-        title: const Text('Xác nhận'),
-        content: Text('Xóa thành viên "\${member.fullName}" khỏi nhóm?'),
+        title: Text(l10n.confirm),
+        content: Text(l10n.removeMemberConfirm(member.fullName)),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(d).pop(false),
-            child: const Text('Hủy'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             onPressed: () => Navigator.of(d).pop(true),
             style: FilledButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('Xóa'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -204,12 +209,12 @@ class _GroupMembersScreenState extends State<GroupMembersScreen> {
         await groupVm.removeMember(member.id);
         if (!context.mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Đã xóa thành viên')),
+          SnackBar(content: Text(l10n.removedMember)),
         );
       } catch (e) {
         if (!context.mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi khi xóa: \${e.toString()}')),
+          SnackBar(content: Text(l10n.deleteFailed(e.toString()))),
         );
       }
     }

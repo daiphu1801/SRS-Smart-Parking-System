@@ -993,4 +993,48 @@ class AppLocalizationsVi extends AppLocalizations {
   String get errPaymentNotRecorded => 'Hệ thống chưa ghi nhận thanh toán. Vui lòng đợi giây lát và thử lại.';
   @override
   String errInvalidStatus(String status) => 'Hóa đơn có trạng thái: $status';
+
+  @override
+  String get manageGroupMembers => 'Quản lý thành viên trong nhóm';
+  @override
+  String get manageGroupMembersSubtitle => 'Thêm, xóa thành viên thuộc nhóm';
+  @override
+  String get memberList => 'Danh sách thành viên';
+  @override
+  String get noMembers => 'Chưa có thành viên nào';
+  @override
+  String get addMemberPrompt => 'Nhấn Thêm mới để thêm thành viên vào nhóm.';
+  @override
+  String get addMember => 'Thêm thành viên';
+  @override
+  String get addedNewMember => 'Đã thêm thành viên mới';
+  @override
+  String removeMemberConfirm(String name) => 'Xóa thành viên \ khỏi nhóm?';
+  @override
+  String get removedMember => 'Đã xóa thành công';
+  @override
+  String deleteFailed(String error) => 'Lỗi khi xóa: ';
+  @override
+  String get totalMembers => 'Tổng số thành viên';
+  @override
+  String memberCount(int count) => '\ thành viên';
+  @override
+  String get updateMemberSuccess => 'Cập nhật danh sách thành viên thành công!';
+  @override
+  String get manageMembers => 'Quản lý thành viên';
+  @override
+  String get addToCartFailed => 'Không thể thêm vào giỏ hàng. Vui lòng thử lại!';
+  @override
+  String get clearCart => 'Xóa giỏ hàng';
+  @override
+  String get clearCartConfirm => 'Bạn có chắc chắn muốn xóa các xe đã chọn khỏi giỏ hàng?';
+  @override
+  String get cart => 'Giỏ hàng';
+  @override
+  String get cartEmpty => 'Giỏ hàng trống';
+  @override
+  String get cartEmptySubtitle => 'Hiện tại chưa có phương tiện nào trong giỏ hàng.';
+  @override
+  String get viewCart => 'Xem giỏ hàng';
+
 }

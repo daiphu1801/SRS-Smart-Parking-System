@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_parking_mobile/core/theme/app_theme.dart';
 import 'package:smart_parking_mobile/core/utils/view_state.dart';
+import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
 import 'package:smart_parking_mobile/core/widgets/app_widgets.dart';
 import 'package:smart_parking_mobile/features/customer_account/viewmodels/customer_viewmodel.dart';
 import 'package:smart_parking_mobile/features/customer_account/models/customer_models.dart';
@@ -27,6 +28,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: Text('Nhóm khách hàng', style: AppTheme.heading1),
@@ -73,7 +75,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Danh sách thành viên', style: AppTheme.heading2),
+                          Text(l10n.memberList, style: AppTheme.heading2),
                           if (isOwner)
                             TextButton.icon(
                               onPressed: () => context.push('/customer/group/edit/${group.id}'),

@@ -6,6 +6,7 @@ import 'package:smart_parking_mobile/core/utils/view_state.dart';
 import 'package:smart_parking_mobile/core/widgets/app_widgets.dart';
 import 'package:smart_parking_mobile/features/customer_packages/viewmodels/booking_viewmodel.dart';
 import 'package:smart_parking_mobile/features/customer_packages/views/widgets/package_widgets.dart';
+import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parking_mobile/features/customer_packages/models/booking_models.dart';
 
@@ -75,16 +76,16 @@ class _DraftListScreenState extends State<DraftListScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Xóa giỏ hàng'),
-        content: const Text('Bạn có chắc chắn muốn xóa các xe đã chọn khỏi giỏ hàng?'),
+        title: Text(l10n.clearCart),
+        content: Text(l10n.clearCartConfirm),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Hủy', style: TextStyle(color: Colors.grey)),
+            child: Text(l10n.cancel, style: const TextStyle(color: Colors.grey)),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Xóa', style: TextStyle(color: Colors.red)),
+            child: Text(l10n.delete, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -98,13 +99,13 @@ class _DraftListScreenState extends State<DraftListScreen> {
       _selectedIds.clear();
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Đã xóa thành công')),
+          SnackBar(content: Text(l10n.removedMember)),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi khi xóa: $e')),
+          SnackBar(content: Text(l10n.deleteFailed(e.toString()))),
         );
       }
     }
@@ -112,6 +113,7 @@ class _DraftListScreenState extends State<DraftListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final currencyFormatter = NumberFormat.currency(locale: 'vi_VN', symbol: '₫');
 
     return Scaffold(
@@ -122,7 +124,7 @@ class _DraftListScreenState extends State<DraftListScreen> {
                 onPressed: () => context.pop(),
               )
             : null,
-        title: const Text('Giỏ hàng'),
+        title: Text(l10n.cart),
       ),
       body: Consumer<BookingViewModel>(
         builder: (context, vm, child) {
@@ -148,7 +150,7 @@ class _DraftListScreenState extends State<DraftListScreen> {
               return const AppEmptyState(
                 icon: Icons.directions_car_outlined,
                 title: 'Giỏ hàng trống',
-                subtitle: 'Hiện tại chưa có phương tiện nào trong giỏ hàng.',
+                subtitle: l10n.cartEmptySubtitle,
               );
             }
 
@@ -225,6 +227,7 @@ class _DraftSelectAllRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => onToggle(!allSelected),
       child: Container(
@@ -275,6 +278,7 @@ class _CheckoutBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       decoration: BoxDecoration(
@@ -321,7 +325,7 @@ class _CheckoutBottomBar extends StatelessWidget {
                 side: BorderSide(color: onDelete == null ? Colors.grey : Colors.red),
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               ),
-              child: Text('Xóa', style: TextStyle(color: onDelete == null ? Colors.grey : Colors.red)),
+              child: Text(l10n.delete, style: TextStyle(color: onDelete == null ? Colors.grey : Colors.red)),
             ),
             const SizedBox(width: 8),
             AppFilledButton(

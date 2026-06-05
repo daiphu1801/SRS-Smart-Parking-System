@@ -1883,4 +1883,27 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   String get enumNotifBroadcast;
   String get errPaymentNotRecorded;
   String errInvalidStatus(String status);
+
+  String get manageGroupMembers;
+  String get manageGroupMembersSubtitle;
+  String get memberList;
+  String get noMembers;
+  String get addMemberPrompt;
+  String get addMember;
+  String get addedNewMember;
+  String removeMemberConfirm(String name);
+  String get removedMember;
+  String deleteFailed(String error);
+  String get totalMembers;
+  String memberCount(int count);
+  String get updateMemberSuccess;
+  String get manageMembers;
+  String get addToCartFailed;
+  String get clearCart;
+  String get clearCartConfirm;
+  String get cart;
+  String get cartEmpty;
+  String get cartEmptySubtitle;
+  String get viewCart;
+
 }

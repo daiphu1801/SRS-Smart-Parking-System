@@ -36,6 +36,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final currencyFormatter = NumberFormat.currency(
       locale: 'vi_VN',
       symbol: '₫',
@@ -141,7 +142,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                       context.push('/customer/draft-list');
                                     },
                                     icon: const Icon(Icons.shopping_cart_outlined, size: 18),
-                                    label: const Text('Xem giỏ hàng'),
+                                    label: Text(l10n.viewCart),
                                   ),
                                 ),
                                 const SizedBox(width: 12),
@@ -154,7 +155,7 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                       );
                                     },
                                     icon: const Icon(Icons.history, size: 18),
-                                    label: const Text('Lịch sử'),
+                                    label: Text(l10n.history),
                                   ),
                                 ),
                               ],

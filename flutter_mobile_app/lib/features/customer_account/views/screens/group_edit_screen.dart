@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smart_parking_mobile/core/theme/app_theme.dart';
+import 'package:smart_parking_mobile/core/l10n/app_localizations.dart';
 import 'package:smart_parking_mobile/core/utils/view_state.dart';
 import 'package:smart_parking_mobile/core/widgets/app_widgets.dart';
 import 'package:smart_parking_mobile/features/customer_account/viewmodels/customer_viewmodel.dart';
@@ -45,7 +46,7 @@ class _GroupEditScreenState extends State<GroupEditScreen> {
     
     if (success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Cập nhật danh sách thành viên thành công!')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.updateMemberSuccess)),
       );
       context.pop();
     }
@@ -53,6 +54,7 @@ class _GroupEditScreenState extends State<GroupEditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final state = context.read<CustomerViewModel>().groupState;
     if (state is! Success<GroupCustomer>) {
       return Scaffold(
