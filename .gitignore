@@ -180,3 +180,6 @@ doc/
 *.md.backup
 # Ignore binary executables
 *.exe
+
+# Ignore real secrets file
+k8s/13-sps-secrets.yaml
