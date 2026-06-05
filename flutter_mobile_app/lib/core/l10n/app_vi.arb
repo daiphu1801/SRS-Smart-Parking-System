@@ -1,513 +1,515 @@
-﻿{
-    "@@locale":  "vi",
-    "appTitle":  "Äá»— xe thÃ´ng minh",
-    "monthlyContracts":  "Há»£p Ä‘á»“ng gÃ³i thÃ¡ng",
-    "dataLoadError":  "Lá»—i táº£i dá»¯ liá»‡u",
-    "noContractsYet":  "ChÆ°a cÃ³ há»£p Ä‘á»“ng nÃ o",
-    "monthlyPackageSavesMoney":  "GÃ³i gá»­i xe thÃ¡ng sáº½ giÃºp báº¡n tiáº¿t kiá»‡m chi phÃ­ gá»­i xe Ä‘Ã¡ng ká»ƒ.",
-    "vehicleList":  "Danh sÃ¡ch phÆ°Æ¡ng tiá»‡n",
-    "addVehicle":  "ThÃªm xe",
-    "noVehiclesYet":  "ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n",
-    "clickAddVehicleToStart":  "Nháº¥n \"ThÃªm xe\" Ä‘á»ƒ báº¯t Ä‘áº§u Ä‘Äƒng kÃ½ gÃ³i thÃ¡ng.",
-    "monthlyPackageDetails":  "Chi tiáº¿t gÃ³i cÆ°á»›c thÃ¡ng",
-    "contract":  "Há»£p Ä‘á»“ng",
-    "vehicleManagement":  "Quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n",
-    "groupRepresentative":  "NhÃ³m / Ä‘áº¡i diá»‡n:",
-    "createdAt":  "NgÃ y táº¡o:",
-    "registeredVehiclesCount":  "Sá»‘ xe Ä‘Äƒng kÃ½:",
-    "vehicles":  "xe",
-    "paymentMethod":  "PhÆ°Æ¡ng thá»©c thanh toÃ¡n:",
-    "addVehicleToBooking":  "ThÃªm xe vÃ o booking",
-    "bookingDetailList":  "Danh sÃ¡ch Booking Detail",
-    "childAccounts":  "TÃ i khoáº£n con",
-    "addChildAccount":  "ThÃªm tÃ i khoáº£n con",
-    "fullName":  "Há» vÃ  tÃªn",
-    "address":  "Äá»‹a chá»‰",
-    "phoneNumber":  "Sá»‘ Ä‘iá»‡n thoáº¡i",
-    "cancel":  "Há»§y",
-    "add":  "ThÃªm",
-    "nameAndPhoneRequired":  "Há» tÃªn vÃ  sá»‘ Ä‘iá»‡n thoáº¡i lÃ  báº¯t buá»™c",
-    "childAccountAdded":  "ÄÃ£ thÃªm tÃ i khoáº£n con",
-    "errorLoadingChildAccounts":  "Lá»—i táº£i tÃ i khoáº£n con",
-    "noChildAccountsYet":  "ChÆ°a cÃ³ tÃ i khoáº£n con",
-    "canAddChildAccountsForVehicles":  "Báº¡n cÃ³ thá»ƒ thÃªm tÃ i khoáº£n con Ä‘á»ƒ quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n riÃªng.",
-    "pleaseEnterLicensePlate":  "Vui lÃ²ng nháº­p biá»ƒn sá»‘ xe",
-    "addedToCartSuccessfully":  "ÄÃ£ thÃªm vÃ o giá» hÃ ng thÃ nh cÃ´ng!",
-    "errorAddingVehicle":  "CÃ³ lá»—i xáº£y ra khi thÃªm xe",
-    "addNewVehicleRegistration":  "ThÃªm xe Ä‘Äƒng kÃ½ má»›i",
-    "vehicleInformation":  "ThÃ´ng tin phÆ°Æ¡ng tiá»‡n",
-    "licensePlate":  "Biá»ƒn sá»‘ xe",
-    "licensePlateExample":  "VÃ­ dá»¥: 30A-123.45",
-    "vehicleType":  "Loáº¡i xe",
-    "selectPackage":  "Chá»n gÃ³i cÆ°á»›c",
-    "pleaseSelectVehicleTypeFirst":  "Vui lÃ²ng chá»n loáº¡i xe trÆ°á»›c",
-    "noSuitablePackageForThisVehicleType":  "KhÃ´ng cÃ³ gÃ³i cÆ°á»›c phÃ¹ há»£p cho loáº¡i xe nÃ y",
-    "addToCart":  "ThÃªm vÃ o giá» hÃ ng",
-    "months":  "thÃ¡ng",
-    "duration":  "Thá»i háº¡n",
-    "validFrom":  "Hiá»‡u lá»±c tá»«",
-    "validUntil":  "Äáº¿n ngÃ y",
-    "total":  "Tá»•ng cá»™ng",
-    "bookingDetailDetails":  "Chi tiáº¿t Booking Detail",
-    "id":  "MÃ£ sá»‘:",
-    "bookingDetailId":  "Booking Detail ID:",
-    "bookingId":  "Booking ID:",
-    "customerId":  "Customer ID:",
-    "packagePriceId":  "Package Price ID:",
-    "licensePlateLabel":  "Biá»ƒn sá»‘ xe:",
-    "vehicleTypeLabel":  "Loáº¡i xe:",
-    "packageTypeLabel":  "GÃ³i cÆ°á»›c:",
-    "durationLabel":  "Thá»i háº¡n:",
-    "statusLabel":  "Tráº¡ng thÃ¡i:",
-    "statusActive":  "CÃ²n háº¡n",
-    "statusExpiringSoon":  "Sáº¯p háº¿t háº¡n",
-    "statusExpired":  "Háº¿t háº¡n",
-    "priceLabel":  "GiÃ¡ cÆ°á»›c:",
-    "startDateLabel":  "NgÃ y báº¯t Ä‘áº§u:",
-    "endDateLabel":  "NgÃ y káº¿t thÃºc:",
-    "pay":  "Thanh toÃ¡n",
-    "pendingPayment":  "Äang chá» thanh toÃ¡n",
-    "renewContract":  "Gia háº¡n há»£p Ä‘á»“ng",
-    "renewSuccess":  "Gia háº¡n thÃ nh cÃ´ng!",
-    "renewFailedServerUpdate":  "Gia háº¡n tháº¥t báº¡i á»Ÿ bÆ°á»›c cáº­p nháº­t server.",
-    "renewBookingDetail":  "Gia háº¡n Booking Detail",
-    "packageType":  "Loáº¡i gÃ³i",
-    "renew":  "Gia háº¡n",
-    "selectRenewalMonths":  "Chá»n sá»‘ thÃ¡ng gia háº¡n:",
-    "totalAmount":  "Tá»•ng tiá»n:",
-    "payAndRenew":  "Thanh toÃ¡n \u0026 Gia háº¡n",
-    "welcomeMorning":  "ChÃ o buá»•i sÃ¡ng",
-    "welcomeAfternoon":  "ChÃ o buá»•i chiá»u",
-    "welcomeEvening":  "ChÃ o buá»•i tá»‘i",
-    "accountVerified":  "TÃ i khoáº£n Ä‘Ã£ xÃ¡c thá»±c",
-    "myVehicles":  "PhÆ°Æ¡ng tiá»‡n cá»§a báº¡n",
-    "currentParkingSession":  "PhiÃªn Ä‘á»— xe hiá»‡n táº¡i",
-    "quickActions":  "Thao tÃ¡c nhanh",
-    "tryAgain":  "Thá»­ láº¡i",
-    "complaintStatusPending":  "Chá» xá»­ lÃ½",
-    "complaintStatusProcessing":  "Äang xá»­ lÃ½",
-    "complaintStatusResolved":  "ÄÃ£ giáº£i quyáº¿t",
-    "complaintStatusRejected":  "Tá»« chá»‘i",
-    "complaintCodeLabel":  "MÃ£: {id}",
-    "@complaintCodeLabel":  {
-                                "placeholders":  {
-                                                     "id":  {
-                                                                "type":  "String"
-                                                            }
-                                                 }
-                            },
-    "expiringSoonAlert":  "Sáº¯p háº¿t háº¡n gÃ³i cÆ°á»›c",
-    "expiringSoonMessage":  "Báº¡n cÃ³ {count} xe sáº¯p háº¿t háº¡n. Vui lÃ²ng gia háº¡n Ä‘á»ƒ khÃ´ng bá»‹ giÃ¡n Ä‘oáº¡n.",
-    "@expiringSoonMessage":  {
-                                 "placeholders":  {
-                                                      "count":  {
-                                                                    "type":  "int"
-                                                                }
-                                                  }
-                             },
-    "noVehiclesHome":  "ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n",
-    "noVehiclesRegistered":  "Báº¡n chÆ°a Ä‘Äƒng kÃ½ xe nÃ o vÃ o há»‡ thá»‘ng.",
-    "defaultPackage":  "GÃ³i cÆ°á»›c máº·c Ä‘á»‹nh",
-    "expired":  "ÄÃ£ háº¿t háº¡n",
-    "daysLeft":  "CÃ²n {days} ngÃ y",
-    "@daysLeft":  {
-                      "placeholders":  {
-                                           "days":  {
-                                                        "type":  "int"
-                                                    }
-                                       }
-                  },
-    "noParkingSession":  "KhÃ´ng cÃ³ phiÃªn Ä‘á»— xe",
-    "notInAnyParkingLot":  "Báº¡n chÆ°a vÃ o bÃ£i Ä‘á»— xe nÃ o.",
-    "entryTimeLabel":  "VÃ o lÃºc: {time}",
-    "@entryTimeLabel":  {
-                            "placeholders":  {
-                                                 "time":  {
-                                                              "type":  "String"
-                                                          }
-                                             }
-                        },
-    "parkingDurationLabel":  "Thá»i gian Ä‘á»—: {duration}",
-    "@parkingDurationLabel":  {
-                                  "placeholders":  {
-                                                       "duration":  {
-                                                                        "type":  "String"
-                                                                    }
-                                                   }
-                              },
-    "parkingSessionAction":  "PhiÃªn Ä‘á»— xe",
-    "billingAction":  "HÃ³a Ä‘Æ¡n",
-    "navHome":  "Trang chá»§",
-    "navParking":  "PhiÃªn Ä‘á»— xe",
-    "navPackages":  "GÃ³i cÆ°á»›c",
-    "navHistory":  "Lá»‹ch sá»­",
-    "navAccount":  "TÃ i khoáº£n",
-    "accountTitle":  "TÃ i khoáº£n",
-    "errorLoadingProfile":  "Lá»—i táº£i há»“ sÆ¡",
-    "settingsAndSupport":  "CÃ i Ä‘áº·t \u0026 Há»— trá»£",
-    "profileDetails":  "Chi tiáº¿t há»“ sÆ¡",
-    "profileDetailsSubtitle":  "Xem thÃ´ng tin Ä‘áº§y Ä‘á»§, CCCD, Ä‘á»‹a chá»‰",
-    "childAccountsManage":  "Quáº£n lÃ½ tÃ i khoáº£n con vÃ  phÆ°Æ¡ng tiá»‡n",
-    "changePassword":  "Äá»•i máº­t kháº©u",
-    "changePasswordSubtitle":  "Cáº­p nháº­t máº­t kháº©u báº£o máº­t",
-    "supportAndComplaints":  "Há»— trá»£ \u0026 Khiáº¿u náº¡i",
-    "supportAndComplaintsSubtitle":  "Gá»­i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p",
-    "notifications":  "ThÃ´ng bÃ¡o",
-    "notificationsSubtitle":  "Quáº£n lÃ½ thÃ´ng bÃ¡o",
-    "logout":  "ÄÄƒng xuáº¥t",
-    "editProfileTooltip":  "Sá»­a há»“ sÆ¡",
-    "phoneLabel":  "Äiá»‡n thoáº¡i",
-    "groupLabel":  "NhÃ³m",
-    "history":  "Lá»‹ch sá»­",
-    "complaintsFeedback":  "Khiáº¿u náº¡i / GÃ³p Ã½",
-    "filter":  "Lá»c",
-    "noComplaintsYet":  "ChÆ°a cÃ³ khiáº¿u náº¡i nÃ o",
-    "complaintsFeedbackEncourage":  "Má»i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p cá»§a báº¡n Ä‘á»u giÃºp chÃºng tÃ´i cáº£i thiá»‡n dá»‹ch vá»¥.",
-    "createComplaint":  "Táº¡o khiáº¿u náº¡i",
-    "submitNewComplaint":  "Gá»­i Khiáº¿u náº¡i má»›i",
-    "complaintsListenMessage":  "ChÃºng tÃ´i luÃ´n láº¯ng nghe Ã½ kiáº¿n cá»§a báº¡n Ä‘á»ƒ cáº£i thiá»‡n cháº¥t lÆ°á»£ng dá»‹ch vá»¥.",
-    "complaintTitle":  "TiÃªu Ä‘á»",
-    "complaintTitlePlaceholder":  "VD: Lá»—i nháº­n diá»‡n biá»ƒn sá»‘ cá»•ng A",
-    "pleaseEnterTitle":  "Vui lÃ²ng nháº­p tiÃªu Ä‘á»",
-    "complaintContent":  "Ná»™i dung pháº£n Ã¡nh",
-    "complaintContentPlaceholder":  "MÃ´ táº£ chi tiáº¿t váº¥n Ä‘á» báº¡n gáº·p pháº£i...",
-    "pleaseEnterContent":  "Vui lÃ²ng nháº­p ná»™i dung",
-    "attachedImages":  "HÃ¬nh áº£nh Ä‘Ã­nh kÃ¨m (náº¿u cÃ³)",
-    "tapToUploadImage":  "Nháº¥n Ä‘á»ƒ táº£i áº£nh lÃªn",
-    "imagePickerInDev":  "Chá»©c nÄƒng chá»n áº£nh Ä‘ang Ä‘Æ°á»£c phÃ¡t triá»ƒn",
-    "submitComplaint":  "Gá»­i khiáº¿u náº¡i",
-    "complaintSubmitSuccess":  "Gá»­i khiáº¿u náº¡i thÃ nh cÃ´ng! ChÃºng tÃ´i sáº½ xá»­ lÃ½ sá»›m nháº¥t.",
-    "complaintSubmitError":  "CÃ³ lá»—i xáº£y ra, vui lÃ²ng thá»­ láº¡i",
-    "readAll":  "Äá»c táº¥t cáº£",
-    "cannotLoadNotifications":  "KhÃ´ng thá»ƒ táº£i thÃ´ng bÃ¡o",
-    "noNotificationsYet":  "ChÆ°a cÃ³ thÃ´ng bÃ¡o nÃ o",
-    "systemNotificationsAppearHere":  "CÃ¡c thÃ´ng bÃ¡o há»‡ thá»‘ng sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.",
-    "parkingSessions":  "PhiÃªn Ä‘á»— xe",
-    "filterAll":  "Táº¥t cáº£",
-    "filterOngoing":  "Äang Ä‘á»—",
-    "filterCompleted":  "HoÃ n thÃ nh",
-    "noParkingSessions":  "ChÆ°a cÃ³ phiÃªn Ä‘á»— xe nÃ o",
-    "parkingHistoryAppearHere":  "Lá»‹ch sá»­ phiÃªn Ä‘á»— xe cá»§a báº¡n sáº½ xuáº¥t hiá»‡n á»Ÿ Ä‘Ã¢y.",
-    "noFilterResults":  "KhÃ´ng cÃ³ káº¿t quáº£",
-    "noMatchingParkingSession":  "KhÃ´ng tÃ¬m tháº¥y phiÃªn Ä‘á»— xe nÃ o phÃ¹ há»£p vá»›i bá»™ lá»c.",
-    "manualGateOpen":  "Má»Ÿ cá»•ng thá»§ cÃ´ng",
-    "entryLabel":  "VÃ o:",
-    "exitLabel":  "Ra:",
-    "sessionDurationLabel":  "Thá»i gian:",
-    "vehicleInLot":  "â€” Xe Ä‘ang trong bÃ£i",
-    "gracePeriodPrompt":  "Vui lÃ²ng láº¥y xe trong: {mins}ph {secs}s",
-    "@gracePeriodPrompt":  {
-                               "placeholders":  {
-                                                    "mins":  {
-                                                                 "type":  "int"
-                                                             },
-                                                    "secs":  {
-                                                                 "type":  "String"
-                                                             }
-                                                }
-                           },
-    "parkingSessionDetail":  "Chi tiáº¿t phiÃªn Ä‘á»— xe",
-    "lprCameraImage":  "áº¢nh Camera biá»ƒn sá»‘ xe",
-    "car":  "Ã” tÃ´",
-    "motorbike":  "Xe mÃ¡y",
-    "packageCode":  "MÃ£ gÃ³i cÆ°á»›c",
-    "attention":  "LÆ°u Ã½",
-    "gatesInOut":  "Cá»•ng vÃ o / ra",
-    "gateIn":  "Cá»•ng vÃ o",
-    "gateOut":  "Cá»•ng ra",
-    "notExitedYet":  "â€” ChÆ°a ra",
-    "parkingTime":  "Thá»i gian Ä‘á»— xe",
-    "entryTime":  "Thá»i gian vÃ o",
-    "exitTime":  "Thá»i gian ra",
-    "vehicleNotExited":  "â€” Xe chÆ°a ra khá»i bÃ£i",
-    "totalDuration":  "Tá»•ng thá»i gian",
-    "pleaseRetrieveVehicle":  "Vui lÃ²ng láº¥y xe ra khá»i bÃ£i",
-    "gracePeriodRemaining":  "Báº¡n cÃ²n {mins}ph {secs}s Ä‘á»ƒ rá»i bÃ£i Ä‘á»—",
-    "@gracePeriodRemaining":  {
-                                  "placeholders":  {
-                                                       "mins":  {
-                                                                    "type":  "int"
-                                                                },
-                                                       "secs":  {
-                                                                    "type":  "String"
-                                                                }
-                                                   }
-                              },
-    "timeIn":  "LÃºc vÃ o",
-    "timeOut":  "LÃºc ra",
-    "noImageAvailable":  "ChÆ°a cÃ³ áº£nh",
-    "qrPayment":  "Thanh ToÃ¡n QR",
-    "scanToPayTitle":  "QuÃ©t mÃ£ Ä‘á»ƒ thanh toÃ¡n",
-    "scanToPaySubtitle":  "Sá»­ dá»¥ng á»©ng dá»¥ng ngÃ¢n hÃ ng Ä‘á»ƒ quÃ©t mÃ£ QR bÃªn dÆ°á»›i.",
-    "paymentInitError":  "Lá»—i khá»Ÿi táº¡o thanh toÃ¡n",
-    "transferInfo":  "ThÃ´ng tin chuyá»ƒn khoáº£n",
-    "amount":  "Sá»‘ tiá»n",
-    "transferContent":  "Ná»™i dung CK",
-    "checkingPaymentStatus":  "Äang kiá»ƒm tra tráº¡ng thÃ¡i thanh toÃ¡n...",
-    "iHaveTransferred":  "TÃ´i Ä‘Ã£ chuyá»ƒn khoáº£n",
-    "paymentSuccess":  "Thanh toÃ¡n thÃ nh cÃ´ng!",
-    "done":  "Xong",
-    "afterTransferHint":  "Sau khi chuyá»ƒn khoáº£n, nháº¥n nÃºt bÃªn dÆ°á»›i Ä‘á»ƒ xÃ¡c nháº­n.",
-    "noQrAvailable":  "KhÃ´ng cÃ³ QR",
-    "login":  "ÄÄƒng nháº­p",
-    "enterPhoneNumber":  "Nháº­p sá»‘ Ä‘iá»‡n thoáº¡i",
-    "phoneVerifyMessage":  "Há»‡ thá»‘ng sáº½ kiá»ƒm tra tÃ i khoáº£n vÃ  chuyá»ƒn báº¡n Ä‘áº¿n bÆ°á»›c phÃ¹ há»£p.",
-    "phoneLabel2":  "Sá»‘ Ä‘iá»‡n thoáº¡i",
-    "phoneExample":  "VÃ­ dá»¥: 0987654321",
-    "continueBtn":  "Tiáº¿p tá»¥c",
-    "noAccountMessage":  "ChÆ°a cÃ³ tÃ i khoáº£n? Vui lÃ²ng liÃªn há»‡ quáº£n lÃ½ bÃ£i xe.",
-    "phoneVerifyError":  "Lá»—i xÃ¡c minh sá»‘ Ä‘iá»‡n thoáº¡i",
-    "stepPhone":  "SÄT",
-    "stepOtp":  "OTP",
-    "stepPassword":  "Máº­t kháº©u",
-    "activateAccount":  "KÃ­ch hoáº¡t tÃ i khoáº£n",
-    "enterOtp":  "Nháº­p mÃ£ OTP",
-    "otpSentTo":  "MÃ£ xÃ¡c thá»±c Ä‘Ã£ Ä‘Æ°á»£c gá»­i Ä‘áº¿n {phone}.",
-    "@otpSentTo":  {
-                       "placeholders":  {
-                                            "phone":  {
-                                                          "type":  "String"
-                                                      }
-                                        }
-                   },
-    "otpCode":  "MÃ£ OTP",
-    "enter6Digits":  "Nháº­p 6 chá»¯ sá»‘",
-    "otpVerifyError":  "Lá»—i xÃ¡c minh OTP",
-    "otpResent":  "ÄÃ£ gá»­i láº¡i mÃ£ OTP",
-    "resendOtp":  "Gá»­i láº¡i mÃ£ OTP",
-    "resendOtpIn":  "Gá»­i láº¡i mÃ£ OTP trong {seconds} giÃ¢y",
-    "@resendOtpIn":  {
-                         "placeholders":  {
-                                              "seconds":  {
-                                                              "type":  "int"
-                                                          }
-                                          }
-                     },
-    "createPassword":  "Táº¡o máº­t kháº©u",
-    "enterPassword":  "Nháº­p máº­t kháº©u",
-    "createPasswordFor":  "Táº¡o máº­t kháº©u Ä‘á»ƒ kÃ­ch hoáº¡t tÃ i khoáº£n {phone}.",
-    "@createPasswordFor":  {
-                               "placeholders":  {
-                                                    "phone":  {
-                                                                  "type":  "String"
-                                                              }
-                                                }
-                           },
-    "loginWith":  "ÄÄƒng nháº­p vá»›i sá»‘ {phone}.",
-    "@loginWith":  {
-                       "placeholders":  {
-                                            "phone":  {
-                                                          "type":  "String"
-                                                      }
-                                        }
-                   },
-    "password":  "Máº­t kháº©u",
-    "createNewPassword":  "Táº¡o máº­t kháº©u má»›i",
-    "loginFailed":  "ÄÄƒng nháº­p tháº¥t báº¡i",
-    "forgotPassword":  "QuÃªn máº­t kháº©u?",
-    "changePasswordTitle":  "Äá»•i máº­t kháº©u",
-    "accountSecurity":  "Báº£o máº­t tÃ i khoáº£n",
-    "passwordMinLength":  "Máº­t kháº©u má»›i pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±.",
-    "currentPassword":  "Máº­t kháº©u hiá»‡n táº¡i",
-    "enterCurrentPassword":  "Nháº­p máº­t kháº©u hiá»‡n táº¡i",
-    "pleaseEnterOldPassword":  "Vui lÃ²ng nháº­p máº­t kháº©u cÅ©",
-    "newPassword":  "Máº­t kháº©u má»›i",
-    "enterNewPassword":  "Nháº­p máº­t kháº©u má»›i",
-    "pleaseEnterNewPassword":  "Vui lÃ²ng nháº­p máº­t kháº©u má»›i",
-    "passwordTooShort":  "Máº­t kháº©u pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±",
-    "passwordMustDiffer":  "Máº­t kháº©u má»›i khÃ´ng Ä‘Æ°á»£c trÃ¹ng máº­t kháº©u cÅ©",
-    "confirmNewPassword":  "XÃ¡c nháº­n máº­t kháº©u má»›i",
-    "reenterNewPassword":  "Nháº­p láº¡i máº­t kháº©u má»›i",
-    "pleaseConfirmPassword":  "Vui lÃ²ng xÃ¡c nháº­n máº­t kháº©u má»›i",
-    "passwordMismatch":  "Máº­t kháº©u xÃ¡c nháº­n khÃ´ng khá»›p",
-    "processing":  "Äang xá»­ lÃ½...",
-    "confirmChangePassword":  "XÃ¡c nháº­n Ä‘á»•i máº­t kháº©u",
-    "changePasswordSuccess":  "Äá»•i máº­t kháº©u thÃ nh cÃ´ng!",
-    "changePasswordFailed":  "Äá»•i máº­t kháº©u tháº¥t báº¡i.",
-    "packageLabel":  "GÃ³i:",
-    "validityPeriod":  "Hiá»‡u lá»±c:",
-    "daysRemainingRenewNow":  "CÃ²n {days} ngÃ y â€” Gia háº¡n ngay!",
-    "@daysRemainingRenewNow":  {
-                                   "placeholders":  {
-                                                        "days":  {
-                                                                     "type":  "int"
-                                                                 }
-                                                    }
-                               },
-    "contractWithId":  "Há»£p Ä‘á»“ng {id}",
-    "@contractWithId":  {
-                            "placeholders":  {
-                                                 "id":  {
-                                                            "type":  "String"
-                                                        }
-                                             }
-                        },
-    "overviewInfo":  "ThÃ´ng tin tá»•ng quan",
-    "groupRepresentativeLabel":  "NhÃ³m / Ä‘áº¡i diá»‡n",
-    "createdAtLabel":  "NgÃ y táº¡o",
-    "registeredVehiclesCountLabel":  "Sá»‘ xe Ä‘Äƒng kÃ½",
-    "vehiclesCountText":  "{count} xe",
-    "@vehiclesCountText":  {
-                               "placeholders":  {
-                                                    "count":  {
-                                                                  "type":  "int"
-                                                              }
-                                                }
-                           },
-    "pendingPaymentsBannerTitle":  "Báº¡n cÃ³ {count} gÃ³i cÆ°á»›c Ä‘ang chá» thanh toÃ¡n",
-    "@pendingPaymentsBannerTitle":  {
-                                        "placeholders":  {
-                                                             "count":  {
-                                                                           "type":  "int"
-                                                                       }
-                                                         }
-                                    },
-    "pendingPaymentsBannerSubtitle":  "Vui lÃ²ng hoÃ n táº¥t thanh toÃ¡n Ä‘á»ƒ kÃ­ch hoáº¡t gÃ³i hoáº·c Há»§y giao dá»‹ch trong Lá»‹ch sá»­ Ä‘á»ƒ khÃ´i phá»¥c báº£n nhÃ¡p.",
-    "goToHistoryTooltip":  "Äi tá»›i Lá»‹ch sá»­",
-    "selectAllDraftsCount":  "Chá»n táº¥t cáº£ báº£n nhÃ¡p ({count})",
-    "@selectAllDraftsCount":  {
-                                  "placeholders":  {
-                                                       "count":  {
-                                                                     "type":  "int"
-                                                                 }
-                                                   }
-                              },
-    "draftsCountBadge":  "{count} báº£n nhÃ¡p",
-    "@draftsCountBadge":  {
-                              "placeholders":  {
-                                                   "count":  {
-                                                                 "type":  "int"
-                                                             }
-                                               }
-                          },
-    "checkoutWithCount":  "Thanh toÃ¡n ({count} xe)",
-    "@checkoutWithCount":  {
-                               "placeholders":  {
-                                                    "count":  {
-                                                                  "type":  "int"
-                                                              }
-                                                }
-                           },
-    "historyTitle":  "Lá»‹ch sá»­",
-    "failedToLoadPaymentHistory":  "KhÃ´ng thá»ƒ táº£i lá»‹ch sá»­ thanh toÃ¡n",
-    "retry":  "Thá»­ láº¡i",
-    "noBillsYet":  "ChÆ°a cÃ³ hÃ³a Ä‘Æ¡n nÃ o",
-    "paymentHistorySubtitle":  "CÃ¡c hÃ³a Ä‘Æ¡n thanh toÃ¡n sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.",
-    "pendingPaymentHeader":  "Chá» thanh toÃ¡n",
-    "processedHeader":  "ÄÃ£ xá»­ lÃ½",
-    "continuePaymentButton":  "Thanh toÃ¡n tiáº¿p",
-    "cancelInvoiceDialogTitle":  "Há»§y hÃ³a Ä‘Æ¡n?",
-    "cancelInvoiceDialogBody":  "HÃ³a Ä‘Æ¡n {code} sáº½ bá»‹ há»§y. CÃ¡c gÃ³i cÆ°á»›c liÃªn quan sáº½ Ä‘Æ°á»£c hoÃ n vá» tráº¡ng thÃ¡i trÆ°á»›c Ä‘Ã³.",
-    "@cancelInvoiceDialogBody":  {
-                                     "placeholders":  {
-                                                          "code":  {
-                                                                       "type":  "String"
-                                                                   }
-                                                      }
-                                 },
-    "no":  "KhÃ´ng",
-    "invoiceCancelSuccess":  "ÄÃ£ há»§y hÃ³a Ä‘Æ¡n thÃ nh cÃ´ng.",
-    "invoiceCancelFailed":  "KhÃ´ng thá»ƒ há»§y hÃ³a Ä‘Æ¡n.",
-    "parkingHistoryTitle":  "Lá»‹ch sá»­ Ä‘á»— xe",
-    "filterButtonText":  "Lá»c",
-    "filterAppliedText":  "Äang Ã¡p dá»¥ng bá»™ lá»c",
-    "clearFilterButton":  "XÃ³a lá»c",
-    "noParkingHistoryFound":  "KhÃ´ng tÃ¬m tháº¥y lá»‹ch sá»­ Ä‘á»— xe",
-    "changeFilterSubtitle":  "Thá»­ thay Ä‘á»•i Ä‘iá»u kiá»‡n lá»c cá»§a báº¡n.",
-    "searchFilterTitle":  "Bá»™ lá»c tÃ¬m kiáº¿m",
-    "timeRangeLabel":  "Khoáº£ng thá»i gian",
-    "fromDateLabel":  "Tá»« ngÃ y",
-    "toDateLabel":  "Äáº¿n ngÃ y",
-    "plateNumberLabel":  "Biá»ƒn sá»‘ xe",
-    "plateNumberExample":  "VD: 30A-123.45",
-    "resetFilterButton":  "Thiáº¿t láº­p láº¡i",
-    "applyFilterButton":  "Ãp dá»¥ng",
-    "failedToLoadData":  "Lá»—i táº£i dá»¯ liá»‡u",
-    "paidStatus":  "ÄÃ£ thanh toÃ¡n",
-    "unpaidStatus":  "ChÆ°a tráº£",
-    "enumBookingActive":  "Äang hoáº¡t Ä‘á»™ng",
-    "enumBookingExpired":  "Háº¿t háº¡n",
-    "enumBookingPendingPayment":  "Chá» thanh toÃ¡n",
-    "enumBookingCanceled":  "ÄÃ£ huá»·",
-    "enumBookingPendingActivation":  "Chá» kÃ­ch hoáº¡t",
-    "enumBookingNeedsAttention":  "Cáº§n chÃº Ã½",
-    "enumBookingPartialPayment":  "Thanh toÃ¡n 1 pháº§n",
-    "enumBookingDraft":  "Báº£n nhÃ¡p",
-    "enumBookingComplete":  "HoÃ n thÃ nh",
-    "enumPaymentPending":  "Chá» thanh toÃ¡n",
-    "enumPaymentSuccess":  "ThÃ nh cÃ´ng",
-    "enumPaymentFailed":  "Tháº¥t báº¡i",
-    "enumPaymentRefunded":  "ÄÃ£ hoÃ n tiá»n",
-    "enumPaymentCanceled":  "ÄÃ£ há»§y",
-    "enumPaymentMethodCash":  "Tiá»n máº·t",
-    "enumPaymentMethodPayos":  "PayOS",
-    "enumPaymentMethodVnpay":  "VNPay",
-    "enumPaymentMethodBankTransfer":  "Chuyá»ƒn khoáº£n",
-    "enumPaymentMethodCreditCard":  "Tháº» tÃ­n dá»¥ng",
-    "enumPaymentMethodQr":  "VietQR",
-    "enumPaymentMethodOther":  "KhÃ¡c",
-    "enumSessionOngoing":  "Äang Ä‘á»—",
-    "enumSessionCompleted":  "HoÃ n thÃ nh",
-    "enumVehicleActive":  "CÃ²n háº¡n",
-    "enumVehicleExpiringSoon":  "Sáº¯p háº¿t háº¡n",
-    "enumVehicleExpired":  "Háº¿t háº¡n",
-    "enumComplaintPending":  "Chá» xá»­ lÃ½",
-    "enumComplaintProcessing":  "Äang xá»­ lÃ½",
-    "enumComplaintResolved":  "ÄÃ£ giáº£i quyáº¿t",
-    "enumComplaintRejected":  "Tá»« chá»‘i",
-    "enumNotifDebt":  "Nháº¯c ná»£",
-    "enumNotifSecurity":  "Cáº£nh bÃ¡o an ninh",
-    "enumNotifSystem":  "Há»‡ thá»‘ng",
-    "enumNotifBroadcast":  "PhÃ¡t thanh",
-    "errPaymentNotRecorded":  "Há»‡ thá»‘ng chÆ°a ghi nháº­n thanh toÃ¡n. Vui lÃ²ng Ä‘á»£i giÃ¢y lÃ¡t vÃ  thá»­ láº¡i.",
-    "errInvalidStatus":  "HÃ³a Ä‘Æ¡n cÃ³ tráº¡ng thÃ¡i: {status}",
-    "@errInvalidStatus":  {
-                              "placeholders":  {
-                                                   "status":  {
-                                                                  "type":  "String"
-                                                              }
-                                               }
-                          },
-    "manageGroupMembers":  "Quản lý thành viên trong nhóm",
-    "manageGroupMembersSubtitle":  "Thêm, xóa thành viên thuộc nhóm",
-    "memberList":  "Danh sách thành viên",
-    "noMembers":  "Chưa có thành viên nào",
-    "addMemberPrompt":  "Nhấn Thêm mới để thêm thành viên vào nhóm.",
-    "addMember":  "Thêm thành viên",
-    "addedNewMember":  "Đã thêm thành viên mới",
-    "removeMemberConfirm":  "Xóa thành viên {name} khỏi nhóm?",
-    "@removeMemberConfirm":  {
-                                 "placeholders":  {
-                                                      "name":  {
-                                                                   "type":  "String"
-                                                               }
-                                                  }
-                             },
-    "removedMember":  "Đã xóa thành công",
-    "deleteFailed":  "Lỗi khi xóa: {error}",
-    "@deleteFailed":  {
-                          "placeholders":  {
-                                               "error":  {
-                                                             "type":  "String"
-                                                         }
-                                           }
-                      },
-    "totalMembers":  "Tổng số thành viên",
-    "memberCount":  "{count} thành viên",
-    "@memberCount":  {
-                         "placeholders":  {
-                                              "count":  {
-                                                            "type":  "int"
-                                                        }
-                                          }
-                     },
-    "updateMemberSuccess":  "Cập nhật danh sách thành viên thành công!",
-    "manageMembers":  "Quản lý thành viên",
-    "addToCartFailed":  "Không thể thêm vào giỏ hàng. Vui lòng thử lại!",
-    "clearCart":  "Xóa giỏ hàng",
-    "clearCartConfirm":  "Bạn có chắc chắn muốn xóa các xe đã chọn khỏi giỏ hàng?",
-    "cart":  "Giỏ hàng",
-    "cartEmpty":  "Giỏ hàng trống",
-    "cartEmptySubtitle":  "Hiện tại chưa có phương tiện nào trong giỏ hàng.",
-    "viewCart":  "Xem giỏ hàng"
+{
+  "@@locale": "vi",
+  "appTitle": "Äá»— xe thÃ´ng minh",
+  "monthlyContracts": "Há»£p Ä‘á»“ng gÃ³i thÃ¡ng",
+  "dataLoadError": "Lá»—i táº£i dá»¯ liá»‡u",
+  "noContractsYet": "ChÆ°a cÃ³ há»£p Ä‘á»“ng nÃ o",
+  "monthlyPackageSavesMoney": "GÃ³i gá»­i xe thÃ¡ng sáº½ giÃºp báº¡n tiáº¿t kiá»‡m chi phÃ­ gá»­i xe Ä‘Ã¡ng ká»ƒ.",
+  "vehicleList": "Danh sÃ¡ch phÆ°Æ¡ng tiá»‡n",
+  "addVehicle": "ThÃªm xe",
+  "noVehiclesYet": "ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n",
+  "clickAddVehicleToStart": "Nháº¥n \"ThÃªm xe\" Ä‘á»ƒ báº¯t Ä‘áº§u Ä‘Äƒng kÃ½ gÃ³i thÃ¡ng.",
+  "monthlyPackageDetails": "Chi tiáº¿t gÃ³i cÆ°á»›c thÃ¡ng",
+  "contract": "Há»£p Ä‘á»“ng",
+  "vehicleManagement": "Quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n",
+  "groupRepresentative": "NhÃ³m / Ä‘áº¡i diá»‡n:",
+  "createdAt": "NgÃ y táº¡o:",
+  "registeredVehiclesCount": "Sá»‘ xe Ä‘Äƒng kÃ½:",
+  "vehicles": "xe",
+  "paymentMethod": "PhÆ°Æ¡ng thá»©c thanh toÃ¡n:",
+  "addVehicleToBooking": "ThÃªm xe vÃ o booking",
+  "bookingDetailList": "Danh sÃ¡ch Booking Detail",
+  "childAccounts": "TÃ i khoáº£n con",
+  "addChildAccount": "ThÃªm tÃ i khoáº£n con",
+  "fullName": "Há» vÃ  tÃªn",
+  "address": "Äá»‹a chá»‰",
+  "phoneNumber": "Sá»‘ Ä‘iá»‡n thoáº¡i",
+  "cancel": "Há»§y",
+  "add": "ThÃªm",
+  "nameAndPhoneRequired": "Há» tÃªn vÃ  sá»‘ Ä‘iá»‡n thoáº¡i lÃ  báº¯t buá»™c",
+  "childAccountAdded": "ÄÃ£ thÃªm tÃ i khoáº£n con",
+  "errorLoadingChildAccounts": "Lá»—i táº£i tÃ i khoáº£n con",
+  "noChildAccountsYet": "ChÆ°a cÃ³ tÃ i khoáº£n con",
+  "canAddChildAccountsForVehicles": "Báº¡n cÃ³ thá»ƒ thÃªm tÃ i khoáº£n con Ä‘á»ƒ quáº£n lÃ½ phÆ°Æ¡ng tiá»‡n riÃªng.",
+  "pleaseEnterLicensePlate": "Vui lÃ²ng nháº­p biá»ƒn sá»‘ xe",
+  "addedToCartSuccessfully": "ÄÃ£ thÃªm vÃ o giá» hÃ ng thÃ nh cÃ´ng!",
+  "errorAddingVehicle": "CÃ³ lá»—i xáº£y ra khi thÃªm xe",
+  "addNewVehicleRegistration": "ThÃªm xe Ä‘Äƒng kÃ½ má»›i",
+  "vehicleInformation": "ThÃ´ng tin phÆ°Æ¡ng tiá»‡n",
+  "licensePlate": "Biá»ƒn sá»‘ xe",
+  "licensePlateExample": "VÃ­ dá»¥: 30A-123.45",
+  "vehicleType": "Loáº¡i xe",
+  "selectPackage": "Chá»n gÃ³i cÆ°á»›c",
+  "pleaseSelectVehicleTypeFirst": "Vui lÃ²ng chá»n loáº¡i xe trÆ°á»›c",
+  "noSuitablePackageForThisVehicleType": "KhÃ´ng cÃ³ gÃ³i cÆ°á»›c phÃ¹ há»£p cho loáº¡i xe nÃ y",
+  "addToCart": "ThÃªm vÃ o giá» hÃ ng",
+  "months": "thÃ¡ng",
+  "duration": "Thá»i háº¡n",
+  "validFrom": "Hiá»‡u lá»±c tá»«",
+  "validUntil": "Äáº¿n ngÃ y",
+  "total": "Tá»•ng cá»™ng",
+  "bookingDetailDetails": "Chi tiáº¿t Booking Detail",
+  "id": "MÃ£ sá»‘:",
+  "bookingDetailId": "Booking Detail ID:",
+  "bookingId": "Booking ID:",
+  "customerId": "Customer ID:",
+  "packagePriceId": "Package Price ID:",
+  "licensePlateLabel": "Biá»ƒn sá»‘ xe:",
+  "vehicleTypeLabel": "Loáº¡i xe:",
+  "packageTypeLabel": "GÃ³i cÆ°á»›c:",
+  "durationLabel": "Thá»i háº¡n:",
+  "statusLabel": "Tráº¡ng thÃ¡i:",
+  "statusActive": "CÃ²n háº¡n",
+  "statusExpiringSoon": "Sáº¯p háº¿t háº¡n",
+  "statusExpired": "Háº¿t háº¡n",
+  "priceLabel": "GiÃ¡ cÆ°á»›c:",
+  "startDateLabel": "NgÃ y báº¯t Ä‘áº§u:",
+  "endDateLabel": "NgÃ y káº¿t thÃºc:",
+  "pay": "Thanh toÃ¡n",
+  "pendingPayment": "Äang chá» thanh toÃ¡n",
+  "renewContract": "Gia háº¡n há»£p Ä‘á»“ng",
+  "renewSuccess": "Gia háº¡n thÃ nh cÃ´ng!",
+  "renewFailedServerUpdate": "Gia háº¡n tháº¥t báº¡i á»Ÿ bÆ°á»›c cáº­p nháº­t server.",
+  "renewBookingDetail": "Gia háº¡n Booking Detail",
+  "packageType": "Loáº¡i gÃ³i",
+  "renew": "Gia háº¡n",
+  "selectRenewalMonths": "Chá»n sá»‘ thÃ¡ng gia háº¡n:",
+  "totalAmount": "Tá»•ng tiá»n:",
+  "payAndRenew": "Thanh toÃ¡n & Gia háº¡n",
+  "welcomeMorning": "ChÃ o buá»•i sÃ¡ng",
+  "welcomeAfternoon": "ChÃ o buá»•i chiá»u",
+  "welcomeEvening": "ChÃ o buá»•i tá»‘i",
+  "accountVerified": "TÃ i khoáº£n Ä‘Ã£ xÃ¡c thá»±c",
+  "myVehicles": "PhÆ°Æ¡ng tiá»‡n cá»§a báº¡n",
+  "currentParkingSession": "PhiÃªn Ä‘á»— xe hiá»‡n táº¡i",
+  "quickActions": "Thao tÃ¡c nhanh",
+  "tryAgain": "Thá»­ láº¡i",
+  "complaintStatusPending": "Chá» xá»­ lÃ½",
+  "complaintStatusProcessing": "Äang xá»­ lÃ½",
+  "complaintStatusResolved": "ÄÃ£ giáº£i quyáº¿t",
+  "complaintStatusRejected": "Tá»« chá»‘i",
+  "complaintCodeLabel": "MÃ£: {id}",
+  "@complaintCodeLabel": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "expiringSoonAlert": "Sáº¯p háº¿t háº¡n gÃ³i cÆ°á»›c",
+  "expiringSoonMessage": "Báº¡n cÃ³ {count} xe sáº¯p háº¿t háº¡n. Vui lÃ²ng gia háº¡n Ä‘á»ƒ khÃ´ng bá»‹ giÃ¡n Ä‘oáº¡n.",
+  "@expiringSoonMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noVehiclesHome": "ChÆ°a cÃ³ phÆ°Æ¡ng tiá»‡n",
+  "noVehiclesRegistered": "Báº¡n chÆ°a Ä‘Äƒng kÃ½ xe nÃ o vÃ o há»‡ thá»‘ng.",
+  "defaultPackage": "GÃ³i cÆ°á»›c máº·c Ä‘á»‹nh",
+  "expired": "ÄÃ£ háº¿t háº¡n",
+  "daysLeft": "CÃ²n {days} ngÃ y",
+  "@daysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "noParkingSession": "KhÃ´ng cÃ³ phiÃªn Ä‘á»— xe",
+  "notInAnyParkingLot": "Báº¡n chÆ°a vÃ o bÃ£i Ä‘á»— xe nÃ o.",
+  "entryTimeLabel": "VÃ o lÃºc: {time}",
+  "@entryTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingDurationLabel": "Thá»i gian Ä‘á»—: {duration}",
+  "@parkingDurationLabel": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingSessionAction": "PhiÃªn Ä‘á»— xe",
+  "billingAction": "HÃ³a Ä‘Æ¡n",
+  "navHome": "Trang chá»§",
+  "navParking": "PhiÃªn Ä‘á»— xe",
+  "navPackages": "GÃ³i cÆ°á»›c",
+  "navHistory": "Lá»‹ch sá»­",
+  "navAccount": "TÃ i khoáº£n",
+  "accountTitle": "TÃ i khoáº£n",
+  "errorLoadingProfile": "Lá»—i táº£i há»“ sÆ¡",
+  "settingsAndSupport": "CÃ i Ä‘áº·t & Há»— trá»£",
+  "profileDetails": "Chi tiáº¿t há»“ sÆ¡",
+  "profileDetailsSubtitle": "Xem thÃ´ng tin Ä‘áº§y Ä‘á»§, CCCD, Ä‘á»‹a chá»‰",
+  "childAccountsManage": "Quáº£n lÃ½ tÃ i khoáº£n con vÃ  phÆ°Æ¡ng tiá»‡n",
+  "changePassword": "Äá»•i máº­t kháº©u",
+  "changePasswordSubtitle": "Cáº­p nháº­t máº­t kháº©u báº£o máº­t",
+  "supportAndComplaints": "Há»— trá»£ & Khiáº¿u náº¡i",
+  "supportAndComplaintsSubtitle": "Gá»­i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p",
+  "notifications": "ThÃ´ng bÃ¡o",
+  "notificationsSubtitle": "Quáº£n lÃ½ thÃ´ng bÃ¡o",
+  "logout": "ÄÄƒng xuáº¥t",
+  "editProfileTooltip": "Sá»­a há»“ sÆ¡",
+  "phoneLabel": "Äiá»‡n thoáº¡i",
+  "groupLabel": "NhÃ³m",
+  "history": "Lá»‹ch sá»­",
+  "complaintsFeedback": "Khiáº¿u náº¡i / GÃ³p Ã½",
+  "filter": "Lá»c",
+  "noComplaintsYet": "ChÆ°a cÃ³ khiáº¿u náº¡i nÃ o",
+  "complaintsFeedbackEncourage": "Má»i Ã½ kiáº¿n Ä‘Ã³ng gÃ³p cá»§a báº¡n Ä‘á»u giÃºp chÃºng tÃ´i cáº£i thiá»‡n dá»‹ch vá»¥.",
+  "createComplaint": "Táº¡o khiáº¿u náº¡i",
+  "submitNewComplaint": "Gá»­i Khiáº¿u náº¡i má»›i",
+  "complaintsListenMessage": "ChÃºng tÃ´i luÃ´n láº¯ng nghe Ã½ kiáº¿n cá»§a báº¡n Ä‘á»ƒ cáº£i thiá»‡n cháº¥t lÆ°á»£ng dá»‹ch vá»¥.",
+  "complaintTitle": "TiÃªu Ä‘á»",
+  "complaintTitlePlaceholder": "VD: Lá»—i nháº­n diá»‡n biá»ƒn sá»‘ cá»•ng A",
+  "pleaseEnterTitle": "Vui lÃ²ng nháº­p tiÃªu Ä‘á»",
+  "complaintContent": "Ná»™i dung pháº£n Ã¡nh",
+  "complaintContentPlaceholder": "MÃ´ táº£ chi tiáº¿t váº¥n Ä‘á» báº¡n gáº·p pháº£i...",
+  "pleaseEnterContent": "Vui lÃ²ng nháº­p ná»™i dung",
+  "attachedImages": "HÃ¬nh áº£nh Ä‘Ã­nh kÃ¨m (náº¿u cÃ³)",
+  "tapToUploadImage": "Nháº¥n Ä‘á»ƒ táº£i áº£nh lÃªn",
+  "imagePickerInDev": "Chá»©c nÄƒng chá»n áº£nh Ä‘ang Ä‘Æ°á»£c phÃ¡t triá»ƒn",
+  "submitComplaint": "Gá»­i khiáº¿u náº¡i",
+  "complaintSubmitSuccess": "Gá»­i khiáº¿u náº¡i thÃ nh cÃ´ng! ChÃºng tÃ´i sáº½ xá»­ lÃ½ sá»›m nháº¥t.",
+  "complaintSubmitError": "CÃ³ lá»—i xáº£y ra, vui lÃ²ng thá»­ láº¡i",
+  "readAll": "Äá»c táº¥t cáº£",
+  "cannotLoadNotifications": "KhÃ´ng thá»ƒ táº£i thÃ´ng bÃ¡o",
+  "noNotificationsYet": "ChÆ°a cÃ³ thÃ´ng bÃ¡o nÃ o",
+  "systemNotificationsAppearHere": "CÃ¡c thÃ´ng bÃ¡o há»‡ thá»‘ng sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.",
+  "parkingSessions": "PhiÃªn Ä‘á»— xe",
+  "filterAll": "Táº¥t cáº£",
+  "filterOngoing": "Äang Ä‘á»—",
+  "filterCompleted": "HoÃ n thÃ nh",
+  "noParkingSessions": "ChÆ°a cÃ³ phiÃªn Ä‘á»— xe nÃ o",
+  "parkingHistoryAppearHere": "Lá»‹ch sá»­ phiÃªn Ä‘á»— xe cá»§a báº¡n sáº½ xuáº¥t hiá»‡n á»Ÿ Ä‘Ã¢y.",
+  "noFilterResults": "KhÃ´ng cÃ³ káº¿t quáº£",
+  "noMatchingParkingSession": "KhÃ´ng tÃ¬m tháº¥y phiÃªn Ä‘á»— xe nÃ o phÃ¹ há»£p vá»›i bá»™ lá»c.",
+  "manualGateOpen": "Má»Ÿ cá»•ng thá»§ cÃ´ng",
+  "entryLabel": "VÃ o:",
+  "exitLabel": "Ra:",
+  "sessionDurationLabel": "Thá»i gian:",
+  "vehicleInLot": "â€” Xe Ä‘ang trong bÃ£i",
+  "gracePeriodPrompt": "Vui lÃ²ng láº¥y xe trong: {mins}ph {secs}s",
+  "@gracePeriodPrompt": {
+    "placeholders": {
+      "mins": {
+        "type": "int"
+      },
+      "secs": {
+        "type": "String"
+      }
+    }
+  },
+  "parkingSessionDetail": "Chi tiáº¿t phiÃªn Ä‘á»— xe",
+  "lprCameraImage": "áº¢nh Camera biá»ƒn sá»‘ xe",
+  "car": "Ã” tÃ´",
+  "motorbike": "Xe mÃ¡y",
+  "packageCode": "MÃ£ gÃ³i cÆ°á»›c",
+  "attention": "LÆ°u Ã½",
+  "gatesInOut": "Cá»•ng vÃ o / ra",
+  "gateIn": "Cá»•ng vÃ o",
+  "gateOut": "Cá»•ng ra",
+  "notExitedYet": "â€” ChÆ°a ra",
+  "parkingTime": "Thá»i gian Ä‘á»— xe",
+  "entryTime": "Thá»i gian vÃ o",
+  "exitTime": "Thá»i gian ra",
+  "vehicleNotExited": "â€” Xe chÆ°a ra khá»i bÃ£i",
+  "totalDuration": "Tá»•ng thá»i gian",
+  "pleaseRetrieveVehicle": "Vui lÃ²ng láº¥y xe ra khá»i bÃ£i",
+  "gracePeriodRemaining": "Báº¡n cÃ²n {mins}ph {secs}s Ä‘á»ƒ rá»i bÃ£i Ä‘á»—",
+  "@gracePeriodRemaining": {
+    "placeholders": {
+      "mins": {
+        "type": "int"
+      },
+      "secs": {
+        "type": "String"
+      }
+    }
+  },
+  "timeIn": "LÃºc vÃ o",
+  "timeOut": "LÃºc ra",
+  "noImageAvailable": "ChÆ°a cÃ³ áº£nh",
+  "qrPayment": "Thanh ToÃ¡n QR",
+  "scanToPayTitle": "QuÃ©t mÃ£ Ä‘á»ƒ thanh toÃ¡n",
+  "scanToPaySubtitle": "Sá»­ dá»¥ng á»©ng dá»¥ng ngÃ¢n hÃ ng Ä‘á»ƒ quÃ©t mÃ£ QR bÃªn dÆ°á»›i.",
+  "paymentInitError": "Lá»—i khá»Ÿi táº¡o thanh toÃ¡n",
+  "transferInfo": "ThÃ´ng tin chuyá»ƒn khoáº£n",
+  "amount": "Sá»‘ tiá»n",
+  "transferContent": "Ná»™i dung CK",
+  "checkingPaymentStatus": "Äang kiá»ƒm tra tráº¡ng thÃ¡i thanh toÃ¡n...",
+  "iHaveTransferred": "TÃ´i Ä‘Ã£ chuyá»ƒn khoáº£n",
+  "paymentSuccess": "Thanh toÃ¡n thÃ nh cÃ´ng!",
+  "done": "Xong",
+  "afterTransferHint": "Sau khi chuyá»ƒn khoáº£n, nháº¥n nÃºt bÃªn dÆ°á»›i Ä‘á»ƒ xÃ¡c nháº­n.",
+  "noQrAvailable": "KhÃ´ng cÃ³ QR",
+  "login": "ÄÄƒng nháº­p",
+  "enterPhoneNumber": "Nháº­p sá»‘ Ä‘iá»‡n thoáº¡i",
+  "phoneVerifyMessage": "Há»‡ thá»‘ng sáº½ kiá»ƒm tra tÃ i khoáº£n vÃ  chuyá»ƒn báº¡n Ä‘áº¿n bÆ°á»›c phÃ¹ há»£p.",
+  "phoneLabel2": "Sá»‘ Ä‘iá»‡n thoáº¡i",
+  "phoneExample": "VÃ­ dá»¥: 0987654321",
+  "continueBtn": "Tiáº¿p tá»¥c",
+  "noAccountMessage": "ChÆ°a cÃ³ tÃ i khoáº£n? Vui lÃ²ng liÃªn há»‡ quáº£n lÃ½ bÃ£i xe.",
+  "phoneVerifyError": "Lá»—i xÃ¡c minh sá»‘ Ä‘iá»‡n thoáº¡i",
+  "stepPhone": "SÄT",
+  "stepOtp": "OTP",
+  "stepPassword": "Máº­t kháº©u",
+  "activateAccount": "KÃ­ch hoáº¡t tÃ i khoáº£n",
+  "enterOtp": "Nháº­p mÃ£ OTP",
+  "otpSentTo": "MÃ£ xÃ¡c thá»±c Ä‘Ã£ Ä‘Æ°á»£c gá»­i Ä‘áº¿n {phone}.",
+  "@otpSentTo": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "otpCode": "MÃ£ OTP",
+  "enter6Digits": "Nháº­p 6 chá»¯ sá»‘",
+  "otpVerifyError": "Lá»—i xÃ¡c minh OTP",
+  "otpResent": "ÄÃ£ gá»­i láº¡i mÃ£ OTP",
+  "resendOtp": "Gá»­i láº¡i mÃ£ OTP",
+  "resendOtpIn": "Gá»­i láº¡i mÃ£ OTP trong {seconds} giÃ¢y",
+  "@resendOtpIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "createPassword": "Táº¡o máº­t kháº©u",
+  "enterPassword": "Nháº­p máº­t kháº©u",
+  "createPasswordFor": "Táº¡o máº­t kháº©u Ä‘á»ƒ kÃ­ch hoáº¡t tÃ i khoáº£n {phone}.",
+  "@createPasswordFor": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "loginWith": "ÄÄƒng nháº­p vá»›i sá»‘ {phone}.",
+  "@loginWith": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "password": "Máº­t kháº©u",
+  "createNewPassword": "Táº¡o máº­t kháº©u má»›i",
+  "loginFailed": "ÄÄƒng nháº­p tháº¥t báº¡i",
+  "forgotPassword": "QuÃªn máº­t kháº©u?",
+  "changePasswordTitle": "Äá»•i máº­t kháº©u",
+  "accountSecurity": "Báº£o máº­t tÃ i khoáº£n",
+  "passwordMinLength": "Máº­t kháº©u má»›i pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±.",
+  "currentPassword": "Máº­t kháº©u hiá»‡n táº¡i",
+  "enterCurrentPassword": "Nháº­p máº­t kháº©u hiá»‡n táº¡i",
+  "pleaseEnterOldPassword": "Vui lÃ²ng nháº­p máº­t kháº©u cÅ©",
+  "newPassword": "Máº­t kháº©u má»›i",
+  "enterNewPassword": "Nháº­p máº­t kháº©u má»›i",
+  "pleaseEnterNewPassword": "Vui lÃ²ng nháº­p máº­t kháº©u má»›i",
+  "passwordTooShort": "Máº­t kháº©u pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±",
+  "passwordMustDiffer": "Máº­t kháº©u má»›i khÃ´ng Ä‘Æ°á»£c trÃ¹ng máº­t kháº©u cÅ©",
+  "confirmNewPassword": "XÃ¡c nháº­n máº­t kháº©u má»›i",
+  "reenterNewPassword": "Nháº­p láº¡i máº­t kháº©u má»›i",
+  "pleaseConfirmPassword": "Vui lÃ²ng xÃ¡c nháº­n máº­t kháº©u má»›i",
+  "passwordMismatch": "Máº­t kháº©u xÃ¡c nháº­n khÃ´ng khá»›p",
+  "processing": "Äang xá»­ lÃ½...",
+  "confirmChangePassword": "XÃ¡c nháº­n Ä‘á»•i máº­t kháº©u",
+  "changePasswordSuccess": "Äá»•i máº­t kháº©u thÃ nh cÃ´ng!",
+  "changePasswordFailed": "Äá»•i máº­t kháº©u tháº¥t báº¡i.",
+  "packageLabel": "GÃ³i:",
+  "validityPeriod": "Hiá»‡u lá»±c:",
+  "daysRemainingRenewNow": "CÃ²n {days} ngÃ y â€” Gia háº¡n ngay!",
+  "@daysRemainingRenewNow": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "contractWithId": "Há»£p Ä‘á»“ng {id}",
+  "@contractWithId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "overviewInfo": "ThÃ´ng tin tá»•ng quan",
+  "groupRepresentativeLabel": "NhÃ³m / Ä‘áº¡i diá»‡n",
+  "createdAtLabel": "NgÃ y táº¡o",
+  "registeredVehiclesCountLabel": "Sá»‘ xe Ä‘Äƒng kÃ½",
+  "vehiclesCountText": "{count} xe",
+  "@vehiclesCountText": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pendingPaymentsBannerTitle": "Báº¡n cÃ³ {count} gÃ³i cÆ°á»›c Ä‘ang chá» thanh toÃ¡n",
+  "@pendingPaymentsBannerTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pendingPaymentsBannerSubtitle": "Vui lÃ²ng hoÃ n táº¥t thanh toÃ¡n Ä‘á»ƒ kÃ­ch hoáº¡t gÃ³i hoáº·c Há»§y giao dá»‹ch trong Lá»‹ch sá»­ Ä‘á»ƒ khÃ´i phá»¥c báº£n nhÃ¡p.",
+  "goToHistoryTooltip": "Äi tá»›i Lá»‹ch sá»­",
+  "selectAllDraftsCount": "Chá»n táº¥t cáº£ báº£n nhÃ¡p ({count})",
+  "@selectAllDraftsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "draftsCountBadge": "{count} báº£n nhÃ¡p",
+  "@draftsCountBadge": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "checkoutWithCount": "Thanh toÃ¡n ({count} xe)",
+  "@checkoutWithCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "historyTitle": "Lá»‹ch sá»­",
+  "failedToLoadPaymentHistory": "KhÃ´ng thá»ƒ táº£i lá»‹ch sá»­ thanh toÃ¡n",
+  "retry": "Thá»­ láº¡i",
+  "noBillsYet": "ChÆ°a cÃ³ hÃ³a Ä‘Æ¡n nÃ o",
+  "paymentHistorySubtitle": "CÃ¡c hÃ³a Ä‘Æ¡n thanh toÃ¡n sáº½ xuáº¥t hiá»‡n táº¡i Ä‘Ã¢y.",
+  "pendingPaymentHeader": "Chá» thanh toÃ¡n",
+  "processedHeader": "ÄÃ£ xá»­ lÃ½",
+  "continuePaymentButton": "Thanh toÃ¡n tiáº¿p",
+  "cancelInvoiceDialogTitle": "Há»§y hÃ³a Ä‘Æ¡n?",
+  "cancelInvoiceDialogBody": "HÃ³a Ä‘Æ¡n {code} sáº½ bá»‹ há»§y. CÃ¡c gÃ³i cÆ°á»›c liÃªn quan sáº½ Ä‘Æ°á»£c hoÃ n vá» tráº¡ng thÃ¡i trÆ°á»›c Ä‘Ã³.",
+  "@cancelInvoiceDialogBody": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "no": "KhÃ´ng",
+  "invoiceCancelSuccess": "ÄÃ£ há»§y hÃ³a Ä‘Æ¡n thÃ nh cÃ´ng.",
+  "invoiceCancelFailed": "KhÃ´ng thá»ƒ há»§y hÃ³a Ä‘Æ¡n.",
+  "parkingHistoryTitle": "Lá»‹ch sá»­ Ä‘á»— xe",
+  "filterButtonText": "Lá»c",
+  "filterAppliedText": "Äang Ã¡p dá»¥ng bá»™ lá»c",
+  "clearFilterButton": "XÃ³a lá»c",
+  "noParkingHistoryFound": "KhÃ´ng tÃ¬m tháº¥y lá»‹ch sá»­ Ä‘á»— xe",
+  "changeFilterSubtitle": "Thá»­ thay Ä‘á»•i Ä‘iá»u kiá»‡n lá»c cá»§a báº¡n.",
+  "searchFilterTitle": "Bá»™ lá»c tÃ¬m kiáº¿m",
+  "timeRangeLabel": "Khoáº£ng thá»i gian",
+  "fromDateLabel": "Tá»« ngÃ y",
+  "toDateLabel": "Äáº¿n ngÃ y",
+  "plateNumberLabel": "Biá»ƒn sá»‘ xe",
+  "plateNumberExample": "VD: 30A-123.45",
+  "resetFilterButton": "Thiáº¿t láº­p láº¡i",
+  "applyFilterButton": "Ãp dá»¥ng",
+  "failedToLoadData": "Lá»—i táº£i dá»¯ liá»‡u",
+  "paidStatus": "ÄÃ£ thanh toÃ¡n",
+  "unpaidStatus": "ChÆ°a tráº£",
+  "enumBookingActive": "Äang hoáº¡t Ä‘á»™ng",
+  "enumBookingExpired": "Háº¿t háº¡n",
+  "enumBookingPendingPayment": "Chá» thanh toÃ¡n",
+  "enumBookingCanceled": "ÄÃ£ huá»·",
+  "enumBookingPendingActivation": "Chá» kÃ­ch hoáº¡t",
+  "enumBookingNeedsAttention": "Cáº§n chÃº Ã½",
+  "enumBookingPartialPayment": "Thanh toÃ¡n 1 pháº§n",
+  "enumBookingDraft": "Báº£n nhÃ¡p",
+  "enumBookingComplete": "HoÃ n thÃ nh",
+  "enumPaymentPending": "Chá» thanh toÃ¡n",
+  "enumPaymentSuccess": "ThÃ nh cÃ´ng",
+  "enumPaymentFailed": "Tháº¥t báº¡i",
+  "enumPaymentRefunded": "ÄÃ£ hoÃ n tiá»n",
+  "enumPaymentCanceled": "ÄÃ£ há»§y",
+  "enumPaymentMethodCash": "Tiá»n máº·t",
+  "enumPaymentMethodPayos": "PayOS",
+  "enumPaymentMethodVnpay": "VNPay",
+  "enumPaymentMethodBankTransfer": "Chuyá»ƒn khoáº£n",
+  "enumPaymentMethodCreditCard": "Tháº» tÃ­n dá»¥ng",
+  "enumPaymentMethodQr": "VietQR",
+  "enumPaymentMethodOther": "KhÃ¡c",
+  "enumSessionOngoing": "Äang Ä‘á»—",
+  "enumSessionCompleted": "HoÃ n thÃ nh",
+  "enumVehicleActive": "CÃ²n háº¡n",
+  "enumVehicleExpiringSoon": "Sáº¯p háº¿t háº¡n",
+  "enumVehicleExpired": "Háº¿t háº¡n",
+  "enumComplaintPending": "Chá» xá»­ lÃ½",
+  "enumComplaintProcessing": "Äang xá»­ lÃ½",
+  "enumComplaintResolved": "ÄÃ£ giáº£i quyáº¿t",
+  "enumComplaintRejected": "Tá»« chá»‘i",
+  "enumNotifDebt": "Nháº¯c ná»£",
+  "enumNotifSecurity": "Cáº£nh bÃ¡o an ninh",
+  "enumNotifSystem": "Há»‡ thá»‘ng",
+  "enumNotifBroadcast": "PhÃ¡t thanh",
+  "errPaymentNotRecorded": "Há»‡ thá»‘ng chÆ°a ghi nháº­n thanh toÃ¡n. Vui lÃ²ng Ä‘á»£i giÃ¢y lÃ¡t vÃ  thá»­ láº¡i.",
+  "errInvalidStatus": "HÃ³a Ä‘Æ¡n cÃ³ tráº¡ng thÃ¡i: {status}",
+  "@errInvalidStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "manageGroupMembers": "Quản lý thành viên trong nhóm",
+  "manageGroupMembersSubtitle": "Thêm, xóa thành viên thuộc nhóm",
+  "memberList": "Danh sách thành viên",
+  "noMembers": "Chưa có thành viên nào",
+  "addMemberPrompt": "Nhấn Thêm mới để thêm thành viên vào nhóm.",
+  "addMember": "Thêm thành viên",
+  "addedNewMember": "Đã thêm thành viên mới",
+  "removeMemberConfirm": "Xóa thành viên {name} khỏi nhóm?",
+  "@removeMemberConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removedMember": "Đã xóa thành công",
+  "deleteFailed": "Lỗi khi xóa: {error}",
+  "@deleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "totalMembers": "Tổng số thành viên",
+  "memberCount": "{count} thành viên",
+  "@memberCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "updateMemberSuccess": "Cập nhật danh sách thành viên thành công!",
+  "manageMembers": "Quản lý thành viên",
+  "addToCartFailed": "Không thể thêm vào giỏ hàng. Vui lòng thử lại!",
+  "clearCart": "Xóa giỏ hàng",
+  "clearCartConfirm": "Bạn có chắc chắn muốn xóa các xe đã chọn khỏi giỏ hàng?",
+  "cart": "Giỏ hàng",
+  "cartEmpty": "Giỏ hàng trống",
+  "cartEmptySubtitle": "Hiện tại chưa có phương tiện nào trong giỏ hàng.",
+  "viewCart": "Xem giỏ hàng",
+  "confirm": "Xác nhận",
+  "delete": "Xóa"
 }

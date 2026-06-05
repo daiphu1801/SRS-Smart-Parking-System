@@ -25,6 +25,8 @@ COPY . .
 
 # Tải các thư viện (package) và tiến hành biên dịch (Build) ra Web
 RUN flutter pub get
+# Sinh mã nguồn đa ngôn ngữ từ các file .arb
+RUN flutter gen-l10n
 # Tạo file .env rỗng để tránh lỗi missing asset khi build
 RUN touch .env
 # Biên dịch sang bản Web với biến môi trường giả (Placeholder)

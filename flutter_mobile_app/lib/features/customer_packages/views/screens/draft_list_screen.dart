@@ -114,7 +114,6 @@ class _DraftListScreenState extends State<DraftListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final currencyFormatter = NumberFormat.currency(locale: 'vi_VN', symbol: '₫');
 
     return Scaffold(
