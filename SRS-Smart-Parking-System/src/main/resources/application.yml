@@ -1,0 +1,130 @@
+spring:
+
+  data:
+    redis:
+      host: touched-insect-127463.upstash.io
+      port: 6379
+      username: default
+      password: ${REDIS_PASSWORD}
+
+      ssl:
+          enabled: true
+      timeout: 3000ms
+      lettuce:
+          pool:
+            max-active: 50
+            max-idle: 10
+            min-idle: 2
+            max-wait: 2000ms
+  flyway:
+    enabled: false
+    baseline-on-migrate: true
+    baseline-version: "1"
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Đưa đường link chứa Public Key vào đây
+          jwk-set-uri: ${SUPABASE_JWK_URI}
+  application:
+    name: smart-parking-core
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate          # Dùng Flyway/Liquibase để quản lý schema
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc.batch_size: 50
+        order_inserts: true
+        format_sql: true
+        default_batch_fetch_size: 100
+
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    listener:
+      type: batch
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: parking-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      max-poll-records: 50
+      properties:
+        spring.json.value.default.type: "com.smartparking.shared.kafka.dto.ParkingSessionEvent"
+        spring.json.trusted.packages: "*"
+
+server:
+  error:
+    include-message: always
+    include-stacktrace: always
+  port: 8080
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    com.smartparking: DEBUG
+    org.springframework.kafka: INFO
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: DEBUG
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:*}
+  twilio:
+    account-sid: ${TWILIO_ACCOUNT_SID}
+    auth-token: ${TWILIO_AUTH_TOKEN}
+    messaging-service-sid: ${TWILIO_MESSAGING_SERVICE_SID}
+    from-number: "+15075545747"
+
+  demo:
+    admin-phone: "+84399486270"
+    otp-expiration-minutes: 15
+    otp-max-try: 5
+
+
+  settings:
+    file-path: ${SETTINGS_PATH:../python_edge_desktop/config/settings.json}
+
+  sepay:
+    webhook-secret: ${SEPAY_WEBHOOK_SECRET}
+    bank-account: ${SEPAY_BANK_ACCOUNT}
+    bank-name: ${SEPAY_BANK_NAME}
+    account-name: ${SEPAY_ACCOUNT_NAME}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+
+
+supabase:
+  url: ${SUPABASE_URL}
+  anon-key: ${SUPABASE_ANON_KEY} # Dùng để login/verify
+  service-role-key: ${SUPABASE_SERVICE_ROLE_KEY} # Dùng cho quyền Admin (ví dụ: ép đổi pass)
+  jwt-secret: ${SUPABASE_JWT_SECRET}
+
+spring.jackson.time-zone: Asia/Ho_Chi_Minh
+redisson:
+  file: classpath:redisson.yml

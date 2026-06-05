@@ -1,7 +1,5 @@
 # COMMON OS & IDE & ENV
 # ==========================================
-application.yml
-application.properties
 .DS_Store
 .DS_Store?
 ._*
