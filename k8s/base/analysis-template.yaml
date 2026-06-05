@@ -6,6 +6,7 @@ spec:
   metrics:
   - name: success-rate
     interval: 1m # Cứ 1 phút đo 1 lần
+    count: 1
     # Điều kiện thành công: Không có request nào (len=0) HOẶC tỷ lệ thành công >= 95%
     successCondition: len(result) == 0 || result[0] >= 0.95
     provider:
