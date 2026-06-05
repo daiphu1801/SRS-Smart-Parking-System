@@ -38,6 +38,8 @@ jobs:
         with:
           context: ./kiosk_app
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sps-kiosk-app:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/sps-kiosk-app:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/sps-kiosk-app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
