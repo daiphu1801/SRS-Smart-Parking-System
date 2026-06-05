@@ -17,7 +17,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: backend-container
-          image: srs-backend:latest
+          image: ichbineinhund/srs-backend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
