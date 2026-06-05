@@ -1010,15 +1010,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get addedNewMember => 'Added new member';
   @override
-  String removeMemberConfirm(String name) => 'Remove member \ from the group?';
+  String removeMemberConfirm(String name) => 'Remove member $name from the group?';
   @override
   String get removedMember => 'Deleted successfully';
   @override
-  String deleteFailed(String error) => 'Failed to delete: ';
+  String deleteFailed(String error) => 'Failed to delete: $error';
   @override
   String get totalMembers => 'Total members';
   @override
-  String memberCount(int count) => '\ members';
+  String memberCount(int count) => '$count members';
   @override
   String get updateMemberSuccess => 'Member list updated successfully!';
   @override

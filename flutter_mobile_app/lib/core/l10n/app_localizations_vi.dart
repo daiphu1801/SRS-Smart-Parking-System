@@ -1009,15 +1009,15 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get addedNewMember => 'Đã thêm thành viên mới';
   @override
-  String removeMemberConfirm(String name) => 'Xóa thành viên \ khỏi nhóm?';
+  String removeMemberConfirm(String name) => 'Xóa thành viên $name khỏi nhóm?';
   @override
   String get removedMember => 'Đã xóa thành công';
   @override
-  String deleteFailed(String error) => 'Lỗi khi xóa: ';
+  String deleteFailed(String error) => 'Lỗi khi xóa: $error';
   @override
   String get totalMembers => 'Tổng số thành viên';
   @override
-  String memberCount(int count) => '\ thành viên';
+  String memberCount(int count) => '$count thành viên';
   @override
   String get updateMemberSuccess => 'Cập nhật danh sách thành viên thành công!';
   @override
