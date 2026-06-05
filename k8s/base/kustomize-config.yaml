@@ -18,3 +18,8 @@ nameReference:
   fieldSpecs:
   - kind: Rollout
     path: spec/template/spec/containers/envFrom/secretRef/name
+
+- kind: SealedSecret
+  fieldSpecs:
+  - kind: Rollout
+    path: spec/template/spec/containers/envFrom/secretRef/name

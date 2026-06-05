@@ -8,7 +8,7 @@ spec:
     kind: Rollout
     name: sps-backend-deployment
   minReplicas: 1
-  maxReplicas: 7
+  maxReplicas: 2
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300

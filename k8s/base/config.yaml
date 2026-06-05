@@ -4,9 +4,9 @@ metadata:
   name: sps-config
 data:
   SPRING_PROFILES_ACTIVE: "prod"
+  SPRING_FLYWAY_BASELINE_ON_MIGRATE: "true"
   API_BASE_URL: "http://api.sps.local"
   SPRING_KAFKA_BOOTSTRAP_SERVERS: "host.docker.internal:9092"
-  
   # Cấu hình không nhạy cảm
   APP_TWILIO_MESSAGING_SERVICE_SID: "MG1048b50aeeaab0e9127cfe402fa12a9d"
   APP_SEPAY_BANK_ACCOUNT: "0859226688"

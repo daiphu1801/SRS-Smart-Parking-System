@@ -33,6 +33,30 @@ spec:
                 name: sps-config
             - secretRef:
                 name: sps-backend-secrets
+          env:
+            - name: APP_TWILIO_ACCOUNT_SID
+              valueFrom:
+                secretKeyRef:
+                  name: sps-backend-secrets
+                  key: TWILIO_ACCOUNT_SID
+            - name: APP_TWILIO_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: sps-backend-secrets
+                  key: TWILIO_AUTH_TOKEN
+            - name: APP_SEPAY_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: sps-backend-secrets
+                  key: SEPAY_WEBHOOK_SECRET
+            - name: APP_TWILIO_FROM_NUMBER
+              value: "+15075545747"
+            - name: APP_DEMO_ADMIN_PHONE
+              value: "+84399486270"
+            - name: APP_DEMO_OTP_EXPIRATION_MINUTES
+              value: "15"
+            - name: APP_DEMO_OTP_MAX_TRY
+              value: "5"
   strategy:
     canary:
       steps:

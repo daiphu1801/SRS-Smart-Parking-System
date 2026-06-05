@@ -1,6 +1,6 @@
 singleServerConfig:
   address: "rediss://touched-insect-127463.upstash.io:6379"
-  password: "gQAAAAAAAfHnAAIgcDIwZTI3NDdjN2MwYzg0YzI4ODBmNWQwM2FlYjM3MTc3MA"
+  password: "${REDIS_PASSWORD}"
 
   connectionPoolSize: 10
   connectionMinimumIdleSize: 2
