@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kiosk-container
-          image: ichbineinhund/sps-kiosk-app:latest
+          image: srs-kiosk-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
