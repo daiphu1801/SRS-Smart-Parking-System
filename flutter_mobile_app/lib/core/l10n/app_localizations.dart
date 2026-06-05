@@ -1906,4 +1906,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   String get cartEmptySubtitle;
   String get viewCart;
 
+
+  String get confirm;
+  String get delete;
+
 }

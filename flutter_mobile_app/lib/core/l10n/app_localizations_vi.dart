@@ -1037,4 +1037,10 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get viewCart => 'Xem giỏ hàng';
 
+
+  @override
+  String get confirm => 'Xác nhận';
+  @override
+  String get delete => 'Xóa';
+
 }

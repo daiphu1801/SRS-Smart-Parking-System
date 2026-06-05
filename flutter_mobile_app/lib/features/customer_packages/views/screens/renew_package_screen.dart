@@ -62,6 +62,7 @@ class _RenewPackageScreenState extends State<RenewPackageScreen> {
   }
 
   void _submitRenewal(BookingDetail oldDetail, double totalPrice) async {
+    final l10n = AppLocalizations.of(context)!;
     setState(() => _isSubmitting = true);
 
     // Gọi API để gia hạn gói cước (Thêm vào giỏ hàng)

@@ -71,6 +71,7 @@ class _DraftListScreenState extends State<DraftListScreen> {
   }
 
   Future<void> _deleteSelected() async {
+    final l10n = AppLocalizations.of(context)!;
     if (_selectedIds.isEmpty) return;
 
     final confirmed = await showDialog<bool>(
@@ -147,9 +148,9 @@ class _DraftListScreenState extends State<DraftListScreen> {
             final details = dtos.map((dto) => BookingDetail.fromDto(dto)).toList();
 
             if (details.isEmpty) {
-              return const AppEmptyState(
+              return AppEmptyState(
                 icon: Icons.directions_car_outlined,
-                title: 'Giỏ hàng trống',
+                title: l10n.cartEmpty,
                 subtitle: l10n.cartEmptySubtitle,
               );
             }

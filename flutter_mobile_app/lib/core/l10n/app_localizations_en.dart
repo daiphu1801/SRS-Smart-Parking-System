@@ -1038,4 +1038,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get viewCart => 'View cart';
 
+
+  @override
+  String get confirm => 'Confirm';
+  @override
+  String get delete => 'Delete';
+
 }
