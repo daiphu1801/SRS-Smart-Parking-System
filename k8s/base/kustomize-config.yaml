@@ -8,3 +8,13 @@ nameReference:
   fieldSpecs:
   - kind: Rollout
     path: spec/strategy/canary/steps/analysis/templates/templateName
+
+- kind: ConfigMap
+  fieldSpecs:
+  - kind: Rollout
+    path: spec/template/spec/containers/envFrom/configMapRef/name
+
+- kind: Secret
+  fieldSpecs:
+  - kind: Rollout
+    path: spec/template/spec/containers/envFrom/secretRef/name
