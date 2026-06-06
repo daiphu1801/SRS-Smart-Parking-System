@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sps-desktop-deployment # kustomize sẽ prefix thành prod-sps-desktop-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: desktop-ai-container
+          env:
+            - name: API_BASE_URL
+              # Pod chạy trong cluster → dùng k8s service DNS thay vì ingress domain
+              value: "http://prod-sps-backend-service:8080/api/v1"
