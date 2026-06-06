@@ -30,6 +30,10 @@ spec:
           env:
             - name: API_BASE_URL
               value: "http://api.sps.local/api/v1"
+            - name: SUPABASE_URL
+              value: "https://rrmhwltgofgtvxrmfxpl.supabase.co"
+            - name: SUPABASE_ANON_KEY
+              value: "sb_publishable_cS4urr2ZNRLPOi5ayfV1BA_xbBCvKHB"
 
 ---
 apiVersion: v1
