@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: sps-config
+            - secretRef:
+                name: sps-secret
 ---
 apiVersion: v1
 kind: Service
