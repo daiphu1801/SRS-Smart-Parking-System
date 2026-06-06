@@ -19,13 +19,13 @@ configurations:
   - kustomize-config.yaml
 
 images:
-  - name: srs-backend
-    newName: ichbineinhund/srs-backend
+  - name: sps-backend
+    newName: ichbineinhund/sps-backend
     newTag: latest
-  - name: srs-mobile-app
+  - name: sps-mobile-app
     newName: ichbineinhund/sps-mobile-app
     newTag: latest
-  - name: srs-kiosk-app
+  - name: sps-kiosk-app
     newName: ichbineinhund/sps-kiosk-app
     newTag: latest
   - name: sps-desktop-app
