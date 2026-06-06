@@ -14,6 +14,12 @@ spec:
       labels:
         app: sps-desktop
     spec:
+      # Cho phép pod resolve api.sps.local → ingress controller
+      # để traffic đi đúng qua ingress như production thật
+      hostAliases:
+        - ip: "10.96.58.213"   # ClusterIP của ingress-nginx-controller
+          hostnames:
+            - "api.sps.local"
       containers:
         - name: desktop-ai-container
           image: sps-desktop-app:latest

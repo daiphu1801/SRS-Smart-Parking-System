@@ -5,4 +5,3 @@ bases:
 namePrefix: prod-
 patchesStrategicMerge:
   - config-patch.yaml
-  - desktop-patch.yaml
