@@ -172,7 +172,7 @@
   "entryLabel": "Vào:",
   "exitLabel": "Ra:",
   "sessionDurationLabel": "Thời gian:",
-  "vehicleInLot": "— Xe đang trong bãi",
+  "vehicleInLot": " Xe đang trong bãi",
   "gracePeriodPrompt": "Vui lòng lấy xe trong: {mins}ph {secs}s",
   "@gracePeriodPrompt": { "placeholders": { "mins": { "type": "int" }, "secs": { "type": "String" } } },
   "parkingSessionDetail": "Chi tiết phiên đỗ xe",
@@ -184,11 +184,11 @@
   "gatesInOut": "Cổng vào / ra",
   "gateIn": "Cổng vào",
   "gateOut": "Cổng ra",
-  "notExitedYet": "— Chưa ra",
+  "notExitedYet": " Chưa ra",
   "parkingTime": "Thời gian đỗ xe",
   "entryTime": "Thời gian vào",
   "exitTime": "Thời gian ra",
-  "vehicleNotExited": "— Xe chưa ra khỏi bãi",
+  "vehicleNotExited": " Xe chưa ra khỏi bãi",
   "totalDuration": "Tổng thời gian",
   "pleaseRetrieveVehicle": "Vui lòng lấy xe ra khỏi bãi",
   "gracePeriodRemaining": "Bạn còn {mins}ph {secs}s để rời bãi đỗ",
@@ -267,7 +267,7 @@
   "changePasswordFailed": "Đổi mật khẩu thất bại.",
   "packageLabel": "Gói:",
   "validityPeriod": "Hiệu lực:",
-  "daysRemainingRenewNow": "Còn {days} ngày — Gia hạn ngay!",
+  "daysRemainingRenewNow": "Còn {days} ngày  Gia hạn ngay!",
   "@daysRemainingRenewNow": {
     "placeholders": {
       "days": {
