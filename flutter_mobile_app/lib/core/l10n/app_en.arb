@@ -194,7 +194,7 @@
   "entryLabel": "Entry:",
   "exitLabel": "Exit:",
   "sessionDurationLabel": "Duration:",
-  "vehicleInLot": "â€” Vehicle is in lot",
+  "vehicleInLot": "— Vehicle is in lot",
   "gracePeriodPrompt": "Please pick up vehicle in: {mins}m {secs}s",
   "@gracePeriodPrompt": {
     "placeholders": {
@@ -215,11 +215,11 @@
   "gatesInOut": "Gates entry / exit",
   "gateIn": "Entry gate",
   "gateOut": "Exit gate",
-  "notExitedYet": "â€” Not exited yet",
+  "notExitedYet": "— Not exited yet",
   "parkingTime": "Parking time",
   "entryTime": "Entry time",
   "exitTime": "Exit time",
-  "vehicleNotExited": "â€” Vehicle has not exited",
+  "vehicleNotExited": "— Vehicle has not exited",
   "totalDuration": "Total duration",
   "pleaseRetrieveVehicle": "Please retrieve your vehicle",
   "gracePeriodRemaining": "You have {mins}m {secs}s remaining to exit",
@@ -326,7 +326,7 @@
   "changePasswordFailed": "Password change failed.",
   "packageLabel": "Package:",
   "validityPeriod": "Validity:",
-  "daysRemainingRenewNow": "Only {days} days left â€” Renew now!",
+  "daysRemainingRenewNow": "Only {days} days left — Renew now!",
   "@daysRemainingRenewNow": {
     "placeholders": {
       "days": {
