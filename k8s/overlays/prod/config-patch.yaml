@@ -4,4 +4,4 @@ metadata:
   name: sps-config
 data:
   SPRING_PROFILES_ACTIVE: "prod"
-  API_BASE_URL: "https://api.doxe.com"
+  API_BASE_URL: "http://api.sps.local"
