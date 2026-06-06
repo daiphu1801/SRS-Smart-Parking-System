@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kiosk-container
-          image: srs-kiosk-app:latest
+          image: sps-kiosk-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
