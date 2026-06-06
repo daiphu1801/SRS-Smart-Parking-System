@@ -26,6 +26,8 @@ jobs:
         with:
           context: ./sps_desktop
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sps-desktop-app:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/sps-desktop-app:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/sps-desktop-app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
