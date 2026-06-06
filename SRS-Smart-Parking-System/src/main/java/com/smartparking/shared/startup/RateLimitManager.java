@@ -34,9 +34,15 @@ public class RateLimitManager {
         try {
             RRateLimiter rateLimiter = redissonClient.getRateLimiter("rate_limit:ip:" + key);
 
-            rateLimiter.trySetRate(RateType.OVERALL, capacity, seconds, RateIntervalUnit.SECONDS);
+            boolean isNew = rateLimiter.trySetRate(RateType.OVERALL, capacity, seconds, RateIntervalUnit.SECONDS);
 
-            // 3. Xin 1 lượt đi qua
+            // Chỉ set TTL lần đầu tạo key → IP bị block sẽ tự unblock sau đúng 'seconds' giây
+            // (key tự xóa → lần request tiếp theo tạo lại với full token)
+            if (isNew) {
+                rateLimiter.expire(Duration.ofSeconds(seconds));
+            }
+
+            // Xin 1 lượt đi qua
             boolean isAllowed = rateLimiter.tryAcquire(1);
             long remaining = rateLimiter.availablePermits();
 
