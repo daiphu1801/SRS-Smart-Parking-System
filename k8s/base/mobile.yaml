@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mobile-container
-          image: srs-mobile-app:latest
+          image: sps-mobile-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80 # Nginx phục vụ Web ở cổng 80
