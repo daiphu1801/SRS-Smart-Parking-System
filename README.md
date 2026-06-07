@@ -50,18 +50,87 @@ Dành cho lập trình viên muốn chạy và debug hệ thống trực tiếp 
 | `[YOUR_REDIS_HOST_OR_IP]` | Host Redis | `localhost` hoặc IP server |
 | `[YOUR_REDIS_PASSWORD]` | Mật khẩu Redis | `SieuBaoMat123` |
 | `[YOUR_SUPABASE_PROJECT_ID]` | ID project Supabase | `rrmhwltgofgtvxrmfxpl` |
-| `[YOUR_DB_HOST]` | Host database Supabase | `aws-0-ap-southeast-1.pooler.supabase.com` |
-| `[YOUR_DB_PASSWORD]` | Mật khẩu PostgreSQL Supabase | _(lấy từ Supabase Dashboard)_ |
-| `[YOUR_SUPABASE_ANON_KEY]` | Anon Key Supabase | _(lấy từ Project Settings → API)_ |
-| `[YOUR_SUPABASE_JWT_SECRET]` | JWT Secret Supabase | _(lấy từ Project Settings → API)_ |
-| `[KAFKA_BROKER_URL_...]` | URL Kafka Broker | `localhost:9092` hoặc `host.docker.internal:9092` |
-| `[YOUR_TWILIO_ACCOUNT_SID]` | Account SID Twilio (SMS) | `AC...` |
-| `[YOUR_TWILIO_AUTH_TOKEN]` | Auth Token Twilio | _(lấy từ Twilio Console)_ |
-| `[YOUR_TWILIO_MESSAGING_SERVICE_SID]` | Messaging Service SID | `MG...` |
-| `[YOUR_SEPAY_BANK_ACCOUNT_NUMBER]` | Số tài khoản Sepay | `0859226688` |
-| `[YOUR_SEPAY_WEBHOOK_SECRET]` | Webhook Secret Sepay | _(lấy từ Sepay Dashboard)_ |
+3. Mở `application.yml` và điền đầy đủ tất cả biến theo bảng dưới đây:
 
-> **Lưu ý:** Spring Boot dùng Relaxed Binding, tự động map cấu trúc Yaml sang biến môi trường.
+---
+
+#### 🔴 Redis / Upstash Cache
+> Hệ thống dùng Redis để cache Rate Limit, Zone, System Config. Có thể dùng Redis local hoặc **Upstash** (cloud, miễn phí).
+> - **Upstash:** Tạo database tại [upstash.com](https://upstash.com) → lấy `Endpoint` và `Password`. Bật `TLS/SSL`.
+> - **Local Redis:** Tắt `ssl.enabled: false`, để `host: localhost`, `password: ""`.
+
+| Biến trong `application.yml` | Mô tả | Ví dụ |
+|---|---|---|
+| `spring.data.redis.host` | Host Redis hoặc Upstash endpoint | `caring-lab-12345.upstash.io` |
+| `spring.data.redis.port` | Port (Upstash dùng 6379) | `6379` |
+| `spring.data.redis.password` | Mật khẩu Redis / Upstash token | `AXxx...` |
+| `spring.data.redis.ssl.enabled` | Bật SSL (bắt buộc với Upstash) | `true` / `false` |
+
+---
+
+#### 🔵 Supabase (Database + Auth)
+> Tạo project tại [supabase.com](https://supabase.com). Tất cả thông tin lấy tại **Project Settings → API**.
+
+| Biến trong `application.yml` | Mô tả | Lấy ở đâu |
+|---|---|---|
+| `supabase.url` | URL project Supabase | Settings → API → Project URL |
+| `supabase.anon-key` | Anon/Public Key | Settings → API → anon public |
+| `supabase.service-role-key` | Service Role Key (quyền admin) | Settings → API → service_role |
+| `spring.datasource.url` | JDBC URL kết nối PostgreSQL | Settings → Database → Connection string (Java/JDBC) |
+| `spring.datasource.username` | Username DB | `postgres.[YOUR_PROJECT_ID]` |
+| `spring.datasource.password` | Mật khẩu DB | Settings → Database → Database password |
+| `spring.security.oauth2...jwk-set-uri` | URL Public Key JWT Supabase | `https://[ID].supabase.co/auth/v1/.well-known/jwks.json` |
+
+> ⚠️ `jwk-set-uri` dùng thuật toán **ES256** — đã được cấu hình sẵn trong `SecurityConfig.java`.
+
+---
+
+#### 🟡 Kafka (Message Broker)
+> Dùng để gửi sự kiện xe vào/ra giữa AI Desktop và Backend.
+> - **Local:** Cài Kafka Docker: `docker run -p 9092:9092 apache/kafka:latest`
+> - **Trong K8s:** Kafka đã được deploy sẵn, dùng `host.docker.internal:9092`
+
+| Biến trong `application.yml` | Mô tả | Ví dụ |
+|---|---|---|
+| `spring.kafka.bootstrap-servers` | URL Kafka Broker | `localhost:9092` hoặc `host.docker.internal:9092` |
+
+---
+
+#### 📱 Twilio (Gửi SMS OTP)
+> Tạo tài khoản tại [twilio.com](https://twilio.com). Lấy thông tin tại Console Dashboard.
+
+| Biến trong `application.yml` | Mô tả | Lấy ở đâu |
+|---|---|---|
+| `app.twilio.account-sid` | Account SID | Twilio Console → Account Info |
+| `app.twilio.auth-token` | Auth Token | Twilio Console → Account Info |
+| `app.twilio.messaging-service-sid` | Messaging Service SID | Messaging → Services |
+| `app.twilio.from-number` | Số điện thoại gửi (nếu có) | Phone Numbers (để trống nếu dùng Messaging Service) |
+
+---
+
+#### 💳 Sepay (Thanh toán QR)
+> Tạo tài khoản tại [sepay.vn](https://sepay.vn). Cấu hình Webhook để nhận callback thanh toán.
+
+| Biến trong `application.yml` | Mô tả | Ví dụ |
+|---|---|---|
+| `app.sepay.bank-account` | Số tài khoản ngân hàng nhận tiền | `0859226688` |
+| `app.sepay.bank-name` | Tên ngân hàng | `MBBank` |
+| `app.sepay.account-name` | Tên chủ tài khoản | `NGUYEN VAN A` |
+| `app.sepay.webhook-secret` | Secret xác thực Webhook Sepay | Sepay Dashboard → Webhook Settings |
+
+---
+
+#### ⚙️ Cấu hình ứng dụng
+
+| Biến trong `application.yml` | Mô tả | Ví dụ |
+|---|---|---|
+| `app.cors.allowed-origins` | Danh sách domain frontend được phép gọi API (ngăn cách bằng dấu phẩy) | `http://localhost:3000,http://mobile.sps.local` |
+| `app.settings.file-path` | Đường dẫn file/thư mục lưu cài đặt hệ thống | `./settings` hoặc `/app/data/settings` |
+| `app.demo.admin-phone` | Số điện thoại admin dùng cho demo (nhận OTP test) | `0901234567` |
+| `app.demo.otp-expiration-minutes` | Thời gian hết hạn OTP (phút) | `5` |
+| `app.demo.otp-max-try` | Số lần nhập OTP tối đa | `5` |
+
+---
 
 **Chạy:**
 ```bash
@@ -363,5 +432,3 @@ kubectl logs -n argo-rollouts -l app.kubernetes.io/name=argo-rollouts --tail=50
 ```
 
 ---
-
-*Tài liệu cập nhật tháng 6/2026. Mọi thay đổi hạ tầng cần cập nhật đồng bộ vào file này.*
