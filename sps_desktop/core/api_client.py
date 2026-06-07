@@ -140,7 +140,7 @@ def _wrap_data(data: Any) -> dict:
 def _get(path: str, params: dict = None, *, camelize_params: bool = True) -> dict:
     """GET with auth header. Returns parsed JSON or raises on error."""
     try:
-        resp = requests.get(f"{BASE_URL}{path}", headers=_headers(), params=_clean(params, camelize=camelize_params), timeout=30)
+        resp = requests.get(f"{BASE_URL}{path}", headers=_headers(), params=_clean(params, camelize=camelize_params), timeout=600)
         _check_status(resp)
         return _decode_response(resp)
     except Exception as e:
@@ -159,7 +159,7 @@ def _post(path: str, body: dict = None, files=None, params: dict = None, *, came
                 headers=_headers(),
                 json=_clean(body, camelize=camelize_body),
                 params=_clean(params),
-                timeout=30,
+                timeout=600,  # TODO: trả về 30 sau khi nâng backend
             )
         _check_status(resp)
         data = _decode_response(resp)
@@ -173,7 +173,7 @@ def _post(path: str, body: dict = None, files=None, params: dict = None, *, came
 
 def _put(path: str, body: dict = None, *, camelize_body: bool = True) -> dict:
     try:
-        resp = requests.put(f"{BASE_URL}{path}", headers=_headers(), json=_clean(body, camelize=camelize_body), timeout=30)
+        resp = requests.put(f"{BASE_URL}{path}", headers=_headers(), json=_clean(body, camelize=camelize_body), timeout=600)
         _check_status(resp)
         data = _decode_response(resp)
         msg = data.get("message") if isinstance(data, dict) else None
@@ -186,7 +186,7 @@ def _put(path: str, body: dict = None, *, camelize_body: bool = True) -> dict:
 
 def _patch(path: str, body: dict = None, *, camelize_body: bool = True) -> dict:
     try:
-        resp = requests.patch(f"{BASE_URL}{path}", headers=_headers(), json=_clean(body, camelize=camelize_body), timeout=30)
+        resp = requests.patch(f"{BASE_URL}{path}", headers=_headers(), json=_clean(body, camelize=camelize_body), timeout=600)
         _check_status(resp)
         data = _decode_response(resp)
         msg = data.get("message") if isinstance(data, dict) else None
@@ -199,7 +199,7 @@ def _patch(path: str, body: dict = None, *, camelize_body: bool = True) -> dict:
 
 def _delete(path: str) -> dict:
     try:
-        resp = requests.delete(f"{BASE_URL}{path}", headers=_headers(), timeout=30)
+        resp = requests.delete(f"{BASE_URL}{path}", headers=_headers(), timeout=600)
         _check_status(resp)
         data = _decode_response(resp)
         msg = data.get("message") if isinstance(data, dict) else None
