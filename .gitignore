@@ -67,16 +67,7 @@ coverage.xml
 .pytest_cache/
 cover/
 
-# AI Models & Large Files (YOLO, OpenCV)
-*.pt
-*.onnx
-*.weights
-*.caffemodel
-*.pb
 
-# Demo / sample videos
-demo.mp4
-*.mp4
 
 # ==========================================
 # 2. JAVA / SPRING BOOT (java_spring_core)
