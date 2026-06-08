@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sps-desktop:
+    image: ichbineinhund/sps-desktop-app:latest
+    container_name: sps-desktop
+    restart: unless-stopped
+    ports:
+      - "8550:8550"
+    environment:
+      - API_BASE_URL=http://api.sps.local/api/v1
+      - SUPABASE_URL=https://rrmhwltgofgtvxrmfxpl.supabase.co
+      - SUPABASE_ANON_KEY=sb_publishable_cS4urr2ZNRLPOi5ayfV1BA_xbBCvKHB
+    extra_hosts:
+      - "api.sps.local:host-gateway"

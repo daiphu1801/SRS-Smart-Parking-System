@@ -9,7 +9,6 @@ resources:
   - backend.yaml
   - kiosk.yaml
   - mobile.yaml
-  - desktop.yaml
   - ingress.yaml
   - ingress-logging.yaml
   - hpa-backend.yaml
@@ -27,7 +26,4 @@ images:
     newTag: latest
   - name: sps-kiosk-app
     newName: ichbineinhund/sps-kiosk-app
-    newTag: latest
-  - name: sps-desktop-app
-    newName: ichbineinhund/sps-desktop-app
     newTag: latest
