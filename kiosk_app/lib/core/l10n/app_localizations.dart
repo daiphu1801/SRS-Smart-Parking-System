@@ -1055,7 +1055,7 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleInLot.
   ///
   /// In en, this message translates to:
-  /// **'— Vehicle is in lot'**
+  /// **' Vehicle is in lot'**
   String get vehicleInLot;
 
   /// No description provided for @gracePeriodPrompt.
@@ -1121,7 +1121,7 @@ abstract class AppLocalizations {
   /// No description provided for @notExitedYet.
   ///
   /// In en, this message translates to:
-  /// **'— Not exited yet'**
+  /// **' Not exited yet'**
   String get notExitedYet;
 
   /// No description provided for @parkingTime.
@@ -1145,7 +1145,7 @@ abstract class AppLocalizations {
   /// No description provided for @vehicleNotExited.
   ///
   /// In en, this message translates to:
-  /// **'— Vehicle has not exited'**
+  /// **' Vehicle has not exited'**
   String get vehicleNotExited;
 
   /// No description provided for @totalDuration.
@@ -1559,7 +1559,7 @@ abstract class AppLocalizations {
   /// No description provided for @daysRemainingRenewNow.
   ///
   /// In en, this message translates to:
-  /// **'Only {days} days left — Renew now!'**
+  /// **'Only {days} days left  Renew now!'**
   String daysRemainingRenewNow(int days);
 
   /// No description provided for @contractWithId.

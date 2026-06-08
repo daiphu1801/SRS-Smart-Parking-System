@@ -508,7 +508,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sessionDurationLabel => 'Duration:';
 
   @override
-  String get vehicleInLot => '— Vehicle is in lot';
+  String get vehicleInLot => ' Vehicle is in lot';
 
   @override
   String gracePeriodPrompt(int mins, String secs) {
@@ -543,7 +543,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gateOut => 'Exit gate';
 
   @override
-  String get notExitedYet => '— Not exited yet';
+  String get notExitedYet => ' Not exited yet';
 
   @override
   String get parkingTime => 'Parking time';
@@ -555,7 +555,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exitTime => 'Exit time';
 
   @override
-  String get vehicleNotExited => '— Vehicle has not exited';
+  String get vehicleNotExited => ' Vehicle has not exited';
 
   @override
   String get totalDuration => 'Total duration';
@@ -779,7 +779,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String daysRemainingRenewNow(int days) {
-    return 'Only $days days left — Renew now!';
+    return 'Only $days days left  Renew now!';
   }
 
   @override

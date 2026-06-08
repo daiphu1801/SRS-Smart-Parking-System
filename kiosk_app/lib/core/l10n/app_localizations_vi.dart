@@ -508,7 +508,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sessionDurationLabel => 'Thời gian:';
 
   @override
-  String get vehicleInLot => '— Xe đang trong bãi';
+  String get vehicleInLot => ' Xe đang trong bãi';
 
   @override
   String gracePeriodPrompt(int mins, String secs) {
@@ -543,7 +543,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get gateOut => 'Cổng ra';
 
   @override
-  String get notExitedYet => '— Chưa ra';
+  String get notExitedYet => ' Chưa ra';
 
   @override
   String get parkingTime => 'Thời gian đỗ xe';
@@ -555,7 +555,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exitTime => 'Thời gian ra';
 
   @override
-  String get vehicleNotExited => '— Xe chưa ra khỏi bãi';
+  String get vehicleNotExited => ' Xe chưa ra khỏi bãi';
 
   @override
   String get totalDuration => 'Tổng thời gian';
@@ -777,7 +777,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String daysRemainingRenewNow(int days) {
-    return 'Còn $days ngày — Gia hạn ngay!';
+    return 'Còn $days ngày  Gia hạn ngay!';
   }
 
   @override
