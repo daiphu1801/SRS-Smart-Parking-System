@@ -307,7 +307,8 @@ public class IoTService {
         return Map.of(
                 "message", "Chúc thượng lộ bình an",
                 "command", "OPEN_BARRIER",
-                "session", session);
+                "session", session,
+                "assignedImageName", assignedImageName);
     }
 
     private Integer guessVehicleTypeIdFromPlate(String rawPlate) {
