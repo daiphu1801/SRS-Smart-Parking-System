@@ -1,0 +1,86 @@
+ngrok http --domain=untold-vagueness-landscape.ngrok-free.dev 80 --host-header=api.sps.local
+
+
+Các thư viện đáng chú ý
+- Kafka
+- Redis
+- JPA Auditing + Hibernate Envers
+- Flyway
+- Sepay Webhook
+- Twilio
+- Logstas định hình chuẩn log
+
+
+Logging có 3 tầng:
+- Controller Logging dùng lập trình hướng khía cạnh
++ bắt lỗi hệ thống
++ dùng trong hệ thống đo lường
++ Dùng thư viện slf4j + spring starter - aop 
+
+- Service logging
++ Dùng bắt lỗi nghiệp vụ
++ Theo dõi luồng xử lý nghiệp vụ
++ Dùng thư viện Lombok slf4j
+
+- Audit logging
++ Bắt lịch sử dtbs
++Dùng thư viện JPA Auditing + Hibernate Envers
+
+
+Security có 3 tầng:
+- CORS và Rate Limiting 
++ CORS trong SecurityConfig
++ Kiểm tra header Origin
++ Kiểm tra endpoint được gọi có cần jwt không
++ Là Config tổng đầu vào, khai báo thêm filter của ratelimit, JWT, và supabaseFilter
++ Dùng Spring Security Core cho CORE 
++ Rate Limiting
+ _ Có 2 phần, là rate limit theo ip và thao tác, chống DDOS, Slowloris
+ _ Rate limit chổng brute force
+ _ Dùng Bucket4j để tạo thuật toán và Redisson để lưu trữ bucket ip lên redis cache
+- Authentication
++ Dùng kiểm tra JWT có hợp lệ bằng đối chiếu toàn vẹn dữ liệu
++ Dùng oauth resource server + Nimbus và các sự thư viên phục trợ dùng sinh mã hoặc xử lý token tùy biến của JAVA JWT
+-Authorization
++ Giải mã JWT, kiểm tra tài khoản có khả dụng, lấy danh sách phân quyền, danh sách identity/principal nhét vào security Context holder
++ Dùng các thư viện Spring Security để cài các annotation security
+
+Công nghệ dùng trong k8s:
+1. GitOps và CD
+- ArgoCD, đồng bộ trạng thái từ git repo về cluster tự động
+- Argo CD Image Updater, quét và cập nhất các container image mới lên kụm k8s khi dockerhub có bản mới
+2. Progressive Delivery, triên khai nâng cao
+- Dùng Argo Rollout, cung cấp các chiến lược nâng cao Canary, kiểm soát chất lượng
+- Dùng HPA thực thi việc scale pod, đếm số lượng
+3 Định tuyến và tường lửa
+- Nginx ingress reverse proxy và load balance, định tuyến traffic từ ngoài vào service
+4 VPN
+- Tailscle tích hợp vpn trực tiếp vào k8s cluster, giúp publish service nội bộ mà không cần mở cổng công cộng
+5. Quản lí cứng chỉ bảo mật
+Cùng Cert-Manager (để demo bảo mật bất đối xứng)
+6. Security secret
+- Dùng bitnami sealed secreat để mã hóa thông ti nhạy cảm, bằng thuật toán mã hóa phi đối xứng
+7. Security nội bộ
+- Cấu hình RBAC thu hồi token api cho thằng backend, nhằm cô lập không cho giao tiếp với k8s
+8. Giám sát và quản lí log
+- Promtail gom log từ container
+- Loki làm dtbs lưu trữ log
+- Grafana giao diện theo dõi log
+- Prometheus theo dõi hiệu năng business
+- Metrics server theo dõi hiệu năng phần cứng của pod
+
+Grafana:
+http://monitor.sps.local/
+admin
+kiet1
+
+ArgoCD:
+https://argocd.sps.local
+admin
+YmQTKokLAIdA7M89
+
+kubectl apply -f k8s/master-key.yaml
+kubectl apply -k k8s/base
+kubectl rollout restart rollout sps-backend-deployment
+kubectl get pods -A
+kubectl logs -l app=sps-backend -f

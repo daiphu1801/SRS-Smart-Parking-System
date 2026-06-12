@@ -172,3 +172,11 @@ doc/
 
 # Ignore real secrets file
 k8s/13-sps-secrets.yaml
+k8s/master-key.yaml
+# Ignore local ArgoCD Application configurations with secrets
+k8s/base/grafana-app.yaml
+k8s/base/loki-app.yaml
+k8s/base/prometheus-app.yaml
+k8s/base/sealed-secrets-app.yaml
+k8s/base/metrics-server-app.yaml
+k8s/base/tailscale-operator-app.yaml

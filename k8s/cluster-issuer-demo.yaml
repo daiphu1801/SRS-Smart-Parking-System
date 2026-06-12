@@ -1,36 +1,16 @@
-# =========================================================================
-# BẢN HƯỚNG DẪN (CLUSTER ISSUER) CẤP "SÚNG" CHO CERT-MANAGER
-# Chức năng: Đăng ký tài khoản với Let's Encrypt và chỉ định cách lấy chứng chỉ
-# (Sếp giữ file này làm tài liệu, bao giờ lên Production Cloud thì dùng)
-# =========================================================================
-
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  # TÊN NÀY QUAN TRỌNG NHẤT: 
-  # Nó phải khớp 100% với dòng 'cert-manager.io/cluster-issuer: "letsencrypt-prod"'
-  # mà tôi đã chèn vào file 06-ingress.yaml của sếp lúc nãy.
   name: letsencrypt-prod 
 spec:
   acme:
-    # 1. TỔNG ĐÀI API CỦA LET'S ENCRYPT
-    # Đây là đường dẫn thật của Let's Encrypt. Cứ giữ nguyên không cần đổi.
     server: https://acme-v02.api.letsencrypt.org/directory
     
-    # 2. EMAIL ĐĂNG KÝ
-    # Nếu hệ thống K8s bị lỗi không tự động gia hạn được, Let's Encrypt sẽ gửi mail cảnh báo vào đây.
-    # [LÊN PRODUCTION SẾP NHỚ ĐỔI THÀNH EMAIL THẬT, ví dụ: admin@smartparking.vn]
     email: email-ao-cua-sep@gmail.com 
     
-    # 3. KÉT SẮT CHỨA TÀI KHOẢN (ACCOUNT KEY)
-    # Lần đầu tiên gọi API, Let's Encrypt sẽ cấp cho sếp 1 cái mật khẩu tài khoản.
-    # Cert-manager sẽ tự động cất mật khẩu đó vào cái Secret mang tên này. Sếp cứ kệ nó.
     privateKeySecretRef:
       name: letsencrypt-prod-account-key
       
-    # 4. THUẬT TOÁN CHỨNG MINH CHÍNH CHỦ (CHALLENGE SOLVER)
-    # Báo cho Let's Encrypt biết: "Hễ mày muốn kiểm tra tao có phải chủ tên miền không, 
-    # thì mày cứ truy cập vào cổng 80 (HTTP) qua thằng Nginx Ingress nhé!"
     solvers:
     - http01:
         ingress:

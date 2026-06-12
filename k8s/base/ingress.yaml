@@ -3,9 +3,7 @@ kind: Ingress
 metadata:
   name: sps-ingress
   annotations:
-    # (Pha Cứu Thua Local): Không ép lên HTTPS để Test HTTP mượt mà
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    # (Sẵn sàng Production): Gọi Cert-Manager nạp khóa thật. Ở Local không có Cert-Manager nên K8s sẽ phớt lờ dòng này!
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
@@ -15,10 +13,8 @@ spec:
         - kiosk.sps.local
         - mobile.sps.local
         - ai.sps.local
-      # Local: Dùng chìa khóa giả. Production: Cert-Manager sẽ tự động ghi đè chìa khóa thật vào két sắt này!
       secretName: sps-tls-secret
   rules:
-    # 1. Khách gõ api.sps.local -> Vứt cho Backend Java
     - host: api.sps.local
       http:
         paths:
@@ -30,7 +26,6 @@ spec:
                 port:
                   number: 8080
 
-    # 2. Khách gõ kiosk.sps.local -> Vứt cho Flutter Kiosk
     - host: kiosk.sps.local
       http:
         paths:
@@ -53,15 +48,3 @@ spec:
                 name: sps-mobile-service
                 port:
                   number: 80
-
-    # 4. (Tùy chọn) Giao diện AI Desktop trên nền Web
-    - host: ai.sps.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: sps-desktop-service
-                port:
-                  number: 8550

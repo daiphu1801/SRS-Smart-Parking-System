@@ -62,7 +62,7 @@ public class SecurityConfig {
                         ).permitAll()
 
                         .anyRequest().authenticated()
-                )
+                ) 
                 .addFilterBefore(rateLimitFilter, BearerTokenAuthenticationFilter.class)
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 

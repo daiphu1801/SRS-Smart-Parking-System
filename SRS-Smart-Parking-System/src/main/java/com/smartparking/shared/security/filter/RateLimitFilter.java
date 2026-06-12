@@ -24,7 +24,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequiredArgsConstructor
 public class RateLimitFilter extends OncePerRequestFilter {
 
-    // Bộ nhớ đệm lưu "Cái Xô" của từng địa chỉ IP
     private final RateLimitManager rateLimitManager;
 
     @Override
@@ -32,24 +31,30 @@ public class RateLimitFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String uri = request.getRequestURI();
+        String clientIp = getClientIp(request);
 
-        // Chỉ quét Rate Limit cho luồng Auth (OTP, Login)
+        String globalKey = "global_limit:" + clientIp;
+        RateLimitManager.RateLimitResult globalResult = rateLimitManager.tryConsume(globalKey, 50, 1);
+
+        if (!globalResult.isAllowed()) {
+            log.warn("🚨 GLOBAL LIMIT: IP {} đang spam hệ thống quá nhanh!", clientIp);
+            response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().write("{\"code\": 429, \"message\": \"Thao tác quá nhanh, vui lòng thử lại sau!\"}");
+            return;
+        }
+
         if (uri.startsWith("/api/v1/auth/send-otp") || uri.startsWith("/api/v1/auth/login")) {
 
-            String clientIp = getClientIp(request);
 
-            // Tạo Key định danh rõ ràng để không lẫn với Rate Limit của các API khác
             String rateLimitKey = "auth_spam:" + clientIp;
 
-            // Truyền luật chơi: 3 lượt / 60 giây (Redisson sẽ tự xử lý)
             RateLimitManager.RateLimitResult result = rateLimitManager.tryConsume(rateLimitKey, 3, 60);
 
             if (result.isAllowed()) {
-                // Hợp lệ -> Đi tiếp
                 response.setHeader("X-Rate-Limit-Remaining", String.valueOf(result.remainingTokens()));
                 filterChain.doFilter(request, response);
             } else {
-                // Vi phạm -> Trả JSON 429
                 log.warn("🚨 RATE LIMIT: IP {} đang bị block vì spam API {}!", clientIp, uri);
                 response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
                 response.setContentType("application/json;charset=UTF-8");
