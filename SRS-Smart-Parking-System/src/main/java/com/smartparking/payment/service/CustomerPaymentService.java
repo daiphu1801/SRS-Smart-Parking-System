@@ -124,10 +124,6 @@ public class CustomerPaymentService {
         Payment payment = paymentRepository.findOne(secureSpec)
                 .orElseThrow(() -> new BusinessException("Giao dịch không tồn tại hoặc bạn không có quyền truy cập!"));
 
-        // Enforce business invariant: Only PENDING transactions can be canceled
-        if (payment.getStatus() != Status.PENDING) {
-            throw new BusinessException("Chỉ có thể hủy giao dịch đang chờ thanh toán!");
-        }
 
         payment.setStatus(Status.CANCELED);
         paymentRepository.save(payment);
