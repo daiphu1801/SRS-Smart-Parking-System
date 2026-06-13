@@ -1,13 +1,13 @@
 ngrok http --domain=untold-vagueness-landscape.ngrok-free.dev 80 --host-header=api.sps.local
-
+http://localhost:8550
 
 Các thư viện đáng chú ý
-- Kafka
-- Redis
-- JPA Auditing + Hibernate Envers
-- Flyway
-- Sepay Webhook
-- Twilio
+- Kafka quản lí bất đồng bộ
+- Redis quản lí cloud cache
+- JPA Auditing + Hibernate Envers giúp logging và auditing
+- Flyway giúp quản lí db version trong quá trình dev
+- Sepay Webhook giúp sử dụng dịch của của webhook
+- Twilio sử dụng tính năng gửi tin nhắn, thông báo - không dùng được
 - Logstas định hình chuẩn log
 
 
@@ -69,6 +69,10 @@ Cùng Cert-Manager (để demo bảo mật bất đối xứng)
 - Prometheus theo dõi hiệu năng business
 - Metrics server theo dõi hiệu năng phần cứng của pod
 
+Về CI:
+1. Fast-fail Syntax check: kiểm tra lỗi cú pháp trước cho java và flutter project
+2. Dùn github action cache để lưu từng lớp ở docker
+3. Dùng Trivy scanner xem mức độ bảo mật của các thư viện dùng cho backend
 Grafana:
 http://monitor.sps.local/
 admin
@@ -84,3 +88,21 @@ kubectl apply -k k8s/base
 kubectl rollout restart rollout sps-backend-deployment
 kubectl get pods -A
 kubectl logs -l app=sps-backend -f
+
+
+Về mô hình AI
+- có 2 mô hình cho 2 luồng chạy
++ YOLOv11n tìm biển số và tọa độ của biển số
++ EasyOCR đọc chữ từ ảnh
+Về luồng chạy:
+Mô hình đa luồng:
+- YOLOv11n chạy luồng chạy:
++ Luồng đọc bắt hình reader, xử lí các khung hình cho khớp với hiệu năng hệ thống, để sao dữ liệu luôn realtime
+. Ví dụ tố độ xử lí của máy chạm hơn tốc độ video thì cắt bớt khung hình cũ, trùng đi để dữ liệu luôn real time
++ Luồng suy luận infer thò tay vào luồng video của thằng reader đưa hình vào mạng neuron để xử lí để tìm tọa độ biển số
+- Tiền xử lí, dùng thư viện OpenCV để độ bức ảnh
+- EasyOCR nhận diện kí tự và dùng thuật toán bỏ phiếu
+
+Hàm _reader_loop (Dòng 437)
+Hàm _infer_loop (Dòng 471)
+Hàm run_demo_scan (Dòng 274) dùng để demo 2 hàm trên đang không dùng, chính xác hơn là để đó sau này còn phát triển

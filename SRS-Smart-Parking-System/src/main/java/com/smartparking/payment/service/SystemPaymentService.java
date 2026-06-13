@@ -100,6 +100,11 @@ public class SystemPaymentService {
                 return;
             }
         }
+        List<PaymentDetail> details = paymentDetailRepository.findByPaymentId(matchedPayment.getId());
+        if (!details.isEmpty() && checkBookingOverlap(details)) {
+            log.error("🚨 WEBHOOK OVERLAP: Giao dịch {} thanh toán cho xe đã có gói cước trùng thời gian. Chốt MUST_RESOLVE để hoàn tiền!", matchedPayment.getPayCode());
+            matchedPayment.setStatus(Status.MUST_RESOlVE);
+        }
 
         if (amountPaid.compareTo(matchedPayment.getAmount()) < 0) {
             matchedPayment.setStatus(Status.PARTIAL_PAYMENT);
@@ -116,7 +121,6 @@ public class SystemPaymentService {
         matchedPayment.setTransactionId(request.getTransactionId());
         paymentRepository.save(matchedPayment);
 
-        List<PaymentDetail> details = paymentDetailRepository.findByPaymentId(matchedPayment.getId());
 
         try {
             if (!details.isEmpty()) {
@@ -129,6 +133,24 @@ public class SystemPaymentService {
             throw e;
         }
     }
+    private boolean checkBookingOverlap(List<PaymentDetail> details) {
+        List<BookingStatus> excludedStatuses = Arrays.asList(BookingStatus.CANCELED, BookingStatus.EXPIRED, BookingStatus.COMPLETE);
+
+        for (PaymentDetail pd : details) {
+            BookingDetail draft = pd.getBookingDetail();
+            boolean hasOverlap = bookingDetailRepository.existsOverlappingBooking(
+                    draft.getVehicleNo(),
+                    draft.getId(),
+                    draft.getStartDate(),
+                    draft.getEndDate(),
+                    excludedStatuses
+            );
+            if (hasOverlap) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void activateMonthlyBookings(List<PaymentDetail> details, Status status) {
         LocalDateTime now = LocalDate.now().atStartOfDay();
@@ -140,6 +162,7 @@ public class SystemPaymentService {
         for (BookingDetail draft : draftsToActive) {
             if (status == Status.NEEDS_ATTENTION) {
                 draft.setStatus(BookingStatus.NEEDS_ATTENTION);
+                log.warn("Bỏ qua cập nhật Booking Detail cho xe {} vì Payment bị đánh dấu NEEDS_ATTENTION (Thanh toán muộn). Giữ nguyên trạng thái Hủy/Hết hạn.", draft.getVehicleNo());
             }
 
             else if (status == Status.SUCCESS) {

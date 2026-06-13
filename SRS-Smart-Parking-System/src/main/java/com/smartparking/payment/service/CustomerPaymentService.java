@@ -231,7 +231,7 @@ public class CustomerPaymentService {
             throw new BusinessException("Danh sách thanh toán không được để trống!");
         }
 
-        List<BookingDetail> drafts = bookingDetailRepository.findAllById(detailIds);
+        List<BookingDetail> drafts = bookingDetailRepository.findAllByIdWithLock(detailIds);
 
         if (drafts.size() != detailIds.size()) {
             throw new BusinessException("Một số gói đăng ký không tồn tại hoặc đã bị xóa khỏi hệ thống!");

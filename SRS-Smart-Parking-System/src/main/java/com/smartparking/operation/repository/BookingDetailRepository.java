@@ -213,4 +213,22 @@ public interface BookingDetailRepository extends JpaRepository<BookingDetail, In
                 @Param("status") BookingStatus status,
                 @Param("startDate") LocalDateTime startDate,
                 @Param("endDate") LocalDateTime endDate);
+
+        @Lock(LockModeType.PESSIMISTIC_WRITE)
+        @Query("SELECT b FROM BookingDetail b WHERE b.id IN :ids")
+        List<BookingDetail> findAllByIdWithLock(@Param("ids") List<Integer> ids);
+
+        @Query("SELECT CASE WHEN COUNT(b) > 0 THEN true ELSE false END FROM BookingDetail b " +
+                "WHERE b.vehicleNo = :vehicleNo " +
+                "AND b.id != :currentId " +
+                "AND b.status NOT IN :excludedStatuses " +
+                "AND b.startDate <= :endDate " +
+                "AND b.endDate >= :startDate")
+        boolean existsOverlappingBooking(
+                @Param("vehicleNo") String vehicleNo,
+                @Param("currentId") Integer currentId,
+                @Param("startDate") LocalDateTime startDate,
+                @Param("endDate") LocalDateTime endDate,
+                @Param("excludedStatuses") List<BookingStatus> excludedStatuses
+        );
 }

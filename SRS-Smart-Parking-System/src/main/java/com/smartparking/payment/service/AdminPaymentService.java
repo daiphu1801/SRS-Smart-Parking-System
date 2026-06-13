@@ -129,7 +129,7 @@ public class AdminPaymentService {
                 .orElseThrow(() -> new BusinessException("Giao dịch không tồn tại"));
 
         Status currentStatus = payment.getStatus();
-        if (currentStatus == Status.SUCCESS) {
+        if (currentStatus == Status.SUCCESS || currentStatus == Status.MUST_RESOlVE) {
             throw new BusinessException("Giao dịch này đã được xử lý thành công từ trước!");
         }
 
@@ -209,28 +209,21 @@ public class AdminPaymentService {
         paymentRepository.save(payment);
 
         for (BookingDetail draft : draftsToActive) {
-            PackagePrice packagePrice = packageMap.get(draft.getPackagePriceId());
-            int duration = packagePrice.getDurationMonths();
+            LocalDateTime originalStartDate = draft.getStartDate();
 
-            // Tìm ngày hết hạn xa nhất hiện tại của xe này trong DB
-            Optional<LocalDateTime> maxEndDateOpt = bookingDetailRepository.findMaxEndDateByVehicleNo(draft.getVehicleNo(),BookingStatus.ACTIVE);
-            LocalDateTime referenceEndDate = maxEndDateOpt.orElse(null);
+            if (now.isAfter(originalStartDate)) {
+                log.info("Trượt ngày kích hoạt cho xe {} do thanh toán trễ. Bắt đầu tính từ hôm nay.", draft.getVehicleNo());
 
-            LocalDateTime newStartDate;
+                draft.setStartDate(now);
 
-            // Nếu xe vẫn còn hạn -> Nối đuôi. Nếu xe đã hết hạn -> Tính từ bây giờ
-            if (referenceEndDate != null && referenceEndDate.isAfter(now)) {
-                newStartDate = referenceEndDate;
-            } else {
-                newStartDate = now;
+                PackagePrice packagePrice = packagePriceRepository.findById(draft.getPackagePriceId())
+                        .orElseThrow(() -> new BusinessException("Không tìm thấy gói cước!"));
+                int duration = packagePrice.getDurationMonths();
+
+                draft.setEndDate(now.plusMonths(duration).minusSeconds(1));
             }
 
-            // Ghi đè lại ngày bắt đầu và kết thúc mới (Không quan tâm lệch giá B2B)
-            draft.setStartDate(newStartDate);
-            draft.setEndDate(newStartDate.plusMonths(duration).minusSeconds(1));
-
-            // Kích hoạt vé
-            if (newStartDate.isAfter(now)) {
+            if (draft.getStartDate().isAfter(now)) {
                 draft.setStatus(BookingStatus.PENDING_ACTIVATION);
             } else {
                 draft.setStatus(BookingStatus.ACTIVE);

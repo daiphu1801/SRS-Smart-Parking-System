@@ -140,18 +140,20 @@ public class BookingDetailService {
                 Booking booking = bookingRepo.findByGroupId(groupId)
                                 .orElseThrow(() -> new BusinessException("Không tìm thấy Hợp đồng cho Group này!"));
 
-                boolean isVehicleInUse = bookingDetailRepo.existsByVehicleNoAndStatusNotIn(
-                                request.getVehicleNo(),
-                                Arrays.asList(BookingStatus.CANCELED, BookingStatus.EXPIRED, BookingStatus.COMPLETE));
-                if (isVehicleInUse) {
-                        throw new BusinessException("Biển số xe " + request.getVehicleNo()
-                                        + " đã được đăng ký hoặc đang nằm trong giỏ hàng chờ thanh toán!");
-                }
+
 
                 PackagePrice packagePrice = validateAndGetPackagePrice(
                                 request.getPackagePriceId(),
                                 request.getVehicleTypeId(),
                                 groupId);
+
+                boolean isVehicleInUse = bookingDetailRepo.existsByVehicleNoAndStatusNotIn(
+                        request.getVehicleNo(),
+                        Arrays.asList(BookingStatus.CANCELED, BookingStatus.EXPIRED, BookingStatus.COMPLETE));
+                if (isVehicleInUse) {
+                        throw new BusinessException("Biển số xe " + request.getVehicleNo()
+                                + " đã được đăng ký hoặc đang nằm trong giỏ hàng chờ thanh toán!");
+                }
 
                 Integer durationMonths = packagePrice.getDurationMonths();
 

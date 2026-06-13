@@ -36,7 +36,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Long>,
             "p.status = com.smartparking.payment.entity.Status.MANUAL_SUCCESS " +
             "OR " +
             // KỊCH BẢN 2: Lệch tiền hoặc cần chú ý
-            "p.status IN (com.smartparking.payment.entity.Status.PARTIAL_PAYMENT, com.smartparking.payment.entity.Status.NEEDS_ATTENTION) " +
+            "p.status IN (com.smartparking.payment.entity.Status.PARTIAL_PAYMENT, com.smartparking.payment.entity.Status.NEEDS_ATTENTION,com.smartparking.payment.entity.Status.MUST_RESOlVE) " +
             "ORDER BY p.updatedAt DESC")
     Page<Payment> findReconciliationExceptions(Pageable pageable);
 
